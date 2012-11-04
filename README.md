@@ -183,22 +183,22 @@ In order to retrieve associations of a subject, the its() function is used. An i
 
 Example of usage:
 
-describe(@"The cat", ^{
-    subject(id ^{ return [[Cat alloc] init]; });
+    describe(@"The cat", ^{
+        subject(id ^{ return [[Cat alloc] init]; });
     
-    its(@"name", @"should be Felix (this is optional)", ^{
-        // The subject here is the 'name' property on the cat.
-        [should be:@"Felix"];
-    });
+        its(@"name", @"should be Felix (this is optional)", ^{
+            // The subject here is the 'name' property on the cat.
+            [should be:@"Felix"];
+        });
     
-    when(@"awake", ^{
-        it(^{ [should beEating]; });
-    });
+        when(@"awake", ^{
+            it(^{ [should beEating]; });
+        });
         
-    when(@"sleeping", ^{
-        it(^{ [should beAdorable]; });
+        when(@"sleeping", ^{
+            it(^{ [should beAdorable]; });
+        });
     });
-});
 
 Let
 ---
