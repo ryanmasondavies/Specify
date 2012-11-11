@@ -11,6 +11,6 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-SenTestSuiteRun *RunSpecClass(Class testClass);
+SenTestSuiteRun * RunSpec(Class testClass);
 
 #endif

@@ -8,7 +8,7 @@
 
 #import "BHVTestHelper.h"
 
-SenTestSuiteRun *RunSpecClass(Class testClass)
+SenTestSuiteRun * RunSpec(Class testClass)
 {
     [SenTestObserver suspendObservation];
     SenTestSuiteRun *result = (id)[(SenTestSuite *)[SenTestSuite testSuiteForTestCaseClass:testClass] run];

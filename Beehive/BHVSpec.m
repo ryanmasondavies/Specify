@@ -8,33 +8,67 @@
 
 #import "BHVSpec.h"
 #import "BHVExample.h"
+#import "BHVCompiler.h"
+
+void example(NSString *description, BHVVoidBlock block)
+{
+    BHVExample *example = [[BHVExample alloc] init];
+    [example setDescription:description];
+    [example setBlock:block];
+    [[BHVCompiler sharedCompiler] addExample:example];
+}
+
+void it(NSString *description, BHVVoidBlock block)
+{
+    example(description, block);
+}
+
+@interface BHVExampleInvocation : NSInvocation
+@property (nonatomic, strong) BHVExample *example;
+@end
+
+@implementation BHVExampleInvocation
+- (void)invoke { [[self example] execute]; }
+@end
+
+@interface BHVSpec ()
+- (BHVExample *)currentExample;
+@end
 
 @implementation BHVSpec
 
-+ (NSArray *)examples
++ (void)defineBehaviour
 {
-    return nil; // Overridden by subclasses.
-}
-
-- (void)runExampleAtIndex:(NSUInteger)index
-{
-    NSArray *examples = [[self class] examples];
-    [examples[index] execute];
+    // Overridden by subclasses.
 }
 
 + (NSArray *)testInvocations
 {
-    NSMutableArray *invocations = [NSMutableArray array];
+    // Compile examples:
+    BHVCompiler *compiler = [BHVCompiler sharedCompiler];
+    [compiler compile:^{ [self defineBehaviour]; }];
     
-    for (NSUInteger index = 0; index < [[self examples] count]; index ++) {
-        NSMethodSignature *signature = [self instanceMethodSignatureForSelector:@selector(runExampleAtIndex:)];
-        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
-        [invocation setSelector:@selector(runExampleAtIndex:)];
-        [invocation setArgument:&index atIndex:2];
+    // Generate invocations:
+    NSMutableArray *invocations = [NSMutableArray array];
+    [[compiler compiledExamples] enumerateObjectsUsingBlock:^(BHVExample *example, NSUInteger idx, BOOL *stop) {
+        NSString *encodingType = [NSString stringWithFormat:@"%s%s%s", @encode(void), @encode(id), @encode(SEL)];
+        NSMethodSignature *methodSignature = [NSMethodSignature signatureWithObjCTypes:[encodingType UTF8String]];
+        BHVExampleInvocation *invocation = (BHVExampleInvocation *)[BHVExampleInvocation invocationWithMethodSignature:methodSignature];
+        [invocation setExample:example];
         [invocations addObject:invocation];
-    }
+    }];
     
     return invocations;
+}
+
+- (BHVExample *)currentExample
+{
+    return [(BHVExampleInvocation *)[self invocation] example];
+}
+
+- (NSString *)name
+{
+    return [[self currentExample] description];
 }
 
 @end

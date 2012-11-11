@@ -6,9 +6,10 @@
 //  Copyright (c) 2012 Ryan Davies. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "BHVBlockTypes.h"
 
 @interface BHVExample : NSObject
-@property (nonatomic, copy) void (^block)(void);
+@property (nonatomic, copy) NSString *description;
+@property (nonatomic, copy) BHVVoidBlock block;
 - (void)execute;
 @end

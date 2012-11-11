@@ -6,29 +6,24 @@
 //  Copyright (c) 2012 Ryan Davies. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import "BHVBlockTypes.h"
+
+@class BHVExample;
 
 #define SpecBegin(className) \
 @interface className##Spec : BHVSpec; @end \
 @implementation className##Spec \
 \
-+ (NSArray *)examples \
++ (void)defineBehaviour \
 { \
-    static NSMutableArray *examples = nil; \
-    if (examples != nil) return examples; \
-    \
-    examples = [NSMutableArray array]; \
-    void(^it)(NSString *name, void (^block)(void)) = ^(NSString *name, void (^block)(void)) { \
-        BHVExample *example = [[BHVExample alloc] init]; \
-        [example setBlock:block]; \
-        [examples addObject:example]; \
-    }; \
 
 #define SpecEnd \
-    return [NSArray arrayWithArray:examples]; \
 } \
 @end
 
+void example(NSString *description, BHVVoidBlock block);
+void it(NSString *description, BHVVoidBlock block);
+
 @interface BHVSpec : SenTestCase
-+ (NSArray *)examples;
++ (void)defineBehaviour;
 @end
