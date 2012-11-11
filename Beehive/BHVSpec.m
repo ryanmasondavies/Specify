@@ -18,7 +18,7 @@
 
 - (void)runExampleAtIndex:(NSUInteger)index
 {
-    NSArray *examples = [[self class] examples]; // Loading them every time!
+    NSArray *examples = [[self class] examples];
     [examples[index] execute];
 }
 

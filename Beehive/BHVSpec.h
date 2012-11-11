@@ -14,8 +14,10 @@
 \
 + (NSArray *)examples \
 { \
-    NSMutableArray *examples = [NSMutableArray array]; \
+    static NSMutableArray *examples = nil; \
+    if (examples != nil) return examples; \
     \
+    examples = [NSMutableArray array]; \
     void(^it)(NSString *name, void (^block)(void)) = ^(NSString *name, void (^block)(void)) { \
         BHVExample *example = [[BHVExample alloc] init]; \
         [example setBlock:block]; \
