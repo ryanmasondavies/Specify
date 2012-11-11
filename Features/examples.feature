@@ -7,12 +7,10 @@ Feature: examples
     "It has a balance of zero."
     
   Scenario: one example
-    Given a test suite
-      And the spec:
+    Given the spec:
       """
-      it(@"should perform basic math", ^{
-          STAssertTrue((1+2) == 3, @"failed at basic math");
+      it(@"should recognise examples", ^{
       });
       """
     When I run the tests
-    Then the output should contain "should perform basic math"
+    Then the output should contain "should recognise examples"

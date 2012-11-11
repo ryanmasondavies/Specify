@@ -1,11 +1,9 @@
 require 'aruba/cucumber'
 
-def features_path
-  File.join(Dir.pwd, 'Features')
-end
-
 Before do
-  @dirs = [File.join(features_path, 'tmp')]
+  @dirs = [File.join(Dir.pwd, 'Features', 'tmp')]
+  FileUtils.mkdir(@dirs[0])
+  FileUtils.cp_r(Dir["#{Dir.pwd}/Features/Fixtures/*"], @dirs[0])
 end
 
 After do
