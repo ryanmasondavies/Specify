@@ -6,8 +6,10 @@
 //  Copyright (c) 2012 Ryan Davies. All rights reserved.
 //
 
-#import "BHVExampleTests.h"
+#import <SenTestingKit/SenTestingKit.h>
 #import "BHVExample.h"
+
+@interface BHVExampleTests : SenTestCase; @end
 
 @implementation BHVExampleTests
 

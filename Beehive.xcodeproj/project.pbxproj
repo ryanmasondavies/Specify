@@ -15,6 +15,11 @@
 		94ED2B881649A0A400D59570 /* Beehive.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 94ED2B871649A0A400D59570 /* Beehive.h */; };
 		94ED2B9A1649A0B800D59570 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94ED2B821649A0A400D59570 /* Foundation.framework */; };
 		94ED2BA01649A0B800D59570 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94ED2B9E1649A0B800D59570 /* InfoPlist.strings */; };
+		94F001D0164FE34D00865938 /* BHVSpecTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F001CF164FE34D00865938 /* BHVSpecTests.m */; };
+		94F001D7164FF58A00865938 /* BHVSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F001D6164FF58A00865938 /* BHVSpec.m */; };
+		94F001D8164FF5A700865938 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94266FB4164EFA9B00BBC615 /* SenTestingKit.framework */; };
+		94F001D9164FF61200865938 /* BHVSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F001D6164FF58A00865938 /* BHVSpec.m */; };
+		94F001E41650026400865938 /* BHVTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F001E31650026400865938 /* BHVTestHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,7 +36,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		94266FAE164EF70900BBC615 /* BHVExampleTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVExampleTests.h; sourceTree = "<group>"; };
 		94266FAF164EF70900BBC615 /* BHVExampleTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVExampleTests.m; sourceTree = "<group>"; };
 		94266FB4164EFA9B00BBC615 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		94266FB6164EFAE100BBC615 /* BHVExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVExample.h; sourceTree = "<group>"; };
@@ -44,6 +48,11 @@
 		94ED2B9D1649A0B800D59570 /* Specs-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Specs-Info.plist"; sourceTree = "<group>"; };
 		94ED2B9F1649A0B800D59570 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		94ED2BA41649A0B800D59570 /* Specs-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Specs-Prefix.pch"; sourceTree = "<group>"; };
+		94F001CF164FE34D00865938 /* BHVSpecTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVSpecTests.m; sourceTree = "<group>"; };
+		94F001D5164FF58A00865938 /* BHVSpec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVSpec.h; sourceTree = "<group>"; };
+		94F001D6164FF58A00865938 /* BHVSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVSpec.m; sourceTree = "<group>"; };
+		94F001E31650026400865938 /* BHVTestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVTestHelper.m; sourceTree = "<group>"; };
+		94F001E51650027000865938 /* BHVTestHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BHVTestHelper.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +61,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				94ED2B831649A0A400D59570 /* Foundation.framework in Frameworks */,
+				94F001D8164FF5A700865938 /* SenTestingKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,6 +111,8 @@
 				94ED2B871649A0A400D59570 /* Beehive.h */,
 				94266FB6164EFAE100BBC615 /* BHVExample.h */,
 				94266FB7164EFAE100BBC615 /* BHVExample.m */,
+				94F001D5164FF58A00865938 /* BHVSpec.h */,
+				94F001D6164FF58A00865938 /* BHVSpec.m */,
 				94ED2B851649A0A400D59570 /* Supporting Files */,
 			);
 			path = Beehive;
@@ -117,8 +129,9 @@
 		94ED2B9B1649A0B800D59570 /* Specs */ = {
 			isa = PBXGroup;
 			children = (
-				94266FAE164EF70900BBC615 /* BHVExampleTests.h */,
 				94266FAF164EF70900BBC615 /* BHVExampleTests.m */,
+				94F001CF164FE34D00865938 /* BHVSpecTests.m */,
+				94F001E61650028C00865938 /* Helpers */,
 				94ED2B9C1649A0B800D59570 /* Supporting Files */,
 			);
 			path = Specs;
@@ -132,6 +145,15 @@
 				94ED2BA41649A0B800D59570 /* Specs-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		94F001E61650028C00865938 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				94F001E51650027000865938 /* BHVTestHelper.h */,
+				94F001E31650026400865938 /* BHVTestHelper.m */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,6 +254,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				94266FB8164EFAE100BBC615 /* BHVExample.m in Sources */,
+				94F001D7164FF58A00865938 /* BHVSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,6 +264,9 @@
 			files = (
 				94266FB0164EF70900BBC615 /* BHVExampleTests.m in Sources */,
 				94266FBA164EFC1A00BBC615 /* BHVExample.m in Sources */,
+				94F001D0164FE34D00865938 /* BHVSpecTests.m in Sources */,
+				94F001D9164FF61200865938 /* BHVSpec.m in Sources */,
+				94F001E41650026400865938 /* BHVTestHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +335,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DSTROOT = /tmp/Beehive.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Beehive/Beehive-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
@@ -321,6 +351,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DSTROOT = /tmp/Beehive.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Beehive/Beehive-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
