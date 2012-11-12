@@ -37,9 +37,7 @@
 {
     NSMutableArray *invocations = [NSMutableArray array];
     [[self examples] enumerateObjectsUsingBlock:^(BHVExample *example, NSUInteger idx, BOOL *stop) {
-        NSString *encodingType = [NSString stringWithFormat:@"%s%s%s", @encode(void), @encode(id), @encode(SEL)];
-        NSMethodSignature *methodSignature = [NSMethodSignature signatureWithObjCTypes:[encodingType UTF8String]];
-        BHVInvocation *invocation = (BHVInvocation *)[BHVInvocation invocationWithMethodSignature:methodSignature];
+        BHVInvocation *invocation = [BHVInvocation emptyInvocation];
         [invocation setExample:example];
         [invocations addObject:invocation];
     }];

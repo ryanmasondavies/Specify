@@ -10,4 +10,5 @@
 
 @interface BHVInvocation : NSInvocation
 @property (nonatomic, strong) BHVExample *example;
++ (id)emptyInvocation;
 @end

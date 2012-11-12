@@ -11,6 +11,13 @@
 
 @implementation BHVInvocation
 
++ (id)emptyInvocation
+{
+    NSString *encodingType = [NSString stringWithFormat:@"%s%s%s", @encode(void), @encode(id), @encode(SEL)];
+    NSMethodSignature *methodSignature = [NSMethodSignature signatureWithObjCTypes:[encodingType UTF8String]];
+    return [BHVInvocation invocationWithMethodSignature:methodSignature];
+}
+
 - (void)invoke
 {
     [[self example] execute];
