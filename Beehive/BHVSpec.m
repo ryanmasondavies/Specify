@@ -47,7 +47,6 @@ void example(NSString *description, BHVVoidBlock block)
     BHVExample *example = [[BHVExample alloc] init];
     [example setDescription:description];
     [example setBlock:block];
-    [example setDelegate:[BHVSuite sharedSuite]];
     [[BHVSuite sharedSuite] addExample:example];
 }
 
