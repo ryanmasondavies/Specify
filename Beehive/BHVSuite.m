@@ -33,8 +33,6 @@
     return self;
 }
 
-#pragma mark Invoking examples
-
 - (NSArray *)invocations
 {
     NSMutableArray *invocations = [NSMutableArray array];
@@ -49,11 +47,24 @@
     return [NSArray arrayWithArray:invocations];
 }
 
-#pragma mark Managing examples
-
 - (void)addExample:(BHVExample *)example
 {
     [[self examples] addObject:example];
 }
 
 @end
+
+#pragma mark - Defining behaviour
+
+void example(NSString *description, BHVVoidBlock block)
+{
+    BHVExample *example = [[BHVExample alloc] init];
+    [example setDescription:description];
+    [example setBlock:block];
+    [[BHVSuite sharedSuite] addExample:example];
+}
+
+void it(NSString *description, BHVVoidBlock block)
+{
+    example(description, block);
+}

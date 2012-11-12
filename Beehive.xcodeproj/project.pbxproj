@@ -50,6 +50,7 @@
 		94266FB7164EFAE100BBC615 /* BHVExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVExample.m; sourceTree = "<group>"; };
 		948539E71651531C0010BF54 /* BHVInvocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVInvocation.h; sourceTree = "<group>"; };
 		948539E81651531C0010BF54 /* BHVInvocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVInvocation.m; sourceTree = "<group>"; };
+		948539EE1651639B0010BF54 /* BHVMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BHVMacros.h; sourceTree = "<group>"; };
 		94ED2B7F1649A0A400D59570 /* libBeehive.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBeehive.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		94ED2B821649A0A400D59570 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		94ED2B861649A0A400D59570 /* Beehive-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Beehive-Prefix.pch"; sourceTree = "<group>"; };
@@ -120,6 +121,7 @@
 			children = (
 				94ED2B871649A0A400D59570 /* Beehive.h */,
 				94F001EA1650208700865938 /* BHVBlockTypes.h */,
+				948539EE1651639B0010BF54 /* BHVMacros.h */,
 				94F001EB1650236400865938 /* BHVSuite.h */,
 				94F001EC1650236400865938 /* BHVSuite.m */,
 				94266FB6164EFAE100BBC615 /* BHVExample.h */,

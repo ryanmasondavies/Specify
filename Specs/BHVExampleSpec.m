@@ -8,21 +8,16 @@
 
 #import "BHVSpec.h"
 #import "BHVExample.h"
+#import "BHVMacros.h"
 
-@interface BHVExampleSpec : BHVSpec
-@end
+SpecBegin(BHVExample)
 
-@implementation BHVExampleSpec
+__block NSUInteger numberOfExecutions = 0;
 
-+ (void)defineBehaviour
-{
-    __block NSUInteger numberOfExecutions = 0;
-    
-    it(@"should only run examples once", ^{
-        numberOfExecutions ++;
-        if (numberOfExecutions != 1)
-            [NSException raise:NSInternalInconsistencyException format:@"Expected example to run only once."];
-    });
-}
+it(@"should only run examples once", ^{
+    numberOfExecutions ++;
+    if (numberOfExecutions != 1)
+        [NSException raise:NSInternalInconsistencyException format:@"Expected example to run only once."];
+});
 
-@end
+SpecEnd

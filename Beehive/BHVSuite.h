@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 Ryan Davies. All rights reserved.
 //
 
+#import "BHVBlockTypes.h"
+
 @class BHVExample;
 
 @interface BHVSuite : NSObject
@@ -16,3 +18,8 @@
 - (void)addExample:(BHVExample *)example;
 
 @end
+
+#pragma mark Defining behaviour
+
+void example(NSString *description, BHVVoidBlock block);
+void it(NSString *description, BHVVoidBlock block);

@@ -39,18 +39,3 @@
 }
 
 @end
-
-#pragma mark Defining behaviour
-
-void example(NSString *description, BHVVoidBlock block)
-{
-    BHVExample *example = [[BHVExample alloc] init];
-    [example setDescription:description];
-    [example setBlock:block];
-    [[BHVSuite sharedSuite] addExample:example];
-}
-
-void it(NSString *description, BHVVoidBlock block)
-{
-    example(description, block);
-}
