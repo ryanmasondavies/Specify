@@ -1,7 +1,7 @@
 Given /^the spec:$/ do |content|
   spec_file = File.join(@dirs[0], 'Specs', 'Spec.m')
   code = <<-EOF
-  #import "BHVSpec.h"
+  #import "Beehive.h"
   
   SpecBegin(Basic)
   

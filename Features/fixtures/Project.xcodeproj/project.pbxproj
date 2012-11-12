@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		946F94C816504DAD00F145D3 /* BHVCompiler.m in Sources */ = {isa = PBXBuildFile; fileRef = 946F94C316504DAD00F145D3 /* BHVCompiler.m */; };
-		946F94C916504DAD00F145D3 /* BHVExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 946F94C516504DAD00F145D3 /* BHVExample.m */; };
-		946F94CA16504DAD00F145D3 /* BHVSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 946F94C716504DAD00F145D3 /* BHVSpec.m */; };
+		94853A00165168250010BF54 /* BHVExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 948539F8165168250010BF54 /* BHVExample.m */; };
+		94853A01165168250010BF54 /* BHVInvocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 948539FA165168250010BF54 /* BHVInvocation.m */; };
+		94853A02165168250010BF54 /* BHVSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 948539FD165168250010BF54 /* BHVSpec.m */; };
+		94853A03165168250010BF54 /* BHVSuite.m in Sources */ = {isa = PBXBuildFile; fileRef = 948539FF165168250010BF54 /* BHVSuite.m */; };
 		94F001B2164FBCBD00865938 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EA630D2D5B540DE93F811CB /* Foundation.framework */; };
 		94F001BB164FBCBD00865938 /* Spec.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F001BA164FBCBD00865938 /* Spec.m */; };
 		94F001C7164FBD9C00865938 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94F001C6164FBD9C00865938 /* SenTestingKit.framework */; };
@@ -17,15 +18,18 @@
 
 /* Begin PBXFileReference section */
 		4EA630D2D5B540DE93F811CB /* Foundation.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		946F94BF16504DAD00F145D3 /* Beehive-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Beehive-Prefix.pch"; sourceTree = "<group>"; };
-		946F94C016504DAD00F145D3 /* Beehive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Beehive.h; sourceTree = "<group>"; };
-		946F94C116504DAD00F145D3 /* BHVBlockTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVBlockTypes.h; sourceTree = "<group>"; };
-		946F94C216504DAD00F145D3 /* BHVCompiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVCompiler.h; sourceTree = "<group>"; };
-		946F94C316504DAD00F145D3 /* BHVCompiler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVCompiler.m; sourceTree = "<group>"; };
-		946F94C416504DAD00F145D3 /* BHVExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVExample.h; sourceTree = "<group>"; };
-		946F94C516504DAD00F145D3 /* BHVExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVExample.m; sourceTree = "<group>"; };
-		946F94C616504DAD00F145D3 /* BHVSpec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVSpec.h; sourceTree = "<group>"; };
-		946F94C716504DAD00F145D3 /* BHVSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVSpec.m; sourceTree = "<group>"; };
+		948539F4165168250010BF54 /* Beehive-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Beehive-Prefix.pch"; sourceTree = "<group>"; };
+		948539F5165168250010BF54 /* Beehive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Beehive.h; sourceTree = "<group>"; };
+		948539F6165168250010BF54 /* BHVBlockTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVBlockTypes.h; sourceTree = "<group>"; };
+		948539F7165168250010BF54 /* BHVExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVExample.h; sourceTree = "<group>"; };
+		948539F8165168250010BF54 /* BHVExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVExample.m; sourceTree = "<group>"; };
+		948539F9165168250010BF54 /* BHVInvocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVInvocation.h; sourceTree = "<group>"; };
+		948539FA165168250010BF54 /* BHVInvocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVInvocation.m; sourceTree = "<group>"; };
+		948539FB165168250010BF54 /* BHVMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVMacros.h; sourceTree = "<group>"; };
+		948539FC165168250010BF54 /* BHVSpec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVSpec.h; sourceTree = "<group>"; };
+		948539FD165168250010BF54 /* BHVSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVSpec.m; sourceTree = "<group>"; };
+		948539FE165168250010BF54 /* BHVSuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVSuite.h; sourceTree = "<group>"; };
+		948539FF165168250010BF54 /* BHVSuite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVSuite.m; sourceTree = "<group>"; };
 		94F001AD164FBCBD00865938 /* Specs.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Specs.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		94F001B5164FBCBD00865938 /* Specs-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Specs-Info.plist"; sourceTree = "<group>"; };
 		94F001BA164FBCBD00865938 /* Spec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Spec.m; sourceTree = "<group>"; };
@@ -63,18 +67,21 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		946F94BE16504DAD00F145D3 /* Beehive */ = {
+		948539F3165168250010BF54 /* Beehive */ = {
 			isa = PBXGroup;
 			children = (
-				946F94BF16504DAD00F145D3 /* Beehive-Prefix.pch */,
-				946F94C016504DAD00F145D3 /* Beehive.h */,
-				946F94C116504DAD00F145D3 /* BHVBlockTypes.h */,
-				946F94C216504DAD00F145D3 /* BHVCompiler.h */,
-				946F94C316504DAD00F145D3 /* BHVCompiler.m */,
-				946F94C416504DAD00F145D3 /* BHVExample.h */,
-				946F94C516504DAD00F145D3 /* BHVExample.m */,
-				946F94C616504DAD00F145D3 /* BHVSpec.h */,
-				946F94C716504DAD00F145D3 /* BHVSpec.m */,
+				948539F4165168250010BF54 /* Beehive-Prefix.pch */,
+				948539F5165168250010BF54 /* Beehive.h */,
+				948539F6165168250010BF54 /* BHVBlockTypes.h */,
+				948539F7165168250010BF54 /* BHVExample.h */,
+				948539F8165168250010BF54 /* BHVExample.m */,
+				948539F9165168250010BF54 /* BHVInvocation.h */,
+				948539FA165168250010BF54 /* BHVInvocation.m */,
+				948539FB165168250010BF54 /* BHVMacros.h */,
+				948539FC165168250010BF54 /* BHVSpec.h */,
+				948539FD165168250010BF54 /* BHVSpec.m */,
+				948539FE165168250010BF54 /* BHVSuite.h */,
+				948539FF165168250010BF54 /* BHVSuite.m */,
 			);
 			name = Beehive;
 			path = ../../../Beehive;
@@ -84,7 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				94F001BA164FBCBD00865938 /* Spec.m */,
-				946F94BE16504DAD00F145D3 /* Beehive */,
+				948539F3165168250010BF54 /* Beehive */,
 				94F001B4164FBCBD00865938 /* Supporting Files */,
 			);
 			path = Specs;
@@ -186,9 +193,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				94F001BB164FBCBD00865938 /* Spec.m in Sources */,
-				946F94C816504DAD00F145D3 /* BHVCompiler.m in Sources */,
-				946F94C916504DAD00F145D3 /* BHVExample.m in Sources */,
-				946F94CA16504DAD00F145D3 /* BHVSpec.m in Sources */,
+				94853A00165168250010BF54 /* BHVExample.m in Sources */,
+				94853A01165168250010BF54 /* BHVInvocation.m in Sources */,
+				94853A02165168250010BF54 /* BHVSpec.m in Sources */,
+				94853A03165168250010BF54 /* BHVSuite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
