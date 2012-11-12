@@ -15,6 +15,6 @@ EOF
   end
 end
 
-When /^I run the tests$/ do
+When /^I run the spec$/ do
   step "I run `xcodebuild -target Specs -sdk iphonesimulator6.0 -configuration Debug clean build`"
 end

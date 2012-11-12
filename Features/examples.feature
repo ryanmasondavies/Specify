@@ -12,5 +12,5 @@ Feature: examples
       it(@"should recognise examples", ^{
       });
       """
-    When I run the tests
+    When I run the spec
     Then the output should contain "should recognise examples"
