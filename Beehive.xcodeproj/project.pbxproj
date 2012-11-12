@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		94266FB0164EF70900BBC615 /* BHVExampleSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 94266FAF164EF70900BBC615 /* BHVExampleSpec.m */; };
 		94266FB5164EFA9B00BBC615 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94266FB4164EFA9B00BBC615 /* SenTestingKit.framework */; };
 		94266FB8164EFAE100BBC615 /* BHVExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 94266FB7164EFAE100BBC615 /* BHVExample.m */; };
 		948539E016514CA40010BF54 /* libBeehive.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94ED2B7F1649A0A400D59570 /* libBeehive.a */; };
 		948539E91651531C0010BF54 /* BHVInvocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 948539E81651531C0010BF54 /* BHVInvocation.m */; };
+		9487542816517517002C26CC /* BHVExamplesSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 9487542716517517002C26CC /* BHVExamplesSpec.m */; };
 		94ED2B831649A0A400D59570 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94ED2B821649A0A400D59570 /* Foundation.framework */; };
 		94ED2B881649A0A400D59570 /* Beehive.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 94ED2B871649A0A400D59570 /* Beehive.h */; };
 		94ED2B9A1649A0B800D59570 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94ED2B821649A0A400D59570 /* Foundation.framework */; };
@@ -44,13 +44,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		94266FAF164EF70900BBC615 /* BHVExampleSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVExampleSpec.m; sourceTree = "<group>"; };
 		94266FB4164EFA9B00BBC615 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		94266FB6164EFAE100BBC615 /* BHVExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVExample.h; sourceTree = "<group>"; };
 		94266FB7164EFAE100BBC615 /* BHVExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVExample.m; sourceTree = "<group>"; };
 		948539E71651531C0010BF54 /* BHVInvocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVInvocation.h; sourceTree = "<group>"; };
 		948539E81651531C0010BF54 /* BHVInvocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVInvocation.m; sourceTree = "<group>"; };
 		948539EE1651639B0010BF54 /* BHVMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BHVMacros.h; sourceTree = "<group>"; };
+		9487542716517517002C26CC /* BHVExamplesSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVExamplesSpec.m; sourceTree = "<group>"; };
 		94ED2B7F1649A0A400D59570 /* libBeehive.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBeehive.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		94ED2B821649A0A400D59570 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		94ED2B861649A0A400D59570 /* Beehive-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Beehive-Prefix.pch"; sourceTree = "<group>"; };
@@ -146,7 +146,7 @@
 		94ED2B9B1649A0B800D59570 /* Specs */ = {
 			isa = PBXGroup;
 			children = (
-				94266FAF164EF70900BBC615 /* BHVExampleSpec.m */,
+				9487542716517517002C26CC /* BHVExamplesSpec.m */,
 				94ED2B9C1649A0B800D59570 /* Supporting Files */,
 			);
 			path = Specs;
@@ -269,7 +269,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94266FB0164EF70900BBC615 /* BHVExampleSpec.m in Sources */,
+				9487542816517517002C26CC /* BHVExamplesSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
