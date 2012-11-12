@@ -9,8 +9,23 @@ Feature: examples
   Scenario: one example
     Given the spec:
       """
-      it(@"should recognise examples", ^{
+      it(@"should do something", ^{
       });
       """
     When I run the spec
-    Then the output should contain "should recognise examples"
+    Then the output should contain "should do something"
+    
+  Scenario: one nested example
+    Given the spec:
+      """
+      describe(@"something", ^{
+          it(@"should do something", ^{
+          });
+      });
+      """
+    When I run the spec
+    Then the output should contain:
+      """
+      something
+        should do something
+      """
