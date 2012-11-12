@@ -11,7 +11,7 @@
 		94266FB8164EFAE100BBC615 /* BHVExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 94266FB7164EFAE100BBC615 /* BHVExample.m */; };
 		948539E016514CA40010BF54 /* libBeehive.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94ED2B7F1649A0A400D59570 /* libBeehive.a */; };
 		948539E91651531C0010BF54 /* BHVInvocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 948539E81651531C0010BF54 /* BHVInvocation.m */; };
-		9487542816517517002C26CC /* BHVExamplesSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 9487542716517517002C26CC /* BHVExamplesSpec.m */; };
+		9487542D165176A5002C26CC /* BHVExamplesSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 9487542A165176A5002C26CC /* BHVExamplesSpec.m */; };
 		94ED2B831649A0A400D59570 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94ED2B821649A0A400D59570 /* Foundation.framework */; };
 		94ED2B881649A0A400D59570 /* Beehive.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 94ED2B871649A0A400D59570 /* Beehive.h */; };
 		94ED2B9A1649A0B800D59570 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94ED2B821649A0A400D59570 /* Foundation.framework */; };
@@ -50,14 +50,14 @@
 		948539E71651531C0010BF54 /* BHVInvocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVInvocation.h; sourceTree = "<group>"; };
 		948539E81651531C0010BF54 /* BHVInvocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVInvocation.m; sourceTree = "<group>"; };
 		948539EE1651639B0010BF54 /* BHVMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BHVMacros.h; sourceTree = "<group>"; };
-		9487542716517517002C26CC /* BHVExamplesSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVExamplesSpec.m; sourceTree = "<group>"; };
+		9487542A165176A5002C26CC /* BHVExamplesSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVExamplesSpec.m; sourceTree = "<group>"; };
+		9487542B165176A5002C26CC /* Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
+		9487542C165176A5002C26CC /* Tests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		94ED2B7F1649A0A400D59570 /* libBeehive.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBeehive.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		94ED2B821649A0A400D59570 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		94ED2B861649A0A400D59570 /* Beehive-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Beehive-Prefix.pch"; sourceTree = "<group>"; };
 		94ED2B871649A0A400D59570 /* Beehive.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Beehive.h; sourceTree = "<group>"; };
-		94ED2B951649A0B800D59570 /* Specs.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Specs.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		94ED2B9D1649A0B800D59570 /* Specs-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Specs-Info.plist"; sourceTree = "<group>"; };
-		94ED2BA41649A0B800D59570 /* Specs-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Specs-Prefix.pch"; sourceTree = "<group>"; };
+		94ED2B951649A0B800D59570 /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		94F001D5164FF58A00865938 /* BHVSpec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVSpec.h; sourceTree = "<group>"; };
 		94F001D6164FF58A00865938 /* BHVSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVSpec.m; sourceTree = "<group>"; };
 		94F001EA1650208700865938 /* BHVBlockTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BHVBlockTypes.h; sourceTree = "<group>"; };
@@ -88,11 +88,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		94875429165176A5002C26CC /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				9487542A165176A5002C26CC /* BHVExamplesSpec.m */,
+				9487542F165176B3002C26CC /* Supporting Files */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		9487542F165176B3002C26CC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9487542B165176A5002C26CC /* Tests-Info.plist */,
+				9487542C165176A5002C26CC /* Tests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		94ED2B741649A0A400D59570 = {
 			isa = PBXGroup;
 			children = (
 				94ED2B841649A0A400D59570 /* Beehive */,
-				94ED2B9B1649A0B800D59570 /* Specs */,
+				94875429165176A5002C26CC /* Tests */,
 				94ED2B811649A0A400D59570 /* Frameworks */,
 				94ED2B801649A0A400D59570 /* Products */,
 			);
@@ -102,7 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				94ED2B7F1649A0A400D59570 /* libBeehive.a */,
-				94ED2B951649A0B800D59570 /* Specs.octest */,
+				94ED2B951649A0B800D59570 /* Tests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -143,24 +161,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		94ED2B9B1649A0B800D59570 /* Specs */ = {
-			isa = PBXGroup;
-			children = (
-				9487542716517517002C26CC /* BHVExamplesSpec.m */,
-				94ED2B9C1649A0B800D59570 /* Supporting Files */,
-			);
-			path = Specs;
-			sourceTree = "<group>";
-		};
-		94ED2B9C1649A0B800D59570 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				94ED2B9D1649A0B800D59570 /* Specs-Info.plist */,
-				94ED2BA41649A0B800D59570 /* Specs-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -181,9 +181,9 @@
 			productReference = 94ED2B7F1649A0A400D59570 /* libBeehive.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		94ED2B941649A0B800D59570 /* Specs */ = {
+		94ED2B941649A0B800D59570 /* Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 94ED2BA51649A0B800D59570 /* Build configuration list for PBXNativeTarget "Specs" */;
+			buildConfigurationList = 94ED2BA51649A0B800D59570 /* Build configuration list for PBXNativeTarget "Tests" */;
 			buildPhases = (
 				94ED2B901649A0B800D59570 /* Sources */,
 				94ED2B911649A0B800D59570 /* Frameworks */,
@@ -195,9 +195,9 @@
 			dependencies = (
 				948539DF16514CA00010BF54 /* PBXTargetDependency */,
 			);
-			name = Specs;
+			name = Tests;
 			productName = Specs;
-			productReference = 94ED2B951649A0B800D59570 /* Specs.octest */;
+			productReference = 94ED2B951649A0B800D59570 /* Tests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -222,7 +222,7 @@
 			projectRoot = "";
 			targets = (
 				94ED2B7E1649A0A400D59570 /* Beehive */,
-				94ED2B941649A0B800D59570 /* Specs */,
+				94ED2B941649A0B800D59570 /* Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -269,7 +269,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9487542816517517002C26CC /* BHVExamplesSpec.m in Sources */,
+				9487542D165176A5002C26CC /* BHVExamplesSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,8 +371,8 @@
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Specs/Specs-Prefix.pch";
-				INFOPLIST_FILE = "Specs/Specs-Info.plist";
+				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
+				INFOPLIST_FILE = "Tests/Tests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -386,8 +386,8 @@
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Specs/Specs-Prefix.pch";
-				INFOPLIST_FILE = "Specs/Specs-Info.plist";
+				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
+				INFOPLIST_FILE = "Tests/Tests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -414,7 +414,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		94ED2BA51649A0B800D59570 /* Build configuration list for PBXNativeTarget "Specs" */ = {
+		94ED2BA51649A0B800D59570 /* Build configuration list for PBXNativeTarget "Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				94ED2BA61649A0B800D59570 /* Debug */,
