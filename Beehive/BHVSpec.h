@@ -10,20 +10,10 @@
 
 @class BHVExample;
 
-#define SpecBegin(className) \
-@interface className##Spec : BHVSpec; @end \
-@implementation className##Spec \
-\
-+ (void)defineBehaviour \
-{ \
-
-#define SpecEnd \
-} \
+@interface BHVSpec : SenTestCase
++ (void)defineBehaviour;
+- (BHVExample *)currentExample;
 @end
 
 void example(NSString *description, BHVVoidBlock block);
 void it(NSString *description, BHVVoidBlock block);
-
-@interface BHVSpec : SenTestCase
-+ (void)defineBehaviour;
-@end

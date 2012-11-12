@@ -8,32 +8,8 @@
 
 #import "BHVSpec.h"
 #import "BHVExample.h"
-#import "BHVCompiler.h"
-
-void example(NSString *description, BHVVoidBlock block)
-{
-    BHVExample *example = [[BHVExample alloc] init];
-    [example setDescription:description];
-    [example setBlock:block];
-    [[BHVCompiler sharedCompiler] addExample:example];
-}
-
-void it(NSString *description, BHVVoidBlock block)
-{
-    example(description, block);
-}
-
-@interface BHVExampleInvocation : NSInvocation
-@property (nonatomic, strong) BHVExample *example;
-@end
-
-@implementation BHVExampleInvocation
-- (void)invoke { [[self example] execute]; }
-@end
-
-@interface BHVSpec ()
-- (BHVExample *)currentExample;
-@end
+#import "BHVSuite.h"
+#import "BHVInvocation.h"
 
 @implementation BHVSpec
 
@@ -44,26 +20,17 @@ void it(NSString *description, BHVVoidBlock block)
 
 + (NSArray *)testInvocations
 {
-    // Compile examples:
-    BHVCompiler *compiler = [BHVCompiler sharedCompiler];
-    [compiler compile:^{ [self defineBehaviour]; }];
+    SEL selector = @selector(defineBehaviour);
+    if ([self methodForSelector:selector] == [BHVSpec methodForSelector:selector])
+        return nil;
     
-    // Generate invocations:
-    NSMutableArray *invocations = [NSMutableArray array];
-    [[compiler compiledExamples] enumerateObjectsUsingBlock:^(BHVExample *example, NSUInteger idx, BOOL *stop) {
-        NSString *encodingType = [NSString stringWithFormat:@"%s%s%s", @encode(void), @encode(id), @encode(SEL)];
-        NSMethodSignature *methodSignature = [NSMethodSignature signatureWithObjCTypes:[encodingType UTF8String]];
-        BHVExampleInvocation *invocation = (BHVExampleInvocation *)[BHVExampleInvocation invocationWithMethodSignature:methodSignature];
-        [invocation setExample:example];
-        [invocations addObject:invocation];
-    }];
-    
-    return invocations;
+    [self defineBehaviour];
+    return [[BHVSuite sharedSuite] invocations];
 }
 
 - (BHVExample *)currentExample
 {
-    return [(BHVExampleInvocation *)[self invocation] example];
+    return [(BHVInvocation *)[self invocation] example];
 }
 
 - (NSString *)name
@@ -72,3 +39,19 @@ void it(NSString *description, BHVVoidBlock block)
 }
 
 @end
+
+#pragma mark Defining behaviour
+
+void example(NSString *description, BHVVoidBlock block)
+{
+    BHVExample *example = [[BHVExample alloc] init];
+    [example setDescription:description];
+    [example setBlock:block];
+    [example setDelegate:[BHVSuite sharedSuite]];
+    [[BHVSuite sharedSuite] addExample:example];
+}
+
+void it(NSString *description, BHVVoidBlock block)
+{
+    example(description, block);
+}

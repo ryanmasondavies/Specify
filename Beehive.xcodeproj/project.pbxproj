@@ -10,17 +10,25 @@
 		94266FB0164EF70900BBC615 /* BHVExampleSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 94266FAF164EF70900BBC615 /* BHVExampleSpec.m */; };
 		94266FB5164EFA9B00BBC615 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94266FB4164EFA9B00BBC615 /* SenTestingKit.framework */; };
 		94266FB8164EFAE100BBC615 /* BHVExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 94266FB7164EFAE100BBC615 /* BHVExample.m */; };
-		94266FBA164EFC1A00BBC615 /* BHVExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 94266FB7164EFAE100BBC615 /* BHVExample.m */; };
+		948539E016514CA40010BF54 /* libBeehive.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94ED2B7F1649A0A400D59570 /* libBeehive.a */; };
+		948539E91651531C0010BF54 /* BHVInvocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 948539E81651531C0010BF54 /* BHVInvocation.m */; };
 		94ED2B831649A0A400D59570 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94ED2B821649A0A400D59570 /* Foundation.framework */; };
 		94ED2B881649A0A400D59570 /* Beehive.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 94ED2B871649A0A400D59570 /* Beehive.h */; };
 		94ED2B9A1649A0B800D59570 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94ED2B821649A0A400D59570 /* Foundation.framework */; };
 		94F001D7164FF58A00865938 /* BHVSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F001D6164FF58A00865938 /* BHVSpec.m */; };
 		94F001D8164FF5A700865938 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94266FB4164EFA9B00BBC615 /* SenTestingKit.framework */; };
-		94F001D9164FF61200865938 /* BHVSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F001D6164FF58A00865938 /* BHVSpec.m */; };
-		94F001E41650026400865938 /* BHVTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F001E31650026400865938 /* BHVTestHelper.m */; };
-		94F001ED1650236400865938 /* BHVCompiler.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F001EC1650236400865938 /* BHVCompiler.m */; };
-		94F001EE165030FB00865938 /* BHVCompiler.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F001EC1650236400865938 /* BHVCompiler.m */; };
+		94F001ED1650236400865938 /* BHVSuite.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F001EC1650236400865938 /* BHVSuite.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		948539DE16514CA00010BF54 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 94ED2B761649A0A400D59570 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 94ED2B7E1649A0A400D59570;
+			remoteInfo = Beehive;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		94ED2B7D1649A0A400D59570 /* CopyFiles */ = {
@@ -40,6 +48,9 @@
 		94266FB4164EFA9B00BBC615 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		94266FB6164EFAE100BBC615 /* BHVExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVExample.h; sourceTree = "<group>"; };
 		94266FB7164EFAE100BBC615 /* BHVExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVExample.m; sourceTree = "<group>"; };
+		948539E71651531C0010BF54 /* BHVInvocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVInvocation.h; sourceTree = "<group>"; };
+		948539E81651531C0010BF54 /* BHVInvocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVInvocation.m; sourceTree = "<group>"; };
+		948539EA1651540A0010BF54 /* BHVExampleDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BHVExampleDelegate.h; sourceTree = "<group>"; };
 		94ED2B7F1649A0A400D59570 /* libBeehive.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBeehive.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		94ED2B821649A0A400D59570 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		94ED2B861649A0A400D59570 /* Beehive-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Beehive-Prefix.pch"; sourceTree = "<group>"; };
@@ -49,11 +60,9 @@
 		94ED2BA41649A0B800D59570 /* Specs-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Specs-Prefix.pch"; sourceTree = "<group>"; };
 		94F001D5164FF58A00865938 /* BHVSpec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVSpec.h; sourceTree = "<group>"; };
 		94F001D6164FF58A00865938 /* BHVSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVSpec.m; sourceTree = "<group>"; };
-		94F001E31650026400865938 /* BHVTestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVTestHelper.m; sourceTree = "<group>"; };
-		94F001E51650027000865938 /* BHVTestHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BHVTestHelper.h; sourceTree = "<group>"; };
 		94F001EA1650208700865938 /* BHVBlockTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BHVBlockTypes.h; sourceTree = "<group>"; };
-		94F001EB1650236400865938 /* BHVCompiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVCompiler.h; sourceTree = "<group>"; };
-		94F001EC1650236400865938 /* BHVCompiler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVCompiler.m; sourceTree = "<group>"; };
+		94F001EB1650236400865938 /* BHVSuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVSuite.h; sourceTree = "<group>"; };
+		94F001EC1650236400865938 /* BHVSuite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVSuite.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				948539E016514CA40010BF54 /* libBeehive.a in Frameworks */,
 				94ED2B9A1649A0B800D59570 /* Foundation.framework in Frameworks */,
 				94266FB5164EFA9B00BBC615 /* SenTestingKit.framework in Frameworks */,
 			);
@@ -111,12 +121,15 @@
 			children = (
 				94ED2B871649A0A400D59570 /* Beehive.h */,
 				94F001EA1650208700865938 /* BHVBlockTypes.h */,
-				94F001EB1650236400865938 /* BHVCompiler.h */,
-				94F001EC1650236400865938 /* BHVCompiler.m */,
+				94F001EB1650236400865938 /* BHVSuite.h */,
+				94F001EC1650236400865938 /* BHVSuite.m */,
 				94266FB6164EFAE100BBC615 /* BHVExample.h */,
 				94266FB7164EFAE100BBC615 /* BHVExample.m */,
+				948539EA1651540A0010BF54 /* BHVExampleDelegate.h */,
 				94F001D5164FF58A00865938 /* BHVSpec.h */,
 				94F001D6164FF58A00865938 /* BHVSpec.m */,
+				948539E71651531C0010BF54 /* BHVInvocation.h */,
+				948539E81651531C0010BF54 /* BHVInvocation.m */,
 				94ED2B851649A0A400D59570 /* Supporting Files */,
 			);
 			path = Beehive;
@@ -134,7 +147,6 @@
 			isa = PBXGroup;
 			children = (
 				94266FAF164EF70900BBC615 /* BHVExampleSpec.m */,
-				94F001E61650028C00865938 /* Helpers */,
 				94ED2B9C1649A0B800D59570 /* Supporting Files */,
 			);
 			path = Specs;
@@ -147,15 +159,6 @@
 				94ED2BA41649A0B800D59570 /* Specs-Prefix.pch */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		94F001E61650028C00865938 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				94F001E51650027000865938 /* BHVTestHelper.h */,
-				94F001E31650026400865938 /* BHVTestHelper.m */,
-			);
-			name = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,6 +193,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				948539DF16514CA00010BF54 /* PBXTargetDependency */,
 			);
 			name = Specs;
 			productName = Specs;
@@ -256,7 +260,8 @@
 			files = (
 				94266FB8164EFAE100BBC615 /* BHVExample.m in Sources */,
 				94F001D7164FF58A00865938 /* BHVSpec.m in Sources */,
-				94F001ED1650236400865938 /* BHVCompiler.m in Sources */,
+				94F001ED1650236400865938 /* BHVSuite.m in Sources */,
+				948539E91651531C0010BF54 /* BHVInvocation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,14 +270,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				94266FB0164EF70900BBC615 /* BHVExampleSpec.m in Sources */,
-				94266FBA164EFC1A00BBC615 /* BHVExample.m in Sources */,
-				94F001D9164FF61200865938 /* BHVSpec.m in Sources */,
-				94F001E41650026400865938 /* BHVTestHelper.m in Sources */,
-				94F001EE165030FB00865938 /* BHVCompiler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		948539DF16514CA00010BF54 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 94ED2B7E1649A0A400D59570 /* Beehive */;
+			targetProxy = 948539DE16514CA00010BF54 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		94ED2B8B1649A0A400D59570 /* Debug */ = {

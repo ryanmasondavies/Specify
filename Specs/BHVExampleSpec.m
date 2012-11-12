@@ -6,30 +6,23 @@
 //  Copyright (c) 2012 Ryan Davies. All rights reserved.
 //
 
-#import "BHVTestHelper.h"
 #import "BHVSpec.h"
 #import "BHVExample.h"
 
-BOOL wasExecuted = NO;
-
-SpecBegin(BHVExample)
-
-it(@"should execute its block", ^{
-    wasExecuted = YES;
-});
-
-SpecEnd
-
-@interface CompilationTest : SenTestCase
+@interface BHVExampleSpec : BHVSpec
 @end
 
-@implementation CompilationTest
+@implementation BHVExampleSpec
 
-- (void)testSingleExample
++ (void)defineBehaviour
 {
-    wasExecuted = NO;
-    RunSpec([BHVExampleSpec class]);
-    STAssertTrue(wasExecuted, @"Did not run example.");
+    __block NSUInteger numberOfExecutions = 0;
+    
+    it(@"should only run examples once", ^{
+        numberOfExecutions ++;
+        if (numberOfExecutions != 1)
+            [NSException raise:NSInternalInconsistencyException format:@"Expected example to run only once."];
+    });
 }
 
 @end
