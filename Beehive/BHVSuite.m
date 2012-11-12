@@ -45,9 +45,19 @@
     return [NSArray arrayWithArray:invocations];
 }
 
+- (BHVExample *)exampleAtIndex:(NSUInteger)index
+{
+    return [[self examples] objectAtIndex:index];
+}
+
 - (void)addExample:(BHVExample *)example
 {
     [[self examples] addObject:example];
+}
+
+- (void)removeAllExamples
+{
+    [[self examples] removeAllObjects];
 }
 
 @end

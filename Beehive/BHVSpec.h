@@ -14,6 +14,3 @@
 + (void)defineBehaviour;
 - (BHVExample *)currentExample;
 @end
-
-void example(NSString *description, BHVVoidBlock block);
-void it(NSString *description, BHVVoidBlock block);

@@ -15,7 +15,11 @@
 + (id)sharedSuite;
 
 - (NSArray *)invocations;
+
+- (BHVExample *)exampleAtIndex:(NSUInteger)index;
+
 - (void)addExample:(BHVExample *)example;
+- (void)removeAllExamples;
 
 @end
 
