@@ -13,7 +13,6 @@
 - (void)execute
 {
     self.block();
-    [[self delegate] exampleDidExecute:self];
 }
 
 @end

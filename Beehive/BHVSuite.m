@@ -56,16 +56,4 @@
     [[self examples] addObject:example];
 }
 
-- (void)removeExample:(BHVExample *)example
-{
-    [[self examples] removeObject:example];
-}
-
-#pragma mark Example events
-
-- (void)exampleDidExecute:(BHVExample *)example
-{
-    [self removeExample:example];
-}
-
 @end

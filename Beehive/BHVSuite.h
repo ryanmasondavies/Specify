@@ -6,17 +6,13 @@
 //  Copyright (c) 2012 Ryan Davies. All rights reserved.
 //
 
-#import "BHVExampleDelegate.h"
-
 @class BHVExample;
 
-@interface BHVSuite : NSObject <BHVExampleDelegate>
+@interface BHVSuite : NSObject
 
 + (id)sharedSuite;
 
 - (NSArray *)invocations;
-
 - (void)addExample:(BHVExample *)example;
-- (void)removeExample:(BHVExample *)example;
 
 @end

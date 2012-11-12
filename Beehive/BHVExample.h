@@ -7,12 +7,10 @@
 //
 
 #import "BHVBlockTypes.h"
-#import "BHVExampleDelegate.h"
 
 @interface BHVExample : NSObject
 @property (nonatomic, copy) NSString *description;
 @property (nonatomic, copy) BHVVoidBlock block;
-@property (nonatomic, weak) id <BHVExampleDelegate> delegate;
 
 - (void)execute;
 
