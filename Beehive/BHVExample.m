@@ -10,12 +10,12 @@
 
 @implementation BHVExample
 
-+ (id)exampleWithDescription:(NSString *)description implementation:(BHVVoidBlock)implementation
++ (id)exampleWithDescription:(NSString *)description implementation:(BHVImplementationBlock)implementation
 {
     return [[self alloc] initWithDescription:description implementation:implementation];
 }
 
-- (id)initWithDescription:(NSString *)description implementation:(BHVVoidBlock)implementation
+- (id)initWithDescription:(NSString *)description implementation:(BHVImplementationBlock)implementation
 {
     if (self = [super init]) {
         self.description = description;

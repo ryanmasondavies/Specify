@@ -15,7 +15,7 @@
 
 - (void)testConvenienceClassInitializer
 {
-    BHVVoidBlock block = ^{};
+    BHVImplementationBlock block = ^{};
     BHVExample *example = [BHVExample exampleWithDescription:@"does something" implementation:block];
     STAssertEquals([example description], @"does something", nil);
     STAssertEquals([example implementation], block, nil);
@@ -23,7 +23,7 @@
 
 - (void)testConvenienceInitializer
 {
-    BHVVoidBlock block = ^{};
+    BHVImplementationBlock block = ^{};
     BHVExample *example = [[BHVExample alloc] initWithDescription:@"does something" implementation:block];
     STAssertEquals([example description], @"does something", nil);
     STAssertEquals([example implementation], block, nil);
