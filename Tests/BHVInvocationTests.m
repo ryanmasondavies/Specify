@@ -19,7 +19,7 @@
     __block BOOL executed = NO;
     
     BHVExample *example = [[BHVExample alloc] init];
-    [example setBlock:^{ executed = YES; }];
+    [example setImplementation:^{ executed = YES; }];
     
     BHVInvocation *invocation = [BHVInvocation emptyInvocation];
     [invocation setExample:example];

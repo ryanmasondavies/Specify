@@ -10,9 +10,24 @@
 
 @implementation BHVExample
 
++ (id)exampleWithDescription:(NSString *)description implementation:(BHVVoidBlock)implementation
+{
+    return [[self alloc] initWithDescription:description implementation:implementation];
+}
+
+- (id)initWithDescription:(NSString *)description implementation:(BHVVoidBlock)implementation
+{
+    if (self = [super init]) {
+        self.description = description;
+        self.implementation = implementation;
+    }
+    
+    return self;
+}
+
 - (void)execute
 {
-    self.block();
+    self.implementation();
 }
 
 @end

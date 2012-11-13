@@ -10,7 +10,10 @@
 
 @interface BHVExample : NSObject
 @property (nonatomic, copy) NSString *description;
-@property (nonatomic, copy) BHVVoidBlock block;
+@property (nonatomic, copy) BHVVoidBlock implementation;
+
++ (id)exampleWithDescription:(NSString *)description implementation:(BHVVoidBlock)implementation;
+- (id)initWithDescription:(NSString *)description implementation:(BHVVoidBlock)implementation;
 
 - (void)execute;
 

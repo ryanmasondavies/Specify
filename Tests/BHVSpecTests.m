@@ -21,12 +21,12 @@
     
     BHVExample *example = [[BHVExample alloc] init];
     [example setDescription:@"does something"];
-    [example setBlock:^{}];
+    [example setImplementation:^{}];
     [examples addObject:example];
     
     example = [[BHVExample alloc] init];
     [example setDescription:@"does something else too"];
-    [example setBlock:^{}];
+    [example setImplementation:^{}];
     [examples addObject:example];
     
     return examples;
