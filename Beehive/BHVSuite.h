@@ -6,24 +6,6 @@
 //  Copyright (c) 2012 Ryan Davies. All rights reserved.
 //
 
-#import "BHVBlockTypes.h"
-
-@class BHVExample;
-
 @interface BHVSuite : NSObject
-
-+ (id)sharedSuite;
-
-- (NSArray *)invocations;
-
-- (BHVExample *)exampleAtIndex:(NSUInteger)index;
-
-- (void)addExample:(BHVExample *)example;
-- (void)removeAllExamples;
-
+@property (nonatomic, strong) NSArray *examples;
 @end
-
-#pragma mark Defining behaviour
-
-void example(NSString *description, BHVVoidBlock block);
-void it(NSString *description, BHVVoidBlock block);

@@ -8,11 +8,12 @@
 
 #import "BHVExample.h"
 
-@interface BHVExampleTests : SenTestCase; @end
+@interface BHVExampleTests : SenTestCase
+@end
 
 @implementation BHVExampleTests
 
-- (void)testInvokesBlockOnExecute
+- (void)testInvokesBlock
 {
     BHVExample *example = [[BHVExample alloc] init];
     __block BOOL invoked = NO;

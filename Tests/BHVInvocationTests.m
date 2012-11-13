@@ -9,7 +9,8 @@
 #import "BHVInvocation.h"
 #import "BHVExample.h"
 
-@interface BHVInvocationTests : SenTestCase; @end
+@interface BHVInvocationTests : SenTestCase
+@end
 
 @implementation BHVInvocationTests
 

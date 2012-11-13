@@ -7,25 +7,43 @@
 //
 
 #import "BHVSpec.h"
-#import "BHVExample.h"
 #import "BHVSuite.h"
+#import "BHVSuiteRegistry.h"
+#import "BHVExample.h"
 #import "BHVInvocation.h"
 
 @implementation BHVSpec
 
 + (void)defineBehaviour
 {
-    // Overridden by subclasses.
+    NSArray *examples = [self examples];
+    if (examples == nil) return;
+    
+    BHVSuite *suite = [[BHVSuite alloc] init];
+    [suite setExamples:examples];
+    
+    [[BHVSuiteRegistry sharedRegistry] registerSuite:suite forClass:[self class]];
+}
+
++ (NSArray *)examples
+{
+    return nil; // Overridden by subclasses.
 }
 
 + (NSArray *)testInvocations
 {
-    SEL selector = @selector(defineBehaviour);
-    if ([self methodForSelector:selector] == [BHVSpec methodForSelector:selector])
-        return nil;
-    
     [self defineBehaviour];
-    return [[BHVSuite sharedSuite] invocations];
+    
+    BHVSuite *suite = [[BHVSuiteRegistry sharedRegistry] suiteForClass:[self class]];
+    
+    NSMutableArray *invocations = [NSMutableArray array];
+    [[suite examples] enumerateObjectsUsingBlock:^(BHVExample *example, NSUInteger idx, BOOL *stop) {
+        BHVInvocation *invocation = [BHVInvocation emptyInvocation];
+        [invocation setExample:example];
+        [invocations addObject:invocation];
+    }];
+    
+    return [NSArray arrayWithArray:invocations];
 }
 
 - (BHVExample *)currentExample

@@ -7,58 +7,51 @@
 //
 
 #import "BHVSpec.h"
-#import "BHVSuite.h"
 #import "BHVExample.h"
 #import "BHVInvocation.h"
 
-BOOL behaviourDefined = NO;
+@interface BHVTestSpec : BHVSpec
+@end
 
-@interface BHVTestSpec : BHVSpec; @end
 @implementation BHVTestSpec
 
-+ (void)defineBehaviour
++ (NSArray *)examples
 {
-    behaviourDefined = YES;
+    NSMutableArray *examples = [NSMutableArray array];
+    
+    BHVExample *example = [[BHVExample alloc] init];
+    [example setDescription:@"does something"];
+    [example setBlock:^{}];
+    [examples addObject:example];
+    
+    example = [[BHVExample alloc] init];
+    [example setDescription:@"does something else too"];
+    [example setBlock:^{}];
+    [examples addObject:example];
+    
+    return examples;
 }
 
 @end
 
-@interface BHVSpecTests : SenTestCase; @end
+@interface BHVSpecTests : SenTestCase
+@end
+
 @implementation BHVSpecTests
 
-- (NSArray *)addSomeExamplesToSharedSuite
+- (void)testReturnsInvocationsForExamples
 {
-    NSArray *examples = @[[BHVExample new], [BHVExample new], [BHVExample new]];
-    BHVSuite *suite = [BHVSuite sharedSuite];
-    [examples enumerateObjectsUsingBlock:^(id example, NSUInteger idx, BOOL *stop) {
-        [suite addExample:example];
-    }];
-    return examples;
-}
-
-- (void)testRequestingInvocationsDefinesBehaviour
-{
-    behaviourDefined = NO;
-    [BHVTestSpec testInvocations];
-    STAssertTrue(behaviourDefined, @"Behaviour was not marked as defined.");
-}
-
-- (void)testRequestingInvocationsReturnsInvocationsForExamples
-{
-    NSArray *examples = [self addSomeExamplesToSharedSuite];
     NSArray *invocations = [BHVTestSpec testInvocations];
-    STAssertEqualObjects([invocations[0] example], examples[0], @"First invocation was not for the first example.");
-    STAssertEqualObjects([invocations[1] example], examples[1], @"Second invocation was not for the second example.");
-    STAssertEqualObjects([invocations[2] example], examples[2], @"Third invocation was not for the third example.");
+    STAssertEqualObjects([[invocations[0] example] description], @"does something", @"First invocation was not for the first example.");
+    STAssertEqualObjects([[invocations[1] example] description], @"does something else too", @"Second invocation was not for the second example.");
 }
 
 - (void)testRequestingInvocationsWhenAbstractClassReturnsEmptyArray
 {
-    [self addSomeExamplesToSharedSuite];
     STAssertTrue([[BHVSpec testInvocations] count] == 0, @"There should be no invocations.");
 }
 
-- (void)testNameIsDescriptionOfCurrentExample
+- (void)testNameReturnsDescriptionOfCurrentExample
 {
     BHVInvocation *invocation = [BHVInvocation emptyInvocation];
     BHVExample *example = [[BHVExample alloc] init];
