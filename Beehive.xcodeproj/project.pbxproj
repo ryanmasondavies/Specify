@@ -11,7 +11,7 @@
 		94266FB8164EFAE100BBC615 /* BHVExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 94266FB7164EFAE100BBC615 /* BHVExample.m */; };
 		946643AB1652938D00B537EE /* BHVSuiteRegistryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 946643AA1652938D00B537EE /* BHVSuiteRegistryTests.m */; };
 		946643AE1652941B00B537EE /* BHVSuiteRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 946643AD1652941B00B537EE /* BHVSuiteRegistry.m */; };
-		946643D91652A64900B537EE /* BHVEqualityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 946643D81652A64900B537EE /* BHVEqualityTests.m */; };
+		946643D91652A64900B537EE /* BHVEqualityMatcherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 946643D81652A64900B537EE /* BHVEqualityMatcherTests.m */; };
 		948539E016514CA40010BF54 /* libBeehive.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94ED2B7F1649A0A400D59570 /* libBeehive.a */; };
 		948539E91651531C0010BF54 /* BHVInvocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 948539E81651531C0010BF54 /* BHVInvocation.m */; };
 		9487542D165176A5002C26CC /* BHVExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9487542A165176A5002C26CC /* BHVExampleTests.m */; };
@@ -26,6 +26,12 @@
 		94F001ED1650236400865938 /* BHVSuite.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F001EC1650236400865938 /* BHVSuite.m */; };
 		94F116511653D477003DCD0C /* BHVExpectation.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F116501653D477003DCD0C /* BHVExpectation.m */; };
 		94F116611653E08E003DCD0C /* NSObject+BHVShould.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F116601653E08E003DCD0C /* NSObject+BHVShould.m */; };
+		94F116641653EFFD003DCD0C /* BHVExpectationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F116631653EFFD003DCD0C /* BHVExpectationTests.m */; };
+		94F116671653F185003DCD0C /* BHVEqualityMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F116661653F185003DCD0C /* BHVEqualityMatcher.m */; };
+		94F1166B1653FC51003DCD0C /* BHVMatcherRegistryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F1166A1653FC51003DCD0C /* BHVMatcherRegistryTests.m */; };
+		94F1166E1653FD60003DCD0C /* BHVMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F1166D1653FD60003DCD0C /* BHVMatcher.m */; };
+		94F116711653FD84003DCD0C /* BHVMatcherRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F116701653FD84003DCD0C /* BHVMatcherRegistry.m */; };
+		94F1167716541E49003DCD0C /* NSObject+BHVHierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F1167616541E49003DCD0C /* NSObject+BHVHierarchy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,7 +64,7 @@
 		946643AA1652938D00B537EE /* BHVSuiteRegistryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVSuiteRegistryTests.m; sourceTree = "<group>"; };
 		946643AC1652941B00B537EE /* BHVSuiteRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVSuiteRegistry.h; sourceTree = "<group>"; };
 		946643AD1652941B00B537EE /* BHVSuiteRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVSuiteRegistry.m; sourceTree = "<group>"; };
-		946643D81652A64900B537EE /* BHVEqualityTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVEqualityTests.m; sourceTree = "<group>"; };
+		946643D81652A64900B537EE /* BHVEqualityMatcherTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVEqualityMatcherTests.m; sourceTree = "<group>"; };
 		948539E71651531C0010BF54 /* BHVInvocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVInvocation.h; sourceTree = "<group>"; };
 		948539E81651531C0010BF54 /* BHVInvocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVInvocation.m; sourceTree = "<group>"; };
 		9487542A165176A5002C26CC /* BHVExampleTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVExampleTests.m; sourceTree = "<group>"; };
@@ -81,6 +87,16 @@
 		94F1165E1653DF6D003DCD0C /* BHVShouldTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVShouldTests.m; sourceTree = "<group>"; };
 		94F1165F1653E08E003DCD0C /* NSObject+BHVShould.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BHVShould.h"; sourceTree = "<group>"; };
 		94F116601653E08E003DCD0C /* NSObject+BHVShould.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BHVShould.m"; sourceTree = "<group>"; };
+		94F116631653EFFD003DCD0C /* BHVExpectationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVExpectationTests.m; sourceTree = "<group>"; };
+		94F116651653F185003DCD0C /* BHVEqualityMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVEqualityMatcher.h; sourceTree = "<group>"; };
+		94F116661653F185003DCD0C /* BHVEqualityMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVEqualityMatcher.m; sourceTree = "<group>"; };
+		94F1166A1653FC51003DCD0C /* BHVMatcherRegistryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVMatcherRegistryTests.m; sourceTree = "<group>"; };
+		94F1166C1653FD60003DCD0C /* BHVMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVMatcher.h; sourceTree = "<group>"; };
+		94F1166D1653FD60003DCD0C /* BHVMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVMatcher.m; sourceTree = "<group>"; };
+		94F1166F1653FD84003DCD0C /* BHVMatcherRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVMatcherRegistry.h; sourceTree = "<group>"; };
+		94F116701653FD84003DCD0C /* BHVMatcherRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVMatcherRegistry.m; sourceTree = "<group>"; };
+		94F1167516541E48003DCD0C /* NSObject+BHVHierarchy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BHVHierarchy.h"; sourceTree = "<group>"; };
+		94F1167616541E49003DCD0C /* NSObject+BHVHierarchy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BHVHierarchy.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,7 +126,9 @@
 			isa = PBXGroup;
 			children = (
 				94F1165E1653DF6D003DCD0C /* BHVShouldTests.m */,
-				946643D81652A64900B537EE /* BHVEqualityTests.m */,
+				94F116631653EFFD003DCD0C /* BHVExpectationTests.m */,
+				94F1166A1653FC51003DCD0C /* BHVMatcherRegistryTests.m */,
+				946643D81652A64900B537EE /* BHVEqualityMatcherTests.m */,
 			);
 			name = Matchers;
 			sourceTree = "<group>";
@@ -199,8 +217,16 @@
 			children = (
 				94F1165F1653E08E003DCD0C /* NSObject+BHVShould.h */,
 				94F116601653E08E003DCD0C /* NSObject+BHVShould.m */,
+				94F1167516541E48003DCD0C /* NSObject+BHVHierarchy.h */,
+				94F1167616541E49003DCD0C /* NSObject+BHVHierarchy.m */,
 				94F1164F1653D477003DCD0C /* BHVExpectation.h */,
 				94F116501653D477003DCD0C /* BHVExpectation.m */,
+				94F1166F1653FD84003DCD0C /* BHVMatcherRegistry.h */,
+				94F116701653FD84003DCD0C /* BHVMatcherRegistry.m */,
+				94F1166C1653FD60003DCD0C /* BHVMatcher.h */,
+				94F1166D1653FD60003DCD0C /* BHVMatcher.m */,
+				94F116651653F185003DCD0C /* BHVEqualityMatcher.h */,
+				94F116661653F185003DCD0C /* BHVEqualityMatcher.m */,
 			);
 			name = Matchers;
 			sourceTree = "<group>";
@@ -309,6 +335,10 @@
 				946643AE1652941B00B537EE /* BHVSuiteRegistry.m in Sources */,
 				94F116511653D477003DCD0C /* BHVExpectation.m in Sources */,
 				94F116611653E08E003DCD0C /* NSObject+BHVShould.m in Sources */,
+				94F116671653F185003DCD0C /* BHVEqualityMatcher.m in Sources */,
+				94F1166E1653FD60003DCD0C /* BHVMatcher.m in Sources */,
+				94F116711653FD84003DCD0C /* BHVMatcherRegistry.m in Sources */,
+				94F1167716541E49003DCD0C /* NSObject+BHVHierarchy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,7 +351,9 @@
 				9487543516517AFD002C26CC /* BHVSuiteTests.m in Sources */,
 				9487543816517F24002C26CC /* BHVSpecTests.m in Sources */,
 				946643AB1652938D00B537EE /* BHVSuiteRegistryTests.m in Sources */,
-				946643D91652A64900B537EE /* BHVEqualityTests.m in Sources */,
+				946643D91652A64900B537EE /* BHVEqualityMatcherTests.m in Sources */,
+				94F116641653EFFD003DCD0C /* BHVExpectationTests.m in Sources */,
+				94F1166B1653FC51003DCD0C /* BHVMatcherRegistryTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +457,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -440,6 +473,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
 			};

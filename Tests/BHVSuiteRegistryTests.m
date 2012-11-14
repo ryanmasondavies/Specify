@@ -19,7 +19,9 @@
     id sharedRegistry[2];
     sharedRegistry[0] = [BHVSuiteRegistry sharedRegistry];
     sharedRegistry[1] = [BHVSuiteRegistry sharedRegistry];
-    STAssertEqualObjects(sharedRegistry[0], sharedRegistry[1], @"sharedCoordinator did not return the same instance both times.");
+    STAssertTrue([sharedRegistry[0] isKindOfClass:[BHVSuiteRegistry class]], @"sharedRegistry did not return a suite registry.");
+    STAssertTrue([sharedRegistry[1] isKindOfClass:[BHVSuiteRegistry class]], @"sharedRegistry did not return a suite registry.");
+    STAssertEqualObjects(sharedRegistry[0], sharedRegistry[1], @"sharedRegistry did not return the same instance both times.");
 }
 
 - (void)testRegistersAndReturnsSuites

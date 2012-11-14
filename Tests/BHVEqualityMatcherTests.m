@@ -1,5 +1,5 @@
 //
-//  BHVEqualityTests.m
+//  BHVEqualityMatcherTests.m
 //  Beehive
 //
 //  Created by Ryan Davies on 13/11/2012.
@@ -7,11 +7,12 @@
 //
 
 #import "BHVExpectation.h"
+#import "BHVEqualityMatcher.h"
 
-@interface BHVEqualityTests : SenTestCase
+@interface BHVEqualityMatcherTests : SenTestCase
 @end
 
-@implementation BHVEqualityTests
+@implementation BHVEqualityMatcherTests
 
 - (void)testDoesNotThrowExceptionIfEqual
 {
@@ -24,7 +25,7 @@
 {
     id expectation = [[BHVExpectation alloc] initWithSubject:@"foo"];
     [expectation beEqualTo:@"bar"];
-    STAssertNoThrow([expectation verify], @"Did not raise an exception, but should have.");
+    STAssertThrows([expectation verify], @"Did not raise an exception, but should have.");
 }
 
 @end

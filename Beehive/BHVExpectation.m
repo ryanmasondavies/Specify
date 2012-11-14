@@ -7,34 +7,17 @@
 //
 
 #import "BHVExpectation.h"
-
-@implementation BHVEqualityMatcher
-
-- (id)initWithSubject:(id)subject
-{
-    self = [super init];
-    if (self) {
-        self.subject = subject;
-    }
-    return self;
-}
-
-- (BOOL)beEqualTo:(id)object
-{
-    return [[self subject] isEqual:object];
-}
-
-@end
-
-@interface BHVExpectation ()
-@property (nonatomic, strong) BHVEqualityMatcher *matcher;
-@end
+#import "BHVMatcher.h"
+#import "BHVMatcherRegistry.h"
 
 @implementation BHVExpectation
 
 - (id)initWithSubject:(id)subject
 {
-    self.subject = subject;
+    self = [super init];
+    if (self)
+        self.subject = subject;
+    
     return self;
 }
 
@@ -43,7 +26,7 @@
     BOOL result = NO;
     
     [[self invocation] invokeWithTarget:[self matcher]];
-    [[self invocation] getArgument:&result atIndex:2];
+    [[self invocation] getReturnValue:&result];
     
     if (result == NO) [NSException raise:NSInvalidArgumentException format:@"Expectation failed."];
 }
@@ -55,9 +38,8 @@
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)selector
 {
-    if ([BHVEqualityMatcher instancesRespondToSelector:selector])
-        self.matcher = [[BHVEqualityMatcher alloc] initWithSubject:[self subject]];
-    
+    Class klass = [[BHVMatcherRegistry sharedRegistry] classWhoseInstancesRespondToSelector:selector];
+    self.matcher = [[klass alloc] initWithSubject:[self subject]];
     return [[self matcher] methodSignatureForSelector:selector];
 }
 

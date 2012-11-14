@@ -6,22 +6,15 @@
 //  Copyright (c) 2012 Ryan Davies. All rights reserved.
 //
 
-@class BHVEqualityMatcher;
+@class BHVMatcher;
 
 @interface BHVExpectation : NSObject
-
 @property (nonatomic, strong) id subject;
 @property (nonatomic, strong) NSInvocation *invocation;
+@property (nonatomic, strong) BHVMatcher *matcher;
+@property (nonatomic, getter=isNegated) BOOL negated;
 
 - (id)initWithSubject:(id)subject;
 - (void)verify;
-
-@end
-
-@interface BHVEqualityMatcher : NSObject
-@property (nonatomic, strong) id subject;
-
-- (id)initWithSubject:(id)subject;
-- (BOOL)beEqualTo:(id)object;
 
 @end
