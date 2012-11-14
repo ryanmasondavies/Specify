@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Ryan Davies. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@class BHVEqualityMatcher;
 
 @interface BHVExpectation : NSObject
 
@@ -14,9 +14,14 @@
 @property (nonatomic, strong) NSInvocation *invocation;
 
 - (id)initWithSubject:(id)subject;
-
 - (void)verify;
 
+@end
+
+@interface BHVEqualityMatcher : NSObject
+@property (nonatomic, strong) id subject;
+
+- (id)initWithSubject:(id)subject;
 - (BOOL)beEqualTo:(id)object;
 
 @end

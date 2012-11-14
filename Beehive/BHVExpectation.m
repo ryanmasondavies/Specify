@@ -8,6 +8,28 @@
 
 #import "BHVExpectation.h"
 
+@implementation BHVEqualityMatcher
+
+- (id)initWithSubject:(id)subject
+{
+    self = [super init];
+    if (self) {
+        self.subject = subject;
+    }
+    return self;
+}
+
+- (BOOL)beEqualTo:(id)object
+{
+    return [[self subject] isEqual:object];
+}
+
+@end
+
+@interface BHVExpectation ()
+@property (nonatomic, strong) BHVEqualityMatcher *matcher;
+@end
+
 @implementation BHVExpectation
 
 - (id)initWithSubject:(id)subject
@@ -18,24 +40,25 @@
 
 - (void)verify
 {
-    if ([[self invocation] selector] == @selector(beEqualTo:)) {
-        id object;
-        [[self invocation] getArgument:&object atIndex:2];
-        
-        if ([[self subject] isEqual:object] == NO) {
-            [NSException raise:NSInvalidArgumentException format:@"Expectation failed."];
-        }
-    }
-}
-
-- (BOOL)beEqualTo:(id)object
-{
-    return NO;
+    BOOL result = NO;
+    
+    [[self invocation] invokeWithTarget:[self matcher]];
+    [[self invocation] getArgument:&result atIndex:2];
+    
+    if (result == NO) [NSException raise:NSInvalidArgumentException format:@"Expectation failed."];
 }
 
 - (void)forwardInvocation:(NSInvocation *)invocation
 {
     [self setInvocation:invocation];
+}
+
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)selector
+{
+    if ([BHVEqualityMatcher instancesRespondToSelector:selector])
+        self.matcher = [[BHVEqualityMatcher alloc] initWithSubject:[self subject]];
+    
+    return [[self matcher] methodSignatureForSelector:selector];
 }
 
 @end
