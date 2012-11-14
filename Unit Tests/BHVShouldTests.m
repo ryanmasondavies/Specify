@@ -17,7 +17,7 @@
 - (void)testShouldCreatesExpectation
 {
     id object = [NSObject new];
-    BHVExpectation *expectation = [id should];
+    BHVExpectation *expectation = [object should];
     STAssertEqualObjects([expectation subject], object, @"Expectation subject was not the object that -should was called on.");
 }
 
