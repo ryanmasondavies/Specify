@@ -11,6 +11,7 @@
 		94266FB8164EFAE100BBC615 /* BHVExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 94266FB7164EFAE100BBC615 /* BHVExample.m */; };
 		946643AB1652938D00B537EE /* BHVSuiteRegistryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 946643AA1652938D00B537EE /* BHVSuiteRegistryTests.m */; };
 		946643AE1652941B00B537EE /* BHVSuiteRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 946643AD1652941B00B537EE /* BHVSuiteRegistry.m */; };
+		946643D91652A64900B537EE /* BHVEqualityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 946643D81652A64900B537EE /* BHVEqualityTests.m */; };
 		948539E016514CA40010BF54 /* libBeehive.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94ED2B7F1649A0A400D59570 /* libBeehive.a */; };
 		948539E91651531C0010BF54 /* BHVInvocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 948539E81651531C0010BF54 /* BHVInvocation.m */; };
 		9487542D165176A5002C26CC /* BHVExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9487542A165176A5002C26CC /* BHVExampleTests.m */; };
@@ -23,6 +24,7 @@
 		94F001D7164FF58A00865938 /* BHVSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F001D6164FF58A00865938 /* BHVSpec.m */; };
 		94F001D8164FF5A700865938 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94266FB4164EFA9B00BBC615 /* SenTestingKit.framework */; };
 		94F001ED1650236400865938 /* BHVSuite.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F001EC1650236400865938 /* BHVSuite.m */; };
+		94F116511653D477003DCD0C /* BHVExpectation.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F116501653D477003DCD0C /* BHVExpectation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,7 @@
 		946643AA1652938D00B537EE /* BHVSuiteRegistryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVSuiteRegistryTests.m; sourceTree = "<group>"; };
 		946643AC1652941B00B537EE /* BHVSuiteRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVSuiteRegistry.h; sourceTree = "<group>"; };
 		946643AD1652941B00B537EE /* BHVSuiteRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVSuiteRegistry.m; sourceTree = "<group>"; };
+		946643D81652A64900B537EE /* BHVEqualityTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVEqualityTests.m; sourceTree = "<group>"; };
 		948539E71651531C0010BF54 /* BHVInvocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVInvocation.h; sourceTree = "<group>"; };
 		948539E81651531C0010BF54 /* BHVInvocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVInvocation.m; sourceTree = "<group>"; };
 		9487542A165176A5002C26CC /* BHVExampleTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVExampleTests.m; sourceTree = "<group>"; };
@@ -72,6 +75,8 @@
 		94F001D6164FF58A00865938 /* BHVSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVSpec.m; sourceTree = "<group>"; };
 		94F001EB1650236400865938 /* BHVSuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVSuite.h; sourceTree = "<group>"; };
 		94F001EC1650236400865938 /* BHVSuite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVSuite.m; sourceTree = "<group>"; };
+		94F1164F1653D477003DCD0C /* BHVExpectation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVExpectation.h; sourceTree = "<group>"; };
+		94F116501653D477003DCD0C /* BHVExpectation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVExpectation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +102,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		946643DA1652A6E900B537EE /* Matchers */ = {
+			isa = PBXGroup;
+			children = (
+				946643D81652A64900B537EE /* BHVEqualityTests.m */,
+			);
+			name = Matchers;
+			sourceTree = "<group>";
+		};
 		94875429165176A5002C26CC /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +118,7 @@
 				946643AA1652938D00B537EE /* BHVSuiteRegistryTests.m */,
 				9487542A165176A5002C26CC /* BHVExampleTests.m */,
 				9487543116517921002C26CC /* BHVInvocationTests.m */,
+				946643DA1652A6E900B537EE /* Matchers */,
 				9487542F165176B3002C26CC /* Supporting Files */,
 			);
 			path = Tests;
@@ -161,6 +175,7 @@
 				94266FB7164EFAE100BBC615 /* BHVExample.m */,
 				948539E71651531C0010BF54 /* BHVInvocation.h */,
 				948539E81651531C0010BF54 /* BHVInvocation.m */,
+				94F1164D1653D461003DCD0C /* Matchers */,
 				94ED2B851649A0A400D59570 /* Supporting Files */,
 			);
 			path = Beehive;
@@ -172,6 +187,15 @@
 				94ED2B861649A0A400D59570 /* Beehive-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		94F1164D1653D461003DCD0C /* Matchers */ = {
+			isa = PBXGroup;
+			children = (
+				94F1164F1653D477003DCD0C /* BHVExpectation.h */,
+				94F116501653D477003DCD0C /* BHVExpectation.m */,
+			);
+			name = Matchers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,6 +300,7 @@
 				94F001ED1650236400865938 /* BHVSuite.m in Sources */,
 				948539E91651531C0010BF54 /* BHVInvocation.m in Sources */,
 				946643AE1652941B00B537EE /* BHVSuiteRegistry.m in Sources */,
+				94F116511653D477003DCD0C /* BHVExpectation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +313,7 @@
 				9487543516517AFD002C26CC /* BHVSuiteTests.m in Sources */,
 				9487543816517F24002C26CC /* BHVSpecTests.m in Sources */,
 				946643AB1652938D00B537EE /* BHVSuiteRegistryTests.m in Sources */,
+				946643D91652A64900B537EE /* BHVEqualityTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
