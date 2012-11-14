@@ -25,6 +25,7 @@
 		94F001D8164FF5A700865938 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94266FB4164EFA9B00BBC615 /* SenTestingKit.framework */; };
 		94F001ED1650236400865938 /* BHVSuite.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F001EC1650236400865938 /* BHVSuite.m */; };
 		94F116511653D477003DCD0C /* BHVExpectation.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F116501653D477003DCD0C /* BHVExpectation.m */; };
+		94F116611653E08E003DCD0C /* NSObject+BHVShould.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F116601653E08E003DCD0C /* NSObject+BHVShould.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,9 @@
 		94F001EC1650236400865938 /* BHVSuite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVSuite.m; sourceTree = "<group>"; };
 		94F1164F1653D477003DCD0C /* BHVExpectation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVExpectation.h; sourceTree = "<group>"; };
 		94F116501653D477003DCD0C /* BHVExpectation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVExpectation.m; sourceTree = "<group>"; };
+		94F1165E1653DF6D003DCD0C /* BHVShouldTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVShouldTests.m; sourceTree = "<group>"; };
+		94F1165F1653E08E003DCD0C /* NSObject+BHVShould.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BHVShould.h"; sourceTree = "<group>"; };
+		94F116601653E08E003DCD0C /* NSObject+BHVShould.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BHVShould.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +109,7 @@
 		946643DA1652A6E900B537EE /* Matchers */ = {
 			isa = PBXGroup;
 			children = (
+				94F1165E1653DF6D003DCD0C /* BHVShouldTests.m */,
 				946643D81652A64900B537EE /* BHVEqualityTests.m */,
 			);
 			name = Matchers;
@@ -192,6 +197,8 @@
 		94F1164D1653D461003DCD0C /* Matchers */ = {
 			isa = PBXGroup;
 			children = (
+				94F1165F1653E08E003DCD0C /* NSObject+BHVShould.h */,
+				94F116601653E08E003DCD0C /* NSObject+BHVShould.m */,
 				94F1164F1653D477003DCD0C /* BHVExpectation.h */,
 				94F116501653D477003DCD0C /* BHVExpectation.m */,
 			);
@@ -301,6 +308,7 @@
 				948539E91651531C0010BF54 /* BHVInvocation.m in Sources */,
 				946643AE1652941B00B537EE /* BHVSuiteRegistry.m in Sources */,
 				94F116511653D477003DCD0C /* BHVExpectation.m in Sources */,
+				94F116611653E08E003DCD0C /* NSObject+BHVShould.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

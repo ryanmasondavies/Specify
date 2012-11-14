@@ -15,15 +15,15 @@
 
 - (void)testDoesNotThrowExceptionIfEqual
 {
-    BHVExpectation *expectation = [[BHVExpectation alloc] initWithSubject:@"foo"];
-    [(id)expectation beEqualTo:@"foo"];
+    id expectation = [[BHVExpectation alloc] initWithSubject:@"foo"];
+    [expectation beEqualTo:@"foo"];
     STAssertNoThrow([expectation verify], @"Raised an exception, but should not have.");
 }
 
 - (void)testThrowsExceptionIfInequal
 {
-    BHVExpectation *expectation = [[BHVExpectation alloc] initWithSubject:@"foo"];
-    [(id)expectation beEqualTo:@"bar"];
+    id expectation = [[BHVExpectation alloc] initWithSubject:@"foo"];
+    [expectation beEqualTo:@"bar"];
     STAssertNoThrow([expectation verify], @"Did not raise an exception, but should have.");
 }
 
