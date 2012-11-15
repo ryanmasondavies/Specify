@@ -24,7 +24,6 @@
         
         for (int i = 0; i < numberOfClasses; i++) {
             if (class_getSuperclass(classes[i]) == [self class]) {
-                NSLog(@"Subclass of %@: %@", NSStringFromClass([self class]), NSStringFromClass(classes[i]));
                 [subclasses addObject:classes[i]];
             }
         }
