@@ -14,26 +14,21 @@
 
 @implementation BHVSpec
 
-+ (void)defineBehaviour
++ (void)initialize
 {
-    NSArray *examples = [self examples];
-    if (examples == nil) return;
-    
     BHVSuite *suite = [[BHVSuite alloc] init];
-    [suite setExamples:examples];
+    [[BHVSuiteRegistry sharedRegistry] registerSuite:suite forClass:self];
     
-    [[BHVSuiteRegistry sharedRegistry] registerSuite:suite forClass:[self class]];
-}
-
-+ (NSArray *)examples
-{
-    return nil; // Overridden by subclasses.
+    BHVSpec *spec = [[[self class] alloc] init];
+    [spec loadExamples];
+    
+    // TODO: Compile examples with their contexts.
+    
+    [super initialize];
 }
 
 + (NSArray *)testInvocations
 {
-    [self defineBehaviour];
-    
     BHVSuite *suite = [[BHVSuiteRegistry sharedRegistry] suiteForClass:[self class]];
     
     NSMutableArray *invocations = [NSMutableArray array];
@@ -43,7 +38,13 @@
         [invocations addObject:invocation];
     }];
     
+    // TODO: Randomly shuffle examples.
+    
     return [NSArray arrayWithArray:invocations];
+}
+
+- (void)loadExamples
+{
 }
 
 - (BHVExample *)currentExample

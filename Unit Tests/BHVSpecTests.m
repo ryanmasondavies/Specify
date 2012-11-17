@@ -7,6 +7,8 @@
 //
 
 #import "BHVSpec.h"
+#import "BHVSuiteRegistry.h"
+#import "BHVSuite.h"
 #import "BHVExample.h"
 #import "BHVInvocation.h"
 
@@ -15,7 +17,7 @@
 
 @implementation BHVTestSpec
 
-+ (NSArray *)examples
+- (void)loadExamples
 {
     NSMutableArray *examples = [NSMutableArray array];
     
@@ -29,7 +31,8 @@
     [example setImplementation:^{}];
     [examples addObject:example];
     
-    return examples;
+    BHVSuite *suite = [[BHVSuiteRegistry sharedRegistry] suiteForClass:[self class]];
+    [suite setExamples:examples];
 }
 
 @end

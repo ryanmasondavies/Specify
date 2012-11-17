@@ -10,6 +10,10 @@
 		94266FB5164EFA9B00BBC615 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94266FB4164EFA9B00BBC615 /* SenTestingKit.framework */; };
 		94266FB8164EFAE100BBC615 /* BHVExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 94266FB7164EFAE100BBC615 /* BHVExample.m */; };
 		946643AE1652941B00B537EE /* BHVSuiteRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 946643AD1652941B00B537EE /* BHVSuiteRegistry.m */; };
+		947C4692165566850071139E /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94266FB4164EFA9B00BBC615 /* SenTestingKit.framework */; };
+		947C4695165566850071139E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94ED2B821649A0A400D59570 /* Foundation.framework */; };
+		947C46A4165566A90071139E /* libBeehive.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94ED2B7F1649A0A400D59570 /* libBeehive.a */; };
+		947C46AB165566DC0071139E /* BHVItExampleSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 947C46AA165566DC0071139E /* BHVItExampleSpec.m */; };
 		948539E016514CA40010BF54 /* libBeehive.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94ED2B7F1649A0A400D59570 /* libBeehive.a */; };
 		948539E91651531C0010BF54 /* BHVInvocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 948539E81651531C0010BF54 /* BHVInvocation.m */; };
 		94ED2B831649A0A400D59570 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94ED2B821649A0A400D59570 /* Foundation.framework */; };
@@ -36,6 +40,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		947C46A5165566AF0071139E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 94ED2B761649A0A400D59570 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 94ED2B7E1649A0A400D59570;
+			remoteInfo = Beehive;
+		};
+		947C46A7165566B40071139E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 94ED2B761649A0A400D59570 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 94ED2B941649A0B800D59570;
+			remoteInfo = "Unit Tests";
+		};
 		948539DE16514CA00010BF54 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 94ED2B761649A0A400D59570 /* Project object */;
@@ -64,6 +82,10 @@
 		94266FB7164EFAE100BBC615 /* BHVExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVExample.m; sourceTree = "<group>"; };
 		946643AC1652941B00B537EE /* BHVSuiteRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVSuiteRegistry.h; sourceTree = "<group>"; };
 		946643AD1652941B00B537EE /* BHVSuiteRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVSuiteRegistry.m; sourceTree = "<group>"; };
+		947C4691165566850071139E /* Integrated Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Integrated Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		947C4698165566850071139E /* Integrated Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Integrated Tests-Info.plist"; sourceTree = "<group>"; };
+		947C469F165566850071139E /* Integrated Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Integrated Tests-Prefix.pch"; sourceTree = "<group>"; };
+		947C46AA165566DC0071139E /* BHVItExampleSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVItExampleSpec.m; sourceTree = "<group>"; };
 		948539E71651531C0010BF54 /* BHVInvocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVInvocation.h; sourceTree = "<group>"; };
 		948539E81651531C0010BF54 /* BHVInvocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVInvocation.m; sourceTree = "<group>"; };
 		94ED2B7F1649A0A400D59570 /* libBeehive.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBeehive.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,6 +123,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		947C468D165566850071139E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				947C46A4165566A90071139E /* libBeehive.a in Frameworks */,
+				947C4692165566850071139E /* SenTestingKit.framework in Frameworks */,
+				947C4695165566850071139E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		94ED2B7C1649A0A400D59570 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -123,11 +155,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		947C4696165566850071139E /* Integrated Tests */ = {
+			isa = PBXGroup;
+			children = (
+				947C46AA165566DC0071139E /* BHVItExampleSpec.m */,
+				947C4697165566850071139E /* Supporting Files */,
+			);
+			path = "Integrated Tests";
+			sourceTree = "<group>";
+		};
+		947C4697165566850071139E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				947C4698165566850071139E /* Integrated Tests-Info.plist */,
+				947C469F165566850071139E /* Integrated Tests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		94ED2B741649A0A400D59570 = {
 			isa = PBXGroup;
 			children = (
 				94ED2B841649A0A400D59570 /* Beehive */,
 				94F116781654205C003DCD0C /* Unit Tests */,
+				947C4696165566850071139E /* Integrated Tests */,
 				94ED2B811649A0A400D59570 /* Frameworks */,
 				94ED2B801649A0A400D59570 /* Products */,
 			);
@@ -138,6 +189,7 @@
 			children = (
 				94ED2B7F1649A0A400D59570 /* libBeehive.a */,
 				94ED2B951649A0B800D59570 /* Unit Tests.octest */,
+				947C4691165566850071139E /* Integrated Tests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -235,6 +287,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		947C4690165566850071139E /* Integrated Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 947C46A2165566850071139E /* Build configuration list for PBXNativeTarget "Integrated Tests" */;
+			buildPhases = (
+				947C468C165566850071139E /* Sources */,
+				947C468D165566850071139E /* Frameworks */,
+				947C468E165566850071139E /* Resources */,
+				947C468F165566850071139E /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				947C46A6165566AF0071139E /* PBXTargetDependency */,
+				947C46A8165566B40071139E /* PBXTargetDependency */,
+			);
+			name = "Integrated Tests";
+			productName = "Integrated Tests";
+			productReference = 947C4691165566850071139E /* Integrated Tests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		94ED2B7E1649A0A400D59570 /* Beehive */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 94ED2B8D1649A0A400D59570 /* Build configuration list for PBXNativeTarget "Beehive" */;
@@ -294,11 +366,19 @@
 			targets = (
 				94ED2B7E1649A0A400D59570 /* Beehive */,
 				94ED2B941649A0B800D59570 /* Unit Tests */,
+				947C4690165566850071139E /* Integrated Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		947C468E165566850071139E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		94ED2B921649A0B800D59570 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -309,6 +389,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		947C468F165566850071139E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
 		94ED2B931649A0B800D59570 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -325,6 +418,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		947C468C165566850071139E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				947C46AB165566DC0071139E /* BHVItExampleSpec.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		94ED2B7B1649A0A400D59570 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -362,6 +463,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		947C46A6165566AF0071139E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 94ED2B7E1649A0A400D59570 /* Beehive */;
+			targetProxy = 947C46A5165566AF0071139E /* PBXContainerItemProxy */;
+		};
+		947C46A8165566B40071139E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 94ED2B941649A0B800D59570 /* Unit Tests */;
+			targetProxy = 947C46A7165566B40071139E /* PBXContainerItemProxy */;
+		};
 		948539DF16514CA00010BF54 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 94ED2B7E1649A0A400D59570 /* Beehive */;
@@ -370,6 +481,36 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		947C46A0165566850071139E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Integrated Tests/Integrated Tests-Prefix.pch";
+				INFOPLIST_FILE = "Integrated Tests/Integrated Tests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		947C46A1165566850071139E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Integrated Tests/Integrated Tests-Prefix.pch";
+				INFOPLIST_FILE = "Integrated Tests/Integrated Tests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 		94ED2B8B1649A0A400D59570 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -482,6 +623,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		947C46A2165566850071139E /* Build configuration list for PBXNativeTarget "Integrated Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				947C46A0165566850071139E /* Debug */,
+				947C46A1165566850071139E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		94ED2B791649A0A400D59570 /* Build configuration list for PBXProject "Beehive" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

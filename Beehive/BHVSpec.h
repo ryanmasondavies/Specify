@@ -9,6 +9,6 @@
 @class BHVExample;
 
 @interface BHVSpec : SenTestCase
-+ (void)defineBehaviour;
+- (void)loadExamples;
 - (BHVExample *)currentExample;
 @end
