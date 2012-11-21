@@ -1,5 +1,5 @@
 //
-//  BHVItExampleSpec.m
+//  BHVStructureSpec.m
 //  Beehive
 //
 //  Created by Ryan Davies on 15/11/2012.
@@ -8,18 +8,18 @@
 
 #import "Beehive.h"
 
-@interface BHVItExampleSpec : BHVSpec
+@interface BHVStructureSpec : BHVSpec
 @end
 
-@implementation BHVItExampleSpec
+@implementation BHVStructureSpec
 
 - (void)loadExamples
 {
     it(@"should do something", ^{});
 
-    //describe(@"something else", ^{
-    //    it(@"should do something else", ^{});
-    //});
+    context(@"something else", ^{
+        it(@"should do something else", ^{});
+    });
 }
 
 @end

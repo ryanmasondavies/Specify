@@ -10,4 +10,5 @@
 #import "BHVSpec.h"
 
 // Building examples:
-#import "BHVIt.h"
+#import "BHVItFunction.h"
+#import "BHVContextFunction.h"

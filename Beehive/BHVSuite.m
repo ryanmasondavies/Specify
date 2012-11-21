@@ -7,10 +7,12 @@
 //
 
 #import "BHVSuite.h"
-#import "BHVExample.h"
+#import "BHVItem.h"
+#import "BHVContext.h"
 
 @interface BHVSuite ()
-@property (nonatomic, strong) NSMutableArray *examples;
+@property (nonatomic, strong) NSMutableArray *items;
+@property (nonatomic, strong) BHVContext *currentContext;
 @end
 
 @implementation BHVSuite
@@ -18,12 +20,14 @@
 - (id)init
 {
     if (self = [super init]) {
-        self.examples = [NSMutableArray array];
+        self.items = [NSMutableArray array];
         [self lock];
     }
     
     return self;
 }
+
+#pragma mark Locking
 
 - (void)lock
 {
@@ -35,28 +39,45 @@
     self.locked = NO;
 }
 
-- (void)addExample:(BHVExample *)example
+#pragma mark Items
+
+- (void)addItem:(BHVItem *)item
 {
-    if ([self isLocked] == NO)
-        [[self examples] addObject:example];
-    else
+    if ([self isLocked]) {
         [NSException raise:@"BHVSuiteLockException" format:@"Cannot add examples to a locked suite."];
+        return;
+    }
+    
+    if ([self currentContext])
+        [[self currentContext] addItem:item];
+    else
+        [[self items] addObject:item];
 }
 
-- (BHVExample *)exampleAtIndex:(NSUInteger)index
+- (BHVItem *)itemAtIndex:(NSUInteger)index
 {
-    return [[self examples] objectAtIndex:index];
+    return [[self items] objectAtIndex:index];
 }
 
-- (NSUInteger)numberOfExamples
+#pragma mark Context
+
+- (void)processContext:(BHVContext *)context
 {
-    return [[self examples] count];
+    // Add items to the context: (see -addItem:)
+    self.currentContext = context;
+    context.implementation();
+    self.currentContext = nil;
+    
+    // Add the context as an item:
+    [self addItem:context];
 }
+
+#pragma mark Compilation
 
 - (NSArray *)compiledExamples
 {
     // TODO: Compile examples with their contexts.
-    return [NSArray arrayWithArray:[self examples]];
+    return [NSArray arrayWithArray:[self items]];
 }
 
 @end

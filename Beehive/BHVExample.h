@@ -6,11 +6,9 @@
 //  Copyright (c) 2012 Ryan Davies. All rights reserved.
 //
 
-#import "BHVBlockTypes.h"
+#import "BHVItem.h"
 
-@interface BHVExample : NSObject
-@property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) BHVImplementationBlock implementation;
+@interface BHVExample : BHVItem
 
 - (void)execute;
 

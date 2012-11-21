@@ -24,12 +24,12 @@
     BHVExample *example = [[BHVExample alloc] init];
     [example setName:@"does something"];
     [example setImplementation:^{}];
-    [suite addExample:example];
+    [suite addItem:example];
     
     example = [[BHVExample alloc] init];
     [example setName:@"does something else too"];
     [example setImplementation:^{}];
-    [suite addExample:example];
+    [suite addItem:example];
 }
 
 @end

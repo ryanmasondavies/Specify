@@ -1,12 +1,12 @@
 //
-//  BHVIt.m
+//  BHVItFunction.m
 //  Beehive
 //
 //  Created by Ryan Davies on 21/11/2012.
 //  Copyright (c) 2012 Ryan Davies. All rights reserved.
 //
 
-#import "BHVIt.h"
+#import "BHVItFunction.h"
 #import "BHVExample.h"
 #import "BHVSuiteRegistry.h"
 #import "BHVSuite.h"
@@ -20,7 +20,5 @@ void it(NSString *name, BHVImplementationBlock implementation)
     
     // Add example to each unlocked suite in the registry:
     NSArray *suites = [[BHVSuiteRegistry sharedRegistry] unlockedSuites];
-    [suites enumerateObjectsUsingBlock:^(BHVSuite *suite, NSUInteger idx, BOOL *stop) {
-        [suite addExample:example];
-    }];
+    [suites makeObjectsPerformSelector:@selector(addItem:) withObject:example];
 }

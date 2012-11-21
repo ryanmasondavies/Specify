@@ -6,18 +6,27 @@
 //  Copyright (c) 2012 Ryan Davies. All rights reserved.
 //
 
-@class BHVExample;
+@class BHVItem;
+@class BHVContext;
 
 @interface BHVSuite : NSObject
 @property (nonatomic, getter=isLocked) BOOL locked;
 
+#pragma mark Locking
+
 - (void)lock;
 - (void)unlock;
 
-- (void)addExample:(BHVExample *)example;
+#pragma mark Items
 
-- (BHVExample *)exampleAtIndex:(NSUInteger)index;
-- (NSUInteger)numberOfExamples;
+- (void)addItem:(BHVItem *)node;
+- (BHVItem *)itemAtIndex:(NSUInteger)index;
+
+#pragma mark Contexts
+
+- (void)processContext:(BHVContext *)context;
+
+#pragma mark Compilation
 
 - (NSArray *)compiledExamples;
 
