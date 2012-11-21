@@ -11,8 +11,3 @@
 
 // Building examples:
 #import "BHVIt.h"
-
-// Expectations:
-#import "NSObject+BHVShould.h"
-#import "BHVExpectation.h"
-#import "BHVEqualityMatcher.h"

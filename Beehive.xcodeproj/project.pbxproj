@@ -24,18 +24,8 @@
 		94F001D7164FF58A00865938 /* BHVSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F001D6164FF58A00865938 /* BHVSpec.m */; };
 		94F001D8164FF5A700865938 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94266FB4164EFA9B00BBC615 /* SenTestingKit.framework */; };
 		94F001ED1650236400865938 /* BHVSuite.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F001EC1650236400865938 /* BHVSuite.m */; };
-		94F116511653D477003DCD0C /* BHVExpectation.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F116501653D477003DCD0C /* BHVExpectation.m */; };
-		94F116611653E08E003DCD0C /* NSObject+BHVShould.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F116601653E08E003DCD0C /* NSObject+BHVShould.m */; };
-		94F116671653F185003DCD0C /* BHVEqualityMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F116661653F185003DCD0C /* BHVEqualityMatcher.m */; };
-		94F1166E1653FD60003DCD0C /* BHVMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F1166D1653FD60003DCD0C /* BHVMatcher.m */; };
-		94F116711653FD84003DCD0C /* BHVMatcherRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F116701653FD84003DCD0C /* BHVMatcherRegistry.m */; };
-		94F1167716541E49003DCD0C /* NSObject+BHVHierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F1167616541E49003DCD0C /* NSObject+BHVHierarchy.m */; };
-		94F116841654205C003DCD0C /* BHVEqualityMatcherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F116791654205C003DCD0C /* BHVEqualityMatcherTests.m */; };
 		94F116851654205C003DCD0C /* BHVExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F1167A1654205C003DCD0C /* BHVExampleTests.m */; };
-		94F116861654205C003DCD0C /* BHVExpectationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F1167B1654205C003DCD0C /* BHVExpectationTests.m */; };
 		94F116871654205C003DCD0C /* BHVInvocationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F1167C1654205C003DCD0C /* BHVInvocationTests.m */; };
-		94F116881654205C003DCD0C /* BHVMatcherRegistryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F1167D1654205C003DCD0C /* BHVMatcherRegistryTests.m */; };
-		94F116891654205C003DCD0C /* BHVShouldTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F1167E1654205C003DCD0C /* BHVShouldTests.m */; };
 		94F1168A1654205C003DCD0C /* BHVSpecTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F1167F1654205C003DCD0C /* BHVSpecTests.m */; };
 		94F1168B1654205C003DCD0C /* BHVSuiteRegistryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F116801654205C003DCD0C /* BHVSuiteRegistryTests.m */; };
 		94F1168C1654205C003DCD0C /* BHVSuiteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F116811654205C003DCD0C /* BHVSuiteTests.m */; };
@@ -103,24 +93,8 @@
 		94F001D6164FF58A00865938 /* BHVSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVSpec.m; sourceTree = "<group>"; };
 		94F001EB1650236400865938 /* BHVSuite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVSuite.h; sourceTree = "<group>"; };
 		94F001EC1650236400865938 /* BHVSuite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVSuite.m; sourceTree = "<group>"; };
-		94F1164F1653D477003DCD0C /* BHVExpectation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVExpectation.h; sourceTree = "<group>"; };
-		94F116501653D477003DCD0C /* BHVExpectation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVExpectation.m; sourceTree = "<group>"; };
-		94F1165F1653E08E003DCD0C /* NSObject+BHVShould.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BHVShould.h"; sourceTree = "<group>"; };
-		94F116601653E08E003DCD0C /* NSObject+BHVShould.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BHVShould.m"; sourceTree = "<group>"; };
-		94F116651653F185003DCD0C /* BHVEqualityMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVEqualityMatcher.h; sourceTree = "<group>"; };
-		94F116661653F185003DCD0C /* BHVEqualityMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVEqualityMatcher.m; sourceTree = "<group>"; };
-		94F1166C1653FD60003DCD0C /* BHVMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVMatcher.h; sourceTree = "<group>"; };
-		94F1166D1653FD60003DCD0C /* BHVMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVMatcher.m; sourceTree = "<group>"; };
-		94F1166F1653FD84003DCD0C /* BHVMatcherRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVMatcherRegistry.h; sourceTree = "<group>"; };
-		94F116701653FD84003DCD0C /* BHVMatcherRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVMatcherRegistry.m; sourceTree = "<group>"; };
-		94F1167516541E48003DCD0C /* NSObject+BHVHierarchy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BHVHierarchy.h"; sourceTree = "<group>"; };
-		94F1167616541E49003DCD0C /* NSObject+BHVHierarchy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BHVHierarchy.m"; sourceTree = "<group>"; };
-		94F116791654205C003DCD0C /* BHVEqualityMatcherTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVEqualityMatcherTests.m; sourceTree = "<group>"; };
 		94F1167A1654205C003DCD0C /* BHVExampleTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVExampleTests.m; sourceTree = "<group>"; };
-		94F1167B1654205C003DCD0C /* BHVExpectationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVExpectationTests.m; sourceTree = "<group>"; };
 		94F1167C1654205C003DCD0C /* BHVInvocationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVInvocationTests.m; sourceTree = "<group>"; };
-		94F1167D1654205C003DCD0C /* BHVMatcherRegistryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVMatcherRegistryTests.m; sourceTree = "<group>"; };
-		94F1167E1654205C003DCD0C /* BHVShouldTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVShouldTests.m; sourceTree = "<group>"; };
 		94F1167F1654205C003DCD0C /* BHVSpecTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVSpecTests.m; sourceTree = "<group>"; };
 		94F116801654205C003DCD0C /* BHVSuiteRegistryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVSuiteRegistryTests.m; sourceTree = "<group>"; };
 		94F116811654205C003DCD0C /* BHVSuiteTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVSuiteTests.m; sourceTree = "<group>"; };
@@ -242,7 +216,6 @@
 				948539E71651531C0010BF54 /* BHVInvocation.h */,
 				948539E81651531C0010BF54 /* BHVInvocation.m */,
 				94D97AB5165D27C900282ABE /* DSL */,
-				94F1164D1653D461003DCD0C /* Matchers */,
 				94ED2B851649A0A400D59570 /* Supporting Files */,
 			);
 			path = Beehive;
@@ -256,25 +229,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		94F1164D1653D461003DCD0C /* Matchers */ = {
-			isa = PBXGroup;
-			children = (
-				94F1165F1653E08E003DCD0C /* NSObject+BHVShould.h */,
-				94F116601653E08E003DCD0C /* NSObject+BHVShould.m */,
-				94F1167516541E48003DCD0C /* NSObject+BHVHierarchy.h */,
-				94F1167616541E49003DCD0C /* NSObject+BHVHierarchy.m */,
-				94F1164F1653D477003DCD0C /* BHVExpectation.h */,
-				94F116501653D477003DCD0C /* BHVExpectation.m */,
-				94F1166F1653FD84003DCD0C /* BHVMatcherRegistry.h */,
-				94F116701653FD84003DCD0C /* BHVMatcherRegistry.m */,
-				94F1166C1653FD60003DCD0C /* BHVMatcher.h */,
-				94F1166D1653FD60003DCD0C /* BHVMatcher.m */,
-				94F116651653F185003DCD0C /* BHVEqualityMatcher.h */,
-				94F116661653F185003DCD0C /* BHVEqualityMatcher.m */,
-			);
-			name = Matchers;
-			sourceTree = "<group>";
-		};
 		94F116781654205C003DCD0C /* Unit Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -284,7 +238,6 @@
 				94F1167A1654205C003DCD0C /* BHVExampleTests.m */,
 				94F1167C1654205C003DCD0C /* BHVInvocationTests.m */,
 				94D97AB0165D0E6B00282ABE /* DSL */,
-				94F1168F16542094003DCD0C /* Matchers */,
 				94F1168E16542063003DCD0C /* Supporting Files */,
 			);
 			path = "Unit Tests";
@@ -297,17 +250,6 @@
 				94F116831654205C003DCD0C /* Unit Tests-Prefix.pch */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		94F1168F16542094003DCD0C /* Matchers */ = {
-			isa = PBXGroup;
-			children = (
-				94F116791654205C003DCD0C /* BHVEqualityMatcherTests.m */,
-				94F1167B1654205C003DCD0C /* BHVExpectationTests.m */,
-				94F1167D1654205C003DCD0C /* BHVMatcherRegistryTests.m */,
-				94F1167E1654205C003DCD0C /* BHVShouldTests.m */,
-			);
-			name = Matchers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -461,12 +403,6 @@
 				94F001ED1650236400865938 /* BHVSuite.m in Sources */,
 				948539E91651531C0010BF54 /* BHVInvocation.m in Sources */,
 				946643AE1652941B00B537EE /* BHVSuiteRegistry.m in Sources */,
-				94F116511653D477003DCD0C /* BHVExpectation.m in Sources */,
-				94F116611653E08E003DCD0C /* NSObject+BHVShould.m in Sources */,
-				94F116671653F185003DCD0C /* BHVEqualityMatcher.m in Sources */,
-				94F1166E1653FD60003DCD0C /* BHVMatcher.m in Sources */,
-				94F116711653FD84003DCD0C /* BHVMatcherRegistry.m in Sources */,
-				94F1167716541E49003DCD0C /* NSObject+BHVHierarchy.m in Sources */,
 				94D97AB8165D27F300282ABE /* BHVIt.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -475,12 +411,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94F116841654205C003DCD0C /* BHVEqualityMatcherTests.m in Sources */,
 				94F116851654205C003DCD0C /* BHVExampleTests.m in Sources */,
-				94F116861654205C003DCD0C /* BHVExpectationTests.m in Sources */,
 				94F116871654205C003DCD0C /* BHVInvocationTests.m in Sources */,
-				94F116881654205C003DCD0C /* BHVMatcherRegistryTests.m in Sources */,
-				94F116891654205C003DCD0C /* BHVShouldTests.m in Sources */,
 				94F1168A1654205C003DCD0C /* BHVSpecTests.m in Sources */,
 				94F1168B1654205C003DCD0C /* BHVSuiteRegistryTests.m in Sources */,
 				94F1168C1654205C003DCD0C /* BHVSuiteTests.m in Sources */,
