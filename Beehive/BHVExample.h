@@ -12,9 +12,6 @@ typedef void(^BHVImplementationBlock)(void);
 @property (nonatomic, copy) NSString *description;
 @property (nonatomic, copy) BHVImplementationBlock implementation;
 
-+ (id)exampleWithDescription:(NSString *)description implementation:(BHVImplementationBlock)implementation;
-- (id)initWithDescription:(NSString *)description implementation:(BHVImplementationBlock)implementation;
-
 - (void)execute;
 
 @end
