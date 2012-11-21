@@ -153,23 +153,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		94D97AB0165D0E6B00282ABE /* DSL */ = {
-			isa = PBXGroup;
-			children = (
-				94D97AB3165D0E7700282ABE /* BHVItTests.m */,
-			);
-			name = DSL;
-			sourceTree = "<group>";
-		};
-		94D97AB5165D27C900282ABE /* DSL */ = {
-			isa = PBXGroup;
-			children = (
-				94D97AB6165D27F300282ABE /* BHVIt.h */,
-				94D97AB7165D27F300282ABE /* BHVIt.m */,
-			);
-			name = DSL;
-			sourceTree = "<group>";
-		};
 		94ED2B741649A0A400D59570 = {
 			isa = PBXGroup;
 			children = (
@@ -215,7 +198,8 @@
 				94266FB7164EFAE100BBC615 /* BHVExample.m */,
 				948539E71651531C0010BF54 /* BHVInvocation.h */,
 				948539E81651531C0010BF54 /* BHVInvocation.m */,
-				94D97AB5165D27C900282ABE /* DSL */,
+				94D97AB6165D27F300282ABE /* BHVIt.h */,
+				94D97AB7165D27F300282ABE /* BHVIt.m */,
 				94ED2B851649A0A400D59570 /* Supporting Files */,
 			);
 			path = Beehive;
@@ -237,7 +221,7 @@
 				94F116811654205C003DCD0C /* BHVSuiteTests.m */,
 				94F1167A1654205C003DCD0C /* BHVExampleTests.m */,
 				94F1167C1654205C003DCD0C /* BHVInvocationTests.m */,
-				94D97AB0165D0E6B00282ABE /* DSL */,
+				94D97AB3165D0E7700282ABE /* BHVItTests.m */,
 				94F1168E16542063003DCD0C /* Supporting Files */,
 			);
 			path = "Unit Tests";
