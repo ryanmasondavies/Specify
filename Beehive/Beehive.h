@@ -6,15 +6,13 @@
 //  Copyright (c) 2012 Ryan Davies. All rights reserved.
 //
 
+// Declaring specs:
 #import "BHVSpec.h"
-#import "BHVSuite.h"
-#import "BHVSuiteRegistry.h"
-#import "BHVExample.h"
-#import "BHVInvocation.h"
 
+// Building examples:
+#import "BHVIt.h"
+
+// Expectations:
 #import "NSObject+BHVShould.h"
-#import "NSObject+BHVHierarchy.h"
 #import "BHVExpectation.h"
-#import "BHVMatcherRegistry.h"
-#import "BHVMatcher.h"
 #import "BHVEqualityMatcher.h"

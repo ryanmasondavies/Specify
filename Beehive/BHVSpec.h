@@ -9,6 +9,8 @@
 @class BHVExample;
 
 @interface BHVSpec : SenTestCase
+
 - (void)loadExamples;
 - (BHVExample *)currentExample;
+
 @end

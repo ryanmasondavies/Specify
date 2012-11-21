@@ -19,20 +19,17 @@
 
 - (void)loadExamples
 {
-    NSMutableArray *examples = [NSMutableArray array];
+    BHVSuite *suite = [[BHVSuiteRegistry sharedRegistry] suiteForClass:[self class]];
     
     BHVExample *example = [[BHVExample alloc] init];
-    [example setDescription:@"does something"];
+    [example setName:@"does something"];
     [example setImplementation:^{}];
-    [examples addObject:example];
+    [suite addExample:example];
     
     example = [[BHVExample alloc] init];
-    [example setDescription:@"does something else too"];
+    [example setName:@"does something else too"];
     [example setImplementation:^{}];
-    [examples addObject:example];
-    
-    BHVSuite *suite = [[BHVSuiteRegistry sharedRegistry] suiteForClass:[self class]];
-    [suite setExamples:examples];
+    [suite addExample:example];
 }
 
 @end
@@ -45,8 +42,8 @@
 - (void)testReturnsInvocationsForExamples
 {
     NSArray *invocations = [BHVTestSpec testInvocations];
-    STAssertEqualObjects([[invocations[0] example] description], @"does something", @"First invocation was not for the first example.");
-    STAssertEqualObjects([[invocations[1] example] description], @"does something else too", @"Second invocation was not for the second example.");
+    STAssertEqualObjects([[invocations[0] example] name], @"does something", @"First invocation was not for the first example.");
+    STAssertEqualObjects([[invocations[1] example] name], @"does something else too", @"Second invocation was not for the second example.");
 }
 
 - (void)testRequestingInvocationsWhenAbstractClassReturnsEmptyArray
@@ -54,11 +51,11 @@
     STAssertTrue([[BHVSpec testInvocations] count] == 0, @"There should be no invocations.");
 }
 
-- (void)testNameReturnsDescriptionOfCurrentExample
+- (void)testNameReturnsNameOfCurrentExample
 {
     BHVInvocation *invocation = [BHVInvocation emptyInvocation];
     BHVExample *example = [[BHVExample alloc] init];
-    [example setDescription:@"Example 1"];
+    [example setName:@"Example 1"];
     [invocation setExample:example];
     
     BHVSpec *spec = [[BHVSpec alloc] initWithInvocation:invocation];

@@ -43,4 +43,14 @@
     return [[self suitesByClasses] objectForKey:NSStringFromClass(klass)];
 }
 
+- (NSArray *)unlockedSuites
+{
+    NSMutableArray *suites = [NSMutableArray array];
+    [[self suitesByClasses] enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        if ([obj isLocked] == NO) [suites addObject:obj];
+    }];
+    
+    return [NSArray arrayWithArray:suites];
+}
+
 @end

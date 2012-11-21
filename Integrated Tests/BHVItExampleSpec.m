@@ -8,12 +8,18 @@
 
 #import "Beehive.h"
 
-SpecBegin(BHVExampleStructure)
+@interface BHVItExampleSpec : BHVSpec
+@end
 
-it(@"should do something", ^{});
+@implementation BHVItExampleSpec
 
-describe(@"something else", ^{
-    it(@"should do something else", ^{});
-});
+- (void)loadExamples
+{
+    it(@"should do something", ^{});
 
-SpecEnd
+    //describe(@"something else", ^{
+    //    it(@"should do something else", ^{});
+    //});
+}
+
+@end

@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 Ryan Davies. All rights reserved.
 //
 
-typedef void(^BHVImplementationBlock)(void);
+#import "BHVBlockTypes.h"
 
 @interface BHVExample : NSObject
-@property (nonatomic, copy) NSString *description;
+@property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) BHVImplementationBlock implementation;
 
 - (void)execute;

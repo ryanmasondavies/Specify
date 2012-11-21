@@ -20,9 +20,10 @@
     [[BHVSuiteRegistry sharedRegistry] registerSuite:suite forClass:self];
     
     BHVSpec *spec = [[[self class] alloc] init];
-    [spec loadExamples];
     
-    // TODO: Compile examples with their contexts.
+    [suite unlock];
+    [spec loadExamples];
+    [suite lock];
     
     [super initialize];
 }
@@ -32,7 +33,7 @@
     BHVSuite *suite = [[BHVSuiteRegistry sharedRegistry] suiteForClass:[self class]];
     
     NSMutableArray *invocations = [NSMutableArray array];
-    [[suite examples] enumerateObjectsUsingBlock:^(BHVExample *example, NSUInteger idx, BOOL *stop) {
+    [[suite compiledExamples] enumerateObjectsUsingBlock:^(BHVExample *example, NSUInteger idx, BOOL *stop) {
         BHVInvocation *invocation = [BHVInvocation emptyInvocation];
         [invocation setExample:example];
         [invocations addObject:invocation];
@@ -54,7 +55,7 @@
 
 - (NSString *)name
 {
-    return [[self currentExample] description];
+    return [[self currentExample] name];
 }
 
 @end

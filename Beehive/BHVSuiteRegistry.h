@@ -17,4 +17,6 @@
 - (void)registerSuite:(BHVSuite *)suite forClass:(Class)klass;
 - (BHVSuite *)suiteForClass:(Class)klass;
 
+- (NSArray *)unlockedSuites;
+
 @end
