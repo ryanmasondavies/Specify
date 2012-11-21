@@ -10,7 +10,7 @@ Taking inspiration from [Kiwi](), [Cedar](), and [Specta](), Beehive provides an
 
 Beehive is built on top of OCUnit, allowing tests to be run from Xcode.
 
-All examples are written assuming that Beehive is being used in conjunction with (Should)[https://github.com/rdavies/Should] and (Mockingbird)[https://github.com/rdavies/Mockingbird] for expectation and mocking. However, this library can be used with any expectation and mocking libraries, so use whichever you prefer.
+All examples are written assuming that Beehive is being used in conjunction with [Should](https://github.com/rdavies/Should) and [Mockingbird](https://github.com/rdavies/Mockingbird) for expectation and mocking. However, this library can be used with any expectation and mocking libraries, so use whichever you prefer.
 
 This library is a work in progress, and so the API may be subject to simplification and potentially drastic change.
 
