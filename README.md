@@ -193,13 +193,8 @@ Shared Examples
 
 To be discussed.
 
-Mocks and Stubs
-===============
-
-To add mocking to Beehive, you can use your favourite mocking library such as [OCMock]() or my recommendation, [MockingBird](), which provides matchers for use with Beehive.
-
 Asynchronous Testing
-====================
+--------------------
 
 To be discussed.
 
