@@ -7,6 +7,7 @@
 //
 
 // Declaring specs:
+#import "BHVMacros.h"
 #import "BHVSpec.h"
 
 // Building examples:
