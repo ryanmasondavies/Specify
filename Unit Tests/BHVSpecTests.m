@@ -7,43 +7,40 @@
 //
 
 #import "BHVSpec.h"
+#import "BHVTestHelper.h"
 #import "BHVSuiteRegistry.h"
 #import "BHVSuite.h"
 #import "BHVExample.h"
 #import "BHVInvocation.h"
-
-@interface BHVTestSpec : BHVSpec
-@end
-
-@implementation BHVTestSpec
-
-- (void)loadExamples
-{
-    BHVSuite *suite = [[BHVSuiteRegistry sharedRegistry] suiteForClass:[self class]];
-    
-    BHVExample *example = [[BHVExample alloc] init];
-    [example setName:@"does something"];
-    [example setImplementation:^{}];
-    [suite addItem:example];
-    
-    example = [[BHVExample alloc] init];
-    [example setName:@"does something else too"];
-    [example setImplementation:^{}];
-    [suite addItem:example];
-}
-
-@end
 
 @interface BHVSpecTests : SenTestCase
 @end
 
 @implementation BHVSpecTests
 
-- (void)testReturnsInvocationsForExamples
+- (void)testReturnsInvocationsForCompiledExamples
 {
-    NSArray *invocations = [BHVTestSpec testInvocations];
+    // Create and register an unlocked suite:
+    BHVSuite *suite = [[BHVSuite alloc] init];
+    [suite unlock];
+    [[BHVSuiteRegistry sharedRegistry] registerSuite:suite forClass:[BHVTestSpec1 class]];
+    
+    // Create two examples and add them to the suite:
+    NSArray *names = @[@"does something", @"does something else too"];
+    [names enumerateObjectsUsingBlock:^(NSString *name, NSUInteger idx, BOOL *stop) {
+        BHVExample *example = [[BHVExample alloc] init];
+        [example setName:name];
+        [example setImplementation:^{}];
+        [suite addItem:example];
+    }];
+    
+    // Retrieve the spec invocations:
+    NSArray *invocations = [BHVTestSpec1 testInvocations];
     STAssertEqualObjects([[invocations[0] example] name], @"does something", @"First invocation was not for the first example.");
     STAssertEqualObjects([[invocations[1] example] name], @"does something else too", @"Second invocation was not for the second example.");
+    
+    // Remove the suite:
+    [[BHVSuiteRegistry sharedRegistry] removeAllSuites];
 }
 
 - (void)testRequestingInvocationsWhenAbstractClassReturnsEmptyArray

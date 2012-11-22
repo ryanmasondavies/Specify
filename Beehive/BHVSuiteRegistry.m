@@ -33,14 +33,19 @@
     return self;
 }
 
+- (id)suiteForClass:(Class)klass
+{
+    return [[self suitesByClasses] objectForKey:NSStringFromClass(klass)];
+}
+
 - (void)registerSuite:(BHVSuite *)suite forClass:(Class)klass
 {
     [[self suitesByClasses] setObject:suite forKey:NSStringFromClass(klass)];
 }
 
-- (id)suiteForClass:(Class)klass
+- (void)removeAllSuites
 {
-    return [[self suitesByClasses] objectForKey:NSStringFromClass(klass)];
+    [[self suitesByClasses] removeAllObjects];
 }
 
 - (NSArray *)unlockedSuites

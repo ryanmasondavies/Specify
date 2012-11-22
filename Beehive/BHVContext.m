@@ -7,6 +7,7 @@
 //
 
 #import "BHVContext.h"
+#import "BHVExample.h"
 
 @interface BHVContext ()
 @property (nonatomic, strong) NSMutableArray *items;
@@ -31,6 +32,31 @@
 - (BHVItem *)itemAtIndex:(NSUInteger)index
 {
     return [[self items] objectAtIndex:index];
+}
+
+- (NSArray *)compile
+{
+    NSMutableArray *examples = [NSMutableArray array];
+    [[self items] enumerateObjectsUsingBlock:^(BHVItem *item, NSUInteger idx, BOOL *stop) {
+        // Concatenate names:
+        NSMutableArray *names = [NSMutableArray arrayWithObject:[self name]];
+        [names addObject:[item name]];
+        NSString *name = [names componentsJoinedByString:@" "];
+        
+        // Concatenate implementations:
+        BHVImplementationBlock implementation = ^{
+            [self implementation]();
+            [item implementation]();
+        };
+        
+        // Create an example with the name and implementation and add it to the list:
+        BHVExample *example = [[BHVExample alloc] init];
+        [example setName:name];
+        [example setImplementation:implementation];
+        [examples addObject:example];
+    }];
+    
+    return [NSArray arrayWithArray:examples];
 }
 
 @end

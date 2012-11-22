@@ -9,6 +9,10 @@
 #import "BHVItem.h"
 
 @interface BHVContext : BHVItem
+
 - (void)addItem:(BHVItem *)item;
 - (BHVItem *)itemAtIndex:(NSUInteger)index;
+
+- (NSArray *)compile;
+
 @end

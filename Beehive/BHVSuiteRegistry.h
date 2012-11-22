@@ -14,8 +14,9 @@
 
 + (id)sharedRegistry;
 
-- (void)registerSuite:(BHVSuite *)suite forClass:(Class)klass;
 - (BHVSuite *)suiteForClass:(Class)klass;
+- (void)registerSuite:(BHVSuite *)suite forClass:(Class)klass;
+- (void)removeAllSuites;
 
 - (NSArray *)unlockedSuites;
 

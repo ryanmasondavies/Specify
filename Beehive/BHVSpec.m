@@ -30,10 +30,15 @@
 
 + (NSArray *)testInvocations
 {
+    // Grab our suite:
     BHVSuite *suite = [[BHVSuiteRegistry sharedRegistry] suiteForClass:[self class]];
     
+    // Compile the examples:
+    NSArray *compiled = [suite compile];
+    
+    // Create an invocation for each example:
     NSMutableArray *invocations = [NSMutableArray array];
-    [[suite compiledExamples] enumerateObjectsUsingBlock:^(BHVExample *example, NSUInteger idx, BOOL *stop) {
+    [compiled enumerateObjectsUsingBlock:^(BHVExample *example, NSUInteger idx, BOOL *stop) {
         BHVInvocation *invocation = [BHVInvocation emptyInvocation];
         [invocation setExample:example];
         [invocations addObject:invocation];

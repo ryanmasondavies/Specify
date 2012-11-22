@@ -40,6 +40,8 @@
     
     STAssertEqualObjects([[suites[2] itemAtIndex:0] name], @"should do something", @"'it' should have added an example named 'should do something' to suite 3.");
     STAssertEqualObjects([[suites[2] itemAtIndex:0] implementation], block, @"'it' should have added an example with the given block to suite 3.");
+    
+    [[BHVSuiteRegistry sharedRegistry] removeAllSuites];
 }
 
 @end

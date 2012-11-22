@@ -74,10 +74,18 @@
 
 #pragma mark Compilation
 
-- (NSArray *)compiledExamples
+- (NSArray *)compile
 {
-    // TODO: Compile examples with their contexts.
-    return [NSArray arrayWithArray:[self items]];
+    NSMutableArray *compiled = [NSMutableArray array];
+    [[self items] enumerateObjectsUsingBlock:^(id item, NSUInteger idx, BOOL *stop) {
+        if ([item isKindOfClass:[BHVContext class]]) {
+            [compiled addObjectsFromArray:[item compile]];
+        } else {
+            [compiled addObject:item];
+        }
+    }];
+    
+    return [NSArray arrayWithArray:compiled];
 }
 
 @end

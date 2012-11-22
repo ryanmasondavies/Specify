@@ -28,6 +28,6 @@
 
 #pragma mark Compilation
 
-- (NSArray *)compiledExamples;
+- (NSArray *)compile;
 
 @end
