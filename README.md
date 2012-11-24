@@ -10,7 +10,7 @@ Taking inspiration from [Kiwi](), [Cedar](), and [Specta](), Beehive provides an
 
 Beehive is built on top of OCUnit, allowing tests to be run from Xcode.
 
-All examples are written assuming that Beehive is being used in conjunction with [Should](https://github.com/rdavies/Should) and [Mockingbird](https://github.com/rdavies/Mockingbird) for expectation and mocking. However, this library can be used with any expectation and mocking libraries, so use whichever you prefer.
+All examples are written assuming that Beehive is being used in conjunction with [Posit](https://github.com/rdavies/Posit) and [Mockingbird](https://github.com/rdavies/Mockingbird) for expectation and mocking. However, this library can be used with any expectation and mocking libraries, so use whichever you prefer.
 
 This library is a work in progress, and so the API may be subject to simplification and potentially drastic change.
 
@@ -113,7 +113,7 @@ Hooks nested in contexts are invoked in the order of outermost to innermost.
 Subject
 -------
 
-Note: expectation library must provide support for subjects. (Should)[] is one such library.
+Note: expectation library must provide support for subjects. (Posit)[] is one such library.
 
 A subject block identifies the object being described in the current context. Expectations made with no subject instead use the result of the closest subject block.
 
