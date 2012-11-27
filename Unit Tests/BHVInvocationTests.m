@@ -16,19 +16,14 @@
 
 - (void)testExecutesExample
 {
-//    TODO: Mock!
-//
-//    __block BOOL executed = NO;
-//    
-//    BHVExample *example = [[BHVExample alloc] init];
-//    [example setImplementation:^{ executed = YES; }];
-//    
-//    BHVInvocation *invocation = [BHVInvocation emptyInvocation];
-//    [invocation setExample:example];
-//    
-//    [invocation invoke];
-//    
-//    STAssertTrue(executed, @"Did not execute example when invocation was invoked.");
+    id example = [OCMockObject mockForClass:[BHVExample class]];
+    [[example expect] execute];
+    
+    BHVInvocation *invocation = [BHVInvocation emptyInvocation];
+    [invocation setExample:example];
+    [invocation invoke];
+    
+    [example verify];
 }
 
 @end

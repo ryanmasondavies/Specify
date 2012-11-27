@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		552E917CAD5641DE9EB051E3 /* libPods-Unit Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65E660B506F740DCA72A54B1 /* libPods-Unit Tests.a */; };
 		9403759A16656CC0008332F9 /* BHVNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9403759916656CC0008332F9 /* BHVNode.m */; };
 		9403759D166570E7008332F9 /* BHVContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 9403759C166570E7008332F9 /* BHVContext.m */; };
 		940375A0166571AB008332F9 /* BHVExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 9403759F166571AB008332F9 /* BHVExample.m */; };
@@ -69,6 +70,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		65E660B506F740DCA72A54B1 /* libPods-Unit Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Unit Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9403759816656CC0008332F9 /* BHVNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVNode.h; sourceTree = "<group>"; };
 		9403759916656CC0008332F9 /* BHVNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVNode.m; sourceTree = "<group>"; };
 		9403759B166570E6008332F9 /* BHVContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVContext.h; sourceTree = "<group>"; };
@@ -103,6 +105,8 @@
 		94F116811654205C003DCD0C /* BHVSuiteTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVSuiteTests.m; sourceTree = "<group>"; };
 		94F116821654205C003DCD0C /* Unit Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Unit Tests-Info.plist"; sourceTree = "<group>"; };
 		94F116831654205C003DCD0C /* Unit Tests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Unit Tests-Prefix.pch"; sourceTree = "<group>"; };
+		B341F742374546F9B9240B7B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF9267BB8DD14986A1342B6D /* Pods-Unit Tests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unit Tests.xcconfig"; path = "Pods/Pods-Unit Tests.xcconfig"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +136,7 @@
 				948539E016514CA40010BF54 /* libBeehive.a in Frameworks */,
 				94ED2B9A1649A0B800D59570 /* Foundation.framework in Frameworks */,
 				94266FB5164EFA9B00BBC615 /* SenTestingKit.framework in Frameworks */,
+				552E917CAD5641DE9EB051E3 /* libPods-Unit Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,6 +169,7 @@
 				947C4696165566850071139E /* Integrated Tests */,
 				94ED2B811649A0A400D59570 /* Frameworks */,
 				94ED2B801649A0A400D59570 /* Products */,
+				DF9267BB8DD14986A1342B6D /* Pods-Unit Tests.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -182,6 +188,8 @@
 			children = (
 				94ED2B821649A0A400D59570 /* Foundation.framework */,
 				94266FB4164EFA9B00BBC615 /* SenTestingKit.framework */,
+				B341F742374546F9B9240B7B /* libPods.a */,
+				65E660B506F740DCA72A54B1 /* libPods-Unit Tests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -290,6 +298,7 @@
 				94ED2B911649A0B800D59570 /* Frameworks */,
 				94ED2B921649A0B800D59570 /* Resources */,
 				94ED2B931649A0B800D59570 /* ShellScript */,
+				7073903DA6084E81A6BD12AD /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -347,6 +356,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		7073903DA6084E81A6BD12AD /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-Unit Tests-resources.sh\"\n";
+		};
 		947C468F165566850071139E /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -518,7 +541,6 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Beehive/Beehive-Prefix.pch";
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -534,7 +556,6 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Beehive/Beehive-Prefix.pch";
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -542,14 +563,14 @@
 		};
 		94ED2BA61649A0B800D59570 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF9267BB8DD14986A1342B6D /* Pods-Unit Tests.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
 				);
 				GCC_PREFIX_HEADER = "Unit Tests/Unit Tests-Prefix.pch";
 				INFOPLIST_FILE = "Unit Tests/Unit Tests-Info.plist";
-				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -557,14 +578,14 @@
 		};
 		94ED2BA71649A0B800D59570 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF9267BB8DD14986A1342B6D /* Pods-Unit Tests.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
 				);
 				GCC_PREFIX_HEADER = "Unit Tests/Unit Tests-Prefix.pch";
 				INFOPLIST_FILE = "Unit Tests/Unit Tests-Info.plist";
-				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
 			};
