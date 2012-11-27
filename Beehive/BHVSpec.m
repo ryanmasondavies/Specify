@@ -21,9 +21,9 @@
     
     BHVSpec *spec = [[[self class] alloc] init];
     
-    [suite unlock];
+    [suite setLocked:NO];
     [spec loadExamples];
-    [suite lock];
+    [suite setLocked:YES];
     
     [super initialize];
 }
@@ -33,12 +33,9 @@
     // Grab our suite:
     BHVSuite *suite = [[BHVSuiteRegistry sharedRegistry] suiteForClass:[self class]];
     
-    // Compile the examples:
-    NSArray *compiled = [suite compile];
-    
     // Create an invocation for each example:
     NSMutableArray *invocations = [NSMutableArray array];
-    [compiled enumerateObjectsUsingBlock:^(BHVExample *example, NSUInteger idx, BOOL *stop) {
+    [[suite examples] enumerateObjectsUsingBlock:^(BHVExample *example, NSUInteger idx, BOOL *stop) {
         BHVInvocation *invocation = [BHVInvocation emptyInvocation];
         [invocation setExample:example];
         [invocations addObject:invocation];

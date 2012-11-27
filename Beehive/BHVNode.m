@@ -1,5 +1,5 @@
 //
-//  BHVExample.h
+//  BHVNode.m
 //  Beehive
 //
 //  Created by Ryan Davies on 27/11/2012.
@@ -8,9 +8,6 @@
 
 #import "BHVNode.h"
 
-@interface BHVExample : BHVNode
-@property (nonatomic, copy) NSString *name;
-
-- (void)execute;
+@implementation BHVNode
 
 @end

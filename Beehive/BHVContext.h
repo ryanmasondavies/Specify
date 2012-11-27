@@ -2,17 +2,15 @@
 //  BHVContext.h
 //  Beehive
 //
-//  Created by Ryan Davies on 21/11/2012.
+//  Created by Ryan Davies on 27/11/2012.
 //  Copyright (c) 2012 Ryan Davies. All rights reserved.
 //
 
-#import "BHVItem.h"
+#import "BHVNode.h"
 
-@interface BHVContext : BHVItem
+@interface BHVContext : BHVNode
 
-- (void)addItem:(BHVItem *)item;
-- (BHVItem *)itemAtIndex:(NSUInteger)index;
-
-- (NSArray *)compile;
+- (void)addNode:(BHVNode *)node;
+- (BHVNode *)nodeAtIndex:(NSUInteger)index;
 
 @end

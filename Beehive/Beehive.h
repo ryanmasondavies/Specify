@@ -9,7 +9,3 @@
 // Declaring specs:
 #import "BHVMacros.h"
 #import "BHVSpec.h"
-
-// Building examples:
-#import "BHVItFunction.h"
-#import "BHVContextFunction.h"

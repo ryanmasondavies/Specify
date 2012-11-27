@@ -22,7 +22,7 @@
 {
     // Create and register an unlocked suite:
     BHVSuite *suite = [[BHVSuite alloc] init];
-    [suite unlock];
+    [suite setLocked:NO];
     [[BHVSuiteRegistry sharedRegistry] registerSuite:suite forClass:[BHVTestSpec1 class]];
     
     // Create two examples and add them to the suite:
@@ -30,8 +30,7 @@
     [names enumerateObjectsUsingBlock:^(NSString *name, NSUInteger idx, BOOL *stop) {
         BHVExample *example = [[BHVExample alloc] init];
         [example setName:name];
-        [example setImplementation:^{}];
-        [suite addItem:example];
+        [suite addNode:example];
     }];
     
     // Retrieve the spec invocations:

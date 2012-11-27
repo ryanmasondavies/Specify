@@ -7,12 +7,11 @@
 //
 
 #import "BHVSuite.h"
-#import "BHVItem.h"
+#import "BHVNode.h"
 #import "BHVContext.h"
 
 @interface BHVSuite ()
-@property (nonatomic, strong) NSMutableArray *items;
-@property (nonatomic, strong) BHVContext *currentContext;
+@property (nonatomic, strong) NSMutableArray *nodes;
 @end
 
 @implementation BHVSuite
@@ -20,72 +19,33 @@
 - (id)init
 {
     if (self = [super init]) {
-        self.items = [NSMutableArray array];
-        [self lock];
+        self.nodes = [NSMutableArray array];
+        self.locked = YES;
     }
     
     return self;
 }
 
-#pragma mark Locking
-
-- (void)lock
+- (void)addNode:(BHVNode *)node
 {
-    self.locked = YES;
-}
-
-- (void)unlock
-{
-    self.locked = NO;
-}
-
-#pragma mark Items
-
-- (void)addItem:(BHVItem *)item
-{
-    if ([self isLocked]) {
-        [NSException raise:@"BHVSuiteLockException" format:@"Cannot add examples to a locked suite."];
-        return;
-    }
+    if ([self isLocked]) [NSException raise:@"BHVSuiteLockException" format:@"Example cannot be added when the suite is locked."];
     
-    if ([self currentContext])
-        [[self currentContext] addItem:item];
+    if ([self context])
+        [[self context] addNode:node];
     else
-        [[self items] addObject:item];
+        [[self nodes] addObject:node];
 }
 
-- (BHVItem *)itemAtIndex:(NSUInteger)index
+- (BHVNode *)nodeAtIndex:(NSUInteger)index
 {
-    return [[self items] objectAtIndex:index];
+    return [[self nodes] objectAtIndex:index];
 }
 
-#pragma mark Context
-
-- (void)processContext:(BHVContext *)context
+- (NSArray *)examples
 {
-    // Add items to the context: (see -addItem:)
-    self.currentContext = context;
-    context.implementation();
-    self.currentContext = nil;
-    
-    // Add the context as an item:
-    [self addItem:context];
-}
-
-#pragma mark Compilation
-
-- (NSArray *)compile
-{
-    NSMutableArray *compiled = [NSMutableArray array];
-    [[self items] enumerateObjectsUsingBlock:^(id item, NSUInteger idx, BOOL *stop) {
-        if ([item isKindOfClass:[BHVContext class]]) {
-            [compiled addObjectsFromArray:[item compile]];
-        } else {
-            [compiled addObject:item];
-        }
-    }];
-    
-    return [NSArray arrayWithArray:compiled];
+    NSMutableArray *examples = [NSMutableArray array];
+    [[self nodes] enumerateObjectsUsingBlock:^(BHVNode *node, NSUInteger idx, BOOL *stop) { [examples addObject:node]; }];
+    return [NSArray arrayWithArray:examples];
 }
 
 @end

@@ -1,17 +1,13 @@
 //
-//  BHVExample.m
+//  BHVNode.h
 //  Beehive
 //
 //  Created by Ryan Davies on 27/11/2012.
 //  Copyright (c) 2012 Ryan Davies. All rights reserved.
 //
 
-#import "BHVExample.h"
+#import <Foundation/Foundation.h>
 
-@implementation BHVExample
-
-- (void)execute
-{
-}
+@interface BHVNode : NSObject
 
 @end
