@@ -34,8 +34,8 @@
     
     // Retrieve the spec invocations:
     NSArray *invocations = [BHVTestSpec1 testInvocations];
-    STAssertEqualObjects([invocations[0] example], examples[0], @"Expected invocation 1 to be for example 1.");
-    STAssertEqualObjects([invocations[1] example], examples[1], @"Expected invocation 2 to be for example 2.");
+    [[[invocations[0] example] should] beEqualTo:examples[0]];
+    [[[invocations[1] example] should] beEqualTo:examples[1]];
     
     // Remove the suite:
     [[BHVSuiteRegistry sharedRegistry] removeAllSuites];
@@ -43,7 +43,7 @@
 
 - (void)testRequestingInvocationsWhenAbstractClassReturnsEmptyArray
 {
-    STAssertTrue([[BHVSpec testInvocations] count] == 0, @"Expected there to be no invocations.");
+    [[@([[BHVSpec testInvocations] count]) should] beZero];
 }
 
 - (void)testNameReturnsNameOfCurrentExample
@@ -54,7 +54,7 @@
     [invocation setExample:example];
     
     BHVSpec *spec = [[BHVSpec alloc] initWithInvocation:invocation];
-    STAssertEquals([spec name], @"Example 1", @"Expected spec name to match the name of the example.");
+    [[[spec name] should] beEqualTo:@"Example 1"];
 }
 
 @end

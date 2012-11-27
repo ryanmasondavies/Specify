@@ -20,7 +20,10 @@
     BHVSuite *suite = [[BHVSuite alloc] init];
     BHVNode *node = [[BHVNode alloc] init];
     
-    STAssertThrows([suite addNode:node], @"Expected addItem: to throw an exception.");
+    NSException *exception = nil;
+    @try { [suite addNode:node]; }
+    @catch(NSException *e) { exception = e; };
+    [[exception shouldNot] beEqualTo:nil];
 }
 
 - (void)test_WhenUnlocked_WithNoCurrentContext_AddsNodes
@@ -31,7 +34,7 @@
     [suite setLocked:NO];
     [suite addNode:node];
     
-    STAssertEqualObjects([suite nodeAtIndex:0], node, @"Expected addItem: to add the node to the suite.");
+    [[[suite nodeAtIndex:0] should] beEqualTo:node];
 }
 
 - (void)test_WhenUnlocked_AddsNodesToCurrentContext
@@ -44,7 +47,7 @@
     [suite setContext:context];
     [suite addNode:node];
     
-    STAssertEqualObjects([context nodeAtIndex:0], node, @"Expected addNode: to add the node to the context.");
+    [[[context nodeAtIndex:0] should] beEqualTo:node];
 }
 
 @end

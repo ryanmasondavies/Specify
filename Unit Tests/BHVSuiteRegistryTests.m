@@ -17,11 +17,13 @@
 - (void)testSharedRegistryReturnsSameInstance
 {
     id sharedRegistry[2];
+    
     sharedRegistry[0] = [BHVSuiteRegistry sharedRegistry];
     sharedRegistry[1] = [BHVSuiteRegistry sharedRegistry];
-    STAssertTrue([sharedRegistry[0] isKindOfClass:[BHVSuiteRegistry class]], @"sharedRegistry did not return a suite registry.");
-    STAssertTrue([sharedRegistry[1] isKindOfClass:[BHVSuiteRegistry class]], @"sharedRegistry did not return a suite registry.");
-    STAssertEqualObjects(sharedRegistry[0], sharedRegistry[1], @"sharedRegistry did not return the same instance both times.");
+    
+    [[sharedRegistry[0] should] beKindOfClass:[BHVSuiteRegistry class]];
+    [[sharedRegistry[1] should] beKindOfClass:[BHVSuiteRegistry class]];
+    [[sharedRegistry[0] should] beEqualTo:sharedRegistry[1]];
 }
 
 - (void)testRegistersAndReturnsSuites
@@ -29,7 +31,7 @@
     BHVSuiteRegistry *registry = [[BHVSuiteRegistry alloc] init];
     BHVSuite *suite = [[BHVSuite alloc] init];
     [registry registerSuite:suite forClass:[self class]];
-    STAssertEqualObjects([registry suiteForClass:[self class]], suite, @"BHVSuiteRegistry did not return the same suite as was registered with it.");
+    [[[registry suiteForClass:[self class]] should] beEqualTo:suite];
 }
 
 @end
