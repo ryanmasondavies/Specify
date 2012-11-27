@@ -26,17 +26,16 @@
     [[BHVSuiteRegistry sharedRegistry] registerSuite:suite forClass:[BHVTestSpec1 class]];
     
     // Create two examples and add them to the suite:
-    NSArray *names = @[@"does something", @"does something else too"];
-    [names enumerateObjectsUsingBlock:^(NSString *name, NSUInteger idx, BOOL *stop) {
-        BHVExample *example = [[BHVExample alloc] init];
-        [example setName:name];
-        [suite addNode:example];
-    }];
+    NSMutableArray *examples = [NSMutableArray array];
+    examples[0] = [[BHVExample alloc] init];
+    examples[1] = [[BHVExample alloc] init];
+    [suite addNode:examples[0]];
+    [suite addNode:examples[1]];
     
     // Retrieve the spec invocations:
     NSArray *invocations = [BHVTestSpec1 testInvocations];
-    STAssertEqualObjects([[invocations[0] example] name], @"does something", @"First invocation was not for the first example.");
-    STAssertEqualObjects([[invocations[1] example] name], @"does something else too", @"Second invocation was not for the second example.");
+    STAssertEqualObjects([invocations[0] example], examples[0], @"Expected invocation 1 to be for example 1.");
+    STAssertEqualObjects([invocations[1] example], examples[1], @"Expected invocation 2 to be for example 2.");
     
     // Remove the suite:
     [[BHVSuiteRegistry sharedRegistry] removeAllSuites];
@@ -44,7 +43,7 @@
 
 - (void)testRequestingInvocationsWhenAbstractClassReturnsEmptyArray
 {
-    STAssertTrue([[BHVSpec testInvocations] count] == 0, @"There should be no invocations.");
+    STAssertTrue([[BHVSpec testInvocations] count] == 0, @"Expected there to be no invocations.");
 }
 
 - (void)testNameReturnsNameOfCurrentExample
@@ -55,7 +54,7 @@
     [invocation setExample:example];
     
     BHVSpec *spec = [[BHVSpec alloc] initWithInvocation:invocation];
-    STAssertEquals([spec name], @"Example 1", @"Spec did not use the name of the current example.");
+    STAssertEquals([spec name], @"Example 1", @"Expected spec name to match the name of the example.");
 }
 
 @end
