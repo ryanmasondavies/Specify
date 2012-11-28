@@ -7,10 +7,11 @@
 //
 
 #import "BHVSpec.h"
-#import "BHVSuite.h"
 #import "BHVSuiteRegistry.h"
-#import "BHVExample.h"
+#import "BHVSuite.h"
 #import "BHVInvocation.h"
+#import "BHVExample.h"
+#import "BHVExampleAccumulator.h"
 
 @implementation BHVSpec
 
@@ -20,8 +21,6 @@
     [[BHVSuiteRegistry sharedRegistry] registerSuite:suite forClass:self];
     
     BHVSpec *spec = [[[self class] alloc] init];
-    
-    [suite setLocked:NO];
     [spec loadExamples];
     [suite setLocked:YES];
     
@@ -33,9 +32,12 @@
     // Grab our suite:
     BHVSuite *suite = [[BHVSuiteRegistry sharedRegistry] suiteForClass:[self class]];
     
+    // Collect the examples in the suite:
+    BHVExampleAccumulator *accumulator = [[BHVExampleAccumulator alloc] initWithNode:suite];
+    
     // Create an invocation for each example:
     NSMutableArray *invocations = [NSMutableArray array];
-    [[suite examples] enumerateObjectsUsingBlock:^(BHVExample *example, NSUInteger idx, BOOL *stop) {
+    [[accumulator examples] enumerateObjectsUsingBlock:^(BHVExample *example, NSUInteger idx, BOOL *stop) {
         BHVInvocation *invocation = [BHVInvocation emptyInvocation];
         [invocation setExample:example];
         [invocations addObject:invocation];

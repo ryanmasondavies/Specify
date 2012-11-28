@@ -18,6 +18,4 @@
 - (BHVNode *)nodeAtIndex:(NSUInteger)index;
 - (NSUInteger)nodeCount;
 
-- (NSArray *)examples; // TODO: Deprecate!
-
 @end

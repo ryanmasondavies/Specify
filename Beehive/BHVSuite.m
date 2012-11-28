@@ -48,11 +48,4 @@
     return [[self nodes] count];
 }
 
-- (NSArray *)examples
-{
-    NSMutableArray *examples = [NSMutableArray array];
-    [[self nodes] enumerateObjectsUsingBlock:^(BHVNode *node, NSUInteger idx, BOOL *stop) { [examples addObject:node]; }];
-    return [NSArray arrayWithArray:examples];
-}
-
 @end
