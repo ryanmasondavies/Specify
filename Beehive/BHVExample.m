@@ -12,6 +12,7 @@
 
 - (void)execute
 {
+    self.executed = YES;
 }
 
 @end

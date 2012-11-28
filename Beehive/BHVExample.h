@@ -10,6 +10,7 @@
 
 @interface BHVExample : BHVNode
 @property (nonatomic, copy) NSString *name;
+@property (nonatomic, getter=isExecuted) BOOL executed;
 
 - (void)execute;
 
