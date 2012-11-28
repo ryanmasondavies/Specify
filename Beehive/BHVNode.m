@@ -10,4 +10,8 @@
 
 @implementation BHVNode
 
+- (void)accept:(id <BHVNodeVisitor>)visitor
+{
+}
+
 @end

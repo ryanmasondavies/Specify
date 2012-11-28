@@ -10,6 +10,11 @@
 
 @implementation BHVExample
 
+- (void)accept:(id <BHVNodeVisitor>)visitor
+{
+    [visitor visitExample:self];
+}
+
 - (void)execute
 {
     self.executed = YES;

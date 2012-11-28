@@ -18,17 +18,19 @@
 
 - (id)init
 {
-    if (self = [super init]) {
-        self.nodes = [NSMutableArray array];
-        self.locked = YES;
-    }
-    
+    if (self = [super init]) self.nodes = [NSMutableArray array];
     return self;
+}
+
+- (void)accept:(id<BHVNodeVisitor>)visitor
+{
+    [[self nodes] makeObjectsPerformSelector:@selector(accept:) withObject:visitor];
 }
 
 - (void)addNode:(BHVNode *)node
 {
-    if ([self isLocked]) [NSException raise:@"BHVSuiteLockException" format:@"Example cannot be added when the suite is locked."];
+    if ([self isLocked])
+        [NSException raise:@"BHVSuiteLockException" format:@"Example cannot be added when the suite is locked."];
     
     if ([self context])
         [[self context] addNode:node];
@@ -39,6 +41,11 @@
 - (BHVNode *)nodeAtIndex:(NSUInteger)index
 {
     return [[self nodes] objectAtIndex:index];
+}
+
+- (NSUInteger)nodeCount
+{
+    return [[self nodes] count];
 }
 
 - (NSArray *)examples

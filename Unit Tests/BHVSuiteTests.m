@@ -20,6 +20,8 @@
     BHVSuite *suite = [[BHVSuite alloc] init];
     BHVNode *node = [[BHVNode alloc] init];
     
+    [suite setLocked:YES];
+    
     NSException *exception = nil;
     @try { [suite addNode:node]; }
     @catch(NSException *e) { exception = e; };
@@ -31,7 +33,6 @@
     BHVSuite *suite = [[BHVSuite alloc] init];
     BHVNode *node = [[BHVNode alloc] init];
     
-    [suite setLocked:NO];
     [suite addNode:node];
     
     [[[suite nodeAtIndex:0] should] beEqualTo:node];
@@ -43,7 +44,6 @@
     BHVContext *context = [[BHVContext alloc] init];
     BHVNode *node = [[BHVNode alloc] init];
     
-    [suite setLocked:NO];
     [suite setContext:context];
     [suite addNode:node];
     

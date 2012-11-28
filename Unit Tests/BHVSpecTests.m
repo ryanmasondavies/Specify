@@ -20,10 +20,8 @@
 
 - (void)testReturnsInvocationsForCompiledExamples
 {
-    // Create and register an unlocked suite:
+    // Create a suite:
     BHVSuite *suite = [[BHVSuite alloc] init];
-    [suite setLocked:NO];
-    [[BHVSuiteRegistry sharedRegistry] registerSuite:suite forClass:[BHVTestSpec1 class]];
     
     // Create two examples and add them to the suite:
     NSMutableArray *examples = [NSMutableArray array];
@@ -31,6 +29,10 @@
     examples[1] = [[BHVExample alloc] init];
     [suite addNode:examples[0]];
     [suite addNode:examples[1]];
+    
+    // Lock it and add it to the registry:
+    [suite setLocked:YES];
+    [[BHVSuiteRegistry sharedRegistry] registerSuite:suite forClass:[BHVTestSpec1 class]];
     
     // Retrieve the spec invocations:
     NSArray *invocations = [BHVTestSpec1 testInvocations];

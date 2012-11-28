@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BHVNodeVisitor.h"
 
 @interface BHVNode : NSObject
+
+- (void)accept:(id <BHVNodeVisitor>)visitor;
 
 @end
