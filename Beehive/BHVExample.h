@@ -7,13 +7,12 @@
 //
 
 #import "BHVNode.h"
-@class BHVContext;
 
 @interface BHVExample : BHVNode
 @property (nonatomic, copy) void(^block)(void);
 @property (nonatomic, getter=isExecuted) BOOL executed;
 
-- (void)execute;
 - (NSString *)fullName;
+- (void)execute;
 
 @end

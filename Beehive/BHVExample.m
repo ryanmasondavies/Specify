@@ -24,12 +24,6 @@
     [visitor visitExample:self];
 }
 
-- (void)execute
-{
-    if (self.block) self.block();
-    self.executed = YES;
-}
-
 - (NSString *)fullName
 {
     // Work up the chain of nodes, adding them as we go:
@@ -46,6 +40,12 @@
     
     // Concatenate with a space between each name and return:
     return [names componentsJoinedByString:@" "];
+}
+
+- (void)execute
+{
+    if (self.block) self.block();
+    self.executed = YES;
 }
 
 @end
