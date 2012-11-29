@@ -95,7 +95,6 @@
 		94A5D2231666C13400CFDAC3 /* BHVExampleAccumulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVExampleAccumulator.h; sourceTree = "<group>"; };
 		94A5D2241666C13400CFDAC3 /* BHVExampleAccumulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVExampleAccumulator.m; sourceTree = "<group>"; };
 		94A5D2261666C26B00CFDAC3 /* BHVNodeVisitor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BHVNodeVisitor.h; sourceTree = "<group>"; };
-		94D97AB9165D282A00282ABE /* BHVBlockTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BHVBlockTypes.h; sourceTree = "<group>"; };
 		94D97B84165D494700282ABE /* BHVTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVTestHelper.h; sourceTree = "<group>"; };
 		94D97B85165D494700282ABE /* BHVTestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVTestHelper.m; sourceTree = "<group>"; };
 		94ED2B7F1649A0A400D59570 /* libBeehive.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBeehive.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -206,7 +205,6 @@
 			isa = PBXGroup;
 			children = (
 				94ED2B871649A0A400D59570 /* Beehive.h */,
-				94D97AB9165D282A00282ABE /* BHVBlockTypes.h */,
 				9471B0EB165E737E00754C6F /* BHVMacros.h */,
 				94F001D5164FF58A00865938 /* BHVSpec.h */,
 				94F001D6164FF58A00865938 /* BHVSpec.m */,
