@@ -13,6 +13,7 @@
 		940375A0166571AB008332F9 /* BHVExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 9403759F166571AB008332F9 /* BHVExample.m */; };
 		94266FB5164EFA9B00BBC615 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94266FB4164EFA9B00BBC615 /* SenTestingKit.framework */; };
 		9461EC5F16678A5E00F8EC0C /* BHVItFunctionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9461EC5E16678A5E00F8EC0C /* BHVItFunctionTests.m */; };
+		9461EC6316678CC000F8EC0C /* BHVItFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 9461EC6216678CC000F8EC0C /* BHVItFunction.m */; };
 		946643AE1652941B00B537EE /* BHVSuiteRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 946643AD1652941B00B537EE /* BHVSuiteRegistry.m */; };
 		947C4692165566850071139E /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94266FB4164EFA9B00BBC615 /* SenTestingKit.framework */; };
 		947C4695165566850071139E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94ED2B821649A0A400D59570 /* Foundation.framework */; };
@@ -83,6 +84,8 @@
 		9403759F166571AB008332F9 /* BHVExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVExample.m; sourceTree = "<group>"; };
 		94266FB4164EFA9B00BBC615 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		9461EC5E16678A5E00F8EC0C /* BHVItFunctionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVItFunctionTests.m; sourceTree = "<group>"; };
+		9461EC6116678CC000F8EC0C /* BHVItFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVItFunction.h; sourceTree = "<group>"; };
+		9461EC6216678CC000F8EC0C /* BHVItFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVItFunction.m; sourceTree = "<group>"; };
 		946643AC1652941B00B537EE /* BHVSuiteRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVSuiteRegistry.h; sourceTree = "<group>"; };
 		946643AD1652941B00B537EE /* BHVSuiteRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVSuiteRegistry.m; sourceTree = "<group>"; };
 		9471B0EB165E737E00754C6F /* BHVMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BHVMacros.h; sourceTree = "<group>"; };
@@ -225,6 +228,8 @@
 				9403759F166571AB008332F9 /* BHVExample.m */,
 				94A5D2231666C13400CFDAC3 /* BHVExampleAccumulator.h */,
 				94A5D2241666C13400CFDAC3 /* BHVExampleAccumulator.m */,
+				9461EC6116678CC000F8EC0C /* BHVItFunction.h */,
+				9461EC6216678CC000F8EC0C /* BHVItFunction.m */,
 				94ED2B851649A0A400D59570 /* Supporting Files */,
 			);
 			path = Beehive;
@@ -433,6 +438,7 @@
 				9403759D166570E7008332F9 /* BHVContext.m in Sources */,
 				940375A0166571AB008332F9 /* BHVExample.m in Sources */,
 				94A5D2251666C13400CFDAC3 /* BHVExampleAccumulator.m in Sources */,
+				9461EC6316678CC000F8EC0C /* BHVItFunction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
