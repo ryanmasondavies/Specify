@@ -127,7 +127,6 @@
 		94F469DE1667C71400573526 /* BHVDescribeFunctionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVDescribeFunctionTests.m; sourceTree = "<group>"; };
 		94F469E01667C76B00573526 /* BHVDescribeFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVDescribeFunction.h; sourceTree = "<group>"; };
 		94F469E11667C76B00573526 /* BHVDescribeFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVDescribeFunction.m; sourceTree = "<group>"; };
-		B341F742374546F9B9240B7B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF9267BB8DD14986A1342B6D /* Pods-Unit Tests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unit Tests.xcconfig"; path = "Pods/Pods-Unit Tests.xcconfig"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -210,7 +209,6 @@
 			children = (
 				94ED2B821649A0A400D59570 /* Foundation.framework */,
 				94266FB4164EFA9B00BBC615 /* SenTestingKit.framework */,
-				B341F742374546F9B9240B7B /* libPods.a */,
 				65E660B506F740DCA72A54B1 /* libPods-Unit Tests.a */,
 			);
 			name = Frameworks;
