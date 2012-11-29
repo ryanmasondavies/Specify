@@ -28,7 +28,7 @@
     [[exception shouldNot] beEqualTo:nil];
 }
 
-- (void)test_WhenUnlocked_WithNoCurrentContext_AddsNodes
+- (void)test_WhenUnlocked_AddsNodes
 {
     BHVSuite *suite = [[BHVSuite alloc] init];
     BHVNode *node = [[BHVNode alloc] init];
@@ -38,16 +38,38 @@
     [[[suite nodeAtIndex:0] should] beEqualTo:node];
 }
 
-- (void)test_WhenUnlocked_AddsNodesToCurrentContext
+- (void)test_WhenUnlocked_AddsNodesToContext
 {
     BHVSuite *suite = [[BHVSuite alloc] init];
     BHVContext *context = [[BHVContext alloc] init];
-    BHVNode *node = [[BHVNode alloc] init];
+    NSArray *nodes = @[[[BHVNode alloc] init], [[BHVNode alloc] init]];
     
-    [suite setContext:context];
-    [suite addNode:node];
+    [suite enterContext:context];
+    [suite addNode:nodes[0]];
+    [suite leaveContext];
+    [suite addNode:nodes[1]];
     
-    [[[context nodeAtIndex:0] should] beEqualTo:node];
+    [[[context nodeAtIndex:0] should] beEqualTo:nodes[0]];
+    [[[suite nodeAtIndex:0] should] beEqualTo:nodes[1]];
+}
+
+- (void)test_WhenUnlocked_AddsNodesToNestedContext
+{
+    BHVSuite *suite = [[BHVSuite alloc] init];
+    NSArray *contexts = @[[[BHVContext alloc] init], [[BHVContext alloc] init]];
+    NSArray *nodes = @[[[BHVNode alloc] init], [[BHVNode alloc] init], [[BHVNode alloc] init]];
+    
+    [suite enterContext:contexts[0]];
+    [suite enterContext:contexts[1]];
+    [suite addNode:nodes[0]];
+    [suite leaveContext];
+    [suite addNode:nodes[1]];
+    [suite leaveContext];
+    [suite addNode:nodes[2]];
+    
+    [[[contexts[1] nodeAtIndex:0] should] beEqualTo:nodes[0]];
+    [[[contexts[0] nodeAtIndex:0] should] beEqualTo:nodes[1]];
+    [[[suite nodeAtIndex:0] should] beEqualTo:nodes[2]];
 }
 
 @end

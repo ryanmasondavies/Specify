@@ -12,13 +12,17 @@
 
 @interface BHVSuite ()
 @property (nonatomic, strong) NSMutableArray *nodes;
+@property (nonatomic, strong) NSMutableArray *contextStack;
 @end
 
 @implementation BHVSuite
 
 - (id)init
 {
-    if (self = [super init]) self.nodes = [NSMutableArray array];
+    if (self = [super init]) {
+        self.nodes = [NSMutableArray array];
+        self.contextStack = [NSMutableArray array];
+    }
     return self;
 }
 
@@ -32,8 +36,9 @@
     if ([self isLocked])
         [NSException raise:@"BHVSuiteLockException" format:@"Example cannot be added when the suite is locked."];
     
-    if ([self context])
-        [[self context] addNode:node];
+    BHVContext *context = [[self contextStack] lastObject];
+    if (context)
+        [context addNode:node];
     else
         [[self nodes] addObject:node];
 }
@@ -46,6 +51,16 @@
 - (NSUInteger)nodeCount
 {
     return [[self nodes] count];
+}
+
+- (void)enterContext:(BHVContext *)context
+{
+    [self.contextStack addObject:context];
+}
+
+- (void)leaveContext
+{
+    [self.contextStack removeLastObject];
 }
 
 @end

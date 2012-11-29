@@ -12,10 +12,12 @@
 
 @interface BHVSuite : BHVNode
 @property (nonatomic, getter=isLocked) BOOL locked;
-@property (nonatomic, strong) BHVContext *context;
 
 - (void)addNode:(BHVNode *)node;
 - (BHVNode *)nodeAtIndex:(NSUInteger)index;
 - (NSUInteger)nodeCount;
+
+- (void)enterContext:(BHVContext *)context;
+- (void)leaveContext;
 
 @end
