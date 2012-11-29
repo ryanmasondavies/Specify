@@ -8,8 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "BHVNodeVisitor.h"
+@class BHVContext;
 
 @interface BHVNode : NSObject
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, weak) BHVContext *context;
 
 - (void)accept:(id <BHVNodeVisitor>)visitor;
 

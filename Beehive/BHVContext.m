@@ -32,6 +32,7 @@
 - (void)addNode:(BHVNode *)node
 {
     [[self nodes] addObject:node];
+    [node setContext:self];
 }
 
 - (BHVNode *)nodeAtIndex:(NSUInteger)index

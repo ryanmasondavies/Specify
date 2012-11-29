@@ -69,15 +69,16 @@ Class recordedSpec = nil;
     [[@([[BHVSpec testInvocations] count]) should] beZero];
 }
 
-- (void)testNameReturnsNameOfCurrentExample
+- (void)testNameReturnsFullNameOfCurrentExample
 {
+    id example = [OCMockObject mockForClass:[BHVExample class]];
+    [[[example stub] andReturn:@"hello world"] fullName];
+    
     BHVInvocation *invocation = [BHVInvocation emptyInvocation];
-    BHVExample *example = [[BHVExample alloc] init];
-    [example setName:@"Example 1"];
     [invocation setExample:example];
     
     BHVSpec *spec = [[BHVSpec alloc] initWithInvocation:invocation];
-    [[[spec name] should] beEqualTo:@"Example 1"];
+    [[[spec name] should] beEqualTo:@"hello world"];
 }
 
 @end

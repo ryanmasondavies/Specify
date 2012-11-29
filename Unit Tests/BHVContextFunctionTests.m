@@ -43,7 +43,9 @@
     // Check that the nodes have been added to a new context named 'the thing' in the suite:
     BHVContext *context = (BHVContext *)[suite nodeAtIndex:0];
     [[[context name] should] beEqualTo:name];
-    for (NSUInteger i = 0; i < 3; i ++) [[[context nodeAtIndex:i] should] beEqualTo:nodes[i]];
+    [nodes enumerateObjectsUsingBlock:^(BHVNode *node, NSUInteger idx, BOOL *stop) {
+        [[node should] beEqualTo:nodes[idx]];
+    }];
 }
 
 @end

@@ -65,7 +65,7 @@
 
 - (NSString *)name
 {
-    return [[(BHVInvocation *)[self invocation] example] name];
+    return [[(BHVInvocation *)[self invocation] example] fullName];
 }
 
 - (void)loadExamples

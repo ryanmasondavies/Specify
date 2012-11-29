@@ -9,7 +9,6 @@
 #import "BHVNode.h"
 
 @interface BHVContext : BHVNode
-@property (nonatomic, copy) NSString *name;
 
 - (void)addNode:(BHVNode *)node;
 - (BHVNode *)nodeAtIndex:(NSUInteger)index;

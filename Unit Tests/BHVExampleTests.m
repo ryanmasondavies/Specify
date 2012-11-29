@@ -7,6 +7,7 @@
 //
 
 #import "BHVExample.h"
+#import "BHVContext.h"
 
 @interface PSTBeMatcher ()
 - (BOOL)beExecuted;
@@ -32,6 +33,22 @@
     [[example shouldNot] beExecuted];
     [example execute];
     [[example should] beExecuted];
+}
+
+- (void)test_FullName_IncludesParentContextNames
+{
+    BHVExample *example = [[BHVExample alloc] init];
+    [example setName:@"should do something"];
+    
+    BHVContext *nestedContext = [[BHVContext alloc] init];
+    [nestedContext setName:@"in some state"];
+    [nestedContext addNode:example];
+    
+    BHVContext *topContext = [[BHVContext alloc] init];
+    [topContext setName:@"the thing"];
+    [topContext addNode:nestedContext];
+    
+    [[[example fullName] should] beEqualTo:@"the thing in some state should do something"];
 }
 
 @end
