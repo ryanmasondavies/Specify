@@ -32,7 +32,7 @@
     
     // Lock it and add it to the registry:
     [suite setLocked:YES];
-    [[BHVSuiteRegistry sharedRegistry] registerSuite:suite forClass:[BHVTestSpec1 class]];
+    [BHVSuiteRegistry registerSuite:suite forClass:[BHVTestSpec1 class]];
     
     // Retrieve the spec invocations:
     NSArray *invocations = [BHVTestSpec1 testInvocations];
@@ -40,7 +40,7 @@
     [[[invocations[1] example] should] beEqualTo:examples[1]];
     
     // Remove the suite:
-    [[BHVSuiteRegistry sharedRegistry] removeAllSuites];
+    [BHVSuiteRegistry removeAllSuites];
 }
 
 - (void)testRequestingInvocationsWhenAbstractClassReturnsEmptyArray

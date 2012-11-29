@@ -14,24 +14,12 @@
 
 @implementation BHVSuiteRegistryTests
 
-- (void)testSharedRegistryReturnsSameInstance
-{
-    id sharedRegistry[2];
-    
-    sharedRegistry[0] = [BHVSuiteRegistry sharedRegistry];
-    sharedRegistry[1] = [BHVSuiteRegistry sharedRegistry];
-    
-    [[sharedRegistry[0] should] beKindOfClass:[BHVSuiteRegistry class]];
-    [[sharedRegistry[1] should] beKindOfClass:[BHVSuiteRegistry class]];
-    [[sharedRegistry[0] should] beEqualTo:sharedRegistry[1]];
-}
-
 - (void)testRegistersAndReturnsSuites
 {
-    BHVSuiteRegistry *registry = [[BHVSuiteRegistry alloc] init];
     BHVSuite *suite = [[BHVSuite alloc] init];
-    [registry registerSuite:suite forClass:[self class]];
-    [[[registry suiteForClass:[self class]] should] beEqualTo:suite];
+    [BHVSuiteRegistry registerSuite:suite forClass:[self class]];
+    [[[BHVSuiteRegistry suiteForClass:[self class]] should] beEqualTo:suite];
+    [BHVSuiteRegistry removeAllSuites];
 }
 
 @end

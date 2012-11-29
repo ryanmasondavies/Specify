@@ -12,12 +12,8 @@
 
 @interface BHVSuiteRegistry : NSObject
 
-+ (id)sharedRegistry;
-
-- (BHVSuite *)suiteForClass:(Class)klass;
-- (void)registerSuite:(BHVSuite *)suite forClass:(Class)klass;
-- (void)removeAllSuites;
-
-- (NSArray *)unlockedSuites;
++ (BHVSuite *)suiteForClass:(Class)klass;
++ (void)registerSuite:(BHVSuite *)suite forClass:(Class)klass;
++ (void)removeAllSuites;
 
 @end

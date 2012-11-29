@@ -18,7 +18,7 @@
 + (void)initialize
 {
     BHVSuite *suite = [[BHVSuite alloc] init];
-    [[BHVSuiteRegistry sharedRegistry] registerSuite:suite forClass:self];
+    [BHVSuiteRegistry registerSuite:suite forClass:self];
     
     BHVSpec *spec = [[[self class] alloc] init];
     [spec loadExamples];
@@ -30,7 +30,7 @@
 + (NSArray *)testInvocations
 {
     // Grab our suite:
-    BHVSuite *suite = [[BHVSuiteRegistry sharedRegistry] suiteForClass:[self class]];
+    BHVSuite *suite = [BHVSuiteRegistry suiteForClass:[self class]];
     
     // Collect the examples in the suite:
     BHVExampleAccumulator *accumulator = [[BHVExampleAccumulator alloc] initWithNode:suite];
