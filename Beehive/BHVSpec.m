@@ -48,6 +48,16 @@
     return [NSArray arrayWithArray:invocations];
 }
 
++ (Class)currentSpec
+{
+    return [[NSThread currentThread] threadDictionary][@"spec"];
+}
+
++ (void)setCurrentSpec:(Class)spec
+{
+    [[NSThread currentThread] threadDictionary][@"spec"] = spec;
+}
+
 + (NSMutableDictionary *)suitesByClasses
 {
     static dispatch_once_t pred;
@@ -71,16 +81,6 @@
 + (void)resetSuites
 {
     [[self suitesByClasses] removeAllObjects];
-}
-
-+ (Class)currentSpec
-{
-    return [[NSThread currentThread] threadDictionary][@"spec"];
-}
-
-+ (void)setCurrentSpec:(Class)spec
-{
-    [[NSThread currentThread] threadDictionary][@"spec"] = spec;
 }
 
 - (NSString *)name
