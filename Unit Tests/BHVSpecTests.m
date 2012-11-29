@@ -14,6 +14,10 @@
 
 Class recordedSpec = nil;
 
+@interface PSTBeMatcher ()
+- (BOOL)beExecuted;
+@end
+
 @interface BHVCurrentSpecRecorderSpec : BHVSpec
 @end
 
@@ -48,18 +52,23 @@ Class recordedSpec = nil;
     [BHVSpec resetSuites];
 }
 
-- (void)testReturnsInvocationsForCompiledExamples
+- (void)testReturnsInvocationsThatExecuteExamples
 {
-    // Create two examples and add them to the suite:
+    // Create examples and add them to the suite:
     NSMutableArray *examples = [NSMutableArray array];
-    for (NSUInteger i = 0; i < 3; i ++) {
+    for (NSUInteger i = 0; i < 10; i ++) {
         examples[i] = [[BHVExample alloc] init];
         [[BHVTestSpec1 suite] addNode:examples[i]];
     }
     
-    // Retrieve the spec invocations:
+    // Invoke all test invocations:
     NSArray *invocations = [BHVTestSpec1 testInvocations];
-    for (NSUInteger i = 0; i < 3; i ++) [[[invocations[i] example] should] beEqualTo:examples[i]];
+    [invocations makeObjectsPerformSelector:@selector(invoke)];
+    
+    // Verify that all examples have been executed:
+    [examples enumerateObjectsUsingBlock:^(BHVExample *example, NSUInteger idx, BOOL *stop) {
+        [[example should] beExecuted];
+    }];
 }
 
 - (void)testRequestingInvocationsWhenAbstractClassReturnsEmptyArray
