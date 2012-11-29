@@ -12,8 +12,8 @@ SpecBegin(BHVStructure)
 
 it(@"should do something", ^{});
 
-//context(@"something else", ^{
-//    it(@"should do something else", ^{});
-//});
+context(@"something else", ^{
+    it(@"should do something else", ^{});
+});
 
 SpecEnd

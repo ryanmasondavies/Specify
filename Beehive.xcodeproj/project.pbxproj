@@ -35,6 +35,8 @@
 		94F1168A1654205C003DCD0C /* BHVSpecTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F1167F1654205C003DCD0C /* BHVSpecTests.m */; };
 		94F1168B1654205C003DCD0C /* BHVSuiteRegistryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F116801654205C003DCD0C /* BHVSuiteRegistryTests.m */; };
 		94F1168C1654205C003DCD0C /* BHVSuiteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F116811654205C003DCD0C /* BHVSuiteTests.m */; };
+		94F469D81667A58300573526 /* BHVContextFunctionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F469D71667A58300573526 /* BHVContextFunctionTests.m */; };
+		94F469DC1667A9DE00573526 /* BHVContextFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F469DB1667A9DE00573526 /* BHVContextFunction.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +119,9 @@
 		94F116811654205C003DCD0C /* BHVSuiteTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVSuiteTests.m; sourceTree = "<group>"; };
 		94F116821654205C003DCD0C /* Unit Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Unit Tests-Info.plist"; sourceTree = "<group>"; };
 		94F116831654205C003DCD0C /* Unit Tests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Unit Tests-Prefix.pch"; sourceTree = "<group>"; };
+		94F469D71667A58300573526 /* BHVContextFunctionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVContextFunctionTests.m; sourceTree = "<group>"; };
+		94F469DA1667A9DE00573526 /* BHVContextFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVContextFunction.h; sourceTree = "<group>"; };
+		94F469DB1667A9DE00573526 /* BHVContextFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVContextFunction.m; sourceTree = "<group>"; };
 		B341F742374546F9B9240B7B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF9267BB8DD14986A1342B6D /* Pods-Unit Tests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unit Tests.xcconfig"; path = "Pods/Pods-Unit Tests.xcconfig"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -230,6 +235,8 @@
 				94A5D2241666C13400CFDAC3 /* BHVExampleAccumulator.m */,
 				9461EC6116678CC000F8EC0C /* BHVItFunction.h */,
 				9461EC6216678CC000F8EC0C /* BHVItFunction.m */,
+				94F469DA1667A9DE00573526 /* BHVContextFunction.h */,
+				94F469DB1667A9DE00573526 /* BHVContextFunction.m */,
 				94ED2B851649A0A400D59570 /* Supporting Files */,
 			);
 			path = Beehive;
@@ -253,6 +260,7 @@
 				94A5D21D1666938D00CFDAC3 /* BHVExampleTests.m */,
 				94A5D221166695FD00CFDAC3 /* BHVExampleAccumulatorTests.m */,
 				9461EC5E16678A5E00F8EC0C /* BHVItFunctionTests.m */,
+				94F469D71667A58300573526 /* BHVContextFunctionTests.m */,
 				94F1168E16542063003DCD0C /* Supporting Files */,
 			);
 			path = "Unit Tests";
@@ -439,6 +447,7 @@
 				940375A0166571AB008332F9 /* BHVExample.m in Sources */,
 				94A5D2251666C13400CFDAC3 /* BHVExampleAccumulator.m in Sources */,
 				9461EC6316678CC000F8EC0C /* BHVItFunction.m in Sources */,
+				94F469DC1667A9DE00573526 /* BHVContextFunction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,6 +463,7 @@
 				94A5D21E1666938D00CFDAC3 /* BHVExampleTests.m in Sources */,
 				94A5D222166695FD00CFDAC3 /* BHVExampleAccumulatorTests.m in Sources */,
 				9461EC5F16678A5E00F8EC0C /* BHVItFunctionTests.m in Sources */,
+				94F469D81667A58300573526 /* BHVContextFunctionTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
