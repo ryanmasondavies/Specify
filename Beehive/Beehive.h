@@ -13,3 +13,4 @@
 // Defining specs:
 #import "BHVItFunction.h"
 #import "BHVContextFunction.h"
+#import "BHVDescribeFunction.h"

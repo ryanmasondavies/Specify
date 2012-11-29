@@ -8,12 +8,27 @@
 
 #import "Beehive.h"
 
-SpecBegin(BHVStructure)
+SpecBegin(BHVOneGroupOneExample)
 
-it(@"should do something", ^{});
+describe(@"something", ^{
+    it(@"does something", ^{
+    });
+});
 
-context(@"something else", ^{
-    it(@"should do something else", ^{});
+SpecEnd
+
+SpecBegin(BHVNestedExampleGroups)
+
+describe(@"something", ^{
+    context(@"in one context", ^{
+        it(@"does one thing", ^{
+        });
+    });
+    
+    context(@"in another context", ^{
+        it(@"does another thing", ^{
+        });
+    });
 });
 
 SpecEnd
