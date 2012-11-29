@@ -6,11 +6,8 @@
 //  Copyright (c) 2012 Ryan Davies. All rights reserved.
 //
 
-@class BHVExample;
-
 @interface BHVSpec : SenTestCase
 
 - (void)loadExamples;
-- (BHVExample *)currentExample;
 
 @end

@@ -48,18 +48,13 @@
     return [NSArray arrayWithArray:invocations];
 }
 
-- (void)loadExamples
-{
-}
-
-- (BHVExample *)currentExample
-{
-    return [(BHVInvocation *)[self invocation] example];
-}
-
 - (NSString *)name
 {
-    return [[self currentExample] name];
+    return [[(BHVInvocation *)[self invocation] example] name];
+}
+
+- (void)loadExamples
+{
 }
 
 @end
