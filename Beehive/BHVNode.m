@@ -10,6 +10,14 @@
 
 @implementation BHVNode
 
+- (id)copyWithZone:(NSZone *)zone
+{
+    BHVNode *node = [[[self class] allocWithZone:zone] init];
+    [node setContext:[self context]];
+    [node setName:[self name]];
+    return node;
+}
+
 - (void)accept:(id <BHVNodeVisitor>)visitor
 {
 }

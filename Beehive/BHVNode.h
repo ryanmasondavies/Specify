@@ -10,7 +10,7 @@
 #import "BHVNodeVisitor.h"
 @class BHVContext;
 
-@interface BHVNode : NSObject
+@interface BHVNode : NSObject <NSCopying>
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, weak) BHVContext *context;
 

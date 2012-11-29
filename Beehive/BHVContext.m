@@ -24,6 +24,18 @@
     return self;
 }
 
+- (id)copyWithZone:(NSZone *)zone
+{
+    NSMutableArray *nodes = [NSMutableArray array];
+    [[self nodes] enumerateObjectsUsingBlock:^(BHVNode *node, NSUInteger idx, BOOL *stop) {
+        [nodes addObject:[node copy]];
+    }];
+    
+    BHVContext *context = [super copyWithZone:zone];
+    [context setNodes:nodes];
+    return context;
+}
+
 - (void)accept:(id <BHVNodeVisitor>)visitor
 {
     [[self nodes] makeObjectsPerformSelector:@selector(accept:) withObject:visitor];

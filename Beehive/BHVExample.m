@@ -11,6 +11,14 @@
 
 @implementation BHVExample
 
+- (id)copyWithZone:(NSZone *)zone
+{
+    BHVExample *example = [super copyWithZone:zone];
+    [example setBlock:[self block]];
+    [example setExecuted:[self isExecuted]];
+    return example;
+}
+
 - (void)accept:(id <BHVNodeVisitor>)visitor
 {
     [visitor visitExample:self];
