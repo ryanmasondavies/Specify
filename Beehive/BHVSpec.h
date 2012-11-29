@@ -9,6 +9,8 @@
 @interface BHVSpec : SenTestCase
 
 + (Class)currentSpec;
++ (void)setCurrentSpec:(Class)spec;
+
 - (void)loadExamples;
 
 @end

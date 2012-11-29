@@ -18,7 +18,7 @@
 + (void)initialize
 {
     // Set the current spec being initialized:
-    [[NSThread currentThread] threadDictionary][@"spec"] = self;
+    [self setCurrentSpec:self];
     
     // Create and register a suite for this spec:
     BHVSuite *suite = [[BHVSuite alloc] init];
@@ -56,6 +56,11 @@
 + (Class)currentSpec
 {
     return [[NSThread currentThread] threadDictionary][@"spec"];
+}
+
++ (void)setCurrentSpec:(Class)spec
+{
+    [[NSThread currentThread] threadDictionary][@"spec"] = spec;
 }
 
 - (NSString *)name
