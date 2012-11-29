@@ -12,6 +12,7 @@
 		9403759D166570E7008332F9 /* BHVContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 9403759C166570E7008332F9 /* BHVContext.m */; };
 		940375A0166571AB008332F9 /* BHVExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 9403759F166571AB008332F9 /* BHVExample.m */; };
 		94266FB5164EFA9B00BBC615 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94266FB4164EFA9B00BBC615 /* SenTestingKit.framework */; };
+		943D7384166806D20081863B /* BHVHookTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 943D7383166806D20081863B /* BHVHookTests.m */; };
 		9461EC5F16678A5E00F8EC0C /* BHVItFunctionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9461EC5E16678A5E00F8EC0C /* BHVItFunctionTests.m */; };
 		9461EC6316678CC000F8EC0C /* BHVItFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 9461EC6216678CC000F8EC0C /* BHVItFunction.m */; };
 		947C4692165566850071139E /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94266FB4164EFA9B00BBC615 /* SenTestingKit.framework */; };
@@ -24,6 +25,10 @@
 		94A5D2251666C13400CFDAC3 /* BHVExampleAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A5D2241666C13400CFDAC3 /* BHVExampleAccumulator.m */; };
 		94D97ABA165D28C600282ABE /* BHVStructureSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 947C46AA165566DC0071139E /* BHVStructureSpec.m */; };
 		94D97B86165D494700282ABE /* BHVTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D97B85165D494700282ABE /* BHVTestHelper.m */; };
+		94E8DE101667F9CB00C8CAA2 /* BHVHooksSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E8DE0F1667F9CB00C8CAA2 /* BHVHooksSpec.m */; };
+		94E8DE1A1667FBBA00C8CAA2 /* BHVBeforeFunctionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E8DE191667FBBA00C8CAA2 /* BHVBeforeFunctionTests.m */; };
+		94E8DE1D1667FC3B00C8CAA2 /* BHVHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E8DE1C1667FC3B00C8CAA2 /* BHVHook.m */; };
+		94E8DE201668032800C8CAA2 /* BHVBeforeFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E8DE1F1668032800C8CAA2 /* BHVBeforeFunction.m */; };
 		94ED2B831649A0A400D59570 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94ED2B821649A0A400D59570 /* Foundation.framework */; };
 		94ED2B881649A0A400D59570 /* Beehive.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 94ED2B871649A0A400D59570 /* Beehive.h */; };
 		94ED2B9A1649A0B800D59570 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94ED2B821649A0A400D59570 /* Foundation.framework */; };
@@ -37,6 +42,7 @@
 		94F469DC1667A9DE00573526 /* BHVContextFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F469DB1667A9DE00573526 /* BHVContextFunction.m */; };
 		94F469DF1667C71400573526 /* BHVDescribeFunctionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F469DE1667C71400573526 /* BHVDescribeFunctionTests.m */; };
 		94F469E21667C76C00573526 /* BHVDescribeFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F469E11667C76B00573526 /* BHVDescribeFunction.m */; };
+		D7AED3375DB946999D658841 /* libPods-Integrated Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C73FAFA800334CCCA0E5D34A /* libPods-Integrated Tests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +91,7 @@
 		9403759E166571AB008332F9 /* BHVExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVExample.h; sourceTree = "<group>"; };
 		9403759F166571AB008332F9 /* BHVExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVExample.m; sourceTree = "<group>"; };
 		94266FB4164EFA9B00BBC615 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		943D7383166806D20081863B /* BHVHookTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVHookTests.m; sourceTree = "<group>"; };
 		9461EC5E16678A5E00F8EC0C /* BHVItFunctionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVItFunctionTests.m; sourceTree = "<group>"; };
 		9461EC6116678CC000F8EC0C /* BHVItFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVItFunction.h; sourceTree = "<group>"; };
 		9461EC6216678CC000F8EC0C /* BHVItFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVItFunction.m; sourceTree = "<group>"; };
@@ -102,6 +109,12 @@
 		94A5D2261666C26B00CFDAC3 /* BHVNodeVisitor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BHVNodeVisitor.h; sourceTree = "<group>"; };
 		94D97B84165D494700282ABE /* BHVTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVTestHelper.h; sourceTree = "<group>"; };
 		94D97B85165D494700282ABE /* BHVTestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVTestHelper.m; sourceTree = "<group>"; };
+		94E8DE0F1667F9CB00C8CAA2 /* BHVHooksSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVHooksSpec.m; sourceTree = "<group>"; };
+		94E8DE191667FBBA00C8CAA2 /* BHVBeforeFunctionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVBeforeFunctionTests.m; sourceTree = "<group>"; };
+		94E8DE1B1667FC3B00C8CAA2 /* BHVHook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVHook.h; sourceTree = "<group>"; };
+		94E8DE1C1667FC3B00C8CAA2 /* BHVHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVHook.m; sourceTree = "<group>"; };
+		94E8DE1E1668032800C8CAA2 /* BHVBeforeFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVBeforeFunction.h; sourceTree = "<group>"; };
+		94E8DE1F1668032800C8CAA2 /* BHVBeforeFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVBeforeFunction.m; sourceTree = "<group>"; };
 		94ED2B7F1649A0A400D59570 /* libBeehive.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBeehive.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		94ED2B821649A0A400D59570 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		94ED2B861649A0A400D59570 /* Beehive-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Beehive-Prefix.pch"; sourceTree = "<group>"; };
@@ -122,6 +135,8 @@
 		94F469DE1667C71400573526 /* BHVDescribeFunctionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVDescribeFunctionTests.m; sourceTree = "<group>"; };
 		94F469E01667C76B00573526 /* BHVDescribeFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVDescribeFunction.h; sourceTree = "<group>"; };
 		94F469E11667C76B00573526 /* BHVDescribeFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVDescribeFunction.m; sourceTree = "<group>"; };
+		C73FAFA800334CCCA0E5D34A /* libPods-Integrated Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Integrated Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF135ED7F1D44FE5ADC66E25 /* Pods-Integrated Tests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Integrated Tests.xcconfig"; path = "Pods/Pods-Integrated Tests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		DF9267BB8DD14986A1342B6D /* Pods-Unit Tests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unit Tests.xcconfig"; path = "Pods/Pods-Unit Tests.xcconfig"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -133,6 +148,7 @@
 				947C46A4165566A90071139E /* libBeehive.a in Frameworks */,
 				947C4692165566850071139E /* SenTestingKit.framework in Frameworks */,
 				947C4695165566850071139E /* Foundation.framework in Frameworks */,
+				D7AED3375DB946999D658841 /* libPods-Integrated Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				947C46AA165566DC0071139E /* BHVStructureSpec.m */,
+				94E8DE0F1667F9CB00C8CAA2 /* BHVHooksSpec.m */,
 				947C4697165566850071139E /* Supporting Files */,
 			);
 			path = "Integrated Tests";
@@ -186,6 +203,7 @@
 				94ED2B811649A0A400D59570 /* Frameworks */,
 				94ED2B801649A0A400D59570 /* Products */,
 				DF9267BB8DD14986A1342B6D /* Pods-Unit Tests.xcconfig */,
+				CF135ED7F1D44FE5ADC66E25 /* Pods-Integrated Tests.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -205,6 +223,7 @@
 				94ED2B821649A0A400D59570 /* Foundation.framework */,
 				94266FB4164EFA9B00BBC615 /* SenTestingKit.framework */,
 				65E660B506F740DCA72A54B1 /* libPods-Unit Tests.a */,
+				C73FAFA800334CCCA0E5D34A /* libPods-Integrated Tests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -225,6 +244,8 @@
 				9403759916656CC0008332F9 /* BHVNode.m */,
 				9403759B166570E6008332F9 /* BHVContext.h */,
 				9403759C166570E7008332F9 /* BHVContext.m */,
+				94E8DE1B1667FC3B00C8CAA2 /* BHVHook.h */,
+				94E8DE1C1667FC3B00C8CAA2 /* BHVHook.m */,
 				9403759E166571AB008332F9 /* BHVExample.h */,
 				9403759F166571AB008332F9 /* BHVExample.m */,
 				94A5D2231666C13400CFDAC3 /* BHVExampleAccumulator.h */,
@@ -235,6 +256,8 @@
 				94F469DB1667A9DE00573526 /* BHVContextFunction.m */,
 				94F469E01667C76B00573526 /* BHVDescribeFunction.h */,
 				94F469E11667C76B00573526 /* BHVDescribeFunction.m */,
+				94E8DE1E1668032800C8CAA2 /* BHVBeforeFunction.h */,
+				94E8DE1F1668032800C8CAA2 /* BHVBeforeFunction.m */,
 				94ED2B851649A0A400D59570 /* Supporting Files */,
 			);
 			path = Beehive;
@@ -254,11 +277,13 @@
 				94F1167F1654205C003DCD0C /* BHVSpecTests.m */,
 				94F116811654205C003DCD0C /* BHVSuiteTests.m */,
 				94F1167C1654205C003DCD0C /* BHVInvocationTests.m */,
+				943D7383166806D20081863B /* BHVHookTests.m */,
 				94A5D21D1666938D00CFDAC3 /* BHVExampleTests.m */,
 				94A5D221166695FD00CFDAC3 /* BHVExampleAccumulatorTests.m */,
 				9461EC5E16678A5E00F8EC0C /* BHVItFunctionTests.m */,
 				94F469D71667A58300573526 /* BHVContextFunctionTests.m */,
 				94F469DE1667C71400573526 /* BHVDescribeFunctionTests.m */,
+				94E8DE191667FBBA00C8CAA2 /* BHVBeforeFunctionTests.m */,
 				94F1168E16542063003DCD0C /* Supporting Files */,
 			);
 			path = "Unit Tests";
@@ -286,6 +311,7 @@
 				947C468D165566850071139E /* Frameworks */,
 				947C468E165566850071139E /* Resources */,
 				947C468F165566850071139E /* ShellScript */,
+				26B955BD015A4F8E86858917 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -381,6 +407,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		26B955BD015A4F8E86858917 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-Integrated Tests-resources.sh\"\n";
+		};
 		7073903DA6084E81A6BD12AD /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -429,6 +469,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				94D97ABA165D28C600282ABE /* BHVStructureSpec.m in Sources */,
+				94E8DE101667F9CB00C8CAA2 /* BHVHooksSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +487,8 @@
 				9461EC6316678CC000F8EC0C /* BHVItFunction.m in Sources */,
 				94F469DC1667A9DE00573526 /* BHVContextFunction.m in Sources */,
 				94F469E21667C76C00573526 /* BHVDescribeFunction.m in Sources */,
+				94E8DE1D1667FC3B00C8CAA2 /* BHVHook.m in Sources */,
+				94E8DE201668032800C8CAA2 /* BHVBeforeFunction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,6 +505,8 @@
 				9461EC5F16678A5E00F8EC0C /* BHVItFunctionTests.m in Sources */,
 				94F469D81667A58300573526 /* BHVContextFunctionTests.m in Sources */,
 				94F469DF1667C71400573526 /* BHVDescribeFunctionTests.m in Sources */,
+				94E8DE1A1667FBBA00C8CAA2 /* BHVBeforeFunctionTests.m in Sources */,
+				943D7384166806D20081863B /* BHVHookTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,11 +533,8 @@
 /* Begin XCBuildConfiguration section */
 		947C46A0165566850071139E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CF135ED7F1D44FE5ADC66E25 /* Pods-Integrated Tests.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Integrated Tests/Integrated Tests-Prefix.pch";
 				INFOPLIST_FILE = "Integrated Tests/Integrated Tests-Info.plist";
@@ -503,11 +545,8 @@
 		};
 		947C46A1165566850071139E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CF135ED7F1D44FE5ADC66E25 /* Pods-Integrated Tests.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Integrated Tests/Integrated Tests-Prefix.pch";
 				INFOPLIST_FILE = "Integrated Tests/Integrated Tests-Info.plist";

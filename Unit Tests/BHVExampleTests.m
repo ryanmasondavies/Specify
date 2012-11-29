@@ -8,6 +8,7 @@
 
 #import "BHVExample.h"
 #import "BHVContext.h"
+#import "BHVHook.h"
 
 @interface PSTBeMatcher ()
 - (BOOL)beExecuted;
@@ -17,6 +18,29 @@
 @end
 
 @implementation BHVExampleTests
+
+- (void)setUp {}
+- (void)tearDown {}
+
+#pragma mark Full name
+
+- (void)test_FullName_IncludesParentContextNames
+{
+    BHVExample *example = [[BHVExample alloc] init];
+    [example setName:@"should do something"];
+    
+    BHVContext *nestedContext = [[BHVContext alloc] init];
+    [nestedContext setName:@"in some state"];
+    [nestedContext addNode:example];
+    
+    BHVContext *topContext = [[BHVContext alloc] init];
+    [topContext setName:@"the thing"];
+    [topContext addNode:nestedContext];
+    
+    [[[example fullName] should] beEqualTo:@"the thing in some state should do something"];
+}
+
+#pragma mark Execution
 
 - (void)test_Execution_InvokesBlock
 {
@@ -35,20 +59,34 @@
     [[example should] beExecuted];
 }
 
-- (void)test_FullName_IncludesParentContextNames
+- (void)test_Execution_ExecutesHooksInContexts
 {
+    // Create some contexts, each with a few hooks, and the deepest with one example:
+    NSMutableArray *contexts = [NSMutableArray array];
+    NSMutableArray *hooks = [NSMutableArray array];
     BHVExample *example = [[BHVExample alloc] init];
-    [example setName:@"should do something"];
+    for (NSUInteger i = 0; i < 10; i ++) {
+        // Create a context:
+        contexts[i] = [[BHVContext alloc] init];
+        
+        // Add a hook:
+        hooks[i] = [[BHVHook alloc] init];
+        [contexts[i] addNode:hooks[i]];
+        
+        // Add the context to the previous context:
+        if (i > 0) [contexts[i] addNode:contexts[i - 1]];
+        
+        // If at the deepest context, add the example:
+        if (i == 9) [contexts[i] addNode:example];
+    }
     
-    BHVContext *nestedContext = [[BHVContext alloc] init];
-    [nestedContext setName:@"in some state"];
-    [nestedContext addNode:example];
+    // Execute the example:
+    [example execute];
     
-    BHVContext *topContext = [[BHVContext alloc] init];
-    [topContext setName:@"the thing"];
-    [topContext addNode:nestedContext];
-    
-    [[[example fullName] should] beEqualTo:@"the thing in some state should do something"];
+    // Verify that all hooks have been executed:
+    [hooks enumerateObjectsUsingBlock:^(BHVHook *hook, NSUInteger idx, BOOL *stop) {
+        [[hook should] beExecuted];
+    }];
 }
 
 @end

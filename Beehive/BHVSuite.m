@@ -11,7 +11,6 @@
 #import "BHVContext.h"
 
 @interface BHVSuite ()
-@property (nonatomic, strong) NSMutableArray *nodes;
 @property (nonatomic, strong) NSMutableArray *contextStack;
 @end
 
@@ -20,46 +19,19 @@
 - (id)init
 {
     if (self = [super init]) {
-        self.nodes = [NSMutableArray array];
         self.contextStack = [NSMutableArray array];
     }
     return self;
 }
 
-- (id)copyWithZone:(NSZone *)zone
-{
-    NSMutableArray *nodes = [NSMutableArray array];
-    [[self nodes] enumerateObjectsUsingBlock:^(BHVNode *node, NSUInteger idx, BOOL *stop) {
-        [nodes addObject:[node copy]];
-    }];
-    
-    BHVSuite *suite = [super copyWithZone:zone];
-    [suite setNodes:nodes];
-    return suite;
-}
-
-- (void)accept:(id<BHVNodeVisitor>)visitor
-{
-    [[self nodes] makeObjectsPerformSelector:@selector(accept:) withObject:visitor];
-}
-
 - (void)addNode:(BHVNode *)node
 {
     BHVContext *context = [[self contextStack] lastObject];
-    if (context)
+    if (context) {
         [context addNode:node];
-    else
-        [[self nodes] addObject:node];
-}
-
-- (BHVNode *)nodeAtIndex:(NSUInteger)index
-{
-    return [[self nodes] objectAtIndex:index];
-}
-
-- (NSUInteger)nodeCount
-{
-    return [[self nodes] count];
+    } else {
+        [super addNode:node];
+    }
 }
 
 - (void)enterContext:(BHVContext *)context

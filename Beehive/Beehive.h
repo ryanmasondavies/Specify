@@ -14,3 +14,4 @@
 #import "BHVItFunction.h"
 #import "BHVContextFunction.h"
 #import "BHVDescribeFunction.h"
+#import "BHVBeforeFunction.h"

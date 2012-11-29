@@ -29,6 +29,10 @@
     return [NSArray arrayWithArray:[self accumulatedExamples]];
 }
 
+- (void)visitHook:(BHVHook *)hook
+{
+}
+
 - (void)visitExample:(BHVExample *)example
 {
     [[self accumulatedExamples] addObject:example];

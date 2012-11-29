@@ -6,15 +6,9 @@
 //  Copyright (c) 2012 Ryan Davies. All rights reserved.
 //
 
-#import "BHVNode.h"
+#import "BHVContext.h"
 
-@class BHVNode, BHVContext;
-
-@interface BHVSuite : BHVNode
-
-- (void)addNode:(BHVNode *)node;
-- (BHVNode *)nodeAtIndex:(NSUInteger)index;
-- (NSUInteger)nodeCount;
+@interface BHVSuite : BHVContext
 
 - (void)enterContext:(BHVContext *)context;
 - (void)leaveContext;

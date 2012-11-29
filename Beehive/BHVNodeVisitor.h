@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-@class BHVContext, BHVExample;
+@class BHVHook, BHVExample;
 
 @protocol BHVNodeVisitor <NSObject>
 
+- (void)visitHook:(BHVHook *)hook;
 - (void)visitExample:(BHVExample *)example;
 
 @end
