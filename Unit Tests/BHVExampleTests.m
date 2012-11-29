@@ -12,10 +12,19 @@
 - (BOOL)beExecuted;
 @end
 
-@interface BHVExampleTests
+@interface BHVExampleTests : SenTestCase
 @end
 
 @implementation BHVExampleTests
+
+- (void)test_Execution_InvokesBlock
+{
+    __block BOOL invoked = NO;
+    BHVExample *example = [[BHVExample alloc] init];
+    [example setBlock:^{ invoked = YES; }];
+    [example execute];
+    [[@(invoked) should] beTrue];
+}
 
 - (void)test_Execution_MarksAsExecuted
 {
