@@ -7,11 +7,14 @@
 //
 
 #import "BHVSpec.h"
-#import "BHVSuiteRegistry.h"
 #import "BHVSuite.h"
 #import "BHVInvocation.h"
 #import "BHVExample.h"
 #import "BHVExampleAccumulator.h"
+
+@interface BHVSpec ()
++ (NSMutableDictionary *)suitesByClasses;
+@end
 
 @implementation BHVSpec
 
@@ -20,25 +23,17 @@
     // Set the current spec being initialized:
     [self setCurrentSpec:self];
     
-    // Create and register a suite for this spec:
-    BHVSuite *suite = [[BHVSuite alloc] init];
-    [BHVSuiteRegistry registerSuite:suite forClass:self];
-    
     // Load examples and lock the suite:
     BHVSpec *spec = [[[self class] alloc] init];
     [spec loadExamples];
-    [suite setLocked:YES];
     
     [super initialize];
 }
 
 + (NSArray *)testInvocations
 {
-    // Grab our suite:
-    BHVSuite *suite = [BHVSuiteRegistry suiteForClass:[self class]];
-    
     // Collect the examples in the suite:
-    BHVExampleAccumulator *accumulator = [[BHVExampleAccumulator alloc] initWithNode:suite];
+    BHVExampleAccumulator *accumulator = [[BHVExampleAccumulator alloc] initWithNode:[self suite]];
     
     // Create an invocation for each example:
     NSMutableArray *invocations = [NSMutableArray array];
@@ -51,6 +46,31 @@
     // TODO: Randomly shuffle examples.
     
     return [NSArray arrayWithArray:invocations];
+}
+
++ (NSMutableDictionary *)suitesByClasses
+{
+    static dispatch_once_t pred;
+    static NSMutableDictionary *suites = nil;
+    dispatch_once(&pred, ^{ suites = [[NSMutableDictionary alloc] init]; });
+    return suites;
+}
+
++ (BHVSuite *)suite
+{
+    NSMutableDictionary *suites = [self suitesByClasses];
+    BHVSuite *suite = [suites objectForKey:NSStringFromClass(self)];
+    if (suite == nil) {
+        suite = [[BHVSuite alloc] init];
+        [suites setObject:suite forKey:NSStringFromClass(self)];
+    }
+    
+    return suite;
+}
+
++ (void)resetSuites
+{
+    [[self suitesByClasses] removeAllObjects];
 }
 
 + (Class)currentSpec

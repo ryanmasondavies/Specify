@@ -8,7 +8,6 @@
 
 #import "BHVItFunction.h"
 #import "BHVSpec.h"
-#import "BHVSuiteRegistry.h"
 #import "BHVSuite.h"
 #import "BHVExample.h"
 
@@ -20,5 +19,5 @@ void it(NSString *name, void(^block)(void))
     [example setBlock:block];
     
     // Add the example to the suite for the spec being loaded:
-    [[BHVSuiteRegistry suiteForClass:[BHVSpec currentSpec]] addNode:example];
+    [[[BHVSpec currentSpec] suite] addNode:example];
 }

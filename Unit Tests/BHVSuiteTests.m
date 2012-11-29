@@ -15,20 +15,7 @@
 
 @implementation BHVSuiteTests
 
-- (void)test_WhenLocked_RaisesAnException
-{
-    BHVSuite *suite = [[BHVSuite alloc] init];
-    BHVNode *node = [[BHVNode alloc] init];
-    
-    [suite setLocked:YES];
-    
-    NSException *exception = nil;
-    @try { [suite addNode:node]; }
-    @catch(NSException *e) { exception = e; };
-    [[exception shouldNot] beEqualTo:nil];
-}
-
-- (void)test_WhenUnlocked_AddsNodes
+- (void)test_AddsNodes
 {
     BHVSuite *suite = [[BHVSuite alloc] init];
     BHVNode *node = [[BHVNode alloc] init];
@@ -38,7 +25,7 @@
     [[[suite nodeAtIndex:0] should] beEqualTo:node];
 }
 
-- (void)test_WhenUnlocked_AddsNodesToContext
+- (void)test_AddsNodesToContext
 {
     BHVSuite *suite = [[BHVSuite alloc] init];
     BHVContext *context = [[BHVContext alloc] init];
@@ -53,7 +40,7 @@
     [[[suite nodeAtIndex:0] should] beEqualTo:nodes[1]];
 }
 
-- (void)test_WhenUnlocked_AddsNodesToNestedContext
+- (void)test_AddsNodesToNestedContext
 {
     BHVSuite *suite = [[BHVSuite alloc] init];
     NSArray *contexts = @[[[BHVContext alloc] init], [[BHVContext alloc] init]];

@@ -6,10 +6,15 @@
 //  Copyright (c) 2012 Ryan Davies. All rights reserved.
 //
 
+@class BHVSuite;
+
 @interface BHVSpec : SenTestCase
 
 + (Class)currentSpec;
 + (void)setCurrentSpec:(Class)spec;
+
++ (BHVSuite *)suite;
++ (void)resetSuites;
 
 - (void)loadExamples;
 

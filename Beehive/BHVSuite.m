@@ -33,9 +33,6 @@
 
 - (void)addNode:(BHVNode *)node
 {
-    if ([self isLocked])
-        [NSException raise:@"BHVSuiteLockException" format:@"Example cannot be added when the suite is locked."];
-    
     BHVContext *context = [[self contextStack] lastObject];
     if (context)
         [context addNode:node];

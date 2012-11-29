@@ -8,14 +8,13 @@
 
 #import "BHVContextFunction.h"
 #import "BHVSpec.h"
-#import "BHVSuiteRegistry.h"
 #import "BHVSuite.h"
 #import "BHVContext.h"
 
 void context(NSString *name, void(^block)(void))
 {
     // Retrieve the suite for the current spec:
-    BHVSuite *suite = [BHVSuiteRegistry suiteForClass:[BHVSpec currentSpec]];
+    BHVSuite *suite = [[BHVSpec currentSpec] suite];
     
     // Build an context:
     BHVContext *context = [[BHVContext alloc] init];

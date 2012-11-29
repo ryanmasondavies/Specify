@@ -11,7 +11,6 @@
 @class BHVNode, BHVContext;
 
 @interface BHVSuite : BHVNode
-@property (nonatomic, getter=isLocked) BOOL locked;
 
 - (void)addNode:(BHVNode *)node;
 - (BHVNode *)nodeAtIndex:(NSUInteger)index;
