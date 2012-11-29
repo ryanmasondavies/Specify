@@ -13,10 +13,31 @@
 #import "BHVExample.h"
 #import "BHVInvocation.h"
 
+Class recordedSpec = nil;
+
+@interface BHVCurrentSpecRecorderSpec : BHVSpec
+@end
+
+@implementation BHVCurrentSpecRecorderSpec
+
+- (void)loadExamples
+{
+    recordedSpec = [BHVSpec currentSpec];
+}
+
+@end
+
 @interface BHVSpecTests : SenTestCase
 @end
 
 @implementation BHVSpecTests
+
+- (void)testCurrentSpecIsSetWhenLoadingExamples
+{
+    recordedSpec = nil;
+    [BHVCurrentSpecRecorderSpec initialize];
+    [[recordedSpec should] beIdenticalTo:[BHVCurrentSpecRecorderSpec class]];
+}
 
 - (void)testReturnsInvocationsForCompiledExamples
 {

@@ -17,9 +17,14 @@
 
 + (void)initialize
 {
+    // Set the current spec being initialized:
+    [[NSThread currentThread] threadDictionary][@"spec"] = self;
+    
+    // Create and register a suite for this spec:
     BHVSuite *suite = [[BHVSuite alloc] init];
     [BHVSuiteRegistry registerSuite:suite forClass:self];
     
+    // Load examples and lock the suite:
     BHVSpec *spec = [[[self class] alloc] init];
     [spec loadExamples];
     [suite setLocked:YES];
@@ -46,6 +51,11 @@
     // TODO: Randomly shuffle examples.
     
     return [NSArray arrayWithArray:invocations];
+}
+
++ (Class)currentSpec
+{
+    return [[NSThread currentThread] threadDictionary][@"spec"];
 }
 
 - (NSString *)name
