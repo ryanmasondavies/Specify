@@ -12,8 +12,8 @@
 		9403759D166570E7008332F9 /* BHVContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 9403759C166570E7008332F9 /* BHVContext.m */; };
 		940375A0166571AB008332F9 /* BHVExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 9403759F166571AB008332F9 /* BHVExample.m */; };
 		94117FB41668D03500A8EA0E /* BHVExecutableNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 94117FB31668D03500A8EA0E /* BHVExecutableNode.m */; };
-		94117FBB1668D97A00A8EA0E /* BHVAfterEachTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94117FBA1668D97A00A8EA0E /* BHVAfterEachTests.m */; };
-		94117FBE1668D9EC00A8EA0E /* BHVAfterEach.m in Sources */ = {isa = PBXBuildFile; fileRef = 94117FBD1668D9EB00A8EA0E /* BHVAfterEach.m */; };
+		94117FBB1668D97A00A8EA0E /* BHVAfterEachFunctionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94117FBA1668D97A00A8EA0E /* BHVAfterEachFunctionTests.m */; };
+		94117FBE1668D9EC00A8EA0E /* BHVAfterEachFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 94117FBD1668D9EB00A8EA0E /* BHVAfterEachFunction.m */; };
 		94266FB5164EFA9B00BBC615 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94266FB4164EFA9B00BBC615 /* SenTestingKit.framework */; };
 		943D7384166806D20081863B /* BHVHookTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 943D7383166806D20081863B /* BHVHookTests.m */; };
 		9461EC5F16678A5E00F8EC0C /* BHVItFunctionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9461EC5E16678A5E00F8EC0C /* BHVItFunctionTests.m */; };
@@ -29,9 +29,9 @@
 		94D97ABA165D28C600282ABE /* BHVStructureSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 947C46AA165566DC0071139E /* BHVStructureSpec.m */; };
 		94D97B86165D494700282ABE /* BHVTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D97B85165D494700282ABE /* BHVTestHelper.m */; };
 		94E8DE101667F9CB00C8CAA2 /* BHVHooksSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E8DE0F1667F9CB00C8CAA2 /* BHVHooksSpec.m */; };
-		94E8DE1A1667FBBA00C8CAA2 /* BHVBeforeFunctionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E8DE191667FBBA00C8CAA2 /* BHVBeforeFunctionTests.m */; };
+		94E8DE1A1667FBBA00C8CAA2 /* BHVBeforeEachFunctionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E8DE191667FBBA00C8CAA2 /* BHVBeforeEachFunctionTests.m */; };
 		94E8DE1D1667FC3B00C8CAA2 /* BHVHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E8DE1C1667FC3B00C8CAA2 /* BHVHook.m */; };
-		94E8DE201668032800C8CAA2 /* BHVBeforeFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E8DE1F1668032800C8CAA2 /* BHVBeforeFunction.m */; };
+		94E8DE201668032800C8CAA2 /* BHVBeforeEachFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E8DE1F1668032800C8CAA2 /* BHVBeforeEachFunction.m */; };
 		94ED2B831649A0A400D59570 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94ED2B821649A0A400D59570 /* Foundation.framework */; };
 		94ED2B881649A0A400D59570 /* Beehive.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 94ED2B871649A0A400D59570 /* Beehive.h */; };
 		94ED2B9A1649A0B800D59570 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94ED2B821649A0A400D59570 /* Foundation.framework */; };
@@ -95,9 +95,9 @@
 		9403759F166571AB008332F9 /* BHVExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVExample.m; sourceTree = "<group>"; };
 		94117FB21668D03500A8EA0E /* BHVExecutableNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVExecutableNode.h; sourceTree = "<group>"; };
 		94117FB31668D03500A8EA0E /* BHVExecutableNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVExecutableNode.m; sourceTree = "<group>"; };
-		94117FBA1668D97A00A8EA0E /* BHVAfterEachTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVAfterEachTests.m; sourceTree = "<group>"; };
-		94117FBC1668D9EB00A8EA0E /* BHVAfterEach.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVAfterEach.h; sourceTree = "<group>"; };
-		94117FBD1668D9EB00A8EA0E /* BHVAfterEach.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVAfterEach.m; sourceTree = "<group>"; };
+		94117FBA1668D97A00A8EA0E /* BHVAfterEachFunctionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVAfterEachFunctionTests.m; sourceTree = "<group>"; };
+		94117FBC1668D9EB00A8EA0E /* BHVAfterEachFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVAfterEachFunction.h; sourceTree = "<group>"; };
+		94117FBD1668D9EB00A8EA0E /* BHVAfterEachFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVAfterEachFunction.m; sourceTree = "<group>"; };
 		94266FB4164EFA9B00BBC615 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		943D7383166806D20081863B /* BHVHookTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVHookTests.m; sourceTree = "<group>"; };
 		9461EC5E16678A5E00F8EC0C /* BHVItFunctionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVItFunctionTests.m; sourceTree = "<group>"; };
@@ -118,11 +118,11 @@
 		94D97B84165D494700282ABE /* BHVTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVTestHelper.h; sourceTree = "<group>"; };
 		94D97B85165D494700282ABE /* BHVTestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVTestHelper.m; sourceTree = "<group>"; };
 		94E8DE0F1667F9CB00C8CAA2 /* BHVHooksSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVHooksSpec.m; sourceTree = "<group>"; };
-		94E8DE191667FBBA00C8CAA2 /* BHVBeforeFunctionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVBeforeFunctionTests.m; sourceTree = "<group>"; };
+		94E8DE191667FBBA00C8CAA2 /* BHVBeforeEachFunctionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVBeforeEachFunctionTests.m; sourceTree = "<group>"; };
 		94E8DE1B1667FC3B00C8CAA2 /* BHVHook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVHook.h; sourceTree = "<group>"; };
 		94E8DE1C1667FC3B00C8CAA2 /* BHVHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVHook.m; sourceTree = "<group>"; };
-		94E8DE1E1668032800C8CAA2 /* BHVBeforeFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVBeforeFunction.h; sourceTree = "<group>"; };
-		94E8DE1F1668032800C8CAA2 /* BHVBeforeFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVBeforeFunction.m; sourceTree = "<group>"; };
+		94E8DE1E1668032800C8CAA2 /* BHVBeforeEachFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVBeforeEachFunction.h; sourceTree = "<group>"; };
+		94E8DE1F1668032800C8CAA2 /* BHVBeforeEachFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVBeforeEachFunction.m; sourceTree = "<group>"; };
 		94ED2B7F1649A0A400D59570 /* libBeehive.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBeehive.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		94ED2B821649A0A400D59570 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		94ED2B861649A0A400D59570 /* Beehive-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Beehive-Prefix.pch"; sourceTree = "<group>"; };
@@ -266,10 +266,10 @@
 				94F469DB1667A9DE00573526 /* BHVContextFunction.m */,
 				94F469E01667C76B00573526 /* BHVDescribeFunction.h */,
 				94F469E11667C76B00573526 /* BHVDescribeFunction.m */,
-				94E8DE1E1668032800C8CAA2 /* BHVBeforeFunction.h */,
-				94E8DE1F1668032800C8CAA2 /* BHVBeforeFunction.m */,
-				94117FBC1668D9EB00A8EA0E /* BHVAfterEach.h */,
-				94117FBD1668D9EB00A8EA0E /* BHVAfterEach.m */,
+				94E8DE1E1668032800C8CAA2 /* BHVBeforeEachFunction.h */,
+				94E8DE1F1668032800C8CAA2 /* BHVBeforeEachFunction.m */,
+				94117FBC1668D9EB00A8EA0E /* BHVAfterEachFunction.h */,
+				94117FBD1668D9EB00A8EA0E /* BHVAfterEachFunction.m */,
 				94ED2B851649A0A400D59570 /* Supporting Files */,
 			);
 			path = Beehive;
@@ -295,8 +295,8 @@
 				9461EC5E16678A5E00F8EC0C /* BHVItFunctionTests.m */,
 				94F469D71667A58300573526 /* BHVContextFunctionTests.m */,
 				94F469DE1667C71400573526 /* BHVDescribeFunctionTests.m */,
-				94E8DE191667FBBA00C8CAA2 /* BHVBeforeFunctionTests.m */,
-				94117FBA1668D97A00A8EA0E /* BHVAfterEachTests.m */,
+				94E8DE191667FBBA00C8CAA2 /* BHVBeforeEachFunctionTests.m */,
+				94117FBA1668D97A00A8EA0E /* BHVAfterEachFunctionTests.m */,
 				94F1168E16542063003DCD0C /* Supporting Files */,
 			);
 			path = "Unit Tests";
@@ -501,9 +501,9 @@
 				94F469DC1667A9DE00573526 /* BHVContextFunction.m in Sources */,
 				94F469E21667C76C00573526 /* BHVDescribeFunction.m in Sources */,
 				94E8DE1D1667FC3B00C8CAA2 /* BHVHook.m in Sources */,
-				94E8DE201668032800C8CAA2 /* BHVBeforeFunction.m in Sources */,
+				94E8DE201668032800C8CAA2 /* BHVBeforeEachFunction.m in Sources */,
 				94117FB41668D03500A8EA0E /* BHVExecutableNode.m in Sources */,
-				94117FBE1668D9EC00A8EA0E /* BHVAfterEach.m in Sources */,
+				94117FBE1668D9EC00A8EA0E /* BHVAfterEachFunction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,9 +520,9 @@
 				9461EC5F16678A5E00F8EC0C /* BHVItFunctionTests.m in Sources */,
 				94F469D81667A58300573526 /* BHVContextFunctionTests.m in Sources */,
 				94F469DF1667C71400573526 /* BHVDescribeFunctionTests.m in Sources */,
-				94E8DE1A1667FBBA00C8CAA2 /* BHVBeforeFunctionTests.m in Sources */,
+				94E8DE1A1667FBBA00C8CAA2 /* BHVBeforeEachFunctionTests.m in Sources */,
 				943D7384166806D20081863B /* BHVHookTests.m in Sources */,
-				94117FBB1668D97A00A8EA0E /* BHVAfterEachTests.m in Sources */,
+				94117FBB1668D97A00A8EA0E /* BHVAfterEachFunctionTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

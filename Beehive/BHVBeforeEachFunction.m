@@ -1,21 +1,21 @@
 //
-//  BHVAfterEach.m
+//  BHVBeforeEachFunction.m
 //  Beehive
 //
-//  Created by Ryan Davies on 30/11/2012.
+//  Created by Ryan Davies on 29/11/2012.
 //  Copyright (c) 2012 Ryan Davies. All rights reserved.
 //
 
-#import "BHVAfterEach.h"
+#import "BHVBeforeEachFunction.h"
 #import "BHVSpec.h"
 #import "BHVSuite.h"
 #import "BHVHook.h"
 
-void afterEach(void(^block)(void))
+void beforeEach(void(^block)(void))
 {
     // Build a hook from the attributes:
     BHVHook *hook = [[BHVHook alloc] init];
-    [hook setPosition:BHVHookPositionAfter];
+    [hook setPosition:BHVHookPositionBefore];
     [hook setBlock:block];
     
     // Add the hook to the suite for the spec being loaded:

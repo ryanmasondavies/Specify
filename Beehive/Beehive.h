@@ -10,9 +10,9 @@
 #import "BHVMacros.h"
 #import "BHVSpec.h"
 
-// Defining specs:
+// DSL:
 #import "BHVItFunction.h"
 #import "BHVContextFunction.h"
 #import "BHVDescribeFunction.h"
-#import "BHVBeforeFunction.h"
-#import "BHVAfterEach.h"
+#import "BHVBeforeEachFunction.h"
+#import "BHVAfterEachFunction.h"

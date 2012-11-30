@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Ryan Davies. All rights reserved.
 //
 
-#import "BHVAfterEach.h"
+#import "BHVAfterEachFunction.h"
 #import "BHVSpec.h"
 #import "BHVSuite.h"
 #import "BHVHook.h"
