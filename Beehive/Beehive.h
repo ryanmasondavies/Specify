@@ -6,13 +6,6 @@
 //  Copyright (c) 2012 Ryan Davies. All rights reserved.
 //
 
-// Declaring specs:
 #import "BHVMacros.h"
 #import "BHVSpec.h"
-
-// DSL:
-#import "BHVItFunction.h"
-#import "BHVContextFunction.h"
-#import "BHVDescribeFunction.h"
-#import "BHVBeforeEachFunction.h"
-#import "BHVAfterEachFunction.h"
+#import "BHVDSL.h"
