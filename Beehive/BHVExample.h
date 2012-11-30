@@ -6,13 +6,10 @@
 //  Copyright (c) 2012 Ryan Davies. All rights reserved.
 //
 
-#import "BHVNode.h"
+#import "BHVExecutableNode.h"
 
-@interface BHVExample : BHVNode <BHVNodeVisitor>
-@property (nonatomic, copy) void(^block)(void);
-@property (nonatomic, getter=isExecuted) BOOL executed;
+@interface BHVExample : BHVExecutableNode <BHVNodeVisitor>
 
 - (NSString *)fullName;
-- (void)execute;
 
 @end

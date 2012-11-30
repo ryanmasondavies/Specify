@@ -6,16 +6,16 @@
 //  Copyright (c) 2012 Ryan Davies. All rights reserved.
 //
 
-#import "BHVNode.h"
+#import "BHVExecutableNode.h"
+
+typedef NS_ENUM(NSInteger, BHVHookPosition) {
+    BHVHookPositionBefore
+};
 
 /*
- `name` is set to either "before" or "after", indicating __when__ the hook is executed in relation to examples.
+ `position` is set to either "before" or "after", indicating __when__ the hook is executed in relation to examples.
  */
 
-@interface BHVHook : BHVNode
-@property (nonatomic, copy) void(^block)(void);
-@property (nonatomic, getter=isExecuted) BOOL executed;
-
-- (void)execute;
-
+@interface BHVHook : BHVExecutableNode
+@property (nonatomic) BHVHookPosition position;
 @end

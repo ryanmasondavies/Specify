@@ -15,12 +15,4 @@
     [visitor visitHook:self];
 }
 
-- (void)execute
-{
-    if ([self block])
-        self.block();
-    
-    self.executed = YES;
-}
-
 @end

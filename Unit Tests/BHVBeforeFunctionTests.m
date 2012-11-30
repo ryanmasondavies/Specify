@@ -27,15 +27,15 @@
     [BHVSpec resetSuites];
 }
 
-- (void)test_BeforeEach_AddsHookToCurrentSpecSuiteWithNoDependency
+- (void)test_BeforeEach_AddsHookPositioned_Before_ToCurrentSpecSuite
 {
     // Execute the `beforeEach` function:
     void(^block)(void) = ^{};
     beforeEach(block);
     
-    // Check that an example has been added to the suite with the name and block:
+    // Check that a before-each hook has been added to the suite:
     BHVHook *hook = (BHVHook *)[[BHVTestSpec1 suite] nodeAtIndex:0];
-    [[[hook name] should] beEqualTo:@"before"];
+    [[@([hook position]) should] beEqualTo:@(BHVHookPositionBefore)];
     [[[hook block] should] beEqualTo:block];
 }
 

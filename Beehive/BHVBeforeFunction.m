@@ -15,6 +15,7 @@ void beforeEach(void(^block)(void))
 {
     // Build a hook from the attributes:
     BHVHook *hook = [[BHVHook alloc] init];
+    [hook setPosition:BHVHookPositionBefore];
     [hook setBlock:block];
     
     // Add the hook to the suite for the spec being loaded:

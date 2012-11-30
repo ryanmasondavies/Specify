@@ -8,39 +8,23 @@
 
 #import "Beehive.h"
 
-@interface BHVThing : NSObject
-@property (nonatomic, strong) NSMutableArray *widgets;
-@end
+static NSUInteger executionCount = 0;
 
-@implementation BHVThing
-
-- (id)init {
-    if (self = [super init]) self.widgets = [NSMutableArray array];
-    return self;
-}
-
-@end
-
-SpecBegin(BHVBeforeEachSpec)
+SpecBegin(BHVBeforeEach)
 
 describe(@"thing", ^{
-    __block BHVThing *thing;
-    
     beforeEach(^{
-        thing = [[BHVThing alloc] init];
+        executionCount ++;
     });
     
-    describe(@"initialized in before(@\"each\"", ^{
-        // TODO: [[[thing should] have:0] widgets];
-        [[@([[thing widgets] count]) should] beEqualTo:@0];
+    describe(@"in another context", ^{
+        it(@"should only have been executed once ", ^{
+            [[@(executionCount) should] beEqualTo:@1];
+        });
     });
     
-    it(@"can accept new widgets", ^{
-        [[thing widgets] addObject:[NSObject new]];
-    });
-    
-    it(@"does not share state across examples", ^{
-        [[@([[thing widgets] count]) should] beEqualTo:@0];
+    it(@"should have been executed again", ^{
+        [[@(executionCount) should] beEqualTo:@2];
     });
 });
 

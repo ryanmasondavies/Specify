@@ -59,7 +59,7 @@
     [[example should] beExecuted];
 }
 
-- (void)test_Execution_ExecutesHooksInContexts
+- (void)test_Execution_ExecutesHooksPositioned_Before_PriorToInvokingBlock
 {
     // Create some contexts, each with a few hooks, and the deepest with one example:
     NSMutableArray *contexts = [NSMutableArray array];
@@ -69,8 +69,9 @@
         // Create a context:
         contexts[i] = [[BHVContext alloc] init];
         
-        // Add a hook:
+        // Add a hook positioned before:
         hooks[i] = [[BHVHook alloc] init];
+        [hooks[i] setPosition:BHVHookPositionBefore];
         [contexts[i] addNode:hooks[i]];
         
         // Add the context to the previous context:
@@ -80,12 +81,21 @@
         if (i == 9) [contexts[i] addNode:example];
     }
     
+    // The example block sets 'executed before block' for each hook, if it has been executed:
+    NSMutableArray *executedBeforeBlock = [NSMutableArray array];
+    void(^block)(void) = ^{
+        [hooks enumerateObjectsUsingBlock:^(BHVHook *hook, NSUInteger idx, BOOL *stop) {
+            executedBeforeBlock[0] = @([hook isExecuted]);
+        }];
+    };
+    [example setBlock:block];
+    
     // Execute the example:
     [example execute];
     
-    // Verify that all hooks have been executed:
-    [hooks enumerateObjectsUsingBlock:^(BHVHook *hook, NSUInteger idx, BOOL *stop) {
-        [[hook should] beExecuted];
+    // Verify that all hooks were executed before the block:
+    [executedBeforeBlock enumerateObjectsUsingBlock:^(NSNumber *executed, NSUInteger idx, BOOL *stop) {
+        [[executed should] beTrue];
     }];
 }
 

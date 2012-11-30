@@ -26,25 +26,6 @@
 {
 }
 
-- (NSString *)fullName
-{
-    // Work up the chain of nodes, adding them as we go:
-    NSMutableArray *names = [NSMutableArray array];
-    BHVNode *node = self;
-    while (node) {
-        if ([node name])
-            [names addObject:[node name]];
-        node = [node context];
-    }
-    
-    // Reverse the names to put them in the right order:
-    for (NSUInteger i = 0; i < [names count] / 2; i++)
-        [names exchangeObjectAtIndex:i withObjectAtIndex:([names count] - i - 1)];
-    
-    // Concatenate with a space between each name and return:
-    return [names componentsJoinedByString:@" "];
-}
-
 - (void)execute
 {
     // Locate the top-most context:
@@ -55,8 +36,25 @@
     [topMostContext accept:self];
     
     // Invoke block and mark as executed:
-    if (self.block) self.block();
-    self.executed = YES;
+    [super execute];
+}
+
+- (NSString *)fullName
+{
+    // Work up the chain of nodes, adding them as we go:
+    NSMutableArray *names = [NSMutableArray array];
+    BHVNode *node = self;
+    while (node) {
+        [names addObject:[node name]];
+        node = [node context];
+    }
+    
+    // Reverse the names to put them in the right order:
+    for (NSUInteger i = 0; i < [names count] / 2; i++)
+        [names exchangeObjectAtIndex:i withObjectAtIndex:([names count] - i - 1)];
+    
+    // Concatenate with a space between each name and return:
+    return [names componentsJoinedByString:@" "];
 }
 
 @end

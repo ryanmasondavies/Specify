@@ -10,6 +10,12 @@
 
 @implementation BHVNode
 
+- (NSString *)name
+{
+    if (_name) return _name;
+    return @""; // Never return nil.
+}
+
 - (void)accept:(id <BHVNodeVisitor>)visitor
 {
 }
