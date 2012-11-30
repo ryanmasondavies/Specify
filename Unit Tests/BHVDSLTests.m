@@ -97,7 +97,7 @@
 
 #pragma mark BeforeEach
 
-- (void)test_BeforeEach_AddsHookPositioned_Before_ToCurrentSpecSuite
+- (void)test_BeforeEach_AddsHookPositioned_Before_WithFrequencyOf_Each_ToCurrentSpecSuite
 {
     // Execute the `beforeEach` function:
     __block BOOL blockExecuted = NO;
@@ -107,12 +107,13 @@
     // Check that a before-each hook has been added to the suite:
     BHVHook *hook = (BHVHook *)[[BHVTestSpec1 suite] nodeAtIndex:0];
     [[@([hook position]) should] beEqualTo:@(BHVHookPositionBefore)];
+    [[@([hook frequency]) should] beEqualTo:@(BHVHookFrequencyEach)];
     hook.block(); [[@(blockExecuted) should] beTrue];
 }
 
 #pragma mark AfterEach
 
-- (void)testAddsHookPositioned_After_ToCurrentSpecSuite
+- (void)test_AfterEach_AddsHookPositioned_After_WithFrequencyOf_Each_ToCurrentSpecSuite
 {
     // Execute the `afterEach` function:
     __block BOOL blockExecuted = NO;
@@ -122,7 +123,39 @@
     // Check that a hook positioned 'after' has been added to the suite:
     BHVHook *hook = (BHVHook *)[[BHVTestSpec1 suite] nodeAtIndex:0];
     [[@([hook position]) should] beEqualTo:@(BHVHookPositionAfter)];
-    [[[hook block] should] beEqualTo:block];
+    [[@([hook frequency]) should] beEqualTo:@(BHVHookFrequencyEach)];
+    hook.block(); [[@(blockExecuted) should] beTrue];
+}
+
+#pragma mark BeforeAll
+
+- (void)test_BeforeAll_AddsHookPositioned_Before_WithFrequencyOf_All_ToCurrentSpecSuite
+{
+    // Execute the `beforeAll` function:
+    __block BOOL blockExecuted = NO;
+    void(^block)(void) = ^{ blockExecuted = YES; };
+    beforeAll(block);
+    
+    // Check that a before-each hook has been added to the suite:
+    BHVHook *hook = (BHVHook *)[[BHVTestSpec1 suite] nodeAtIndex:0];
+    [[@([hook position]) should] beEqualTo:@(BHVHookPositionBefore)];
+    [[@([hook frequency]) should] beEqualTo:@(BHVHookFrequencyAll)];
+    hook.block(); [[@(blockExecuted) should] beTrue];
+}
+
+#pragma mark AfterAll
+
+- (void)test_AfterAll_AddsHookPositioned_After_WithFrequencyOf_All_ToCurrentSpecSuite
+{
+    // Execute the `afterAll` function:
+    __block BOOL blockExecuted = NO;
+    void(^block)(void) = ^{ blockExecuted = YES; };
+    afterAll(block);
+    
+    // Check that the hook has been added to the suite:
+    BHVHook *hook = (BHVHook *)[[BHVTestSpec1 suite] nodeAtIndex:0];
+    [[@([hook position]) should] beEqualTo:@(BHVHookPositionAfter)];
+    [[@([hook frequency]) should] beEqualTo:@(BHVHookFrequencyAll)];
     hook.block(); [[@(blockExecuted) should] beTrue];
 }
 

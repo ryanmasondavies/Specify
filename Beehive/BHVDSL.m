@@ -16,7 +16,7 @@
 @interface BHVDSL ()
 + (void)makeExampleWithName:(NSString *)name block:(void(^)(void))block;
 + (void)makeContextWithName:(NSString *)name block:(void(^)(void))block;
-+ (void)makeHookWithPosition:(BHVHookPosition)position block:(void(^)(void))block;
++ (void)makeHookWithPosition:(BHVHookPosition)position frequency:(BHVHookFrequency)frequency block:(void(^)(void))block;
 @end
 
 @implementation BHVDSL
@@ -50,11 +50,12 @@
     [suite addNode:context];
 }
 
-+ (void)makeHookWithPosition:(BHVHookPosition)position block:(void(^)(void))block
++ (void)makeHookWithPosition:(BHVHookPosition)position frequency:(BHVHookFrequency)frequency block:(void(^)(void))block
 {
     // Build a hook from the attributes:
     BHVHook *hook = [[BHVHook alloc] init];
     [hook setPosition:position];
+    [hook setFrequency:frequency];
     [hook setBlock:block];
     
     // Add the hook to the suite for the spec being loaded:
@@ -80,10 +81,20 @@ void describe(NSString *name, void(^block)(void))
 
 void beforeEach(void(^block)(void))
 {
-    [BHVDSL makeHookWithPosition:BHVHookPositionBefore block:block];
+    [BHVDSL makeHookWithPosition:BHVHookPositionBefore frequency:BHVHookFrequencyEach block:block];
 }
 
 void afterEach(void(^block)(void))
 {
-    [BHVDSL makeHookWithPosition:BHVHookPositionAfter block:block];
+    [BHVDSL makeHookWithPosition:BHVHookPositionAfter frequency:BHVHookFrequencyEach block:block];
+}
+
+void beforeAll(void(^block)(void))
+{
+    [BHVDSL makeHookWithPosition:BHVHookPositionBefore frequency:BHVHookFrequencyAll block:block];
+}
+
+void afterAll(void(^block)(void))
+{
+    [BHVDSL makeHookWithPosition:BHVHookPositionAfter frequency:BHVHookFrequencyAll block:block];
 }
