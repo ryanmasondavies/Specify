@@ -99,4 +99,122 @@
     }];
 }
 
+- (void)test_Execution_DoesNotExecuteHooksPositioned_After_PriorToInvokingBlock
+{
+    // Create some contexts, each with a few hooks, and the deepest with one example:
+    NSMutableArray *contexts = [NSMutableArray array];
+    NSMutableArray *hooks = [NSMutableArray array];
+    BHVExample *example = [[BHVExample alloc] init];
+    for (NSUInteger i = 0; i < 10; i ++) {
+        // Create a context:
+        contexts[i] = [[BHVContext alloc] init];
+        
+        // Add a hook positioned before:
+        hooks[i] = [[BHVHook alloc] init];
+        [hooks[i] setPosition:BHVHookPositionAfter];
+        [contexts[i] addNode:hooks[i]];
+        
+        // Add the context to the previous context:
+        if (i > 0) [contexts[i] addNode:contexts[i - 1]];
+        
+        // If at the deepest context, add the example:
+        if (i == 9) [contexts[i] addNode:example];
+    }
+    
+    // The example block sets 'executed before block' for each hook, if it has been executed:
+    NSMutableArray *executedBeforeBlock = [NSMutableArray array];
+    void(^block)(void) = ^{
+        [hooks enumerateObjectsUsingBlock:^(BHVHook *hook, NSUInteger idx, BOOL *stop) {
+            executedBeforeBlock[0] = @([hook isExecuted]);
+        }];
+    };
+    [example setBlock:block];
+    
+    // Execute the example:
+    [example execute];
+    
+    // Verify that all hooks were executed before the block:
+    [executedBeforeBlock enumerateObjectsUsingBlock:^(NSNumber *executed, NSUInteger idx, BOOL *stop) {
+        [[executed should] beFalse];
+    }];
+}
+
+- (void)test_Execution_ExecutesHooksPositioned_After_OnceBlockHasBeenInvoked
+{
+    // Create some contexts, each with a few hooks, and the deepest with one example:
+    NSMutableArray *contexts = [NSMutableArray array];
+    NSMutableArray *hooks = [NSMutableArray array];
+    BHVExample *example = [[BHVExample alloc] init];
+    for (NSUInteger i = 0; i < 10; i ++) {
+        // Create a context:
+        contexts[i] = [[BHVContext alloc] init];
+        
+        // Add a hook positioned after:
+        hooks[i] = [[BHVHook alloc] init];
+        [hooks[i] setPosition:BHVHookPositionAfter];
+        [contexts[i] addNode:hooks[i]];
+        
+        // Add the context to the previous context:
+        if (i > 0) [contexts[i] addNode:contexts[i - 1]];
+        
+        // If at the deepest context, add the example:
+        if (i == 9) [contexts[i] addNode:example];
+    }
+    
+    // The example block resets the hooks `executed` status:
+    void(^block)(void) = ^{
+        [hooks enumerateObjectsUsingBlock:^(BHVHook *hook, NSUInteger idx, BOOL *stop) {
+            [hook setExecuted:NO];
+        }];
+    };
+    [example setBlock:block];
+    
+    // Execute the example:
+    [example execute];
+    
+    // Verify that all hooks were executed, even after they were reset in the block:
+    [hooks enumerateObjectsUsingBlock:^(BHVHook *hook, NSUInteger idx, BOOL *stop) {
+        [[hook should] beExecuted];
+    }];
+}
+
+- (void)test_Execution_DoesNotExecuteHooksPositioned_Before_AfterBlockHasBeenInvoked
+{
+    // Create some contexts, each with a few hooks, and the deepest with one example:
+    NSMutableArray *contexts = [NSMutableArray array];
+    NSMutableArray *hooks = [NSMutableArray array];
+    BHVExample *example = [[BHVExample alloc] init];
+    for (NSUInteger i = 0; i < 10; i ++) {
+        // Create a context:
+        contexts[i] = [[BHVContext alloc] init];
+        
+        // Add a hook positioned after:
+        hooks[i] = [[BHVHook alloc] init];
+        [hooks[i] setPosition:BHVHookPositionBefore];
+        [contexts[i] addNode:hooks[i]];
+        
+        // Add the context to the previous context:
+        if (i > 0) [contexts[i] addNode:contexts[i - 1]];
+        
+        // If at the deepest context, add the example:
+        if (i == 9) [contexts[i] addNode:example];
+    }
+    
+    // The example block resets the hooks `executed` status:
+    void(^block)(void) = ^{
+        [hooks enumerateObjectsUsingBlock:^(BHVHook *hook, NSUInteger idx, BOOL *stop) {
+            [hook setExecuted:NO];
+        }];
+    };
+    [example setBlock:block];
+    
+    // Execute the example:
+    [example execute];
+    
+    // Verify that no hooks were executed before the block:
+    [hooks enumerateObjectsUsingBlock:^(BHVHook *hook, NSUInteger idx, BOOL *stop) {
+        [[hook shouldNot] beExecuted];
+    }];
+}
+
 @end

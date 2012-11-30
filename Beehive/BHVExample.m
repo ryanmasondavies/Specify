@@ -19,7 +19,17 @@
 
 - (void)visitHook:(BHVHook *)hook
 {
-    [hook execute];
+    if ([hook position] == BHVHookPositionBefore) {
+        if ([self isExecuted] == NO) {
+            [hook execute];
+        }
+    }
+    
+    if ([hook position] == BHVHookPositionAfter) {
+        if ([self isExecuted]) {
+            [hook execute];
+        }
+    }
 }
 
 - (void)visitExample:(BHVExample *)example
@@ -32,11 +42,14 @@
     BHVContext *topMostContext = [self context];
     while (([topMostContext context]) != nil) topMostContext = [topMostContext context];
     
-    // Visit the top-most context, allowing the example to execute all hooks:
+    // Execute pre-execution hooks:
     [topMostContext accept:self];
     
     // Invoke block and mark as executed:
     [super execute];
+    
+    // Execute post-execution hooks:
+    [topMostContext accept:self];
 }
 
 - (NSString *)fullName
