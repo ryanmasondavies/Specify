@@ -19,17 +19,8 @@
 
 - (void)visitHook:(BHVHook *)hook
 {
-    if ([hook position] == BHVHookPositionBefore) {
-        if ([self isExecuted] == NO) {
-            [hook execute];
-        }
-    }
-    
-    if ([hook position] == BHVHookPositionAfter) {
-        if ([self isExecuted]) {
-            [hook execute];
-        }
-    }
+    [hook setExample:self];
+    [hook execute];
 }
 
 - (void)visitExample:(BHVExample *)example

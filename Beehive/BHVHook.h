@@ -13,10 +13,18 @@ typedef NS_ENUM(NSInteger, BHVHookPosition) {
     BHVHookPositionAfter
 };
 
+typedef NS_ENUM(NSInteger, BHVHookFrequency) {
+    BHVHookFrequencyEach,
+    BHVHookFrequencyAll
+};
+
 /*
  `position` is set to either "before" or "after", indicating __when__ the hook is executed in relation to examples.
+ `frequency` is set to either "all" or "each", indicating __how often__ the hook is executed in relation to examples.
  */
 
 @interface BHVHook : BHVExecutableNode
+@property (nonatomic, strong) BHVExample *example;
 @property (nonatomic) BHVHookPosition position;
+@property (nonatomic) BHVHookFrequency frequency;
 @end

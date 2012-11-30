@@ -7,12 +7,20 @@
 //
 
 #import "BHVHook.h"
+#import "BHVExample.h"
 
 @implementation BHVHook
 
 - (void)accept:(id<BHVNodeVisitor>)visitor
 {
     [visitor visitHook:self];
+}
+
+- (void)execute
+{
+    if ([self position] == BHVHookPositionBefore && [[self example] isExecuted]) return;
+    if ([self position] == BHVHookPositionAfter && [[self example] isExecuted] == NO) return;
+    [super execute];
 }
 
 @end
