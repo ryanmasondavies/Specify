@@ -7,6 +7,7 @@
 //
 
 #import "BHVContext.h"
+#import "BHVExampleAccumulator.h"
 
 @interface BHVContext ()
 @property (nonatomic, strong) NSMutableArray *nodes;
@@ -38,6 +39,12 @@
 - (BHVNode *)nodeAtIndex:(NSUInteger)index
 {
     return [[self nodes] objectAtIndex:index];
+}
+
+- (NSArray *)examples
+{
+    BHVExampleAccumulator *accumulator = [[BHVExampleAccumulator alloc] initWithNode:self];
+    return [accumulator examples];
 }
 
 @end

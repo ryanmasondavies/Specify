@@ -8,6 +8,7 @@
 
 #import "BHVHook.h"
 #import "BHVExample.h"
+#import "BHVContext.h"
 
 @implementation BHVHook
 
@@ -20,6 +21,18 @@
 {
     if ([self position] == BHVHookPositionBefore && [[self example] isExecuted]) return;
     if ([self position] == BHVHookPositionAfter && [[self example] isExecuted] == NO) return;
+    
+    if ([self frequency] == BHVHookFrequencyAll) {
+        NSMutableArray *executedExamples = [NSMutableArray array];
+        NSArray *examples = [[[self example] context] examples];
+        [examples enumerateObjectsUsingBlock:^(BHVExample *example, NSUInteger idx, BOOL *stop) {
+            if ([example isExecuted]) [executedExamples addObject:example];
+        }];
+        
+        if ([self position] == BHVHookPositionBefore && [executedExamples count] > 0) return;
+        if ([self position] == BHVHookPositionAfter && [executedExamples count] < [examples count]) return;
+    }
+    
     [super execute];
 }
 
