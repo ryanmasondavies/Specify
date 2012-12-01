@@ -10,7 +10,6 @@
 #import "BHVSuite.h"
 #import "BHVInvocation.h"
 #import "BHVExample.h"
-#import "BHVExampleAccumulator.h"
 
 @interface BHVSpec ()
 + (NSMutableDictionary *)suitesByClasses;
@@ -33,11 +32,11 @@
 + (NSArray *)testInvocations
 {
     // Collect the examples in the suite:
-    BHVExampleAccumulator *accumulator = [[BHVExampleAccumulator alloc] initWithNode:[self suite]];
+    NSArray *examples = [[self suite] examples];
     
     // Create an invocation for each example:
     NSMutableArray *invocations = [NSMutableArray array];
-    [[accumulator examples] enumerateObjectsUsingBlock:^(BHVExample *example, NSUInteger idx, BOOL *stop) {
+    [examples enumerateObjectsUsingBlock:^(BHVExample *example, NSUInteger idx, BOOL *stop) {
         BHVInvocation *invocation = [BHVInvocation emptyInvocation];
         [invocation setExample:example];
         [invocations addObject:invocation];
