@@ -7,10 +7,10 @@
 //
 
 #import "BHVContext.h"
-#import "BHVExampleAccumulator.h"
 
 @interface BHVContext ()
 @property (nonatomic, strong) NSMutableArray *nodes;
+@property (nonatomic, strong) NSMutableArray *accumulatedExamples;
 @end
 
 @implementation BHVContext
@@ -20,6 +20,7 @@
     self = [super init];
     if (self) {
         self.nodes = [NSMutableArray array];
+        self.accumulatedExamples = [NSMutableArray array];
     }
     
     return self;
@@ -28,6 +29,15 @@
 - (void)accept:(id <BHVNodeVisitor>)visitor
 {
     [[self nodes] makeObjectsPerformSelector:@selector(accept:) withObject:visitor];
+}
+
+- (void)visitExample:(BHVExample *)example
+{
+    [[self accumulatedExamples] addObject:example];
+}
+
+- (void)visitHook:(BHVHook *)hook
+{
 }
 
 - (void)addNode:(BHVNode *)node
@@ -43,8 +53,9 @@
 
 - (NSArray *)examples
 {
-    BHVExampleAccumulator *accumulator = [[BHVExampleAccumulator alloc] initWithNode:self];
-    return [accumulator examples];
+    [[self accumulatedExamples] removeAllObjects];
+    [self accept:self];
+    return [NSArray arrayWithArray:[self accumulatedExamples]];
 }
 
 @end
