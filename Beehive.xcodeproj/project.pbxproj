@@ -25,7 +25,7 @@
 		94A5D21E1666938D00CFDAC3 /* BHVExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A5D21D1666938D00CFDAC3 /* BHVExampleTests.m */; };
 		94D97ABA165D28C600282ABE /* BHVStructureSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 947C46AA165566DC0071139E /* BHVStructureSpec.m */; };
 		94D97B86165D494700282ABE /* BHVTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D97B85165D494700282ABE /* BHVTestHelper.m */; };
-		94E8DE101667F9CB00C8CAA2 /* BHVHooksSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E8DE0F1667F9CB00C8CAA2 /* BHVHooksSpec.m */; };
+		94E8DE101667F9CB00C8CAA2 /* BHVBeforeEachSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E8DE0F1667F9CB00C8CAA2 /* BHVBeforeEachSpec.m */; };
 		94E8DE1D1667FC3B00C8CAA2 /* BHVHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E8DE1C1667FC3B00C8CAA2 /* BHVHook.m */; };
 		94ED2B831649A0A400D59570 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94ED2B821649A0A400D59570 /* Foundation.framework */; };
 		94ED2B881649A0A400D59570 /* Beehive.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 94ED2B871649A0A400D59570 /* Beehive.h */; };
@@ -36,6 +36,9 @@
 		94F116871654205C003DCD0C /* BHVInvocationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F1167C1654205C003DCD0C /* BHVInvocationTests.m */; };
 		94F1168A1654205C003DCD0C /* BHVSpecTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F1167F1654205C003DCD0C /* BHVSpecTests.m */; };
 		94F1168C1654205C003DCD0C /* BHVSuiteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F116811654205C003DCD0C /* BHVSuiteTests.m */; };
+		94F23D7C166AC87500ABAED9 /* BHVAfterEachSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F23D7B166AC87500ABAED9 /* BHVAfterEachSpec.m */; };
+		94F23D7F166AC89300ABAED9 /* BHVBeforeAllSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F23D7E166AC89300ABAED9 /* BHVBeforeAllSpec.m */; };
+		94F23D82166AC8AD00ABAED9 /* BHVAfterAllSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F23D81166AC8AD00ABAED9 /* BHVAfterAllSpec.m */; };
 		D7AED3375DB946999D658841 /* libPods-Integrated Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C73FAFA800334CCCA0E5D34A /* libPods-Integrated Tests.a */; };
 /* End PBXBuildFile section */
 
@@ -103,7 +106,7 @@
 		94A5D2261666C26B00CFDAC3 /* BHVNodeVisitor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BHVNodeVisitor.h; sourceTree = "<group>"; };
 		94D97B84165D494700282ABE /* BHVTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVTestHelper.h; sourceTree = "<group>"; };
 		94D97B85165D494700282ABE /* BHVTestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVTestHelper.m; sourceTree = "<group>"; };
-		94E8DE0F1667F9CB00C8CAA2 /* BHVHooksSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVHooksSpec.m; sourceTree = "<group>"; };
+		94E8DE0F1667F9CB00C8CAA2 /* BHVBeforeEachSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVBeforeEachSpec.m; sourceTree = "<group>"; };
 		94E8DE1B1667FC3B00C8CAA2 /* BHVHook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVHook.h; sourceTree = "<group>"; };
 		94E8DE1C1667FC3B00C8CAA2 /* BHVHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVHook.m; sourceTree = "<group>"; };
 		94ED2B7F1649A0A400D59570 /* libBeehive.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBeehive.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,6 +123,9 @@
 		94F116811654205C003DCD0C /* BHVSuiteTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVSuiteTests.m; sourceTree = "<group>"; };
 		94F116821654205C003DCD0C /* Unit Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Unit Tests-Info.plist"; sourceTree = "<group>"; };
 		94F116831654205C003DCD0C /* Unit Tests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Unit Tests-Prefix.pch"; sourceTree = "<group>"; };
+		94F23D7B166AC87500ABAED9 /* BHVAfterEachSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVAfterEachSpec.m; sourceTree = "<group>"; };
+		94F23D7E166AC89300ABAED9 /* BHVBeforeAllSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVBeforeAllSpec.m; sourceTree = "<group>"; };
+		94F23D81166AC8AD00ABAED9 /* BHVAfterAllSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVAfterAllSpec.m; sourceTree = "<group>"; };
 		C73FAFA800334CCCA0E5D34A /* libPods-Integrated Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Integrated Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF135ED7F1D44FE5ADC66E25 /* Pods-Integrated Tests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Integrated Tests.xcconfig"; path = "Pods/Pods-Integrated Tests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		DF9267BB8DD14986A1342B6D /* Pods-Unit Tests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unit Tests.xcconfig"; path = "Pods/Pods-Unit Tests.xcconfig"; sourceTree = SOURCE_ROOT; };
@@ -164,7 +170,10 @@
 			isa = PBXGroup;
 			children = (
 				947C46AA165566DC0071139E /* BHVStructureSpec.m */,
-				94E8DE0F1667F9CB00C8CAA2 /* BHVHooksSpec.m */,
+				94E8DE0F1667F9CB00C8CAA2 /* BHVBeforeEachSpec.m */,
+				94F23D7B166AC87500ABAED9 /* BHVAfterEachSpec.m */,
+				94F23D7E166AC89300ABAED9 /* BHVBeforeAllSpec.m */,
+				94F23D81166AC8AD00ABAED9 /* BHVAfterAllSpec.m */,
 				947C4697165566850071139E /* Supporting Files */,
 			);
 			path = "Integrated Tests";
@@ -445,7 +454,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				94D97ABA165D28C600282ABE /* BHVStructureSpec.m in Sources */,
-				94E8DE101667F9CB00C8CAA2 /* BHVHooksSpec.m in Sources */,
+				94E8DE101667F9CB00C8CAA2 /* BHVBeforeEachSpec.m in Sources */,
+				94F23D7C166AC87500ABAED9 /* BHVAfterEachSpec.m in Sources */,
+				94F23D7F166AC89300ABAED9 /* BHVBeforeAllSpec.m in Sources */,
+				94F23D82166AC8AD00ABAED9 /* BHVAfterAllSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
