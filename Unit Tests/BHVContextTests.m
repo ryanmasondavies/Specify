@@ -20,18 +20,17 @@
     NSMutableArray *examples = [NSMutableArray arrayWithCapacity:5];
     for (NSUInteger i = 0; i < 5; i ++) examples[i] = [BHVExample new];
     
-    // Build a suite using the created examples and nodes:
+    // Build a context using the created examples and nodes:
     BHVContext *context = [[BHVContext alloc] init];
     for (NSUInteger i = 0; i < 5; i ++) {
         [context addNode:examples[i]];
         [context addNode:[BHVNode new]];
     }
     
-    // Accumulate examples in the suite:
-    NSArray *results = [context examples];
-    
     // Verify that the nodes consist only of examples, and are in order of creation:
-    for (NSUInteger i = 0; i < 5; i ++) [[results[i] should] beEqualTo:examples[i]];
+    [[context examples] enumerateObjectsUsingBlock:^(BHVExample *example, NSUInteger i, BOOL *stop) {
+        [[example should] beEqualTo:examples[i]];
+    }];
 }
 
 - (void)testReturnsNestedExamples
@@ -50,11 +49,8 @@
     };
     addContext(addContext(addContext(context)));
     
-    // Accumulate examples in the suite:
-    NSArray *results = [context examples];
-    
     // Verify that the nodes consist only of examples, and are in order of creation:
-    [results enumerateObjectsUsingBlock:^(BHVExample *example, NSUInteger i, BOOL *stop) {
+    [[context examples] enumerateObjectsUsingBlock:^(BHVExample *example, NSUInteger i, BOOL *stop) {
         [[example should] beEqualTo:examples[i]];
     }];
 }
