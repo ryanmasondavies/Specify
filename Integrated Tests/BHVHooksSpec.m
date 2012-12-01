@@ -8,103 +8,154 @@
 
 #import "Beehive.h"
 
-static NSUInteger beforeEachCount = 0;
-static NSUInteger afterEachCount = 0;
-static NSUInteger beforeAllCount = 0;
-static NSUInteger afterAllCount = 0;
-
 SpecBegin(BHVBeforeEach)
 
-describe(@"thing", ^{
+NSMutableString *foo = [NSMutableString string];
+
+describe(@"beforeEach", ^{
     beforeEach(^{
-        beforeEachCount ++;
+        [foo appendString:@"foo"];
     });
     
     describe(@"in another context", ^{
-        it(@"should only have been executed once ", ^{
-            [[@(beforeEachCount) should] beEqualTo:@1];
+        beforeEach(^{
+            [foo appendString:@"bar"];
+        });
+        
+        it(@"should have executed both hooks", ^{
+            [[foo should] beEqualTo:@"foobar"];
+        });
+        
+        it(@"should have executed both hooks again", ^{
+            [[foo should] beEqualTo:@"foobarfoobar"];
         });
     });
     
-    it(@"should have been executed again", ^{
-        [[@(beforeEachCount) should] beEqualTo:@2];
+    it(@"should have executed the outer hook a third time", ^{
+        [[foo should] beEqualTo:@"foobarfoobarfoo"];
     });
+    
+    it(@"should have executed the outer hook a fourth time", ^{
+        [[foo should] beEqualTo:@"foobarfoobarfoofoo"];
+    });
+});
+
+it(@"should not have executed any more hooks", ^{
+    [[foo should] beEqualTo:@"foobarfoobarfoofoo"];
 });
 
 SpecEnd
 
 SpecBegin(BHVAfterEach)
 
-describe(@"thing", ^{
+NSMutableString *foo = [NSMutableString string];
+
+describe(@"afterEach", ^{
     afterEach(^{
-        afterEachCount ++;
+        [foo appendString:@"bar"];
     });
     
     describe(@"in another context", ^{
+        afterEach(^{
+            [foo appendString:@"foo"];
+        });
+        
         it(@"should not have been executed yet", ^{
-            [[@(afterEachCount) should] beEqualTo:@0];
+            [[foo should] beEqualTo:@""];
+        });
+        
+        it(@"should have executed both hooks once", ^{
+            [[foo should] beEqualTo:@"foobar"];
         });
     });
     
-    it(@"should have been executed", ^{
-        [[@(afterEachCount) should] beEqualTo:@1];
+    it(@"should have executed both hooks twice", ^{
+        [[foo should] beEqualTo:@"foobarfoobar"];
     });
+    
+    it(@"should have executed the outer hook once", ^{
+        [[foo should] beEqualTo:@"foobarfoobarbar"];
+    });
+});
+
+it(@"should have executed the outside afterAll block once more", ^{
+    [[foo should] beEqualTo:@"foobarfoobarbarbar"];
 });
 
 SpecEnd
 
 SpecBegin(BHVBeforeAll)
 
-describe(@"thing", ^{
+NSMutableString *foo = [NSMutableString string];
+
+describe(@"beforeAll", ^{
     beforeAll(^{
-        beforeAllCount ++;
+        [foo appendString:@"foo"];
     });
     
-    it(@"should have been executed", ^{
-        [[@(beforeAllCount) should] beEqualTo:@1];
+    it(@"should have been executed when the context opened", ^{
+        [[foo should] beEqualTo:@"foo"];
+    });
+    
+    it(@"should not have been executed twice", ^{
+        [[foo should] beEqualTo:@"foo"];
     });
     
     describe(@"in another context", ^{
         beforeAll(^{
-            beforeAllCount ++;
+            [foo appendString:@"bar"];
         });
         
-        it(@"should have been executed again ", ^{
-            [[@(beforeAllCount) should] beEqualTo:@2];
+        it(@"should have been executed again", ^{
+            [[foo should] beEqualTo:@"foobar"];
+        });
+        
+        it(@"should not have been executed again in the same context", ^{
+            [[foo should] beEqualTo:@"foobar"];
         });
     });
-    
-    it(@"should not have executed any more", ^{
-        [[@(beforeAllCount) should] beEqualTo:@2];
-    });
+});
+
+it(@"should not have executed any more hooks", ^{
+    [[foo should] beEqualTo:@"foobar"];
 });
 
 SpecEnd
 
 SpecBegin(BHVAfterAll)
 
-describe(@"thing", ^{
+NSMutableString *foo = [NSMutableString string];
+
+describe(@"afterAll", ^{
     afterAll(^{
-        afterAllCount ++;
+        [foo appendString:@"bar"];
     });
     
     describe(@"in another context", ^{
         afterAll(^{
-            afterAllCount ++;
+            [foo appendString:@"foo"];
         });
         
         it(@"should not have been executed yet", ^{
-            [[@(afterAllCount) should] beEqualTo:@0];
+            [[foo should] beEqualTo:@""];
+        });
+        
+        it(@"should still not have been executed yet", ^{
+            [[foo should] beEqualTo:@""];
         });
     });
     
     it(@"should have executed when the context closed", ^{
-        [[@(afterEachCount) should] beEqualTo:@1];
+        [[foo should] beEqualTo:@"foo"];
     });
     
     it(@"should not have executed again", ^{
-        [[@(afterAllCount) should] beEqualTo:@1];
+        [[foo should] beEqualTo:@"foo"];
     });
+});
+
+it(@"should have executed the outside afterAll block", ^{
+    [[foo should] beEqualTo:@"foobar"];
 });
 
 SpecEnd

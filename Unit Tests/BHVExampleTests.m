@@ -14,18 +14,6 @@
 - (BOOL)beExecuted;
 @end
 
-@interface BHVTestHook : BHVHook
-@end
-
-@implementation BHVTestHook
-
-- (void)execute
-{
-    self.executed = YES;
-}
-
-@end
-
 @interface BHVExampleTests : SenTestCase
 @end
 
@@ -71,80 +59,91 @@
     [[example should] beExecuted];
 }
 
-- (void)test_Execution_ExecutesHooksPriorToInvokingBlock
+- (void)test_Execution_ExecutesHooksPriorToInvokingBlockInForwardOrder
 {
     // Create some contexts, each with a few hooks, and the deepest with one example:
-    NSMutableArray *contexts = [NSMutableArray array];
+    BHVContext *topMost = [[BHVContext alloc] init], *deepest;
     NSMutableArray *hooks = [NSMutableArray array];
-    BHVExample *example = [[BHVExample alloc] init];
-    for (NSUInteger i = 0; i < 10; i ++) {
-        // Create a context:
-        contexts[i] = [[BHVContext alloc] init];
-        
-        // Add a hook:
-        hooks[i] = [[BHVTestHook alloc] init];
-        [contexts[i] addNode:hooks[i]];
-        
-        // Add the context to the previous context:
-        if (i > 0) [contexts[i] addNode:contexts[i - 1]];
-        
-        // If at the deepest context, add the example:
-        if (i == 9) [contexts[i] addNode:example];
-    }
+    BHVContext *(^addContext)(BHVContext *parent) = ^(BHVContext *parent) {
+        BHVContext *context = [[BHVContext alloc] init];
+        BHVHook *hook = [OCMockObject partialMockForObject:[BHVHook new]];
+        [context addNode:hook];
+        [hooks addObject:hook];
+        [parent addNode:context];
+        return context;
+    };
+    for (NSUInteger i = 0; i < 10; i ++) deepest = addContext(topMost);
     
-    // The example block sets 'executed before block' for each hook, if it has been executed:
-    NSMutableArray *executedBeforeBlock = [NSMutableArray array];
-    void(^block)(void) = ^{
-        [hooks enumerateObjectsUsingBlock:^(BHVHook *hook, NSUInteger idx, BOOL *stop) {
-            executedBeforeBlock[idx] = @([hook isExecuted]);
+    // Add an example to the deepest context:
+    BHVExample *example = [[BHVExample alloc] init];
+    [deepest addNode:example];
+    
+    // In order to track the execution order, stub out -execute to add the hook index to an array:
+    NSMutableArray *executionOrder = [NSMutableArray array];
+    [hooks enumerateObjectsUsingBlock:^(id hook, NSUInteger idx, BOOL *stop) {
+        [[[hook stub] andDo:^(NSInvocation *invocation) { [executionOrder addObject:@(idx)]; NSLog(@"Log execution of hook at index %d", idx); }] execute];
+    }];
+    
+    // Set the example block to stop adding executions to the array when invoked:
+    example.block = ^{
+        [hooks enumerateObjectsUsingBlock:^(id hook, NSUInteger idx, BOOL *stop) {
+            [hook stop];
         }];
     };
-    [example setBlock:block];
     
     // Execute the example:
     [example execute];
     
-    // Verify that all hooks were executed before the block:
-    [executedBeforeBlock enumerateObjectsUsingBlock:^(NSNumber *executed, NSUInteger idx, BOOL *stop) {
-        [[executed should] beTrue];
+    // Verify that all hooks have the example set:
+    [hooks enumerateObjectsUsingBlock:^(BHVHook *hook, NSUInteger idx, BOOL *stop) {
+        [[[hook example] should] beIdenticalTo:example];
+    }];
+    
+    // Verify that the hooks were executed in order:
+    [executionOrder enumerateObjectsUsingBlock:^(NSNumber *index, NSUInteger i, BOOL *stop) {
+        [[index should] beEqualTo:@(i)];
     }];
 }
 
 - (void)test_Execution_ExecutesHooksAgainOnceBlockHasBeenInvoked
 {
     // Create some contexts, each with a few hooks, and the deepest with one example:
-    NSMutableArray *contexts = [NSMutableArray array];
+    BHVContext *topMost = [[BHVContext alloc] init], *deepest;
     NSMutableArray *hooks = [NSMutableArray array];
-    BHVExample *example = [[BHVExample alloc] init];
-    for (NSUInteger i = 0; i < 10; i ++) {
-        // Create a context:
-        contexts[i] = [[BHVContext alloc] init];
-        
-        // Add a hook:
-        hooks[i] = [[BHVTestHook alloc] init];
-        [contexts[i] addNode:hooks[i]];
-        
-        // Add the context to the previous context:
-        if (i > 0) [contexts[i] addNode:contexts[i - 1]];
-        
-        // If at the deepest context, add the example:
-        if (i == 9) [contexts[i] addNode:example];
-    }
-    
-    // The example block resets the hooks `executed` status:
-    void(^block)(void) = ^{
-        [hooks enumerateObjectsUsingBlock:^(BHVHook *hook, NSUInteger idx, BOOL *stop) {
-            [hook setExecuted:NO];
-        }];
+    BHVContext *(^addContext)(BHVContext *parent) = ^(BHVContext *parent) {
+        BHVContext *context = [[BHVContext alloc] init];
+        BHVHook *hook = [OCMockObject partialMockForObject:[BHVHook new]];
+        [context addNode:hook];
+        [hooks addObject:hook];
+        [parent addNode:context];
+        return context;
     };
-    [example setBlock:block];
+    for (NSUInteger i = 0; i < 10; i ++) deepest = addContext(topMost);
+    
+    // Add an example to the deepest context:
+    BHVExample *example = [[BHVExample alloc] init];
+    [deepest addNode:example];
+    
+    // In order to track the execution order, stub out -execute to add the hook index to an array:
+    NSMutableArray *executionOrder = [NSMutableArray array];
+    [hooks enumerateObjectsUsingBlock:^(id hook, NSUInteger idx, BOOL *stop) {
+        [[[hook stub] andDo:^(NSInvocation *invocation) { [executionOrder addObject:@(idx)]; }] execute];
+    }];
+    
+    // Set the example block to remove all executions so far, leaving us with only the hooks that will be executed occur post-example-execution:
+    example.block = ^{ [executionOrder removeAllObjects]; };
     
     // Execute the example:
     [example execute];
     
-    // Verify that all hooks were executed, even after they were reset in the block:
+    // Verify that all hooks have the example set:
     [hooks enumerateObjectsUsingBlock:^(BHVHook *hook, NSUInteger idx, BOOL *stop) {
-        [[hook should] beExecuted];
+        [[[hook example] should] beIdenticalTo:example];
+    }];
+    
+    // Verify that the hooks were executed in reverse order:
+    [executionOrder enumerateObjectsUsingBlock:^(NSNumber *index, NSUInteger i, BOOL *stop) {
+        [[index should] beEqualTo:@(9 - i)];
     }];
 }
 

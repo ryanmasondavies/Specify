@@ -23,8 +23,9 @@ typedef NS_ENUM(NSInteger, BHVHookFrequency) {
  `frequency` is set to either "all" or "each", indicating __how often__ the hook is executed in relation to examples.
  */
 
-@interface BHVHook : BHVExecutableNode
+@interface BHVHook : BHVExecutableNode <BHVNodeVisitor>
 @property (nonatomic, strong) BHVExample *example;
 @property (nonatomic) BHVHookPosition position;
 @property (nonatomic) BHVHookFrequency frequency;
+- (id)initWithPosition:(BHVHookPosition)position frequency:(BHVHookFrequency)frequency;
 @end
