@@ -36,10 +36,6 @@
     [[self accumulatedExamples] addObject:example];
 }
 
-- (void)visitHook:(BHVHook *)hook
-{
-}
-
 - (void)addNode:(BHVNode *)node
 {
     [[self nodes] addObject:node];

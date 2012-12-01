@@ -14,17 +14,13 @@
 
 - (void)accept:(id <BHVNodeVisitor>)visitor
 {
-    [visitor visitExample:self];
+    if ([visitor respondsToSelector:@selector(visitExample:)]) [visitor visitExample:self];
 }
 
 - (void)visitHook:(BHVHook *)hook
 {
     [hook setExample:self];
     [hook execute];
-}
-
-- (void)visitExample:(BHVExample *)example
-{
 }
 
 - (void)execute

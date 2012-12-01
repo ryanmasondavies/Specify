@@ -14,7 +14,7 @@
 
 - (void)accept:(id<BHVNodeVisitor>)visitor
 {
-    [visitor visitHook:self];
+    if ([visitor respondsToSelector:@selector(visitHook:)]) [visitor visitHook:self];
 }
 
 - (void)execute

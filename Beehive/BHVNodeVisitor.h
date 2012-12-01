@@ -10,6 +10,7 @@
 @class BHVHook, BHVExample;
 
 @protocol BHVNodeVisitor <NSObject>
+@optional
 
 - (void)visitHook:(BHVHook *)hook;
 - (void)visitExample:(BHVExample *)example;
