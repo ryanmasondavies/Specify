@@ -26,6 +26,11 @@
     [[self accumulatedHooks] addObject:hook];
 }
 
+- (BOOL)isExample
+{
+    return YES;
+}
+
 - (NSArray *)hooks
 {
     // Locate the top-most context:

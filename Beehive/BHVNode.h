@@ -14,6 +14,9 @@
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, weak) BHVContext *context;
 
+- (BOOL)isExample;
+- (BOOL)isHook;
+
 - (void)accept:(id <BHVNodeVisitor>)visitor;
 
 @end

@@ -7,6 +7,11 @@
 //
 
 #import "BHVSpec.h"
+@class BHVContext;
+
+NSArray * stackOfContexts(NSUInteger count);
+NSArray * examplesByAddingToContext(BHVContext *context, BOOL markAsExecuted);
+NSArray * hooksByAddingToContext(BHVContext *context);
 
 @interface BHVTestSpec1 : BHVSpec
 @end

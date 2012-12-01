@@ -7,6 +7,7 @@
 //
 
 #import "BHVHook.h"
+#import "BHVTestHelper.h"
 #import "BHVContext.h"
 #import "BHVExample.h"
 
@@ -16,27 +17,6 @@
 
 @interface BHVHookTests : SenTestCase
 @end
-
-NSArray * stackOfContexts(NSUInteger count)
-{
-    NSMutableArray *contexts = [NSMutableArray array];
-    for (NSUInteger i = 0; i < count; i ++) {
-        contexts[i] = [[BHVContext alloc] init];
-        if (i > 0) [contexts[i-1] addNode:contexts[i]];
-    }
-    return contexts;
-}
-
-NSArray * examplesByAddingToContext(BHVContext *context, BOOL markAsExecuted)
-{
-    NSMutableArray *examples = [NSMutableArray array];
-    for (NSUInteger i = 0; i < 10; i ++) {
-        examples[i] = [[BHVExample alloc] init];
-        [examples[i] setExecuted:markAsExecuted];
-        [context addNode:examples[i]];
-    }
-    return examples;
-};
 
 @implementation BHVHookTests
 

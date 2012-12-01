@@ -16,6 +16,16 @@
     return @""; // Never return nil.
 }
 
+- (BOOL)isExample
+{
+    return NO;
+}
+
+- (BOOL)isHook
+{
+    return NO;
+}
+
 - (void)accept:(id <BHVNodeVisitor>)visitor
 {
 }

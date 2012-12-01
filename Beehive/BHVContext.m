@@ -10,7 +10,6 @@
 
 @interface BHVContext ()
 @property (nonatomic, strong) NSMutableArray *nodes;
-@property (nonatomic, strong) NSMutableArray *accumulatedExamples;
 @end
 
 @implementation BHVContext
@@ -20,7 +19,6 @@
     self = [super init];
     if (self) {
         self.nodes = [NSMutableArray array];
-        self.accumulatedExamples = [NSMutableArray array];
     }
     
     return self;
@@ -29,11 +27,6 @@
 - (void)accept:(id <BHVNodeVisitor>)visitor
 {
     [[self nodes] makeObjectsPerformSelector:@selector(accept:) withObject:visitor];
-}
-
-- (void)visitExample:(BHVExample *)example
-{
-    [[self accumulatedExamples] addObject:example];
 }
 
 - (void)addNode:(BHVNode *)node
@@ -49,9 +42,32 @@
 
 - (NSArray *)examples
 {
-    [[self accumulatedExamples] removeAllObjects];
-    [self accept:self];
-    return [NSArray arrayWithArray:[self accumulatedExamples]];
+    NSMutableArray *examples = [NSMutableArray array];
+    [[self nodes] enumerateObjectsUsingBlock:^(BHVNode *node, NSUInteger idx, BOOL *stop) {
+        if ([node isExample]) [examples addObject:node];
+    }];
+    
+    return [NSArray arrayWithArray:examples];
+}
+
+- (NSArray *)allExamples
+{
+    return [[self examples] arrayByAddingObjectsFromArray:[[self context] examples]];
+}
+
+- (NSArray *)hooks
+{
+    NSMutableArray *examples = [NSMutableArray array];
+    [[self nodes] enumerateObjectsUsingBlock:^(BHVNode *node, NSUInteger idx, BOOL *stop) {
+        if ([node isHook]) [examples addObject:node];
+    }];
+    
+    return [NSArray arrayWithArray:examples];
+}
+
+- (NSArray *)allHooks
+{
+    return [[self hooks] arrayByAddingObjectsFromArray:[[self context] hooks]];
 }
 
 @end

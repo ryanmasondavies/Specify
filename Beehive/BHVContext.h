@@ -8,11 +8,15 @@
 
 #import "BHVNode.h"
 
-@interface BHVContext : BHVNode <BHVNodeVisitor>
+@interface BHVContext : BHVNode
 
 - (void)addNode:(BHVNode *)node;
 - (BHVNode *)nodeAtIndex:(NSUInteger)index;
 
 - (NSArray *)examples;
+- (NSArray *)allExamples;
+
+- (NSArray *)hooks;
+- (NSArray *)allHooks;
 
 @end

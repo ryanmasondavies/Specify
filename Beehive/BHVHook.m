@@ -25,6 +25,11 @@
     return self;
 }
 
+- (BOOL)isHook
+{
+    return YES;
+}
+
 - (void)accept:(id<BHVNodeVisitor>)visitor
 {
     if ([visitor respondsToSelector:@selector(visitHook:)]) [visitor visitHook:self];
