@@ -23,8 +23,6 @@
 		948539E016514CA40010BF54 /* libBeehive.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94ED2B7F1649A0A400D59570 /* libBeehive.a */; };
 		948539E91651531C0010BF54 /* BHVInvocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 948539E81651531C0010BF54 /* BHVInvocation.m */; };
 		94A5D21E1666938D00CFDAC3 /* BHVExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A5D21D1666938D00CFDAC3 /* BHVExampleTests.m */; };
-		94A5D222166695FD00CFDAC3 /* BHVExampleAccumulatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A5D221166695FD00CFDAC3 /* BHVExampleAccumulatorTests.m */; };
-		94A5D2251666C13400CFDAC3 /* BHVExampleAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A5D2241666C13400CFDAC3 /* BHVExampleAccumulator.m */; };
 		94D97ABA165D28C600282ABE /* BHVStructureSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 947C46AA165566DC0071139E /* BHVStructureSpec.m */; };
 		94D97B86165D494700282ABE /* BHVTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D97B85165D494700282ABE /* BHVTestHelper.m */; };
 		94E8DE101667F9CB00C8CAA2 /* BHVHooksSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E8DE0F1667F9CB00C8CAA2 /* BHVHooksSpec.m */; };
@@ -102,9 +100,6 @@
 		948539E71651531C0010BF54 /* BHVInvocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVInvocation.h; sourceTree = "<group>"; };
 		948539E81651531C0010BF54 /* BHVInvocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVInvocation.m; sourceTree = "<group>"; };
 		94A5D21D1666938D00CFDAC3 /* BHVExampleTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVExampleTests.m; sourceTree = "<group>"; };
-		94A5D221166695FD00CFDAC3 /* BHVExampleAccumulatorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVExampleAccumulatorTests.m; sourceTree = "<group>"; };
-		94A5D2231666C13400CFDAC3 /* BHVExampleAccumulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVExampleAccumulator.h; sourceTree = "<group>"; };
-		94A5D2241666C13400CFDAC3 /* BHVExampleAccumulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVExampleAccumulator.m; sourceTree = "<group>"; };
 		94A5D2261666C26B00CFDAC3 /* BHVNodeVisitor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BHVNodeVisitor.h; sourceTree = "<group>"; };
 		94D97B84165D494700282ABE /* BHVTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVTestHelper.h; sourceTree = "<group>"; };
 		94D97B85165D494700282ABE /* BHVTestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVTestHelper.m; sourceTree = "<group>"; };
@@ -240,8 +235,6 @@
 				94E8DE1C1667FC3B00C8CAA2 /* BHVHook.m */,
 				9403759E166571AB008332F9 /* BHVExample.h */,
 				9403759F166571AB008332F9 /* BHVExample.m */,
-				94A5D2231666C13400CFDAC3 /* BHVExampleAccumulator.h */,
-				94A5D2241666C13400CFDAC3 /* BHVExampleAccumulator.m */,
 				94221BC41668EA100030BB99 /* BHVDSL.h */,
 				94221BC51668EA100030BB99 /* BHVDSL.m */,
 				94ED2B851649A0A400D59570 /* Supporting Files */,
@@ -266,7 +259,6 @@
 				94221BCB1668F6A40030BB99 /* BHVContextTests.m */,
 				943D7383166806D20081863B /* BHVHookTests.m */,
 				94A5D21D1666938D00CFDAC3 /* BHVExampleTests.m */,
-				94A5D221166695FD00CFDAC3 /* BHVExampleAccumulatorTests.m */,
 				94221BC81668EA1B0030BB99 /* BHVDSLTests.m */,
 				94F1168E16542063003DCD0C /* Supporting Files */,
 			);
@@ -467,7 +459,6 @@
 				9403759A16656CC0008332F9 /* BHVNode.m in Sources */,
 				9403759D166570E7008332F9 /* BHVContext.m in Sources */,
 				940375A0166571AB008332F9 /* BHVExample.m in Sources */,
-				94A5D2251666C13400CFDAC3 /* BHVExampleAccumulator.m in Sources */,
 				94E8DE1D1667FC3B00C8CAA2 /* BHVHook.m in Sources */,
 				94117FB41668D03500A8EA0E /* BHVExecutableNode.m in Sources */,
 				94221BC61668EA100030BB99 /* BHVDSL.m in Sources */,
@@ -483,7 +474,6 @@
 				94F1168C1654205C003DCD0C /* BHVSuiteTests.m in Sources */,
 				94D97B86165D494700282ABE /* BHVTestHelper.m in Sources */,
 				94A5D21E1666938D00CFDAC3 /* BHVExampleTests.m in Sources */,
-				94A5D222166695FD00CFDAC3 /* BHVExampleAccumulatorTests.m in Sources */,
 				943D7384166806D20081863B /* BHVHookTests.m in Sources */,
 				94221BC91668EA1B0030BB99 /* BHVDSLTests.m in Sources */,
 				94221BCC1668F6A40030BB99 /* BHVContextTests.m in Sources */,
