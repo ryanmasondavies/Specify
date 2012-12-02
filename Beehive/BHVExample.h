@@ -8,7 +8,7 @@
 
 #import "BHVExecutableNode.h"
 
-@interface BHVExample : BHVExecutableNode <BHVNodeVisitor>
+@interface BHVExample : BHVExecutableNode
 
 - (NSString *)fullName;
 

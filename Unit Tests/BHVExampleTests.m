@@ -79,16 +79,17 @@
     [deepest addNode:example];
     
     // In order to track the execution order, stub out -execute to add the hook index to an array:
+    __block BOOL blockInvoked = NO;
     NSMutableArray *executionOrder = [NSMutableArray array];
     [hooks enumerateObjectsUsingBlock:^(id hook, NSUInteger idx, BOOL *stop) {
-        [[[hook stub] andDo:^(NSInvocation *invocation) { [executionOrder addObject:@(idx)]; NSLog(@"Log execution of hook at index %d", idx); }] execute];
+        [[[hook stub] andDo:^(NSInvocation *invocation) {
+            if (blockInvoked == NO) [executionOrder addObject:@(idx)];
+        }] execute];
     }];
     
     // Set the example block to stop adding executions to the array when invoked:
     example.block = ^{
-        [hooks enumerateObjectsUsingBlock:^(id hook, NSUInteger idx, BOOL *stop) {
-            [hook stop];
-        }];
+        blockInvoked = YES;
     };
     
     // Execute the example:

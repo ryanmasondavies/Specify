@@ -10,10 +10,6 @@
 #import "BHVContext.h"
 #import "BHVHook.h"
 
-@interface BHVExample ()
-@property (nonatomic, strong) NSMutableArray *accumulatedHooks;
-@end
-
 @implementation BHVExample
 
 - (void)accept:(id <BHVNodeVisitor>)visitor
@@ -21,34 +17,19 @@
     if ([visitor respondsToSelector:@selector(visitExample:)]) [visitor visitExample:self];
 }
 
-- (void)visitHook:(BHVHook *)hook
-{
-    [[self accumulatedHooks] addObject:hook];
-}
-
 - (BOOL)isExample
 {
     return YES;
 }
 
-- (NSArray *)hooks
+- (void)execute
 {
-    // Locate the top-most context:
+    // Gather hooks:
     BHVContext *topMostContext = [self context];
     while (([topMostContext context]) != nil) topMostContext = [topMostContext context];
     
-    // Gather hooks:
-    self.accumulatedHooks = [NSMutableArray array];
-    [topMostContext accept:self];
-    
-    // Success!
-    return [self accumulatedHooks];
-}
-
-- (void)execute
-{
     // Execute hooks:
-    NSArray *hooks = [self hooks];
+    NSArray *hooks = [topMostContext hooks];
     [hooks makeObjectsPerformSelector:@selector(setExample:) withObject:self];
     [hooks makeObjectsPerformSelector:@selector(execute)];
     
