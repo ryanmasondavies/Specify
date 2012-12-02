@@ -7,6 +7,7 @@
 //
 
 #import "BHVExecutableNode.h"
+@class BHVExample;
 
 typedef NS_ENUM(NSInteger, BHVHookPosition) {
     BHVHookPositionBefore,

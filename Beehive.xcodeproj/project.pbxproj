@@ -103,7 +103,6 @@
 		948539E71651531C0010BF54 /* BHVInvocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVInvocation.h; sourceTree = "<group>"; };
 		948539E81651531C0010BF54 /* BHVInvocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVInvocation.m; sourceTree = "<group>"; };
 		94A5D21D1666938D00CFDAC3 /* BHVExampleTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVExampleTests.m; sourceTree = "<group>"; };
-		94A5D2261666C26B00CFDAC3 /* BHVNodeVisitor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BHVNodeVisitor.h; sourceTree = "<group>"; };
 		94D97B84165D494700282ABE /* BHVTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVTestHelper.h; sourceTree = "<group>"; };
 		94D97B85165D494700282ABE /* BHVTestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVTestHelper.m; sourceTree = "<group>"; };
 		94E8DE0F1667F9CB00C8CAA2 /* BHVBeforeEachSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVBeforeEachSpec.m; sourceTree = "<group>"; };
@@ -233,7 +232,6 @@
 				94F001EC1650236400865938 /* BHVSuite.m */,
 				948539E71651531C0010BF54 /* BHVInvocation.h */,
 				948539E81651531C0010BF54 /* BHVInvocation.m */,
-				94A5D2261666C26B00CFDAC3 /* BHVNodeVisitor.h */,
 				9403759816656CC0008332F9 /* BHVNode.h */,
 				9403759916656CC0008332F9 /* BHVNode.m */,
 				9403759B166570E6008332F9 /* BHVContext.h */,

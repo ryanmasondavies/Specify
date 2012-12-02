@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BHVNodeVisitor.h"
 @class BHVContext;
 
 @interface BHVNode : NSObject
@@ -17,7 +16,5 @@
 - (BOOL)isContext;
 - (BOOL)isExample;
 - (BOOL)isHook;
-
-- (void)accept:(id <BHVNodeVisitor>)visitor;
 
 @end

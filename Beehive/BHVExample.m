@@ -12,11 +12,6 @@
 
 @implementation BHVExample
 
-- (void)accept:(id <BHVNodeVisitor>)visitor
-{
-    if ([visitor respondsToSelector:@selector(visitExample:)]) [visitor visitExample:self];
-}
-
 - (BOOL)isExample
 {
     return YES;

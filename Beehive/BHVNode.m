@@ -31,8 +31,4 @@
     return NO;
 }
 
-- (void)accept:(id <BHVNodeVisitor>)visitor
-{
-}
-
 @end

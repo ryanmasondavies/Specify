@@ -29,11 +29,6 @@
     return YES;
 }
 
-- (void)accept:(id <BHVNodeVisitor>)visitor
-{
-    [[self nodes] makeObjectsPerformSelector:@selector(accept:) withObject:visitor];
-}
-
 - (void)addNode:(BHVNode *)node
 {
     [[self nodes] addObject:node];
