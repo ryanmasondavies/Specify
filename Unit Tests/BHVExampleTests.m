@@ -95,6 +95,9 @@
     // Execute the example:
     [example execute];
     
+    // Verify that 10 executions were recorded:
+    [[@([executionOrder count]) should] beEqualTo:@10];
+    
     // Verify that all hooks have the example set:
     [hooks enumerateObjectsUsingBlock:^(BHVHook *hook, NSUInteger idx, BOOL *stop) {
         [[[hook example] should] beIdenticalTo:example];
@@ -136,6 +139,9 @@
     
     // Execute the example:
     [example execute];
+    
+    // Verify that 10 executions were recorded:
+    [[@([executionOrder count]) should] beEqualTo:@10];
     
     // Verify that all hooks have the example set:
     [hooks enumerateObjectsUsingBlock:^(BHVHook *hook, NSUInteger idx, BOOL *stop) {

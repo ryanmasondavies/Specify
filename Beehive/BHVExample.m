@@ -24,7 +24,7 @@
     while (([topMostContext context]) != nil) topMostContext = [topMostContext context];
     
     // Execute hooks:
-    NSArray *hooks = [topMostContext hooks];
+    NSArray *hooks = [topMostContext allHooks];
     [hooks makeObjectsPerformSelector:@selector(setExample:) withObject:self];
     [hooks makeObjectsPerformSelector:@selector(execute)];
     
