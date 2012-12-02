@@ -16,6 +16,11 @@
     return @""; // Never return nil.
 }
 
+- (BOOL)isContext
+{
+    return NO;
+}
+
 - (BOOL)isExample
 {
     return NO;

@@ -31,8 +31,10 @@
     }
     
     // Verify that the context returns its examples:
-    [[context examples] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [[obj should] beEqualTo:examples[idx]];
+    NSArray *results = [context examples];
+    [[@([results count]) should] beEqualTo:@([examples count])];
+    [examples enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [[obj should] beEqualTo:results[idx]];
     }];
 }
 
@@ -53,8 +55,10 @@
     }
     
     // Verify that the context returns only the top examples:
-    [[contexts[0] examples] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [[obj should] beEqualTo:topExamples[idx]];
+    NSArray *results = [contexts[0] examples];
+    [[@([results count]) should] beEqualTo:@([topExamples count])];
+    [topExamples enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [[obj should] beEqualTo:results[idx]];
     }];
 }
 
@@ -71,8 +75,10 @@
     }
     
     // Verify that the context returns its examples:
-    [[context allExamples] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [[obj should] beEqualTo:examples[idx]];
+    NSArray *results = [context allExamples];
+    [[@([results count]) should] beEqualTo:@([examples count])];
+    [examples enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [[obj should] beEqualTo:results[idx]];
     }];
 }
 
@@ -98,8 +104,10 @@
     [examples addObjectsFromArray:bottomExamples];
     
     // Verify that the context returns its examples:
-    [[contexts[0] allExamples] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [[obj should] beEqualTo:examples[idx]];
+    NSArray *results = [contexts[0] allExamples];
+    [[@([results count]) should] beEqualTo:@([examples count])];
+    [examples enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [[obj should] beEqualTo:results[idx]];
     }];
 }
 
@@ -118,8 +126,10 @@
     }
     
     // Verify that the context returns its hooks:
-    [[context hooks] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [[obj should] beEqualTo:hooks[idx]];
+    NSArray *results = [context hooks];
+    [[@([results count]) should] beEqualTo:@([hooks count])];
+    [hooks enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [[obj should] beEqualTo:results[idx]];
     }];
 }
 
@@ -140,8 +150,10 @@
     }
     
     // Verify that the context returns only the top hooks:
-    [[contexts[0] hooks] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [[obj should] beEqualTo:topHooks[idx]];
+    NSArray *results = [contexts[0] hooks];
+    [[@([results count]) should] beEqualTo:@([topHooks count])];
+    [topHooks enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [[obj should] beEqualTo:results[idx]];
     }];
 }
 
@@ -158,8 +170,10 @@
     }
     
     // Verify that the context returns its hooks:
-    [[context allHooks] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [[obj should] beEqualTo:hooks[idx]];
+    NSArray *results = [context allHooks];
+    [[@([results count]) should] beEqualTo:@([hooks count])];
+    [hooks enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [[obj should] beEqualTo:results[idx]];
     }];
 }
 
@@ -184,9 +198,11 @@
     [hooks addObjectsFromArray:middleHooks];
     [hooks addObjectsFromArray:bottomHooks];
     
-    // Verify that the context returns its examples:
-    [[contexts[0] allHooks] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [[obj should] beEqualTo:hooks[idx]];
+    // Verify that the context returns its hooks:
+    NSArray *results = [contexts[0] allHooks];
+    [[@([results count]) should] beEqualTo:@([hooks count])];
+    [hooks enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [[obj should] beEqualTo:results[idx]];
     }];
 }
 

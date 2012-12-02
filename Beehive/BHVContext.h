@@ -13,6 +13,8 @@
 - (void)addNode:(BHVNode *)node;
 - (BHVNode *)nodeAtIndex:(NSUInteger)index;
 
+- (NSArray *)contexts;
+
 - (NSArray *)examples;
 - (NSArray *)allExamples;
 

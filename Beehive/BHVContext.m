@@ -24,6 +24,11 @@
     return self;
 }
 
+- (BOOL)isContext
+{
+    return YES;
+}
+
 - (void)accept:(id <BHVNodeVisitor>)visitor
 {
     [[self nodes] makeObjectsPerformSelector:@selector(accept:) withObject:visitor];
@@ -40,6 +45,16 @@
     return [[self nodes] objectAtIndex:index];
 }
 
+- (NSArray *)contexts
+{
+    NSMutableArray *contexts = [NSMutableArray array];
+    [[self nodes] enumerateObjectsUsingBlock:^(BHVNode *node, NSUInteger idx, BOOL *stop) {
+        if ([node isContext]) [contexts addObject:node];
+    }];
+    
+    return [NSArray arrayWithArray:contexts];
+}
+
 - (NSArray *)examples
 {
     NSMutableArray *examples = [NSMutableArray array];
@@ -52,7 +67,11 @@
 
 - (NSArray *)allExamples
 {
-    return [[self examples] arrayByAddingObjectsFromArray:[[self context] examples]];
+    NSMutableArray *examples = [NSMutableArray arrayWithArray:[self examples]];
+    [[self contexts] enumerateObjectsUsingBlock:^(BHVContext *context, NSUInteger idx, BOOL *stop) {
+        [examples addObjectsFromArray:[context allExamples]];
+    }];
+    return [NSArray arrayWithArray:examples];
 }
 
 - (NSArray *)hooks
@@ -67,7 +86,11 @@
 
 - (NSArray *)allHooks
 {
-    return [[self hooks] arrayByAddingObjectsFromArray:[[self context] hooks]];
+    NSMutableArray *hooks = [NSMutableArray arrayWithArray:[self hooks]];
+    [[self contexts] enumerateObjectsUsingBlock:^(BHVContext *context, NSUInteger idx, BOOL *stop) {
+        [hooks addObjectsFromArray:[context allHooks]];
+    }];
+    return [NSArray arrayWithArray:hooks];
 }
 
 @end

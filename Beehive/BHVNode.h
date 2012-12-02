@@ -14,6 +14,7 @@
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, weak) BHVContext *context;
 
+- (BOOL)isContext;
 - (BOOL)isExample;
 - (BOOL)isHook;
 
