@@ -52,7 +52,7 @@ Class recordedSpec = nil;
     [BHVSpec resetSuites];
 }
 
-- (void)testReturnsInvocationsThatExecuteExamples
+- (void)testReturnsInvocationsForExamplesInForwardOrder
 {
     // Create a stack of contexts, each with a bunch of examples:
     NSArray *contexts = stackOfContexts(10);
@@ -62,13 +62,15 @@ Class recordedSpec = nil;
     // Add top context to the suite:
     [[BHVTestSpec1 suite] addNode:contexts[0]];
     
-    // Invoke all test invocations:
+    // Retrieve test invocations:
     NSArray *invocations = [BHVTestSpec1 testInvocations];
-    [invocations makeObjectsPerformSelector:@selector(invoke)];
     
-    // Verify that all examples have been executed:
-    [examples enumerateObjectsUsingBlock:^(BHVExample *example, NSUInteger idx, BOOL *stop) {
-        [[example should] beExecuted];
+    // Verify that there are 100 invocations:
+    [[@([invocations count]) should] beEqualTo:@100];
+    
+    // Verify that invocation examples are in forward order:
+    [invocations enumerateObjectsUsingBlock:^(BHVInvocation *invocation, NSUInteger idx, BOOL *stop) {
+        [[[invocation example] should] beIdenticalTo:examples[idx]];
     }];
 }
 
