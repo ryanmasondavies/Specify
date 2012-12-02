@@ -54,12 +54,13 @@ Class recordedSpec = nil;
 
 - (void)testReturnsInvocationsThatExecuteExamples
 {
-    // Create examples and add them to the suite:
+    // Create a stack of contexts, each with a bunch of examples:
+    NSArray *contexts = stackOfContexts(10);
     NSMutableArray *examples = [NSMutableArray array];
-    for (NSUInteger i = 0; i < 10; i ++) {
-        examples[i] = [[BHVExample alloc] init];
-        [[BHVTestSpec1 suite] addNode:examples[i]];
-    }
+    for (NSUInteger i = 0; i < 10; i ++) [examples addObjectsFromArray:examplesByAddingToContext(contexts[i], NO)];
+    
+    // Add top context to the suite:
+    [[BHVTestSpec1 suite] addNode:contexts[0]];
     
     // Invoke all test invocations:
     NSArray *invocations = [BHVTestSpec1 testInvocations];

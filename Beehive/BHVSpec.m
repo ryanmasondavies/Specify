@@ -32,7 +32,7 @@
 + (NSArray *)testInvocations
 {
     // Collect the examples in the suite:
-    NSArray *examples = [[self suite] examples];
+    NSArray *examples = [[self suite] allExamples];
     
     // Create an invocation for each example:
     NSMutableArray *invocations = [NSMutableArray array];
