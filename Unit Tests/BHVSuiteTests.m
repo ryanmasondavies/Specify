@@ -7,14 +7,29 @@
 //
 
 #import "BHVSuite.h"
-#import "BHVNode.h"
+#import "BHVHook.h"
 #import "BHVContext.h"
 #import "BHVExample.h"
 
 @interface BHVSuiteTests : SenTestCase
+@property (nonatomic, strong) NSMutableArray *examples;
+@property (nonatomic, strong) NSMutableArray *hooks;
 @end
 
 @implementation BHVSuiteTests
+
+- (void)setUp
+{
+    // Create a set of examples:
+    self.examples = [NSMutableArray array];
+    for (NSUInteger i = 0; i < 11; i ++) self.examples[i] = [BHVExample new];
+    
+    // Create a set of hooks:
+    self.hooks = [NSMutableArray array];
+    for (NSUInteger i = 0; i < 11; i ++) self.hooks[i] = [BHVHook new];
+}
+
+#pragma mark - Context stack
 
 - (void)testAddsNodes
 {
@@ -58,47 +73,6 @@
     [[[contexts[1] nodeAtIndex:0] should] beEqualTo:nodes[0]];
     [[[contexts[0] nodeAtIndex:0] should] beEqualTo:nodes[1]];
     [[[suite nodeAtIndex:0] should] beEqualTo:nodes[2]];
-}
-
-- (void)testReturnsExamples
-{
-    // Build a bunch of examples and nodes:
-    NSMutableArray *examples = [NSMutableArray arrayWithCapacity:5];
-    for (NSUInteger i = 0; i < 5; i ++) examples[i] = [BHVExample new];
-    
-    // Build a suite using the created examples and nodes:
-    BHVSuite *suite = [[BHVSuite alloc] init];
-    for (NSUInteger i = 0; i < 5; i ++) {
-        [suite addNode:examples[i]];
-        [suite addNode:[BHVNode new]];
-    }
-    
-    // Verify that the nodes consist only of examples, and are in order of creation:
-    [[suite examples] enumerateObjectsUsingBlock:^(BHVExample *example, NSUInteger i, BOOL *stop) {
-        [[example should] beEqualTo:examples[i]];
-    }];
-}
-
-- (void)testReturnsNestedExamples
-{
-    // Build a bunch of contexts, nodes and examples in a suite:
-    BHVSuite *context = [[BHVSuite alloc] init];
-    NSMutableArray *examples = [NSMutableArray array];
-    BHVContext *(^addContext)(id composite) = ^(id composite) {
-        BHVContext *context = [[BHVContext alloc] init];
-        BHVExample *example = [[BHVExample alloc] init];
-        [context addNode:example];
-        [context addNode:[BHVNode new]];
-        [examples addObject:example];
-        [composite addNode:context];
-        return context;
-    };
-    addContext(addContext(addContext(context)));
-    
-    // Verify that the nodes consist only of examples, and are in order of creation:
-    [[context examples] enumerateObjectsUsingBlock:^(BHVExample *example, NSUInteger i, BOOL *stop) {
-        [[example should] beEqualTo:examples[i]];
-    }];
 }
 
 @end

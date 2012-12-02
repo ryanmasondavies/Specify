@@ -9,13 +9,10 @@
 #import "BHVNode.h"
 
 @interface BHVContext : BHVNode
+@property (nonatomic, strong) NSMutableArray *nodes;
 
 - (void)addNode:(BHVNode *)node;
-- (BHVNode *)nodeAtIndex:(NSUInteger)index;
-
-- (NSArray *)contexts;
-- (NSArray *)examples;
-- (NSArray *)hooks;
+- (id)nodeAtIndex:(NSUInteger)index;
 
 - (NSArray *)allExamples;
 - (NSArray *)allHooks;

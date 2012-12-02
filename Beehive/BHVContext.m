@@ -8,19 +8,11 @@
 
 #import "BHVContext.h"
 
-@interface BHVContext ()
-@property (nonatomic, strong) NSMutableArray *nodes;
-@end
-
 @implementation BHVContext
 
 - (id)init
 {
-    self = [super init];
-    if (self) {
-        self.nodes = [NSMutableArray array];
-    }
-    
+    if (self = [super init]) self.nodes = [NSMutableArray array];
     return self;
 }
 
@@ -35,55 +27,31 @@
     [node setContext:self];
 }
 
-- (BHVNode *)nodeAtIndex:(NSUInteger)index
+- (id)nodeAtIndex:(NSUInteger)index
 {
     return [[self nodes] objectAtIndex:index];
 }
 
-- (NSArray *)contexts
-{
-    NSMutableArray *contexts = [NSMutableArray array];
-    [[self nodes] enumerateObjectsUsingBlock:^(BHVNode *node, NSUInteger idx, BOOL *stop) {
-        if ([node isContext]) [contexts addObject:node];
-    }];
-    
-    return [NSArray arrayWithArray:contexts];
-}
-
-- (NSArray *)examples
-{
-    NSMutableArray *examples = [NSMutableArray array];
-    [[self nodes] enumerateObjectsUsingBlock:^(BHVNode *node, NSUInteger idx, BOOL *stop) {
-        if ([node isExample]) [examples addObject:node];
-    }];
-    
-    return [NSArray arrayWithArray:examples];
-}
-
-- (NSArray *)hooks
-{
-    NSMutableArray *examples = [NSMutableArray array];
-    [[self nodes] enumerateObjectsUsingBlock:^(BHVNode *node, NSUInteger idx, BOOL *stop) {
-        if ([node isHook]) [examples addObject:node];
-    }];
-    
-    return [NSArray arrayWithArray:examples];
-}
-
 - (NSArray *)allExamples
 {
-    NSMutableArray *examples = [NSMutableArray arrayWithArray:[self examples]];
-    [[self contexts] enumerateObjectsUsingBlock:^(BHVContext *context, NSUInteger idx, BOOL *stop) {
-        [examples addObjectsFromArray:[context allExamples]];
+    NSMutableArray *examples = [NSMutableArray array];
+    [[self nodes] enumerateObjectsUsingBlock:^(BHVNode *node, NSUInteger idx, BOOL *stop) {
+        if ([node isExample])
+            [examples addObject:node];
+        if ([node isContext])
+            [examples addObjectsFromArray:[(id)node allExamples]];
     }];
     return [NSArray arrayWithArray:examples];
 }
 
 - (NSArray *)allHooks
 {
-    NSMutableArray *hooks = [NSMutableArray arrayWithArray:[self hooks]];
-    [[self contexts] enumerateObjectsUsingBlock:^(BHVContext *context, NSUInteger idx, BOOL *stop) {
-        [hooks addObjectsFromArray:[context allHooks]];
+    NSMutableArray *hooks = [NSMutableArray array];
+    [[self nodes] enumerateObjectsUsingBlock:^(BHVNode *node, NSUInteger idx, BOOL *stop) {
+        if ([node isHook])
+            [hooks addObject:node];
+        if ([node isContext])
+            [hooks addObjectsFromArray:[(id)node allHooks]];
     }];
     return [NSArray arrayWithArray:hooks];
 }

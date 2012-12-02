@@ -14,18 +14,24 @@
 		94117FB41668D03500A8EA0E /* BHVExecutableNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 94117FB31668D03500A8EA0E /* BHVExecutableNode.m */; };
 		94221BC61668EA100030BB99 /* BHVDSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 94221BC51668EA100030BB99 /* BHVDSL.m */; };
 		94221BC91668EA1B0030BB99 /* BHVDSLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94221BC81668EA1B0030BB99 /* BHVDSLTests.m */; };
-		94221BCC1668F6A40030BB99 /* BHVContextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94221BCB1668F6A40030BB99 /* BHVContextTests.m */; };
 		94266FB5164EFA9B00BBC615 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94266FB4164EFA9B00BBC615 /* SenTestingKit.framework */; };
-		943D7384166806D20081863B /* BHVHookTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 943D7383166806D20081863B /* BHVHookTests.m */; };
 		947C4692165566850071139E /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94266FB4164EFA9B00BBC615 /* SenTestingKit.framework */; };
 		947C4695165566850071139E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94ED2B821649A0A400D59570 /* Foundation.framework */; };
 		947C46A4165566A90071139E /* libBeehive.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94ED2B7F1649A0A400D59570 /* libBeehive.a */; };
 		948539E016514CA40010BF54 /* libBeehive.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94ED2B7F1649A0A400D59570 /* libBeehive.a */; };
 		948539E91651531C0010BF54 /* BHVInvocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 948539E81651531C0010BF54 /* BHVInvocation.m */; };
-		94A5D21E1666938D00CFDAC3 /* BHVExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A5D21D1666938D00CFDAC3 /* BHVExampleTests.m */; };
+		9493D027166B9A6700C64495 /* BHVBeforeEachSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E8DE0F1667F9CB00C8CAA2 /* BHVBeforeEachSpec.m */; };
+		9493D028166BAC4F00C64495 /* BHVAfterEachSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F23D7B166AC87500ABAED9 /* BHVAfterEachSpec.m */; };
+		9493D029166BAC5700C64495 /* BHVBeforeAllSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F23D7E166AC89300ABAED9 /* BHVBeforeAllSpec.m */; };
+		9493D02A166BEBF000C64495 /* BHVContextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94221BCB1668F6A40030BB99 /* BHVContextTests.m */; };
+		9493D02B166BEF9100C64495 /* BHVHookTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 943D7383166806D20081863B /* BHVHookTests.m */; };
+		9493D02C166BEF9A00C64495 /* BHVSpecTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F1167F1654205C003DCD0C /* BHVSpecTests.m */; };
+		9493D02D166BF04800C64495 /* BHVSuiteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F116811654205C003DCD0C /* BHVSuiteTests.m */; };
+		9493D02E166BF04F00C64495 /* BHVExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94A5D21D1666938D00CFDAC3 /* BHVExampleTests.m */; };
+		9493D02F166BF05400C64495 /* BHVInvocationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F1167C1654205C003DCD0C /* BHVInvocationTests.m */; };
+		9493D030166BF90400C64495 /* BHVAfterAllSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F23D81166AC8AD00ABAED9 /* BHVAfterAllSpec.m */; };
 		94D97ABA165D28C600282ABE /* BHVStructureSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 947C46AA165566DC0071139E /* BHVStructureSpec.m */; };
 		94D97B86165D494700282ABE /* BHVTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D97B85165D494700282ABE /* BHVTestHelper.m */; };
-		94E8DE101667F9CB00C8CAA2 /* BHVBeforeEachSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E8DE0F1667F9CB00C8CAA2 /* BHVBeforeEachSpec.m */; };
 		94E8DE1D1667FC3B00C8CAA2 /* BHVHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E8DE1C1667FC3B00C8CAA2 /* BHVHook.m */; };
 		94ED2B831649A0A400D59570 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94ED2B821649A0A400D59570 /* Foundation.framework */; };
 		94ED2B881649A0A400D59570 /* Beehive.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 94ED2B871649A0A400D59570 /* Beehive.h */; };
@@ -33,12 +39,6 @@
 		94F001D7164FF58A00865938 /* BHVSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F001D6164FF58A00865938 /* BHVSpec.m */; };
 		94F001D8164FF5A700865938 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94266FB4164EFA9B00BBC615 /* SenTestingKit.framework */; };
 		94F001ED1650236400865938 /* BHVSuite.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F001EC1650236400865938 /* BHVSuite.m */; };
-		94F116871654205C003DCD0C /* BHVInvocationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F1167C1654205C003DCD0C /* BHVInvocationTests.m */; };
-		94F1168A1654205C003DCD0C /* BHVSpecTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F1167F1654205C003DCD0C /* BHVSpecTests.m */; };
-		94F1168C1654205C003DCD0C /* BHVSuiteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F116811654205C003DCD0C /* BHVSuiteTests.m */; };
-		94F23D7C166AC87500ABAED9 /* BHVAfterEachSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F23D7B166AC87500ABAED9 /* BHVAfterEachSpec.m */; };
-		94F23D7F166AC89300ABAED9 /* BHVBeforeAllSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F23D7E166AC89300ABAED9 /* BHVBeforeAllSpec.m */; };
-		94F23D82166AC8AD00ABAED9 /* BHVAfterAllSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F23D81166AC8AD00ABAED9 /* BHVAfterAllSpec.m */; };
 		D7AED3375DB946999D658841 /* libPods-Integrated Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C73FAFA800334CCCA0E5D34A /* libPods-Integrated Tests.a */; };
 /* End PBXBuildFile section */
 
@@ -452,10 +452,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				94D97ABA165D28C600282ABE /* BHVStructureSpec.m in Sources */,
-				94E8DE101667F9CB00C8CAA2 /* BHVBeforeEachSpec.m in Sources */,
-				94F23D7C166AC87500ABAED9 /* BHVAfterEachSpec.m in Sources */,
-				94F23D7F166AC89300ABAED9 /* BHVBeforeAllSpec.m in Sources */,
-				94F23D82166AC8AD00ABAED9 /* BHVAfterAllSpec.m in Sources */,
+				9493D027166B9A6700C64495 /* BHVBeforeEachSpec.m in Sources */,
+				9493D028166BAC4F00C64495 /* BHVAfterEachSpec.m in Sources */,
+				9493D029166BAC5700C64495 /* BHVBeforeAllSpec.m in Sources */,
+				9493D030166BF90400C64495 /* BHVAfterAllSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,14 +479,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94F116871654205C003DCD0C /* BHVInvocationTests.m in Sources */,
-				94F1168A1654205C003DCD0C /* BHVSpecTests.m in Sources */,
-				94F1168C1654205C003DCD0C /* BHVSuiteTests.m in Sources */,
 				94D97B86165D494700282ABE /* BHVTestHelper.m in Sources */,
-				94A5D21E1666938D00CFDAC3 /* BHVExampleTests.m in Sources */,
-				943D7384166806D20081863B /* BHVHookTests.m in Sources */,
 				94221BC91668EA1B0030BB99 /* BHVDSLTests.m in Sources */,
-				94221BCC1668F6A40030BB99 /* BHVContextTests.m in Sources */,
+				9493D02A166BEBF000C64495 /* BHVContextTests.m in Sources */,
+				9493D02B166BEF9100C64495 /* BHVHookTests.m in Sources */,
+				9493D02C166BEF9A00C64495 /* BHVSpecTests.m in Sources */,
+				9493D02D166BF04800C64495 /* BHVSuiteTests.m in Sources */,
+				9493D02E166BF04F00C64495 /* BHVExampleTests.m in Sources */,
+				9493D02F166BF05400C64495 /* BHVInvocationTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

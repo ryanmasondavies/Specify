@@ -7,7 +7,6 @@
 //
 
 #import "BHVHook.h"
-#import "BHVTestHelper.h"
 #import "BHVContext.h"
 #import "BHVExample.h"
 
@@ -52,9 +51,9 @@
 {
     // Create a stack of contexts with examples in each:
     NSArray *contexts = stackOfContexts(3);
-    examplesByAddingToContext(contexts[0], NO);
-    examplesByAddingToContext(contexts[1], NO);
-    NSArray *deepestExamples = examplesByAddingToContext(contexts[2], NO);
+    examplesByAddingToContext(contexts[0], 10, NO);
+    examplesByAddingToContext(contexts[1], 10, NO);
+    NSArray *deepestExamples = examplesByAddingToContext(contexts[2], 10,NO);
     
     // Put a hook in the middle context:
     BHVHook *hook = [[BHVHook alloc] initWithPosition:BHVHookPositionBefore frequency:BHVHookFrequencyEach];
@@ -72,9 +71,9 @@
 {
     // Create a stack of contexts with examples in each:
     NSArray *contexts = stackOfContexts(3);
-    examplesByAddingToContext(contexts[0], NO);
-    NSArray *middleExamples = examplesByAddingToContext(contexts[1], NO);
-    examplesByAddingToContext(contexts[2], NO);
+    examplesByAddingToContext(contexts[0], 10, NO);
+    NSArray *middleExamples = examplesByAddingToContext(contexts[1], 10, NO);
+    examplesByAddingToContext(contexts[2], 10, NO);
     
     // Put a hook in the middle context:
     BHVHook *hook = [[BHVHook alloc] initWithPosition:BHVHookPositionBefore frequency:BHVHookFrequencyEach];
@@ -102,9 +101,9 @@
 {
     // Create a stack of contexts with examples in each:
     NSArray *contexts = stackOfContexts(3);
-    examplesByAddingToContext(contexts[0], NO);
-    NSArray *middleExamples = examplesByAddingToContext(contexts[1], NO);
-    examplesByAddingToContext(contexts[2], NO);
+    examplesByAddingToContext(contexts[0], 10, NO);
+    NSArray *middleExamples = examplesByAddingToContext(contexts[1], 10, NO);
+    examplesByAddingToContext(contexts[2], 10, NO);
     
     // Put a hook in the deepest context:
     BHVHook *hook = [[BHVHook alloc] initWithPosition:BHVHookPositionBefore frequency:BHVHookFrequencyEach];
@@ -134,9 +133,9 @@
 {
     // Create a stack of contexts with examples in each:
     NSArray *contexts = stackOfContexts(3);
-    examplesByAddingToContext(contexts[0], YES);
-    examplesByAddingToContext(contexts[1], YES);
-    NSArray *deepestExamples = examplesByAddingToContext(contexts[2], YES);
+    examplesByAddingToContext(contexts[0], 10, YES);
+    examplesByAddingToContext(contexts[1], 10, YES);
+    NSArray *deepestExamples = examplesByAddingToContext(contexts[2], 10, YES);
     
     // Put a hook in the middle context:
     BHVHook *hook = [[BHVHook alloc] initWithPosition:BHVHookPositionAfter frequency:BHVHookFrequencyEach];
@@ -154,9 +153,9 @@
 {
     // Create a stack of contexts with examples in each:
     NSArray *contexts = stackOfContexts(3);
-    examplesByAddingToContext(contexts[0], YES);
-    NSArray *middleExamples = examplesByAddingToContext(contexts[1], YES);
-    examplesByAddingToContext(contexts[2], YES);
+    examplesByAddingToContext(contexts[0], 10, YES);
+    NSArray *middleExamples = examplesByAddingToContext(contexts[1], 10, YES);
+    examplesByAddingToContext(contexts[2], 10, YES);
     
     // Put a hook in the middle context:
     BHVHook *hook = [[BHVHook alloc] initWithPosition:BHVHookPositionAfter frequency:BHVHookFrequencyEach];
@@ -183,9 +182,9 @@
 {
     // Create a stack of contexts with examples in each:
     NSArray *contexts = stackOfContexts(3);
-    examplesByAddingToContext(contexts[0], YES);
-    NSArray *middleExamples = examplesByAddingToContext(contexts[1], YES);
-    examplesByAddingToContext(contexts[2], YES);
+    examplesByAddingToContext(contexts[0], 10, YES);
+    NSArray *middleExamples = examplesByAddingToContext(contexts[1], 10, YES);
+    examplesByAddingToContext(contexts[2], 10, YES);
     
     // Put a hook in the deepest context:
     BHVHook *hook = [[BHVHook alloc] initWithPosition:BHVHookPositionAfter frequency:BHVHookFrequencyEach];
@@ -205,9 +204,9 @@
 {
     // Create a stack of contexts with examples in each, with only those at the top level marked as executed:
     NSArray *contexts = stackOfContexts(3);
-    examplesByAddingToContext(contexts[0], YES);
-    NSArray *middleExamples = examplesByAddingToContext(contexts[1], NO);
-    examplesByAddingToContext(contexts[2], NO);
+    examplesByAddingToContext(contexts[0], 10, YES);
+    NSArray *middleExamples = examplesByAddingToContext(contexts[1], 10, NO);
+    examplesByAddingToContext(contexts[2], 10, NO);
     
     // Put a hook in the middle context:
     BHVHook *hook = [[BHVHook alloc] initWithPosition:BHVHookPositionBefore frequency:BHVHookFrequencyAll];
@@ -225,9 +224,9 @@
 {
     // Create a stack of contexts with examples in each:
     NSArray *contexts = stackOfContexts(3);
-    examplesByAddingToContext(contexts[0], NO);
-    examplesByAddingToContext(contexts[1], NO);
-    NSArray *deepestExamples = examplesByAddingToContext(contexts[2], NO);
+    examplesByAddingToContext(contexts[0], 10, NO);
+    examplesByAddingToContext(contexts[1], 10, NO);
+    NSArray *deepestExamples = examplesByAddingToContext(contexts[2], 10, NO);
     
     // Put a hook in the middle context:
     BHVHook *hook = [[BHVHook alloc] initWithPosition:BHVHookPositionBefore frequency:BHVHookFrequencyAll];
@@ -245,9 +244,9 @@
 {
     // Create a stack of contexts with examples in each:
     NSArray *contexts = stackOfContexts(3);
-    examplesByAddingToContext(contexts[0], NO);
-    NSArray *middleExamples = examplesByAddingToContext(contexts[1], NO);
-    examplesByAddingToContext(contexts[2], NO);
+    examplesByAddingToContext(contexts[0], 10, NO);
+    NSArray *middleExamples = examplesByAddingToContext(contexts[1], 10, NO);
+    examplesByAddingToContext(contexts[2], 10, NO);
     
     // Put a hook in the middle context:
     BHVHook *hook = [[BHVHook alloc] initWithPosition:BHVHookPositionBefore frequency:BHVHookFrequencyAll];
@@ -265,9 +264,9 @@
 {
     // Create a stack of contexts with examples in each, with the top two levels marked as executed:
     NSArray *contexts = stackOfContexts(3);
-    examplesByAddingToContext(contexts[0], YES);
-    NSArray *middleExamples = examplesByAddingToContext(contexts[1], YES);
-    examplesByAddingToContext(contexts[2], NO);
+    examplesByAddingToContext(contexts[0], 10, YES);
+    NSArray *middleExamples = examplesByAddingToContext(contexts[1], 10, YES);
+    examplesByAddingToContext(contexts[2], 10, NO);
     
     // Put a hook in the middle context:
     BHVHook *hook = [[BHVHook alloc] initWithPosition:BHVHookPositionBefore frequency:BHVHookFrequencyAll];
@@ -285,9 +284,9 @@
 {
     // Create a stack of contexts with examples in each, with the bottommost marked as executed:
     NSArray *contexts = stackOfContexts(3);
-    examplesByAddingToContext(contexts[0], NO);
-    NSArray *middleExamples = examplesByAddingToContext(contexts[1], NO);
-    examplesByAddingToContext(contexts[2], YES);
+    examplesByAddingToContext(contexts[0], 10, NO);
+    NSArray *middleExamples = examplesByAddingToContext(contexts[1], 10, NO);
+    examplesByAddingToContext(contexts[2], 10, YES);
     
     // Put a hook in the middle context:
     BHVHook *hook = [[BHVHook alloc] initWithPosition:BHVHookPositionBefore frequency:BHVHookFrequencyAll];
@@ -305,9 +304,9 @@
 {
     // Create a stack of contexts with examples in each:
     NSArray *contexts = stackOfContexts(3);
-    examplesByAddingToContext(contexts[0], NO);
-    NSArray *middleExamples = examplesByAddingToContext(contexts[1], NO);
-    examplesByAddingToContext(contexts[2], NO);
+    examplesByAddingToContext(contexts[0], 10, NO);
+    NSArray *middleExamples = examplesByAddingToContext(contexts[1], 10, NO);
+    examplesByAddingToContext(contexts[2], 10, NO);
     
     // Put a hook in the deepest context:
     BHVHook *hook = [[BHVHook alloc] initWithPosition:BHVHookPositionBefore frequency:BHVHookFrequencyAll];
@@ -327,9 +326,9 @@
 {
     // Create a stack of contexts with examples in each, with the bottom two marked as executed:
     NSArray *contexts = stackOfContexts(3);
-    examplesByAddingToContext(contexts[0], NO);
-    NSArray *middleExamples = examplesByAddingToContext(contexts[1], YES);
-    examplesByAddingToContext(contexts[2], YES);
+    examplesByAddingToContext(contexts[0], 10, NO);
+    NSArray *middleExamples = examplesByAddingToContext(contexts[1], 10, YES);
+    examplesByAddingToContext(contexts[2], 10, YES);
         
     // Put a hook in the middle context:
     BHVHook *hook = [[BHVHook alloc] initWithPosition:BHVHookPositionAfter frequency:BHVHookFrequencyAll];
@@ -347,9 +346,9 @@
 {
     // Create a stack of contexts with examples in each:
     NSArray *contexts = stackOfContexts(3);
-    examplesByAddingToContext(contexts[0], YES);
-    examplesByAddingToContext(contexts[1], YES);
-    NSArray *deepestExamples = examplesByAddingToContext(contexts[2], YES);
+    examplesByAddingToContext(contexts[0], 10, YES);
+    examplesByAddingToContext(contexts[1], 10, YES);
+    NSArray *deepestExamples = examplesByAddingToContext(contexts[2], 10, YES);
     
     // Put a hook in the middle context:
     BHVHook *hook = [[BHVHook alloc] initWithPosition:BHVHookPositionAfter frequency:BHVHookFrequencyAll];
@@ -367,9 +366,9 @@
 {
     // Create a stack of contexts with examples in each:
     NSArray *contexts = stackOfContexts(3);
-    examplesByAddingToContext(contexts[0], YES);
-    NSArray *middleExamples = examplesByAddingToContext(contexts[1], YES);
-    examplesByAddingToContext(contexts[2], YES);
+    examplesByAddingToContext(contexts[0], 10, YES);
+    NSArray *middleExamples = examplesByAddingToContext(contexts[1], 10, YES);
+    examplesByAddingToContext(contexts[2], 10, YES);
     
     // Put a hook in the middle context:
     BHVHook *hook = [[BHVHook alloc] initWithPosition:BHVHookPositionAfter frequency:BHVHookFrequencyAll];
@@ -387,9 +386,9 @@
 {
     // Create a stack of contexts with examples in each, with the hook context examples marked as executed:
     NSArray *contexts = stackOfContexts(3);
-    examplesByAddingToContext(contexts[0], NO);
-    NSArray *middleExamples = examplesByAddingToContext(contexts[1], YES);
-    examplesByAddingToContext(contexts[2], NO);
+    examplesByAddingToContext(contexts[0], 10, NO);
+    NSArray *middleExamples = examplesByAddingToContext(contexts[1], 10, YES);
+    examplesByAddingToContext(contexts[2], 10, NO);
     
     // Put a hook in the middle context:
     BHVHook *hook = [[BHVHook alloc] initWithPosition:BHVHookPositionAfter frequency:BHVHookFrequencyAll];
@@ -407,9 +406,9 @@
 {
     // Create a stack of contexts with examples in each, with the bottommost marked as executed:
     NSArray *contexts = stackOfContexts(3);
-    examplesByAddingToContext(contexts[0], NO);
-    NSArray *middleExamples = examplesByAddingToContext(contexts[1], NO);
-    examplesByAddingToContext(contexts[2], YES);
+    examplesByAddingToContext(contexts[0], 10, NO);
+    NSArray *middleExamples = examplesByAddingToContext(contexts[1], 10, NO);
+    examplesByAddingToContext(contexts[2], 10, YES);
     
     // Put a hook in the middle context:
     BHVHook *hook = [[BHVHook alloc] initWithPosition:BHVHookPositionAfter frequency:BHVHookFrequencyAll];
@@ -427,9 +426,9 @@
 {
     // Create a stack of contexts with examples in each:
     NSArray *contexts = stackOfContexts(3);
-    examplesByAddingToContext(contexts[0], YES);
-    NSArray *middleExamples = examplesByAddingToContext(contexts[1], YES);
-    examplesByAddingToContext(contexts[2], YES);
+    examplesByAddingToContext(contexts[0], 10, YES);
+    NSArray *middleExamples = examplesByAddingToContext(contexts[1], 10, YES);
+    examplesByAddingToContext(contexts[2], 10, YES);
     
     // Put a hook in the deepest context:
     BHVHook *hook = [[BHVHook alloc] initWithPosition:BHVHookPositionAfter frequency:BHVHookFrequencyAll];

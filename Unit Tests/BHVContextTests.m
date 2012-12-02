@@ -7,7 +7,6 @@
 //
 
 #import "BHVContext.h"
-#import "BHVTestHelper.h"
 #import "BHVHook.h"
 #import "BHVExample.h"
 
@@ -18,192 +17,62 @@
 
 #pragma mark - Examples
 
-- (void)test_Examples_ReturnsExamples
-{
-    // Create a context with a bunch of examples:
-    BHVContext *context = [[BHVContext alloc] init];
-    NSArray *examples = examplesByAddingToContext(context, NO);
-    
-    // Add a bunch of nodes and hooks, to ensure that only examples are returned:
-    for (NSUInteger i = 0; i < 10; i ++) {
-        [context addNode:[BHVNode new]];
-        [context addNode:[BHVHook new]];
-    }
-    
-    // Verify that the context returns its examples:
-    NSArray *results = [context examples];
-    [[@([results count]) should] beEqualTo:@([examples count])];
-    [examples enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [[obj should] beEqualTo:results[idx]];
-    }];
-}
-
-- (void)test_Examples_DoesNotReturnNestedExamples
-{
-    // Create a stack of contexts, each with a bunch of examples:
-    NSArray *contexts = stackOfContexts(3);
-    NSArray *topExamples = examplesByAddingToContext(contexts[0], NO);
-    examplesByAddingToContext(contexts[1], NO);
-    examplesByAddingToContext(contexts[2], NO);
-    
-    // Add a bunch of nodes and hooks to each, to ensure that only examples are returned:
-    for (NSUInteger i = 0; i < 10; i ++) {
-        for (NSUInteger j = 0; j < 3; j ++) {
-            [contexts[j] addNode:[BHVNode new]];
-            [contexts[j] addNode:[BHVHook new]];
-        }
-    }
-    
-    // Verify that the context returns only the top examples:
-    NSArray *results = [contexts[0] examples];
-    [[@([results count]) should] beEqualTo:@([topExamples count])];
-    [topExamples enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [[obj should] beEqualTo:results[idx]];
-    }];
-}
-
-- (void)test_AllExamples_ReturnsExamples
-{
-    // Create a context with a bunch of examples:
-    BHVContext *context = [[BHVContext alloc] init];
-    NSArray *examples = examplesByAddingToContext(context, NO);
-    
-    // Add a bunch of nodes and hooks, to ensure that only examples are returned:
-    for (NSUInteger i = 0; i < 10; i ++) {
-        [context addNode:[BHVNode new]];
-        [context addNode:[BHVHook new]];
-    }
-    
-    // Verify that the context returns its examples:
-    NSArray *results = [context allExamples];
-    [[@([results count]) should] beEqualTo:@([examples count])];
-    [examples enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [[obj should] beEqualTo:results[idx]];
-    }];
-}
-
 - (void)test_AllExamples_ReturnsNestedExamples
 {
-    // Create a stack of contexts, each with a bunch of examples:
-    NSArray *contexts = stackOfContexts(3);
-    NSArray *topExamples = examplesByAddingToContext(contexts[0], NO);
-    NSArray *middleExamples = examplesByAddingToContext(contexts[1], NO);
-    NSArray *bottomExamples = examplesByAddingToContext(contexts[2], NO);
+    NSMutableArray *examples = [NSMutableArray array];
+    for (NSUInteger i = 0; i < 17; i ++) examples[i] = [BHVExample new];
+    BHVContext *context = BHVCreateBranchedStack(examples);
     
-    // Add a bunch of nodes and hooks to each, to ensure that only examples are returned:
-    for (NSUInteger i = 0; i < 10; i ++) {
-        for (NSUInteger j = 0; j < 3; j ++) {
-            [contexts[j] addNode:[BHVNode new]];
-            [contexts[j] addNode:[BHVHook new]];
-        }
-    }
+    NSMutableArray *results = [NSMutableArray array];
+    NSMutableArray *expected = [NSMutableArray array];
     
-    // Merge the example lists for comparison:
-    NSMutableArray *examples = [NSMutableArray arrayWithArray:topExamples];
-    [examples addObjectsFromArray:middleExamples];
-    [examples addObjectsFromArray:bottomExamples];
+    results[0] = [context allExamples];
+    results[1] = [[context nodeAtIndex:1] allExamples];
+    results[2] = [[context nodeAtIndex:3] allExamples];
+    results[3] = [[[context nodeAtIndex:1] nodeAtIndex:1] allExamples];
+    results[4] = [[[context nodeAtIndex:1] nodeAtIndex:3] allExamples];
+    results[5] = [[[context nodeAtIndex:3] nodeAtIndex:1] allExamples];
+    results[6] = [[[context nodeAtIndex:3] nodeAtIndex:3] allExamples];
     
-    // Verify that the context returns its examples:
-    NSArray *results = [contexts[0] allExamples];
-    [[@([results count]) should] beEqualTo:@([examples count])];
-    [examples enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [[obj should] beEqualTo:results[idx]];
-    }];
+    expected[0] = examples;
+    expected[1] = [examples subarrayWithRange:NSMakeRange(1, 7)];
+    expected[2] = [examples subarrayWithRange:NSMakeRange(9, 7)];
+    expected[3] = [examples subarrayWithRange:NSMakeRange(2, 2)];
+    expected[4] = [examples subarrayWithRange:NSMakeRange(5, 2)];
+    expected[5] = [examples subarrayWithRange:NSMakeRange(10, 2)];
+    expected[6] = [examples subarrayWithRange:NSMakeRange(13, 2)];
+    
+    [[results should] beEqualTo:expected];
 }
 
 #pragma mark - Hooks
 
-- (void)test_Hooks_ReturnsHooks
-{
-    // Create a context with a bunch of hooks:
-    BHVContext *context = [[BHVContext alloc] init];
-    NSArray *hooks = hooksByAddingToContext(context);
-    
-    // Add a bunch of nodes and examples, to ensure that only hooks are returned:
-    for (NSUInteger i = 0; i < 10; i ++) {
-        [context addNode:[BHVNode new]];
-        [context addNode:[BHVExample new]];
-    }
-    
-    // Verify that the context returns its hooks:
-    NSArray *results = [context hooks];
-    [[@([results count]) should] beEqualTo:@([hooks count])];
-    [hooks enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [[obj should] beEqualTo:results[idx]];
-    }];
-}
-
-- (void)test_Hooks_DoesNotReturnNestedHooks
-{
-    // Create a stack of contexts, each with a bunch of hooks:
-    NSArray *contexts = stackOfContexts(3);
-    NSArray *topHooks = hooksByAddingToContext(contexts[0]);
-    hooksByAddingToContext(contexts[1]);
-    hooksByAddingToContext(contexts[2]);
-    
-    // Add a bunch of nodes and examples to each, to ensure that only hooks are returned:
-    for (NSUInteger i = 0; i < 10; i ++) {
-        for (NSUInteger j = 0; j < 3; j ++) {
-            [contexts[j] addNode:[BHVNode new]];
-            [contexts[j] addNode:[BHVExample new]];
-        }
-    }
-    
-    // Verify that the context returns only the top hooks:
-    NSArray *results = [contexts[0] hooks];
-    [[@([results count]) should] beEqualTo:@([topHooks count])];
-    [topHooks enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [[obj should] beEqualTo:results[idx]];
-    }];
-}
-
-- (void)test_AllHooks_ReturnsHooks
-{
-    // Create a context with a bunch of hooks:
-    BHVContext *context = [[BHVContext alloc] init];
-    NSArray *hooks = hooksByAddingToContext(context);
-    
-    // Add a bunch of nodes and examples, to ensure that only hooks are returned:
-    for (NSUInteger i = 0; i < 10; i ++) {
-        [context addNode:[BHVNode new]];
-        [context addNode:[BHVExample new]];
-    }
-    
-    // Verify that the context returns its hooks:
-    NSArray *results = [context allHooks];
-    [[@([results count]) should] beEqualTo:@([hooks count])];
-    [hooks enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [[obj should] beEqualTo:results[idx]];
-    }];
-}
-
 - (void)test_AllHooks_ReturnsNestedExamples
 {
-    // Create a stack of contexts, each with a bunch of hooks:
-    NSArray *contexts = stackOfContexts(3);
-    NSArray *topHooks = hooksByAddingToContext(contexts[0]);
-    NSArray *middleHooks = hooksByAddingToContext(contexts[1]);
-    NSArray *bottomHooks = hooksByAddingToContext(contexts[2]);
+    NSMutableArray *hooks = [NSMutableArray array];
+    for (NSUInteger i = 0; i < 17; i ++) hooks[i] = [BHVHook new];
+    BHVContext *context = BHVCreateBranchedStack(hooks);
     
-    // Add a bunch of nodes and examples to each, to ensure that only hooks are returned:
-    for (NSUInteger i = 0; i < 10; i ++) {
-        for (NSUInteger j = 0; j < 3; j ++) {
-            [contexts[j] addNode:[BHVNode new]];
-            [contexts[j] addNode:[BHVExample new]];
-        }
-    }
+    NSMutableArray *results = [NSMutableArray array];
+    NSMutableArray *expected = [NSMutableArray array];
     
-    // Merge the hook lists for comparison:
-    NSMutableArray *hooks = [NSMutableArray arrayWithArray:topHooks];
-    [hooks addObjectsFromArray:middleHooks];
-    [hooks addObjectsFromArray:bottomHooks];
+    results[0] = [context allHooks];
+    results[1] = [[context nodeAtIndex:1] allHooks];
+    results[2] = [[context nodeAtIndex:3] allHooks];
+    results[3] = [[[context nodeAtIndex:1] nodeAtIndex:1] allHooks];
+    results[4] = [[[context nodeAtIndex:1] nodeAtIndex:3] allHooks];
+    results[5] = [[[context nodeAtIndex:3] nodeAtIndex:1] allHooks];
+    results[6] = [[[context nodeAtIndex:3] nodeAtIndex:3] allHooks];
     
-    // Verify that the context returns its hooks:
-    NSArray *results = [contexts[0] allHooks];
-    [[@([results count]) should] beEqualTo:@([hooks count])];
-    [hooks enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [[obj should] beEqualTo:results[idx]];
-    }];
+    expected[0] = hooks;
+    expected[1] = [hooks subarrayWithRange:NSMakeRange(1, 7)];
+    expected[2] = [hooks subarrayWithRange:NSMakeRange(9, 7)];
+    expected[3] = [hooks subarrayWithRange:NSMakeRange(2, 2)];
+    expected[4] = [hooks subarrayWithRange:NSMakeRange(5, 2)];
+    expected[5] = [hooks subarrayWithRange:NSMakeRange(10, 2)];
+    expected[6] = [hooks subarrayWithRange:NSMakeRange(13, 2)];
+    
+    [[results should] beEqualTo:expected];
 }
 
 @end

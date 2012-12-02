@@ -7,27 +7,13 @@
 //
 
 #import "BHVSpec.h"
-#import "BHVTestHelper.h"
 #import "BHVSuite.h"
 #import "BHVExample.h"
+#import "BHVHook.h"
 #import "BHVInvocation.h"
-
-Class recordedSpec = nil;
 
 @interface PSTBeMatcher ()
 - (BOOL)beExecuted;
-@end
-
-@interface BHVCurrentSpecRecorderSpec : BHVSpec
-@end
-
-@implementation BHVCurrentSpecRecorderSpec
-
-- (void)loadExamples
-{
-    recordedSpec = [BHVSpec currentSpec];
-}
-
 @end
 
 @interface BHVSpecTests : SenTestCase
@@ -52,26 +38,27 @@ Class recordedSpec = nil;
     [BHVSpec resetSuites];
 }
 
-- (void)testReturnsInvocationsForExamplesInForwardOrder
+- (void)testReturnsInvocationsForExamplesInOrderOfDeepestToShallowest
 {
-    // Create a stack of contexts, each with a bunch of examples:
-    NSArray *contexts = stackOfContexts(10);
+    // Create a set of examples:
     NSMutableArray *examples = [NSMutableArray array];
-    for (NSUInteger i = 0; i < 10; i ++) [examples addObjectsFromArray:examplesByAddingToContext(contexts[i], NO)];
+    for (NSUInteger i = 0; i < 17; i ++) examples[i] = [BHVExample new];
     
-    // Add top context to the suite:
-    [[BHVTestSpec1 suite] addNode:contexts[0]];
+    // Branch the examples over a stack of contexts:
+    BHVContext *context = BHVCreateBranchedStack(examples);
     
-    // Retrieve test invocations:
+    // Add root context to the suite:
+    [[BHVTestSpec1 suite] addNode:context];
+    
+    // Retrieve examples from all invocations:
     NSArray *invocations = [BHVTestSpec1 testInvocations];
-    
-    // Verify that there are 100 invocations:
-    [[@([invocations count]) should] beEqualTo:@100];
-    
-    // Verify that invocation examples are in forward order:
+    NSMutableArray *invocationExamples = [NSMutableArray array];
     [invocations enumerateObjectsUsingBlock:^(BHVInvocation *invocation, NSUInteger idx, BOOL *stop) {
-        [[[invocation example] should] beIdenticalTo:examples[idx]];
+        [invocationExamples addObject:[invocation example]];
     }];
+    
+    // Verify that the invocations are for every example:
+    [[invocationExamples should] beEqualTo:examples];
 }
 
 - (void)testRequestingInvocationsWhenAbstractClassReturnsEmptyArray

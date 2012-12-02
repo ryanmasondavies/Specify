@@ -9,9 +9,12 @@
 #import "BHVSpec.h"
 @class BHVContext;
 
+extern Class recordedSpec;
+
 NSArray * stackOfContexts(NSUInteger count);
-NSArray * examplesByAddingToContext(BHVContext *context, BOOL markAsExecuted);
-NSArray * hooksByAddingToContext(BHVContext *context);
+NSArray * examplesByAddingToContext(BHVContext *context, NSUInteger number, BOOL markAsExecuted);
+NSArray * hooksByAddingToContext(BHVContext *context, NSUInteger number);
+BHVContext * BHVCreateBranchedStack(NSArray *nodes);
 
 @interface BHVTestSpec1 : BHVSpec
 @end
@@ -20,4 +23,7 @@ NSArray * hooksByAddingToContext(BHVContext *context);
 @end
 
 @interface BHVTestSpec3 : BHVSpec
+@end
+
+@interface BHVCurrentSpecRecorderSpec : BHVSpec
 @end

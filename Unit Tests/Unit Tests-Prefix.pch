@@ -8,3 +8,5 @@
     #import <OCMock/OCMock.h>
     #import <Posit/Posit.h>
 #endif
+
+#import "BHVTestHelper.h"

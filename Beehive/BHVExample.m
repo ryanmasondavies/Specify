@@ -17,23 +17,59 @@
     return YES;
 }
 
-- (void)execute
+- (void)executeHooksInContextStackFromTopToBottom
 {
-    // Gather hooks:
+    // Do not execute if there is no context:
+    if ([self context] == nil) return;
+    
+    // Locate top-most context:
     BHVContext *topMostContext = [self context];
     while (([topMostContext context]) != nil) topMostContext = [topMostContext context];
     
-    // Execute hooks:
-    NSArray *hooks = [topMostContext allHooks];
-    [hooks makeObjectsPerformSelector:@selector(setExample:) withObject:self];
-    [hooks makeObjectsPerformSelector:@selector(execute)];
+    // Start with the top-level context...
+    NSMutableArray *contexts = [NSMutableArray arrayWithObject:topMostContext];
+    while ([contexts count] > 0) {
+        [[contexts[0] nodes] enumerateObjectsUsingBlock:^(id node, NSUInteger idx, BOOL *stop) {
+            // Execute any hooks encountered:
+            if ([node isHook]) {
+                [node setExample:self];
+                [node execute];
+            }
+            
+            // Push found contexts to the stack:
+            if ([node isContext]) {
+                [contexts addObject:node];
+            }
+        }];
+        
+        // Pop a context off the stack:
+        [contexts removeObjectAtIndex:0];
+    }
+}
+
+- (void)executeHooksInContextStackFromContextToTop
+{
+    // Do not execute if there is no context:
+    if ([self context] == nil) return;
     
-    // Invoke block and mark as executed:
+    // Start with the example context:
+    BHVContext *current = [self context];
+    do {
+        [[current nodes] enumerateObjectsUsingBlock:^(id node, NSUInteger idx, BOOL *stop) {
+            if ([node isHook] == NO) return;
+            [node setExample:self];
+            [node execute];
+        }];
+        
+        current = [current context];
+    } while (current != nil); // Until there are no more contexts.
+}
+
+- (void)execute
+{
+    [self executeHooksInContextStackFromTopToBottom];
     [super execute];
-    
-    // Execute hooks in reverse:
-    NSUInteger i = [hooks count];
-    while (i--) [hooks[i] execute];
+    [self executeHooksInContextStackFromContextToTop];
 }
 
 - (NSString *)fullName

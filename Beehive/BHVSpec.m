@@ -36,13 +36,11 @@
     
     // Create an invocation for each example:
     NSMutableArray *invocations = [NSMutableArray array];
-    [examples enumerateObjectsUsingBlock:^(BHVExample *example, NSUInteger idx, BOOL *stop) {
+    for (NSUInteger i = 0; i < [examples count]; i ++) {
         BHVInvocation *invocation = [BHVInvocation emptyInvocation];
-        [invocation setExample:example];
+        [invocation setExample:examples[i]];
         [invocations addObject:invocation];
-    }];
-    
-    // TODO: Randomly shuffle examples.
+    };
     
     return [NSArray arrayWithArray:invocations];
 }

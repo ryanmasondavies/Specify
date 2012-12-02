@@ -8,7 +8,6 @@
 
 #import "BHVDSL.h"
 #import "BHVSpec.h"
-#import "BHVTestHelper.h"
 #import "BHVSuite.h"
 #import "BHVContext.h"
 #import "BHVHook.h"
