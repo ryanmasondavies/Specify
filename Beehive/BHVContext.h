@@ -14,11 +14,10 @@
 - (BHVNode *)nodeAtIndex:(NSUInteger)index;
 
 - (NSArray *)contexts;
-
 - (NSArray *)examples;
-- (NSArray *)allExamples;
-
 - (NSArray *)hooks;
+
+- (NSArray *)allExamples;
 - (NSArray *)allHooks;
 
 @end

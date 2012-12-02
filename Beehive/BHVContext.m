@@ -65,15 +65,6 @@
     return [NSArray arrayWithArray:examples];
 }
 
-- (NSArray *)allExamples
-{
-    NSMutableArray *examples = [NSMutableArray arrayWithArray:[self examples]];
-    [[self contexts] enumerateObjectsUsingBlock:^(BHVContext *context, NSUInteger idx, BOOL *stop) {
-        [examples addObjectsFromArray:[context allExamples]];
-    }];
-    return [NSArray arrayWithArray:examples];
-}
-
 - (NSArray *)hooks
 {
     NSMutableArray *examples = [NSMutableArray array];
@@ -81,6 +72,15 @@
         if ([node isHook]) [examples addObject:node];
     }];
     
+    return [NSArray arrayWithArray:examples];
+}
+
+- (NSArray *)allExamples
+{
+    NSMutableArray *examples = [NSMutableArray arrayWithArray:[self examples]];
+    [[self contexts] enumerateObjectsUsingBlock:^(BHVContext *context, NSUInteger idx, BOOL *stop) {
+        [examples addObjectsFromArray:[context allExamples]];
+    }];
     return [NSArray arrayWithArray:examples];
 }
 
