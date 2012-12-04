@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 Ryan Davies. All rights reserved.
 //
 
+#import <SenTestingKit/SenTestingKit.h>
 @class BHVSuite;
 
 @interface BHVSpec : SenTestCase

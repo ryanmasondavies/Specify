@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 Ryan Davies. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 @class BHVExample;
 
 @interface BHVInvocation : NSInvocation

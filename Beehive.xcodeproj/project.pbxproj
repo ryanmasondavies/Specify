@@ -110,7 +110,6 @@
 		94E8DE1C1667FC3B00C8CAA2 /* BHVHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVHook.m; sourceTree = "<group>"; };
 		94ED2B7F1649A0A400D59570 /* libBeehive.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBeehive.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		94ED2B821649A0A400D59570 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		94ED2B861649A0A400D59570 /* Beehive-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Beehive-Prefix.pch"; sourceTree = "<group>"; };
 		94ED2B871649A0A400D59570 /* Beehive.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Beehive.h; sourceTree = "<group>"; };
 		94ED2B951649A0B800D59570 /* Unit Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		94F001D5164FF58A00865938 /* BHVSpec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVSpec.h; sourceTree = "<group>"; };
@@ -244,17 +243,8 @@
 				9403759F166571AB008332F9 /* BHVExample.m */,
 				94221BC41668EA100030BB99 /* BHVDSL.h */,
 				94221BC51668EA100030BB99 /* BHVDSL.m */,
-				94ED2B851649A0A400D59570 /* Supporting Files */,
 			);
 			path = Beehive;
-			sourceTree = "<group>";
-		};
-		94ED2B851649A0A400D59570 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				94ED2B861649A0A400D59570 /* Beehive-Prefix.pch */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		94F116781654205C003DCD0C /* Unit Tests */ = {
@@ -590,8 +580,6 @@
 					"$(inherited)",
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Beehive/Beehive-Prefix.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -605,8 +593,6 @@
 					"$(inherited)",
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Beehive/Beehive-Prefix.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
