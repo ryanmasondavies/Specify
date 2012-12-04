@@ -1,7 +1,7 @@
 Beehive
 =======
 
-Beehive was developed out of a personal need for a simple yet verbose BDD library. I wanted something simpler and more powerful than [Kiwi]() and [Cedar](), and didn't want to use the [Specta]() and [Expecta]() combination as I prefer the `should` terminology over `expect`.
+Beehive was developed out of a personal need for a simple yet powerful BDD library. I wanted something less than [Kiwi]() and [Cedar](), but didn't want to use the [Specta]() and [Expecta]() combination as I prefer the `should` terminology over `expect`.
 
 Beehive is built on top of OCUnit, allowing tests to be run from Xcode. It has optional dependencies on two sub-libraries: [Posit]() provides expectations, and [Mockingbird]() provides mocking and stubbing. These can be substituted for any other expectation or mocking library, such as [Expecta]() or [OCMock]().
 
