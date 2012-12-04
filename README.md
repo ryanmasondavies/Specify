@@ -25,7 +25,7 @@ Examples in Beehive are most commonly written using the `it` function, which acc
         [[object should] beGreen];
     });
 
-If the block is ommitted, Beehive will ignore the example. The `PENDING` command allows you to mark examples as pending:
+If the block is omitted, Beehive will ignore the example. The `PENDING` command allows you to mark examples as pending:
 
     it(@"should be green", PENDING);
     
@@ -63,67 +63,42 @@ Roadmap
 
 The following features are to be added in [0.2](https://github.com/rdavies/Beehive/issues?milestone=5).
 
-Subject
--------
-
-Note: expectation library must provide support for subjects. [Posit](https://github.com/rdavies/Posit) is one such library.
-
-A subject block defines the object being described in the current context. `its` is used to retrieve associations of a subject.
-
-Example of usage:
-
-    describe(@"The cat", ^{
-        subject(id ^{ return [[Cat alloc] init]; });
-    
-        its(@"name", @"should be Felix", ^{
-            // The subject here is the 'name' property on the cat.
-            [should beEqualTo:@"Felix"];
-        });
-    
-        when(@"awake", ^{
-            it(@"should be eating", ^{ [should beEating]; });
-        });
-        
-        when(@"sleeping", ^{
-            it(@"should be adorable", ^{ [should beAdorable]; });
-        });
-    });
-
 Let
 ---
 
 `let` is used to provide variables to examples that can be accessed using the 'the()' function:
 
     describe(@"The cat", ^{
-        subject(id ^{ return the(@"cat"); });
-        let(@"cat", ^{ return [[Cat alloc] init]; });
-        
-        its(@"name", @"should be felix", ^{ [should be:@"Felix"]; });
+        let(@"cat", ^{
+			return [[Cat alloc] init];
+		});
         
         when(@"awake", ^{
-            it(@"should be eating", ^{ [should beEating]; );
+            it(@"should be eating", ^{
+				[[the(@"cat") should] beEating];
+			});
         });
         
         when(@"sleeping", ^{
-            it(@"should be sleeping", ^{ [should beAdorable]; );
+            it(@"should be sleeping", ^{
+				[[the(@"cat") should] beAdorable];
+			});
         });
         
         when(@"caught a mouse", ^{
-            let(@"mouse", ^{ return [[Mouse alloc] init]; });
-            before(^{ [the(@"cat") setMouse:the(@"mouse")]; });
-            it(@"should eat it", ^{ [should beEating:the(@"mouse")]; });
+            let(@"mouse", ^{
+				return [[Mouse alloc] init];
+			});
+			
+            before(^{
+				[the(@"cat") setMouse:the(@"mouse")];
+			});
+			
+            it(@"should eat it", ^{
+				[[the(@"cat") should] beEating:the(@"mouse")];
+			});
         });
     });
-
-Shared Examples
----------------
-
-To be discussed.
-
-Asynchronous Testing
---------------------
-
-To be discussed.
 
 License
 =======
