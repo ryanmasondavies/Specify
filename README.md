@@ -7,6 +7,11 @@ Beehive is built on top of OCUnit, allowing tests to be run from Xcode. It has o
 
 See the [Wiki]() for more information.
 
+License
+=======
+
+This project is available under the MIT license. See the [LICENSE]() file for details.
+
 [Posit]: https://github.com/rdavies/Posit
 [Mockingbird]: https://github.com/rdavies/Mockingbird
 [Kiwi]: https://github.com/allending/Kiwi
@@ -15,8 +20,4 @@ See the [Wiki]() for more information.
 [Expecta]: https://github.com/petejkim/expecta
 [OCMock]: http://www.sente.ch/software/ocunit
 [Wiki]: https://github.com/rdavies/Beehive/wiki
-
-License
-=======
-
-This project is available under the MIT license. See the LICENSE file for details.
+[LICENSE]: https://github.com/rdavies/Beehive/blob/master/LICENSE
