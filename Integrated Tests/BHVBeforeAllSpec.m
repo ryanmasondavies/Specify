@@ -1,12 +1,12 @@
 //
 //  BHVBeforeAllSpec.m
-//  Beehive
+//  Behave
 //
 //  Created by Ryan Davies on 01/12/2012.
 //  Copyright (c) 2012 Ryan Davies. All rights reserved.
 //
 
-#import "Beehive.h"
+#import "Behave.h"
 
 SpecBegin(BHVBeforeAll)
 

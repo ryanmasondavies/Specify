@@ -1,5 +1,5 @@
 //
-// Prefix header for all source files of the 'Unit Tests' target in the 'Beehive' project
+// Prefix header for all source files of the 'Unit Tests' target in the 'Behave' project
 //
 
 #ifdef __OBJC__
