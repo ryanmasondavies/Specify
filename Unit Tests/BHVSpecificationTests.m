@@ -1,5 +1,5 @@
 //
-//  BHVTests.m
+//  BHVSpecificationTests.m
 //  Behave
 //
 //  Created by Ryan Davies on 30/12/2012.
@@ -8,11 +8,10 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-@interface BHVTests : SenTestCase
-
+@interface BHVSpecificationTests : SenTestCase
 @end
 
-@implementation BHVTests
+@implementation BHVSpecificationTests
 
 - (void)setUp
 {
