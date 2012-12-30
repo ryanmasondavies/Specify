@@ -1,9 +1,0 @@
-//
-// Prefix header for all source files of the 'Integrated Tests' target in the 'Integrated Tests' project
-//
-
-#ifdef __OBJC__
-    #import <Foundation/Foundation.h>
-    #import <SenTestingKit/SenTestingKit.h>
-    #import <Posit/Posit.h>
-#endif
