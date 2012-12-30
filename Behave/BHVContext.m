@@ -10,37 +10,31 @@
 #import "BHVExample.h"
 #import "BHVHook.h"
 
-@interface BHVContext ()
-@property (strong, nonatomic) NSMutableArray *contexts;
-@property (strong, nonatomic) NSMutableArray *examples;
-@property (strong, nonatomic) NSMutableArray *hooks;
-@end
-
 @implementation BHVContext
 
 - (id)init
 {
     if (self = [super init]) {
-        self.contexts = [NSMutableArray array];
-        self.examples = [NSMutableArray array];
-        self.hooks    = [NSMutableArray array];
+        self.contexts = [NSArray array];
+        self.examples = [NSArray array];
+        self.hooks    = [NSArray array];
     }
     return self;
 }
 
 - (void)addContext:(BHVContext *)context
 {
-    [[self contexts] addObject:context];
+    self.contexts = [[self contexts] arrayByAddingObject:context];
 }
 
 - (void)addExample:(BHVExample *)example
 {
-    [[self examples] addObject:example];
+    self.examples = [[self examples] arrayByAddingObject:example];
 }
 
 - (void)addHook:(BHVHook *)hook
 {
-    [[self hooks] addObject:hook];
+    self.hooks = [[self hooks] arrayByAddingObject:hook];
 }
 
 @end

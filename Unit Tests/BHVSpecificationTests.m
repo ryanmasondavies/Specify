@@ -184,8 +184,61 @@
 
 #pragma mark Generating invocations
 
+- (void)testCreatesInvocationsThatPerformExamples
+{
+    NSArray *examples = @[[BHVExample new], [BHVExample new], [BHVExample new]];
+    [examples enumerateObjectsUsingBlock:^(BHVExample *example, NSUInteger idx, BOOL *stop) {
+        [BHVSpecificationA addExample:example];
+    }];
+    
+    NSArray *invocations = [BHVSpecificationA testInvocations];
+    [examples enumerateObjectsUsingBlock:^(BHVExample *example, NSUInteger idx, BOOL *stop) {
+        NSInvocation *invocation = invocations[idx];
+        STAssertEqualObjects([invocation target], example, [NSString stringWithFormat:@"Should invoke examples[%d] first.", idx]);
+        STAssertEquals([invocation selector], @selector(perform), [NSString stringWithFormat:@"Should invoke -perform on examples[%d].", idx]);
+    }];
+}
+
 - (void)testExamplesInContextsAreMovedToEnd
 {
+    /* BHVSpecification should shift examples in contexts to the end of the invocation list.
+     * Here, the second example is nested in a context.
+     * Therefore the resulting order of invocations should be as follows:
+     *  - Perform example 1.
+     *  - Perform example 3.
+     *  - Perform example 2.
+     */
+    
+    NSArray *examples = @[[BHVExample new], [BHVExample new], [BHVExample new]];
+    NSArray *contexts = @[[BHVContext new], [BHVContext new]];
+    
+    [BHVSpecificationA addExample:examples[0]];
+    [BHVSpecificationA enterContext:contexts[0]];
+    [BHVSpecificationA enterContext:contexts[1]];
+    [BHVSpecificationA addExample:examples[1]];
+    [BHVSpecificationA leaveContext];
+    [BHVSpecificationA leaveContext];
+    [BHVSpecificationA addExample:examples[2]];
+    
+    NSArray *invocations = [BHVSpecificationA testInvocations];
+    STAssertEqualObjects([invocations[0] target], examples[0], @"Should invoke examples[0] first.");
+    STAssertEqualObjects([invocations[1] target], examples[2], @"Should invoke examples[2] second.");
+    STAssertEqualObjects([invocations[2] target], examples[1], @"Should invoke examples[1] last.");
+}
+
+- (void)testIgnoresHooks
+{
+    NSArray *hooks = @[[BHVHook new], [BHVHook new], [BHVHook new]];
+    BHVExample *example = [BHVExample new];
+    
+    [BHVSpecificationA addHook:hooks[0]];
+    [BHVSpecificationA addHook:hooks[1]];
+    [BHVSpecificationA addHook:hooks[2]];
+    [BHVSpecificationA addExample:example];
+    
+    NSArray *invocations = [BHVSpecificationA testInvocations];
+    STAssertTrue([invocations count] == 1, @"Should have 1 invocation: the example, and no hooks.");
+    STAssertEqualObjects([invocations[0] target], example, @"Should invoke example.");
 }
 
 @end

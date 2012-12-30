@@ -10,4 +10,8 @@
 
 @implementation BHVExample
 
+- (void)perform
+{
+}
+
 @end

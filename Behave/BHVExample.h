@@ -10,4 +10,6 @@
 
 @interface BHVExample : NSObject
 
+- (void)perform;
+
 @end

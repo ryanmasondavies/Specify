@@ -89,4 +89,48 @@ CLASS_PROPERTY(hooks,        NSMutableArray);
         [[self hooks] addObject:hook];
 }
 
++ (NSArray *)testInvocations
+{
+    // Gather examples:
+    NSMutableArray *examples = [NSMutableArray arrayWithArray:[self examples]];
+    
+    // If there are contexts...
+    NSMutableArray *contextQueue = [NSMutableArray arrayWithArray:[self contexts]];
+    if ([contextQueue count] > 0) {
+        // Start with the first context:
+        BHVContext *currentContext = [contextQueue objectAtIndex:0];
+        [contextQueue removeObjectAtIndex:0];
+        
+        // Until currentContext is nil:
+        while (currentContext) {
+            // Add context's examples to list:
+            [examples addObjectsFromArray:[currentContext examples]];
+            
+            // Add nested contexts to queue:
+            [contextQueue addObjectsFromArray:[currentContext contexts]];
+            
+            // Move on to the next context, if there is one:
+            if ([contextQueue count] > 0) {
+                currentContext = [contextQueue objectAtIndex:0];
+                [contextQueue removeObjectAtIndex:0];
+            } else {
+                currentContext = nil;
+            }
+        }
+    }
+    
+    // Create invocations from examples:
+    NSMutableArray *invocations = [NSMutableArray array];
+    [examples enumerateObjectsUsingBlock:^(BHVExample *example, NSUInteger idx, BOOL *stop) {
+        NSMethodSignature *methodSignature = [example methodSignatureForSelector:@selector(perform)];
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
+        [invocation setTarget:example];
+        [invocation setSelector:@selector(perform)];
+        [invocations addObject:invocation];
+    }];
+    
+    // Convert to immutable and return:
+    return [NSArray arrayWithArray:invocations];
+}
+
 @end

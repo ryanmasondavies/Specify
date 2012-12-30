@@ -11,12 +11,6 @@
 #import "BHVExample.h"
 #import "BHVHook.h"
 
-@interface BHVContext ()
-@property (strong, nonatomic) NSMutableArray *contexts;
-@property (strong, nonatomic) NSMutableArray *examples;
-@property (strong, nonatomic) NSMutableArray *hooks;
-@end
-
 @interface BHVContextTests : SenTestCase
 @end
 
