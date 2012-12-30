@@ -11,6 +11,15 @@
 		9412C7DD16906A2000BAA0C1 /* BHVContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412C7DC16906A2000BAA0C1 /* BHVContext.m */; };
 		9412C7E016906A2D00BAA0C1 /* BHVExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412C7DF16906A2D00BAA0C1 /* BHVExample.m */; };
 		9412C7E316906A3500BAA0C1 /* BHVHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412C7E216906A3500BAA0C1 /* BHVHook.m */; };
+		9412C7E816906A6100BAA0C1 /* BHVTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 941F5F9A1690651A00E01DF8 /* BHVTests.m */; };
+		9412C7EA16906A6100BAA0C1 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 941F5F7A1690647F00E01DF8 /* SenTestingKit.framework */; };
+		9412C7EB16906A6100BAA0C1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 941F5F6B1690647F00E01DF8 /* Foundation.framework */; };
+		9412C7EC16906A6100BAA0C1 /* libBehave.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 941F5F681690647F00E01DF8 /* libBehave.a */; };
+		9412C7FC16906AB700BAA0C1 /* BHVAfterAllSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412C7F716906AB700BAA0C1 /* BHVAfterAllSpec.m */; };
+		9412C7FD16906AB700BAA0C1 /* BHVAfterEachSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412C7F816906AB700BAA0C1 /* BHVAfterEachSpec.m */; };
+		9412C7FE16906AB700BAA0C1 /* BHVBeforeAllSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412C7F916906AB700BAA0C1 /* BHVBeforeAllSpec.m */; };
+		9412C7FF16906AB700BAA0C1 /* BHVBeforeEachSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412C7FA16906AB700BAA0C1 /* BHVBeforeEachSpec.m */; };
+		9412C80016906AB700BAA0C1 /* BHVStructureSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412C7FB16906AB700BAA0C1 /* BHVStructureSpec.m */; };
 		941F5F6C1690647F00E01DF8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 941F5F6B1690647F00E01DF8 /* Foundation.framework */; };
 		941F5F7B1690647F00E01DF8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 941F5F7A1690647F00E01DF8 /* SenTestingKit.framework */; };
 		941F5F7E1690647F00E01DF8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 941F5F6B1690647F00E01DF8 /* Foundation.framework */; };
@@ -20,6 +29,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		9412C7E616906A6100BAA0C1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 941F5F5F1690647F00E01DF8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 941F5F671690647F00E01DF8;
+			remoteInfo = Behave;
+		};
 		941F5F7F1690647F00E01DF8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 941F5F5F1690647F00E01DF8 /* Project object */;
@@ -48,6 +64,14 @@
 		9412C7DF16906A2D00BAA0C1 /* BHVExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVExample.m; sourceTree = "<group>"; };
 		9412C7E116906A3500BAA0C1 /* BHVHook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVHook.h; sourceTree = "<group>"; };
 		9412C7E216906A3500BAA0C1 /* BHVHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVHook.m; sourceTree = "<group>"; };
+		9412C7F216906A6100BAA0C1 /* Integrated Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Integrated Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9412C7F516906A7700BAA0C1 /* Integrated Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Integrated Tests-Info.plist"; sourceTree = "<group>"; };
+		9412C7F716906AB700BAA0C1 /* BHVAfterAllSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVAfterAllSpec.m; sourceTree = "<group>"; };
+		9412C7F816906AB700BAA0C1 /* BHVAfterEachSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVAfterEachSpec.m; sourceTree = "<group>"; };
+		9412C7F916906AB700BAA0C1 /* BHVBeforeAllSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVBeforeAllSpec.m; sourceTree = "<group>"; };
+		9412C7FA16906AB700BAA0C1 /* BHVBeforeEachSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVBeforeEachSpec.m; sourceTree = "<group>"; };
+		9412C7FB16906AB700BAA0C1 /* BHVStructureSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVStructureSpec.m; sourceTree = "<group>"; };
+		9412C80116906B0600BAA0C1 /* Behave.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Behave.h; sourceTree = "<group>"; };
 		941F5F681690647F00E01DF8 /* libBehave.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBehave.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		941F5F6B1690647F00E01DF8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		941F5F791690647F00E01DF8 /* Unit Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,6 +83,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		9412C7E916906A6100BAA0C1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9412C7EA16906A6100BAA0C1 /* SenTestingKit.framework in Frameworks */,
+				9412C7EB16906A6100BAA0C1 /* Foundation.framework in Frameworks */,
+				9412C7EC16906A6100BAA0C1 /* libBehave.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		941F5F651690647F00E01DF8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -81,11 +115,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9412C7F416906A7700BAA0C1 /* Integrated Tests */ = {
+			isa = PBXGroup;
+			children = (
+				9412C7F716906AB700BAA0C1 /* BHVAfterAllSpec.m */,
+				9412C7F816906AB700BAA0C1 /* BHVAfterEachSpec.m */,
+				9412C7F916906AB700BAA0C1 /* BHVBeforeAllSpec.m */,
+				9412C7FA16906AB700BAA0C1 /* BHVBeforeEachSpec.m */,
+				9412C7FB16906AB700BAA0C1 /* BHVStructureSpec.m */,
+				9412C7F616906A7B00BAA0C1 /* Supporting Files */,
+			);
+			path = "Integrated Tests";
+			sourceTree = "<group>";
+		};
+		9412C7F616906A7B00BAA0C1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9412C7F516906A7700BAA0C1 /* Integrated Tests-Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		941F5F5D1690647F00E01DF8 = {
 			isa = PBXGroup;
 			children = (
 				941F5F6D1690647F00E01DF8 /* Behave */,
 				941F5F971690651A00E01DF8 /* Unit Tests */,
+				9412C7F416906A7700BAA0C1 /* Integrated Tests */,
 				941F5F6A1690647F00E01DF8 /* Frameworks */,
 				941F5F691690647F00E01DF8 /* Products */,
 			);
@@ -96,6 +152,7 @@
 			children = (
 				941F5F681690647F00E01DF8 /* libBehave.a */,
 				941F5F791690647F00E01DF8 /* Unit Tests.octest */,
+				9412C7F216906A6100BAA0C1 /* Integrated Tests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -112,6 +169,7 @@
 		941F5F6D1690647F00E01DF8 /* Behave */ = {
 			isa = PBXGroup;
 			children = (
+				9412C80116906B0600BAA0C1 /* Behave.h */,
 				94EADEA9169069BA002DA799 /* BHVSpecification.h */,
 				94EADEAA169069BA002DA799 /* BHVSpecification.m */,
 				9412C7DB16906A2000BAA0C1 /* BHVContext.h */,
@@ -144,6 +202,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		9412C7E416906A6100BAA0C1 /* Integrated Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9412C7EF16906A6100BAA0C1 /* Build configuration list for PBXNativeTarget "Integrated Tests" */;
+			buildPhases = (
+				9412C7E716906A6100BAA0C1 /* Sources */,
+				9412C7E916906A6100BAA0C1 /* Frameworks */,
+				9412C7ED16906A6100BAA0C1 /* Resources */,
+				9412C7EE16906A6100BAA0C1 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9412C7E516906A6100BAA0C1 /* PBXTargetDependency */,
+			);
+			name = "Integrated Tests";
+			productName = BehaveTests;
+			productReference = 9412C7F216906A6100BAA0C1 /* Integrated Tests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		941F5F671690647F00E01DF8 /* Behave */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 941F5F8D1690647F00E01DF8 /* Build configuration list for PBXNativeTarget "Behave" */;
@@ -204,11 +281,19 @@
 			targets = (
 				941F5F671690647F00E01DF8 /* Behave */,
 				941F5F781690647F00E01DF8 /* Unit Tests */,
+				9412C7E416906A6100BAA0C1 /* Integrated Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		9412C7ED16906A6100BAA0C1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		941F5F761690647F00E01DF8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -219,6 +304,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		9412C7EE16906A6100BAA0C1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
 		941F5F771690647F00E01DF8 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -235,6 +333,19 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		9412C7E716906A6100BAA0C1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9412C7E816906A6100BAA0C1 /* BHVTests.m in Sources */,
+				9412C7FC16906AB700BAA0C1 /* BHVAfterAllSpec.m in Sources */,
+				9412C7FD16906AB700BAA0C1 /* BHVAfterEachSpec.m in Sources */,
+				9412C7FE16906AB700BAA0C1 /* BHVBeforeAllSpec.m in Sources */,
+				9412C7FF16906AB700BAA0C1 /* BHVBeforeEachSpec.m in Sources */,
+				9412C80016906AB700BAA0C1 /* BHVStructureSpec.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		941F5F641690647F00E01DF8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -257,6 +368,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		9412C7E516906A6100BAA0C1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 941F5F671690647F00E01DF8 /* Behave */;
+			targetProxy = 9412C7E616906A6100BAA0C1 /* PBXContainerItemProxy */;
+		};
 		941F5F801690647F00E01DF8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 941F5F671690647F00E01DF8 /* Behave */;
@@ -265,6 +381,32 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		9412C7F016906A6100BAA0C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				INFOPLIST_FILE = "Integrated Tests/Integrated Tests-Info.plist";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		9412C7F116906A6100BAA0C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				INFOPLIST_FILE = "Integrated Tests/Integrated Tests-Info.plist";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 		941F5F8B1690647F00E01DF8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -369,6 +511,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		9412C7EF16906A6100BAA0C1 /* Build configuration list for PBXNativeTarget "Integrated Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9412C7F016906A6100BAA0C1 /* Debug */,
+				9412C7F116906A6100BAA0C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		941F5F621690647F00E01DF8 /* Build configuration list for PBXProject "Behave" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
