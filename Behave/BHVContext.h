@@ -7,7 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+@class BHVExample, BHVHook;
 
 @interface BHVContext : NSObject
+
+- (void)addContext:(BHVContext *)context;
+- (void)addExample:(BHVExample *)example;
+- (void)addHook:(BHVHook *)hook;
 
 @end
