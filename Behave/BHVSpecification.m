@@ -11,6 +11,19 @@
 #import "BHVExample.h"
 #import "BHVHook.h"
 
+#define CLASS_PROPERTY(name, type) \
++ (type *)name \
+{ \
+static NSMutableDictionary *name##ByClass = nil; \
+if (name##ByClass == nil) name##ByClass = [NSMutableDictionary dictionary]; \
+NSMutableArray *name = [name##ByClass objectForKey:NSStringFromClass(self)]; \
+if (name == nil) { \
+name = [NSMutableArray array]; \
+[name##ByClass setObject:name forKey:NSStringFromClass(self)]; \
+} \
+return name; \
+}
+
 @interface BHVSpecification ()
 + (NSMutableArray *)contextStack;
 + (NSMutableArray *)contexts;
@@ -19,6 +32,11 @@
 @end
 
 @implementation BHVSpecification
+
+CLASS_PROPERTY(contextStack, NSMutableArray);
+CLASS_PROPERTY(contexts,     NSMutableArray);
+CLASS_PROPERTY(examples,     NSMutableArray);
+CLASS_PROPERTY(hooks,        NSMutableArray);
 
 + (void)enterContext:(BHVContext *)context
 {
@@ -69,58 +87,6 @@
         [context addHook:hook];
     else
         [[self hooks] addObject:hook];
-}
-
-+ (NSMutableArray *)contextStack
-{
-    // Return a stack of contexts for this class:
-    static NSMutableDictionary *contextStackByClass = nil;
-    if (contextStackByClass == nil) contextStackByClass = [NSMutableDictionary dictionary];
-    NSMutableArray *contextStack = [contextStackByClass objectForKey:NSStringFromClass(self)];
-    if (contextStack == nil) {
-        contextStack = [NSMutableArray array];
-        [contextStackByClass setObject:contextStack forKey:NSStringFromClass(self)];
-    }
-    return contextStack;
-}
-
-+ (NSMutableArray *)contexts
-{
-    // Return an array of contexts for this class:
-    static NSMutableDictionary *contextsByClass = nil;
-    if (contextsByClass == nil) contextsByClass = [NSMutableDictionary dictionary];
-    NSMutableArray *contexts = [contextsByClass objectForKey:NSStringFromClass(self)];
-    if (contexts == nil) {
-        contexts = [NSMutableArray array];
-        [contextsByClass setObject:contexts forKey:NSStringFromClass(self)];
-    }
-    return contexts;
-}
-
-+ (NSMutableArray *)examples
-{
-    // Return an array of examples for this class:
-    static NSMutableDictionary *examplesByClass = nil;
-    if (examplesByClass == nil) examplesByClass = [NSMutableDictionary dictionary];
-    NSMutableArray *examples = [examplesByClass objectForKey:NSStringFromClass(self)];
-    if (examples == nil) {
-        examples = [NSMutableArray array];
-        [examplesByClass setObject:examples forKey:NSStringFromClass(self)];
-    }
-    return examples;
-}
-
-+ (NSMutableArray *)hooks
-{
-    // Return an array of hooks for this class:
-    static NSMutableDictionary *hooksByClass = nil;
-    if (hooksByClass == nil) hooksByClass = [NSMutableDictionary dictionary];
-    NSMutableArray *hooks = [hooksByClass objectForKey:NSStringFromClass(self)];
-    if (hooks == nil) {
-        hooks = [NSMutableArray array];
-        [hooksByClass setObject:hooks forKey:NSStringFromClass(self)];
-    }
-    return hooks;
 }
 
 @end
