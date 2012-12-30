@@ -7,11 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9412C7D9169069D800BAA0C1 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 941F5F7A1690647F00E01DF8 /* SenTestingKit.framework */; };
+		9412C7DD16906A2000BAA0C1 /* BHVContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412C7DC16906A2000BAA0C1 /* BHVContext.m */; };
+		9412C7E016906A2D00BAA0C1 /* BHVExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412C7DF16906A2D00BAA0C1 /* BHVExample.m */; };
+		9412C7E316906A3500BAA0C1 /* BHVHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412C7E216906A3500BAA0C1 /* BHVHook.m */; };
 		941F5F6C1690647F00E01DF8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 941F5F6B1690647F00E01DF8 /* Foundation.framework */; };
 		941F5F7B1690647F00E01DF8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 941F5F7A1690647F00E01DF8 /* SenTestingKit.framework */; };
 		941F5F7E1690647F00E01DF8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 941F5F6B1690647F00E01DF8 /* Foundation.framework */; };
 		941F5F811690647F00E01DF8 /* libBehave.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 941F5F681690647F00E01DF8 /* libBehave.a */; };
 		941F5F9E1690651A00E01DF8 /* BHVTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 941F5F9A1690651A00E01DF8 /* BHVTests.m */; };
+		94EADEAB169069BA002DA799 /* BHVSpecification.m in Sources */ = {isa = PBXBuildFile; fileRef = 94EADEAA169069BA002DA799 /* BHVSpecification.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,12 +42,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9412C7DB16906A2000BAA0C1 /* BHVContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVContext.h; sourceTree = "<group>"; };
+		9412C7DC16906A2000BAA0C1 /* BHVContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVContext.m; sourceTree = "<group>"; };
+		9412C7DE16906A2D00BAA0C1 /* BHVExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVExample.h; sourceTree = "<group>"; };
+		9412C7DF16906A2D00BAA0C1 /* BHVExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVExample.m; sourceTree = "<group>"; };
+		9412C7E116906A3500BAA0C1 /* BHVHook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVHook.h; sourceTree = "<group>"; };
+		9412C7E216906A3500BAA0C1 /* BHVHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVHook.m; sourceTree = "<group>"; };
 		941F5F681690647F00E01DF8 /* libBehave.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBehave.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		941F5F6B1690647F00E01DF8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		941F5F791690647F00E01DF8 /* Unit Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		941F5F7A1690647F00E01DF8 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		941F5F981690651A00E01DF8 /* Unit Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Unit Tests-Info.plist"; sourceTree = "<group>"; };
 		941F5F9A1690651A00E01DF8 /* BHVTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVTests.m; sourceTree = "<group>"; };
+		94EADEA9169069BA002DA799 /* BHVSpecification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVSpecification.h; sourceTree = "<group>"; };
+		94EADEAA169069BA002DA799 /* BHVSpecification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVSpecification.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +64,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				941F5F6C1690647F00E01DF8 /* Foundation.framework in Frameworks */,
+				9412C7D9169069D800BAA0C1 /* SenTestingKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +112,14 @@
 		941F5F6D1690647F00E01DF8 /* Behave */ = {
 			isa = PBXGroup;
 			children = (
+				94EADEA9169069BA002DA799 /* BHVSpecification.h */,
+				94EADEAA169069BA002DA799 /* BHVSpecification.m */,
+				9412C7DB16906A2000BAA0C1 /* BHVContext.h */,
+				9412C7DC16906A2000BAA0C1 /* BHVContext.m */,
+				9412C7DE16906A2D00BAA0C1 /* BHVExample.h */,
+				9412C7DF16906A2D00BAA0C1 /* BHVExample.m */,
+				9412C7E116906A3500BAA0C1 /* BHVHook.h */,
+				9412C7E216906A3500BAA0C1 /* BHVHook.m */,
 			);
 			path = Behave;
 			sourceTree = "<group>";
@@ -217,6 +239,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94EADEAB169069BA002DA799 /* BHVSpecification.m in Sources */,
+				9412C7DD16906A2000BAA0C1 /* BHVContext.m in Sources */,
+				9412C7E016906A2D00BAA0C1 /* BHVExample.m in Sources */,
+				9412C7E316906A3500BAA0C1 /* BHVHook.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,6 +316,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DSTROOT = /tmp/Behave.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -300,6 +330,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DSTROOT = /tmp/Behave.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
