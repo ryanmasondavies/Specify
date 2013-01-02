@@ -12,6 +12,8 @@
 
 @interface BHVExample : NSObject
 
+- (instancetype)initWithName:(NSString *)name block:(void(^)(void))block;
+
 - (void)execute;
 
 @property (copy, nonatomic) NSString   *name;

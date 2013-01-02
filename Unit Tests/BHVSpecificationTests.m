@@ -7,20 +7,11 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
+#import "BHVTestHelper.h"
 #import "BHVSpecification.h"
 #import "BHVContext.h"
 #import "BHVExample.h"
 #import "BHVHook.h"
-
-@interface BHVSpecificationA : BHVSpecification
-@end
-@implementation BHVSpecificationA
-@end
-
-@interface BHVSpecificationB : BHVSpecification
-@end
-@implementation BHVSpecificationB
-@end
 
 @interface BHVInvocation : NSInvocation
 @property (strong, nonatomic) BHVExample *example;
@@ -34,75 +25,52 @@
 
 - (void)tearDown
 {
-    [BHVSpecificationA reset];
-    [BHVSpecificationB reset];
+    [BHVTestSpecification reset];
 }
 
 #pragma mark Generating invocations
 
 - (void)testCreatesInvocationsThatPerformExamples
 {
-    NSArray *examples = @[[BHVExample new], [BHVExample new], [BHVExample new]];
-    [examples enumerateObjectsUsingBlock:^(BHVExample *example, NSUInteger idx, BOOL *stop) {
-        [BHVSpecificationA addExample:example];
-    }];
+    // See the BHVSpecificationWithThreeExamples implementation to notice that it
+    // adds three examples named Example 1, Example 2, and Example 3.
     
-    NSArray *invocations = [BHVSpecificationA testInvocations];
-    [examples enumerateObjectsUsingBlock:^(BHVExample *example, NSUInteger idx, BOOL *stop) {
-        BHVInvocation *invocation = invocations[idx];
-        STAssertEqualObjects([invocation example], example, [NSString stringWithFormat:@"Should invoke examples[%d] first.", idx]);
-    }];
+    NSArray *invocations = [BHVSpecificationWithThreeExamples testInvocations];
+    STAssertEqualObjects([[invocations[0] example] name], @"example 1", @"Should execute example 1 first.");
+    STAssertEqualObjects([[invocations[1] example] name], @"example 2", @"Should execute example 2 second.");
+    STAssertEqualObjects([[invocations[2] example] name], @"example 3", @"Should execute example 3 third.");
 }
 
 - (void)testExamplesInContextsAreMovedToEnd
 {
-    /* BHVSpecification should shift examples in contexts to the end of the invocation list.
-     * Here, the second example is nested in a context.
-     * Therefore the resulting order of invocations should be as follows:
-     *  - Perform example 1.
-     *  - Perform example 3.
-     *  - Perform example 2.
+    /* See the BHVSpecificationWithUnorderedNestedExamples implementation to
+     * see that it creates the following structure:
+     *   example 1
+     *   {
+     *     example 2
+     *   }
+     *   example 3
+     *
+     * BHVSpecification should shift examples in contexts to the end of the invocation list.
+     * Here, the second example is nested in a context. It should be executed last.
      */
     
-    NSArray *examples = @[[BHVExample new], [BHVExample new], [BHVExample new]];
-    NSArray *contexts = @[[BHVContext new], [BHVContext new]];
-    
-    [BHVSpecificationA addExample:examples[0]];
-    [BHVSpecificationA enterContext:contexts[0]];
-    [BHVSpecificationA enterContext:contexts[1]];
-    [BHVSpecificationA addExample:examples[1]];
-    [BHVSpecificationA leaveContext];
-    [BHVSpecificationA leaveContext];
-    [BHVSpecificationA addExample:examples[2]];
-    
-    NSArray *invocations = [BHVSpecificationA testInvocations];
-    STAssertEqualObjects([invocations[0] example], examples[0], @"Should perform examples[0] first.");
-    STAssertEqualObjects([invocations[1] example], examples[2], @"Should perform examples[2] second.");
-    STAssertEqualObjects([invocations[2] example], examples[1], @"Should perform examples[1] last.");
-}
-
-- (void)testInvocationsAreSubclassSpecific
-{
-    BHVExample *example = [BHVExample new];
-    [BHVSpecificationA addExample:example];
-    
-    NSArray *invocations = [BHVSpecificationB testInvocations];
-    STAssertTrue([invocations count] == 0, @"Should not have an invocation for the example, as it was added to a different specification.");
+    NSArray *invocations = [BHVSpecificationWithUnorderedNestedExamples testInvocations];
+    STAssertEqualObjects([[invocations[0] example] name], @"example 1", @"Should perform example 1 first.");
+    STAssertEqualObjects([[invocations[1] example] name], @"example 3", @"Should perform example 3 second.");
+    STAssertEqualObjects([[invocations[2] example] name], @"example 2", @"Should perform example 2 last.");
 }
 
 - (void)testIgnoresHooks
 {
-    NSArray *hooks = @[[BHVHook new], [BHVHook new], [BHVHook new]];
-    BHVExample *example = [BHVExample new];
+    /* The BHVSpecificationWithHooks class has three hooks followed by an example.
+     * BHVSpecification should not create invocations for the hooks, but should
+     * ignore them and create an invocation for the example.
+     */
     
-    [BHVSpecificationA addHook:hooks[0]];
-    [BHVSpecificationA addHook:hooks[1]];
-    [BHVSpecificationA addHook:hooks[2]];
-    [BHVSpecificationA addExample:example];
-    
-    NSArray *invocations = [BHVSpecificationA testInvocations];
+    NSArray *invocations = [BHVSpecificationWithHooks testInvocations];
     STAssertTrue([invocations count] == 1, @"Should have 1 invocation: the example, and no hooks.");
-    STAssertEqualObjects([invocations[0] example], example, @"Should invoke performExample: with `%@`.", example);
+    STAssertEqualObjects([[invocations[0] example] name], @"Example", @"Should execute the example.");
 }
 
 #pragma mark Generating contextual names
@@ -119,14 +87,14 @@
     [example setName:@"should be lazy"];
     
     // Nest example in contexts:
-    [BHVSpecificationA enterContext:contexts[0]];
-    [BHVSpecificationA enterContext:contexts[1]];
-    [BHVSpecificationA addExample:example];
-    [BHVSpecificationA leaveContext];
-    [BHVSpecificationA leaveContext];
+    [BHVTestSpecification enterContext:contexts[0]];
+    [BHVTestSpecification enterContext:contexts[1]];
+    [BHVTestSpecification addExample:example];
+    [BHVTestSpecification leaveContext];
+    [BHVTestSpecification leaveContext];
     
     // Test that the name is equal to the concatenated context names and example name:
-    BHVSpecificationA *spec = [BHVSpecificationA testCaseWithInvocation:[BHVInvocation invocationWithExample:example]];
+    BHVTestSpecification *spec = [BHVTestSpecification testCaseWithInvocation:[BHVInvocation invocationWithExample:example]];
     STAssertEqualObjects([spec name], @"a cat when it is fat should be lazy", @"Should have returned the concatenated names of the contexts and example.");
 }
 
@@ -142,18 +110,18 @@
     [example setName:@"should be lazy"];
     
     // Nest example in contexts, and add some hooks:
-    [BHVSpecificationA enterContext:contexts[0]];
-    [BHVSpecificationA addHook:[BHVHook new]];
-    [BHVSpecificationA enterContext:contexts[1]];
-    [BHVSpecificationA addHook:[BHVHook new]];
-    [BHVSpecificationA addExample:example];
-    [BHVSpecificationA addHook:[BHVHook new]];
-    [BHVSpecificationA leaveContext];
-    [BHVSpecificationA addHook:[BHVHook new]];
-    [BHVSpecificationA leaveContext];
+    [BHVTestSpecification enterContext:contexts[0]];
+    [BHVTestSpecification addHook:[BHVHook new]];
+    [BHVTestSpecification enterContext:contexts[1]];
+    [BHVTestSpecification addHook:[BHVHook new]];
+    [BHVTestSpecification addExample:example];
+    [BHVTestSpecification addHook:[BHVHook new]];
+    [BHVTestSpecification leaveContext];
+    [BHVTestSpecification addHook:[BHVHook new]];
+    [BHVTestSpecification leaveContext];
     
     // Test that the name is equal to the concatenated context names and example name:
-    BHVSpecificationA *spec = [BHVSpecificationA testCaseWithInvocation:[BHVInvocation invocationWithExample:example]];
+    BHVTestSpecification *spec = [BHVTestSpecification testCaseWithInvocation:[BHVInvocation invocationWithExample:example]];
     STAssertEqualObjects([spec name], @"a cat when it is fat should be lazy", @"Should have returned the concatenated names of the contexts and example.");
 }
 
@@ -162,10 +130,10 @@
     // Create and add an example to the spec:
     BHVExample *example = [[BHVExample alloc] init];
     [example setName:@"hello world"];
-    [BHVSpecificationA addExample:example];
+    [BHVTestSpecification addExample:example];
     
     // Test that the name is equal to the example name:
-    BHVSpecificationA *spec = [BHVSpecificationA testCaseWithInvocation:[BHVInvocation invocationWithExample:example]];
+    BHVTestSpecification *spec = [BHVTestSpecification testCaseWithInvocation:[BHVInvocation invocationWithExample:example]];
     STAssertEqualObjects([spec name], @"hello world", @"Should have returned the name of the example.");
 }
 

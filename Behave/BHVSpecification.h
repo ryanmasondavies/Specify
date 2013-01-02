@@ -18,6 +18,16 @@
 + (void)addExample:(BHVExample *)example;
 + (void)addHook:(BHVHook *)hook;
 
+- (void)loadExamples;
+
 + (void)reset;
 
 @end
+
+void it(NSString *name, void(^block)(void));
+void context(NSString *name, void(^block)(void));
+void describe(NSString *name, void(^block)(void));
+void beforeAll(void(^block)(void));
+void afterAll(void(^block)(void));
+void beforeEach(void(^block)(void));
+void afterEach(void(^block)(void));

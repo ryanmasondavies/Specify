@@ -20,6 +20,15 @@
     return self;
 }
 
+- (instancetype)initWithName:(NSString *)name block:(void(^)(void))block
+{
+    if (self = [self init]) {
+        self.name = name;
+        self.block = block;
+    }
+    return self;
+}
+
 - (void)execute
 {
     // Create lists which will be populated during the search:

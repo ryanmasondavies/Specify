@@ -12,12 +12,20 @@
 
 @implementation BHVContext
 
-- (id)init
+- (instancetype)init
 {
     if (self = [super init]) {
         self.contexts = [NSArray array];
         self.examples = [NSArray array];
         self.hooks    = [NSArray array];
+    }
+    return self;
+}
+
+- (instancetype)initWithName:(NSString *)name
+{
+    if (self = [self init]) {
+        self.name = name;
     }
     return self;
 }

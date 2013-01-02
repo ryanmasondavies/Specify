@@ -24,6 +24,8 @@ name = [NSMutableArray array]; \
 return name; \
 }
 
+#pragma mark - Invocation
+
 @interface BHVInvocation : NSInvocation
 @property (strong, nonatomic) BHVExample *example;
 + (instancetype)invocationWithExample:(BHVExample *)example;
@@ -42,7 +44,11 @@ return name; \
 
 @end
 
+#pragma mark - Specification
+
 @interface BHVSpecification ()
++ (void)setCurrentSpecification:(Class)specification;
++ (Class)currentSpecification;
 + (NSMutableArray *)contextStack;
 + (NSMutableArray *)contexts;
 + (NSMutableArray *)examples;
@@ -51,10 +57,28 @@ return name; \
 
 @implementation BHVSpecification
 
++ (void)setCurrentSpecification:(Class)specification
+{
+    [[[NSThread currentThread] threadDictionary] setObject:specification forKey:@"BHVCurrentSpecification"];
+}
+
++ (Class)currentSpecification
+{
+    return [[[NSThread currentThread] threadDictionary] objectForKey:@"BHVCurrentSpecification"];
+}
+
 CLASS_PROPERTY(contextStack, NSMutableArray);
 CLASS_PROPERTY(contexts,     NSMutableArray);
 CLASS_PROPERTY(examples,     NSMutableArray);
 CLASS_PROPERTY(hooks,        NSMutableArray);
+
++ (void)initialize
+{
+    BHVSpecification *instance = [[[self class] alloc] init];
+    [self setCurrentSpecification:self];
+    [instance loadExamples];
+    [super initialize];
+}
 
 + (void)enterContext:(BHVContext *)context
 {
@@ -99,13 +123,6 @@ CLASS_PROPERTY(hooks,        NSMutableArray);
         [[self hooks] addObject:hook];
 }
 
-+ (void)reset
-{
-    [[self contexts] removeAllObjects];
-    [[self examples] removeAllObjects];
-    [[self hooks]    removeAllObjects];
-}
-
 + (NSArray *)testInvocations
 {
     // Gather examples:
@@ -146,6 +163,10 @@ CLASS_PROPERTY(hooks,        NSMutableArray);
     return [NSArray arrayWithArray:invocations];
 }
 
+- (void)loadExamples
+{
+}
+
 - (NSString *)name
 {
     NSMutableArray *names = [NSMutableArray array];
@@ -159,4 +180,61 @@ CLASS_PROPERTY(hooks,        NSMutableArray);
     return [names componentsJoinedByString:@" "];
 }
 
++ (void)reset
+{
+    [[self contexts] removeAllObjects];
+    [[self examples] removeAllObjects];
+    [[self hooks]    removeAllObjects];
+    
+    [self initialize];
+}
+
 @end
+
+#pragma mark - DSL
+
+void it(NSString *name, void(^block)(void))
+{
+    BHVExample *example = [[BHVExample alloc] initWithName:name block:block];
+    [[BHVSpecification currentSpecification] addExample:example];
+}
+
+void context(NSString *name, void(^block)(void))
+{
+    // Create context:
+    BHVContext *context = [[BHVContext alloc] initWithName:name];
+    
+    // Add context and its contents to the specification:
+    [[BHVSpecification currentSpecification] enterContext:context];
+    block();
+    [[BHVSpecification currentSpecification] leaveContext];
+}
+
+void describe(NSString *name, void(^block)(void))
+{
+    context(name, block);
+}
+
+void beforeAll(void(^block)(void))
+{
+    BHVHook *hook = [[BHVHook alloc] initWithFlavor:BHVHookFlavorBeforeAll];
+    [[BHVSpecification currentSpecification] addHook:hook];
+}
+
+void afterAll(void(^block)(void))
+{
+    BHVHook *hook = [[BHVHook alloc] initWithFlavor:BHVHookFlavorAfterAll];
+    [[BHVSpecification currentSpecification] addHook:hook];
+}
+
+void beforeEach(void(^block)(void))
+{
+    BHVHook *hook = [[BHVHook alloc] initWithFlavor:BHVHookFlavorBeforeEach];
+    [[BHVSpecification currentSpecification] addHook:hook];
+}
+
+void afterEach(void(^block)(void))
+{
+    BHVHook *hook = [[BHVHook alloc] initWithFlavor:BHVHookFlavorAfterEach];
+    [[BHVSpecification currentSpecification] addHook:hook];
+}

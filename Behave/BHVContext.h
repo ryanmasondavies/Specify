@@ -11,6 +11,8 @@
 
 @interface BHVContext : NSObject
 
+- (instancetype)initWithName:(NSString *)name;
+
 - (void)addContext:(BHVContext *)context;
 - (void)addExample:(BHVExample *)example;
 - (void)addHook:(BHVHook *)hook;
