@@ -24,6 +24,13 @@
 
 @end
 
+#define SpecBegin(class) \
+@interface class##Specification : BHVSpecification \
+@end \
+@implementation class##Specification \
+- (void)loadExamples \
+{
+
 void it(NSString *name, void(^block)(void));
 void context(NSString *name, void(^block)(void));
 void describe(NSString *name, void(^block)(void));
@@ -31,3 +38,7 @@ void beforeAll(void(^block)(void));
 void afterAll(void(^block)(void));
 void beforeEach(void(^block)(void));
 void afterEach(void(^block)(void));
+
+#define SpecEnd \
+} \
+@end
