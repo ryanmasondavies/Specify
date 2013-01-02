@@ -10,4 +10,12 @@
 
 @implementation BHVHook
 
+- (instancetype)initWithFlavor:(BHVHookFlavor)flavor
+{
+    if (self = [super init]) {
+        self.flavor = flavor;
+    }
+    return self;
+}
+
 @end

@@ -12,9 +12,11 @@
 
 @interface BHVExample : NSObject
 
-- (void)perform;
+- (void)execute;
 
 @property (copy, nonatomic) NSString   *name;
+@property (nonatomic, getter = isExecuted) BOOL executed;
 @property (weak, nonatomic) BHVContext *parentContext;
+@property (copy, nonatomic) void(^block)(void);
 
 @end

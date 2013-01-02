@@ -8,6 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSInteger, BHVHookFlavor) {
+    BHVHookFlavorBeforeAll = 0,
+    BHVHookFlavorBeforeEach,
+    BHVHookFlavorAfterEach,
+    BHVHookFlavorAfterAll
+};
+
 @interface BHVHook : NSObject
+
+- (instancetype)initWithFlavor:(BHVHookFlavor)flavor;
+
+@property (nonatomic) BHVHookFlavor flavor;
+@property (copy, nonatomic) void(^block)(void);
 
 @end
