@@ -10,14 +10,15 @@
 @class BHVExample, BHVHook;
 
 @interface BHVContext : NSObject
+
+- (void)addContext:(BHVContext *)context;
+- (void)addExample:(BHVExample *)example;
+- (void)addHook:(BHVHook *)hook;
+
 @property (copy,   nonatomic) NSString   *name;
 @property (strong, nonatomic) NSArray    *contexts;
 @property (strong, nonatomic) NSArray    *examples;
 @property (strong, nonatomic) NSArray    *hooks;
 @property (weak,   nonatomic) BHVContext *parentContext;
-
-- (void)addContext:(BHVContext *)context;
-- (void)addExample:(BHVExample *)example;
-- (void)addHook:(BHVHook *)hook;
 
 @end

@@ -11,9 +11,10 @@
 @class BHVContext;
 
 @interface BHVExample : NSObject
-@property (copy, nonatomic) NSString   *name;
-@property (weak, nonatomic) BHVContext *parentContext;
 
 - (void)perform;
+
+@property (copy, nonatomic) NSString   *name;
+@property (weak, nonatomic) BHVContext *parentContext;
 
 @end
