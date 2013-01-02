@@ -24,6 +24,11 @@ name = [NSMutableArray array]; \
 return name; \
 }
 
+@interface BHVInvocation : NSInvocation
+@property (strong, nonatomic) BHVExample *example;
++ (instancetype)invocationWithExample:(BHVExample *)example;
+@end
+
 @implementation BHVInvocation
 
 + (instancetype)invocationWithExample:(BHVExample *)example
