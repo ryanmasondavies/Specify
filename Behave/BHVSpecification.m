@@ -79,10 +79,6 @@ CLASS_PROPERTY(hooks,        NSMutableArray);
 
 + (void)addExample:(BHVExample *)example
 {
-    // Raise an exception if adding examples to BHVSpecification base class:
-    if (self == [BHVSpecification class])
-        [NSException raise:NSInternalInconsistencyException format:@"Cannot add examples to the BHVSpecification base class."];
-    
     // Add example to the top context, if there is one.
     // If not, add it to the array of examples.
     BHVContext *context = [[self contextStack] lastObject];
@@ -94,10 +90,6 @@ CLASS_PROPERTY(hooks,        NSMutableArray);
 
 + (void)addHook:(BHVHook *)hook
 {
-    // Raise an exception if adding examples to BHVSpecification base class:
-    if (self == [BHVSpecification class])
-        [NSException raise:NSInternalInconsistencyException format:@"Cannot add examples to the BHVSpecification base class."];
-    
     // Add example to the top context, if there is one.
     // If not, add it to the array of examples.
     BHVContext *context = [[self contextStack] lastObject];
@@ -105,6 +97,13 @@ CLASS_PROPERTY(hooks,        NSMutableArray);
         [context addHook:hook];
     else
         [[self hooks] addObject:hook];
+}
+
++ (void)reset
+{
+    [[self contexts] removeAllObjects];
+    [[self examples] removeAllObjects];
+    [[self hooks]    removeAllObjects];
 }
 
 + (NSArray *)testInvocations

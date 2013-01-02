@@ -18,4 +18,6 @@
 + (void)addExample:(BHVExample *)example;
 + (void)addHook:(BHVHook *)hook;
 
++ (void)reset;
+
 @end
