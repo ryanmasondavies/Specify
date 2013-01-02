@@ -25,11 +25,13 @@
 - (void)addContext:(BHVContext *)context
 {
     self.contexts = [[self contexts] arrayByAddingObject:context];
+    [context setParentContext:self];
 }
 
 - (void)addExample:(BHVExample *)example
 {
     self.examples = [[self examples] arrayByAddingObject:example];
+    [example setParentContext:self];
 }
 
 - (void)addHook:(BHVHook *)hook

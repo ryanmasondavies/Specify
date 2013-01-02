@@ -24,6 +24,19 @@ name = [NSMutableArray array]; \
 return name; \
 }
 
+@implementation BHVInvocation
+
++ (instancetype)invocationWithExample:(BHVExample *)example
+{
+    NSString *encodingType = [NSString stringWithFormat:@"%s%s%s", @encode(void), @encode(id), @encode(SEL)];
+    NSMethodSignature *methodSignature = [NSMethodSignature signatureWithObjCTypes:[encodingType UTF8String]];
+    BHVInvocation *invocation = (id)[BHVInvocation invocationWithMethodSignature:methodSignature];
+    [invocation setExample:example];
+    return invocation;
+}
+
+@end
+
 @interface BHVSpecification ()
 + (NSMutableArray *)contextStack;
 + (NSMutableArray *)contexts;
@@ -122,15 +135,24 @@ CLASS_PROPERTY(hooks,        NSMutableArray);
     // Create invocations from examples:
     NSMutableArray *invocations = [NSMutableArray array];
     [examples enumerateObjectsUsingBlock:^(BHVExample *example, NSUInteger idx, BOOL *stop) {
-        NSMethodSignature *methodSignature = [example methodSignatureForSelector:@selector(perform)];
-        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
-        [invocation setTarget:example];
-        [invocation setSelector:@selector(perform)];
-        [invocations addObject:invocation];
+        [invocations addObject:[BHVInvocation invocationWithExample:example]];
     }];
     
     // Convert to immutable and return:
     return [NSArray arrayWithArray:invocations];
+}
+
+- (NSString *)name
+{
+    NSMutableArray *names = [NSMutableArray array];
+    BHVExample *example = [(BHVInvocation *)[self invocation] example];
+    BHVContext *context = [example parentContext];
+    while (context != nil) {
+        [names insertObject:[context name] atIndex:0];
+        context = [context parentContext];
+    }
+    [names addObject:[example name]];
+    return [names componentsJoinedByString:@" "];
 }
 
 @end

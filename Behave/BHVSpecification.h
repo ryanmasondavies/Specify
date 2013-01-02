@@ -10,6 +10,11 @@
 
 @class BHVContext, BHVExample, BHVHook;
 
+@interface BHVInvocation : NSInvocation
+@property (strong, nonatomic) BHVExample *example;
++ (instancetype)invocationWithExample:(BHVExample *)example;
+@end
+
 @interface BHVSpecification : SenTestCase
 
 + (void)enterContext:(BHVContext *)context;
