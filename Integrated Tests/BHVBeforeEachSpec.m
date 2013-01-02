@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 Ryan Davies. All rights reserved.
 //
 
+#import <Posit/Posit.h>
 #import "Behave.h"
 
 SpecBegin(BHVBeforeEach)

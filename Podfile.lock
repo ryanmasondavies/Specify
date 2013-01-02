@@ -1,0 +1,11 @@
+
+PODS:
+- Posit (0.0.2)
+
+DEPENDENCIES:
+- Posit
+
+SPEC CHECKSUMS:
+  Posit: 58aacafc57d1d835b9bf0f4af2aa00313be9aa2d
+
+COCOAPODS: 0.16.0

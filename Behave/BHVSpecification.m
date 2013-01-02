@@ -42,6 +42,11 @@ return name; \
     return invocation;
 }
 
+- (void)invoke
+{
+    [[self example] execute];
+}
+
 @end
 
 #pragma mark - Specification
@@ -218,23 +223,27 @@ void describe(NSString *name, void(^block)(void))
 void beforeAll(void(^block)(void))
 {
     BHVHook *hook = [[BHVHook alloc] initWithFlavor:BHVHookFlavorBeforeAll];
+    [hook setBlock:block];
     [[BHVSpecification currentSpecification] addHook:hook];
 }
 
 void afterAll(void(^block)(void))
 {
     BHVHook *hook = [[BHVHook alloc] initWithFlavor:BHVHookFlavorAfterAll];
+    [hook setBlock:block];
     [[BHVSpecification currentSpecification] addHook:hook];
 }
 
 void beforeEach(void(^block)(void))
 {
     BHVHook *hook = [[BHVHook alloc] initWithFlavor:BHVHookFlavorBeforeEach];
+    [hook setBlock:block];
     [[BHVSpecification currentSpecification] addHook:hook];
 }
 
 void afterEach(void(^block)(void))
 {
     BHVHook *hook = [[BHVHook alloc] initWithFlavor:BHVHookFlavorAfterEach];
+    [hook setBlock:block];
     [[BHVSpecification currentSpecification] addHook:hook];
 }
