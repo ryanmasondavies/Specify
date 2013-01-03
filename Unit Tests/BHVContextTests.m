@@ -40,6 +40,7 @@
     BHVContext *context = [BHVContext new];
     [context addHook:hook];
     STAssertTrue([[context hooks] containsObject:hook], @"Should have added hook to context.");
+    STAssertEqualObjects([hook parentContext], context, @"Should have assigned the parent context.");
 }
 
 @end

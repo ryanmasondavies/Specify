@@ -28,9 +28,125 @@
     [BHVTestSpecification reset];
 }
 
+#pragma mark Adding examples
+
+- (void)testExamplesCannotBeAddedToBaseClass
+{
+    STAssertThrows([BHVSpecification addExample:[BHVExample new]], @"Should not be able to add examples to the base class.");
+}
+
+- (void)testAddingExamples
+{
+    NSMutableArray *examples = [NSMutableArray array];
+    for (NSUInteger i = 0; i < 2; i ++) {
+        examples[i] = [[BHVExample alloc] init];
+        [BHVTestSpecification addExample:examples[i]];
+    }
+    
+    STAssertEqualObjects([examples[0] parentContext], [examples[1] parentContext], @"Should have added both examples to the same context.");
+}
+
+- (void)testNestingExamples
+{
+    NSArray *contexts = @[[BHVContext new], [BHVContext new]];
+    NSArray *examples = @[[BHVExample new], [BHVExample new]];
+    
+    [BHVTestSpecification enterContext:contexts[0]];
+    [BHVTestSpecification addExample:examples[0]];
+    [BHVTestSpecification leaveContext];
+    [BHVTestSpecification enterContext:contexts[1]];
+    [BHVTestSpecification addExample:examples[1]];
+    [BHVTestSpecification leaveContext];
+    
+    STAssertEqualObjects([contexts[0] parentContext], [contexts[1] parentContext], @"Should have added both contexts to the same context.");
+    STAssertEqualObjects([examples[0] parentContext], contexts[0], @"Should have added example 1 to context 1.");
+    STAssertEqualObjects([examples[1] parentContext], contexts[1], @"Should have added example 2 to context 2.");
+}
+
+- (void)testNestingExamplesInNestedContexts
+{
+    NSArray *contexts = @[[BHVContext new], [BHVContext new], [BHVContext new]];
+    NSArray *examples = @[[BHVExample new], [BHVExample new], [BHVExample new]];
+    
+    [BHVTestSpecification enterContext:contexts[0]];
+    [BHVTestSpecification addExample:examples[0]];
+    [BHVTestSpecification enterContext:contexts[1]];
+    [BHVTestSpecification addExample:examples[1]];
+    [BHVTestSpecification enterContext:contexts[2]];
+    [BHVTestSpecification addExample:examples[2]];
+    [BHVTestSpecification leaveContext];
+    [BHVTestSpecification leaveContext];
+    [BHVTestSpecification leaveContext];
+    
+    STAssertNotNil([contexts[0] parentContext], @"Should have added context 1 to base context.");
+    STAssertEqualObjects([contexts[1] parentContext], contexts[0], @"Should have added context 2 to context 1.");
+    STAssertEqualObjects([contexts[2] parentContext], contexts[1], @"Should have added context 3 to context 2.");
+    STAssertEqualObjects([examples[0] parentContext], contexts[0], @"Should have added example 1 to context 1.");
+    STAssertEqualObjects([examples[1] parentContext], contexts[1], @"Should have added example 2 to context 2.");
+    STAssertEqualObjects([examples[2] parentContext], contexts[2], @"Should have added example 3 to context 3.");
+}
+
+#pragma mark Adding hooks
+
+- (void)testHooksCannotBeAddedToBaseClass
+{
+    STAssertThrows([BHVSpecification addExample:[BHVExample new]], @"Should not be able to add examples to the base class.");
+}
+
+- (void)testAddingHooks
+{
+    NSMutableArray *hooks = [NSMutableArray array];
+    for (NSUInteger i = 0; i < 2; i ++) {
+        hooks[i] = [[BHVHook alloc] init];
+        [BHVTestSpecification addHook:hooks[i]];
+    }
+    
+    STAssertEqualObjects([hooks[0] parentContext], [hooks[1] parentContext], @"Should have added both hooks to the same context.");
+}
+
+- (void)testNestingHooks
+{
+    NSArray *contexts = @[[BHVContext new], [BHVContext new]];
+    NSArray *hooks = @[[BHVHook new], [BHVHook new]];
+    
+    [BHVTestSpecification enterContext:contexts[0]];
+    [BHVTestSpecification addExample:hooks[0]];
+    [BHVTestSpecification leaveContext];
+    [BHVTestSpecification enterContext:contexts[1]];
+    [BHVTestSpecification addExample:hooks[1]];
+    [BHVTestSpecification leaveContext];
+    
+    STAssertEqualObjects([contexts[0] parentContext], [contexts[1] parentContext], @"Should have added both contexts to the same context.");
+    STAssertEqualObjects([hooks[0] parentContext], contexts[0], @"Should have added hook 1 to context 1.");
+    STAssertEqualObjects([hooks[1] parentContext], contexts[1], @"Should have added hook 2 to context 2.");
+}
+
+- (void)testNestingHooksInNestedContexts
+{
+    NSArray *contexts = @[[BHVContext new], [BHVContext new], [BHVContext new]];
+    NSArray *hooks    = @[[BHVHook    new], [BHVHook    new], [BHVHook    new]];
+    
+    [BHVTestSpecification enterContext:contexts[0]];
+    [BHVTestSpecification addHook:hooks[0]];
+    [BHVTestSpecification enterContext:contexts[1]];
+    [BHVTestSpecification addHook:hooks[1]];
+    [BHVTestSpecification enterContext:contexts[2]];
+    [BHVTestSpecification addHook:hooks[2]];
+    [BHVTestSpecification leaveContext];
+    [BHVTestSpecification leaveContext];
+    [BHVTestSpecification leaveContext];
+    
+    STAssertNotNil([contexts[0] parentContext], @"Should have added context 1 to base context.");
+    STAssertEqualObjects([contexts[1] parentContext], contexts[0], @"Should have added context 2 to context 1.");
+    STAssertEqualObjects([contexts[2] parentContext], contexts[1], @"Should have added context 3 to context 2.");
+    STAssertEqualObjects([hooks[0] parentContext], contexts[0], @"Should have added hook 1 to context 1.");
+    STAssertEqualObjects([hooks[1] parentContext], contexts[1], @"Should have added hook 2 to context 2.");
+    STAssertEqualObjects([hooks[2] parentContext], contexts[2], @"Should have added hook 3 to context 3.");
+}
+
 #pragma mark Generating invocations
 
-- (void)testCreatesInvocationsThatPerformExamples
+- (void)testCreatesInvocationsThatPerformTopLevelExamples
 {
     // See the BHVSpecificationWithThreeExamples implementation to notice that it
     // adds three examples named Example 1, Example 2, and Example 3.

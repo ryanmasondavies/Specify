@@ -45,6 +45,7 @@
 - (void)addHook:(BHVHook *)hook
 {
     self.hooks = [[self hooks] arrayByAddingObject:hook];
+    [hook setParentContext:self];
 }
 
 @end

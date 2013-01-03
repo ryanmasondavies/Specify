@@ -11,20 +11,7 @@
 #import "BHVExample.h"
 #import "BHVHook.h"
 
-#define CLASS_PROPERTY(name, type) \
-+ (type *)name \
-{ \
-static NSMutableDictionary *name##ByClass = nil; \
-if (name##ByClass == nil) name##ByClass = [NSMutableDictionary dictionary]; \
-NSMutableArray *name = [name##ByClass objectForKey:NSStringFromClass(self)]; \
-if (name == nil) { \
-name = [NSMutableArray array]; \
-[name##ByClass setObject:name forKey:NSStringFromClass(self)]; \
-} \
-return name; \
-}
-
-#pragma mark - Invocation
+#pragma mark Invocation
 
 @interface BHVInvocation : NSInvocation
 @property (strong, nonatomic) BHVExample *example;
@@ -55,12 +42,23 @@ return name; \
 + (void)setCurrentSpecification:(Class)specification;
 + (Class)currentSpecification;
 + (NSMutableArray *)contextStack;
-+ (NSMutableArray *)contexts;
-+ (NSMutableArray *)examples;
-+ (NSMutableArray *)hooks;
 @end
 
 @implementation BHVSpecification
+
++ (void)initialize
+{
+    // Add base context:
+    [[self contextStack] addObject:[BHVContext new]];
+    
+    // Load examples:
+    BHVSpecification *instance = [[[self class] alloc] init];
+    [self setCurrentSpecification:self];
+    [instance loadExamples];
+    
+    // Allow SenTestCase to initialize:
+    [super initialize];
+}
 
 + (void)setCurrentSpecification:(Class)specification
 {
@@ -72,17 +70,16 @@ return name; \
     return [[[NSThread currentThread] threadDictionary] objectForKey:@"BHVCurrentSpecification"];
 }
 
-CLASS_PROPERTY(contextStack, NSMutableArray);
-CLASS_PROPERTY(contexts,     NSMutableArray);
-CLASS_PROPERTY(examples,     NSMutableArray);
-CLASS_PROPERTY(hooks,        NSMutableArray);
-
-+ (void)initialize
++ (NSMutableArray *)contextStack
 {
-    BHVSpecification *instance = [[[self class] alloc] init];
-    [self setCurrentSpecification:self];
-    [instance loadExamples];
-    [super initialize];
+    static NSMutableDictionary *contextStackByClass = nil;
+    if (contextStackByClass == nil) contextStackByClass = [NSMutableDictionary dictionary];
+    NSMutableArray *contextStack = [contextStackByClass objectForKey:NSStringFromClass(self)];
+    if (contextStack == nil) {
+        contextStack = [NSMutableArray array];
+        [contextStackByClass setObject:contextStack forKey:NSStringFromClass(self)];
+    }
+    return contextStack;
 }
 
 + (void)enterContext:(BHVContext *)context
@@ -97,64 +94,55 @@ CLASS_PROPERTY(hooks,        NSMutableArray);
     BHVContext *context = [[self contextStack] lastObject];
     [[self contextStack] removeLastObject];
     
-    // Add the popped context to what is now the top context, if there is one.
-    // If not, add it to the array of contexts.
-    BHVContext *topContext = [[self contextStack] lastObject];
-    if (topContext)
-        [topContext addContext:context];
-    else
-        [[self contexts] addObject:context];
+    // Add the popped context to what is now the top context:
+    [[[self contextStack] lastObject] addContext:context];
 }
 
 + (void)addExample:(BHVExample *)example
 {
-    // Add example to the top context, if there is one.
-    // If not, add it to the array of examples.
-    BHVContext *context = [[self contextStack] lastObject];
-    if (context)
-        [context addExample:example];
-    else
-        [[self examples] addObject:example];
+    // Raise an exception if adding to the base specification:
+    if (self == [BHVSpecification class]) [NSException raise:NSInternalInconsistencyException format:@"Cannot add examples to the base specification."];
+    
+    // Add example to the top context:
+    [[[self contextStack] lastObject] addExample:example];
 }
 
 + (void)addHook:(BHVHook *)hook
 {
-    // Add example to the top context, if there is one.
-    // If not, add it to the array of examples.
-    BHVContext *context = [[self contextStack] lastObject];
-    if (context)
-        [context addHook:hook];
-    else
-        [[self hooks] addObject:hook];
+    // Raise an exception if adding to the base specification:
+    if (self == [BHVSpecification class]) [NSException raise:NSInternalInconsistencyException format:@"Cannot add hooks to the base specification."];
+    
+    // Add example to the top context:
+    [[[self contextStack] lastObject] addHook:hook];
 }
 
 + (NSArray *)testInvocations
 {
     // Gather examples:
-    NSMutableArray *examples = [NSMutableArray arrayWithArray:[self examples]];
+    NSMutableArray *examples = [NSMutableArray array];
     
-    // If there are contexts...
-    NSMutableArray *contextQueue = [NSMutableArray arrayWithArray:[self contexts]];
-    if ([contextQueue count] > 0) {
-        // Start with the first context:
-        BHVContext *currentContext = [contextQueue objectAtIndex:0];
-        [contextQueue removeObjectAtIndex:0];
+    // Start at the top-most context:
+    BHVContext *topMostContext = [[self contextStack] objectAtIndex:0];
+    NSMutableArray *contextQueue = [NSMutableArray arrayWithObject:topMostContext];
+    
+    // Pop off the first context:
+    BHVContext *currentContext = [contextQueue objectAtIndex:0];
+    [contextQueue removeObjectAtIndex:0];
+    
+    // Until currentContext is nil:
+    while (currentContext) {
+        // Add context's examples to list:
+        [examples addObjectsFromArray:[currentContext examples]];
         
-        // Until currentContext is nil:
-        while (currentContext) {
-            // Add context's examples to list:
-            [examples addObjectsFromArray:[currentContext examples]];
-            
-            // Add nested contexts to queue:
-            [contextQueue addObjectsFromArray:[currentContext contexts]];
-            
-            // Move on to the next context, if there is one:
-            if ([contextQueue count] > 0) {
-                currentContext = [contextQueue objectAtIndex:0];
-                [contextQueue removeObjectAtIndex:0];
-            } else {
-                currentContext = nil;
-            }
+        // Add nested contexts to queue:
+        [contextQueue addObjectsFromArray:[currentContext contexts]];
+        
+        // Move on to the next context, if there is one:
+        if ([contextQueue count] > 0) {
+            currentContext = [contextQueue objectAtIndex:0];
+            [contextQueue removeObjectAtIndex:0];
+        } else {
+            currentContext = nil;
         }
     }
     
@@ -178,7 +166,8 @@ CLASS_PROPERTY(hooks,        NSMutableArray);
     BHVExample *example = [(BHVInvocation *)[self invocation] example];
     BHVContext *context = [example parentContext];
     while (context != nil) {
-        [names insertObject:[context name] atIndex:0];
+        if ([context name])
+            [names insertObject:[context name] atIndex:0];
         context = [context parentContext];
     }
     [names addObject:[example name]];
@@ -187,10 +176,7 @@ CLASS_PROPERTY(hooks,        NSMutableArray);
 
 + (void)reset
 {
-    [[self contexts] removeAllObjects];
-    [[self examples] removeAllObjects];
-    [[self hooks]    removeAllObjects];
-    
+    [[self contextStack] removeAllObjects];
     [self initialize];
 }
 

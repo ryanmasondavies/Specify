@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+@class BHVContext;
 
 typedef NS_ENUM(NSInteger, BHVHookFlavor) {
     BHVHookFlavorBeforeAll = 0,
@@ -20,6 +21,7 @@ typedef NS_ENUM(NSInteger, BHVHookFlavor) {
 - (instancetype)initWithFlavor:(BHVHookFlavor)flavor;
 
 @property (nonatomic) BHVHookFlavor flavor;
+@property (weak, nonatomic) BHVContext *parentContext;
 @property (copy, nonatomic) void(^block)(void);
 
 @end

@@ -6,8 +6,6 @@
 //  Copyright (c) 2012 Ryan Davies. All rights reserved.
 //
 
-#import "Behave.h"
-
 SpecBegin(BHVOneGroupOneExample)
 
 describe(@"something", ^{

@@ -6,43 +6,30 @@
 //  Copyright (c) 2012 Ryan Davies. All rights reserved.
 //
 
-#import <Posit/Posit.h>
-#import "Behave.h"
-
 SpecBegin(BHVAfterEach)
 
-NSMutableString *foo = [NSMutableString string];
+NSMutableString *order = [NSMutableString string];
 
-describe(@"afterEach", ^{
+afterEach(^{
+    [order appendString:@"1"];
+});
+    
+it(@"should not have executed yet", ^{
+    [[order should] beEqualTo:@""];
+});
+
+describe(@"in another context", ^{
     afterEach(^{
-        [foo appendString:@"bar"];
-    });
-    
-    describe(@"in another context", ^{
-        afterEach(^{
-            [foo appendString:@"foo"];
-        });
-        
-        it(@"should not have been executed yet", ^{
-            [[foo should] beEqualTo:@""];
-        });
-        
-        it(@"should have executed both hooks once", ^{
-            [[foo should] beEqualTo:@"foobar"];
-        });
-    });
-    
-    it(@"should have executed both hooks twice", ^{
-        [[foo should] beEqualTo:@"foobarfoobar"];
+        [order appendString:@"2"];
     });
     
     it(@"should have executed the outer hook once", ^{
-        [[foo should] beEqualTo:@"foobarfoobarbar"];
+        [[order should] beEqualTo:@"1"];
     });
-});
-
-it(@"should have executed the outside afterAll block once more", ^{
-    [[foo should] beEqualTo:@"foobarfoobarbarbar"];
+    
+    it(@"should have executed the outer hook twice and the inner hook once, executing the inner hook first", ^{
+        [[order should] beEqualTo:@"121"];
+    });
 });
 
 SpecEnd

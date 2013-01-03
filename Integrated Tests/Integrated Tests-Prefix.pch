@@ -1,0 +1,10 @@
+//
+//  Integrated Tests-Prefix.pch
+//  Behave
+//
+//  Created by Ryan Davies on 03/01/2013.
+//  Copyright (c) 2013 Ryan Davies. All rights reserved.
+//
+
+#import <Posit/Posit.h>
+#import "Behave.h"
