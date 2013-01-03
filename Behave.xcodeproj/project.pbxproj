@@ -22,7 +22,7 @@
 		941F5F7E1690647F00E01DF8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 941F5F6B1690647F00E01DF8 /* Foundation.framework */; };
 		941F5F811690647F00E01DF8 /* libBehave.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 941F5F681690647F00E01DF8 /* libBehave.a */; };
 		941F5F9E1690651A00E01DF8 /* BHVSpecificationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 941F5F9A1690651A00E01DF8 /* BHVSpecificationTests.m */; };
-		94A747D71695D80B0026C2F5 /* BHVBeforeEachSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412C7FA16906AB700BAA0C1 /* BHVBeforeEachSpec.m */; };
+		94A747D81695DB570026C2F5 /* BHVBeforeAllSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412C7F916906AB700BAA0C1 /* BHVBeforeAllSpec.m */; };
 		94B45BDE16948B6400F91EAC /* BHVTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B45BDD16948B6400F91EAC /* BHVTestHelper.m */; };
 		94EADEAB169069BA002DA799 /* BHVSpecification.m in Sources */ = {isa = PBXBuildFile; fileRef = 94EADEAA169069BA002DA799 /* BHVSpecification.m */; };
 		D0DED7AB80344EA8B87911B5 /* libPods-Integrated Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 483B1266A3F341C2A9E2A3F5 /* libPods-Integrated Tests.a */; };
@@ -369,7 +369,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94A747D71695D80B0026C2F5 /* BHVBeforeEachSpec.m in Sources */,
+				94A747D81695DB570026C2F5 /* BHVBeforeAllSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

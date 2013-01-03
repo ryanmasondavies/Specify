@@ -38,7 +38,6 @@
     NSMutableArray *afterAllHooks   = [NSMutableArray array];
     
     // Track whether all examples have been executed:
-    __block BOOL anExampleHasBeenExecuted = NO;
     __block BOOL allExamplesHaveBeenExecuted = YES;
     
     // Start at the direct parent and loop until `context` has no parent:
@@ -47,7 +46,7 @@
         // Add context hooks to appropriate list:
         [[context hooks] enumerateObjectsUsingBlock:^(BHVHook *hook, NSUInteger idx, BOOL *stop) {
             switch ([hook flavor]) {
-                case BHVHookFlavorBeforeAll:  [beforeAllHooks  addObject:hook]; break;
+                case BHVHookFlavorBeforeAll:  [beforeAllHooks  insertObject:hook atIndex:0]; break; // Shallowest-first order.
                 case BHVHookFlavorBeforeEach: [beforeEachHooks addObject:hook]; break;
                 case BHVHookFlavorAfterEach:  [afterEachHooks  addObject:hook]; break;
                 case BHVHookFlavorAfterAll:   [afterAllHooks   addObject:hook]; break;
@@ -60,9 +59,7 @@
             if (example == self) return;
             
             // Mark whether or not all or any have been executed:
-            if ([example isExecuted])
-                anExampleHasBeenExecuted = YES;
-            else
+            if ([example isExecuted] == NO)
                 allExamplesHaveBeenExecuted = NO;
         }];
         
@@ -70,9 +67,19 @@
         context = [context parentContext];
     }
     
-    // Invoke blocks of all `before all` hooks if no other examples have been executed:
-    if (anExampleHasBeenExecuted == NO)
-        [beforeAllHooks enumerateObjectsUsingBlock:^(BHVHook *hook, NSUInteger idx, BOOL *stop) { hook.block(); }];
+    // For each `beforeAll` hook, invoke only if no example in the hook's context has been executed:
+    [beforeAllHooks enumerateObjectsUsingBlock:^(BHVHook *hook, NSUInteger idx, BOOL *stop) {
+        __block BOOL anyExampleHasBeenExecuted = NO;
+        [[[hook parentContext] examples] enumerateObjectsUsingBlock:^(BHVExample *example, NSUInteger idx, BOOL *stop) {
+            if ([example isExecuted]) {
+                anyExampleHasBeenExecuted = YES;
+            }
+        }];
+        
+        if (anyExampleHasBeenExecuted == NO) {
+            hook.block();
+        }
+    }];
     
     // Invoke blocks of all `before each` hooks:
     [beforeEachHooks enumerateObjectsUsingBlock:^(BHVHook *hook, NSUInteger idx, BOOL *stop) { hook.block(); }];
@@ -84,8 +91,9 @@
     [afterEachHooks enumerateObjectsUsingBlock:^(BHVHook *hook, NSUInteger idx, BOOL *stop) { hook.block(); }];
     
     // Invoke blocks of all `after all` hooks if all examples have been executed:
-    if (allExamplesHaveBeenExecuted)
+    if (allExamplesHaveBeenExecuted) {
         [afterAllHooks enumerateObjectsUsingBlock:^(BHVHook *hook, NSUInteger idx, BOOL *stop) { hook.block(); }];
+    }
     
     // Mark as executed:
     self.executed = YES;

@@ -8,38 +8,24 @@
 
 SpecBegin(BHVBeforeAll)
 
-NSMutableString *foo = [NSMutableString string];
+NSMutableString *order = [NSMutableString string];
 
-describe(@"beforeAll", ^{
-    beforeAll(^{
-        [foo appendString:@"foo"];
-    });
-    
-    it(@"should have been executed when the context opened", ^{
-        [[foo should] beEqualTo:@"foo"];
-    });
-    
-    it(@"should not have been executed twice", ^{
-        [[foo should] beEqualTo:@"foo"];
-    });
-    
-    describe(@"in another context", ^{
-        beforeAll(^{
-            [foo appendString:@"bar"];
-        });
-        
-        it(@"should have been executed again", ^{
-            [[foo should] beEqualTo:@"foobar"];
-        });
-        
-        it(@"should not have been executed again in the same context", ^{
-            [[foo should] beEqualTo:@"foobar"];
-        });
-    });
+beforeAll(^{
+    [order appendString:@"1"];
 });
 
-it(@"should not have executed any more hooks", ^{
-    [[foo should] beEqualTo:@"foobar"];
+it(@"should have executed outer hook once", ^{
+    [[order should] beEqualTo:@"1"];
+});
+
+describe(@"in another context", ^{
+    beforeAll(^{
+        [order appendString:@"2"];
+    });
+    
+    it(@"should have executed both hooks once", ^{
+        [[order should] beEqualTo:@"12"];
+    });
 });
 
 SpecEnd
