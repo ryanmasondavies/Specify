@@ -208,28 +208,28 @@ void describe(NSString *name, void(^block)(void))
 
 void beforeAll(void(^block)(void))
 {
-    BHVHook *hook = [[BHVHook alloc] initWithFlavor:BHVHookFlavorBeforeAll];
+    BHVHook *hook = [[BHVHook alloc] initWithScope:BHVHookScopeBeforeAll];
     [hook setBlock:block];
     [[BHVSpecification currentSpecification] addHook:hook];
 }
 
 void afterAll(void(^block)(void))
 {
-    BHVHook *hook = [[BHVHook alloc] initWithFlavor:BHVHookFlavorAfterAll];
+    BHVHook *hook = [[BHVHook alloc] initWithScope:BHVHookScopeAfterAll];
     [hook setBlock:block];
     [[BHVSpecification currentSpecification] addHook:hook];
 }
 
 void beforeEach(void(^block)(void))
 {
-    BHVHook *hook = [[BHVHook alloc] initWithFlavor:BHVHookFlavorBeforeEach];
+    BHVHook *hook = [[BHVHook alloc] initWithScope:BHVHookScopeBeforeEach];
     [hook setBlock:block];
     [[BHVSpecification currentSpecification] addHook:hook];
 }
 
 void afterEach(void(^block)(void))
 {
-    BHVHook *hook = [[BHVHook alloc] initWithFlavor:BHVHookFlavorAfterEach];
+    BHVHook *hook = [[BHVHook alloc] initWithScope:BHVHookScopeAfterEach];
     [hook setBlock:block];
     [[BHVSpecification currentSpecification] addHook:hook];
 }

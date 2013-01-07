@@ -46,10 +46,10 @@
         // Add context hooks to appropriate list:
         [[context hooks] enumerateObjectsUsingBlock:^(BHVHook *hook, NSUInteger idx, BOOL *stop) {
             switch ([hook flavor]) {
-                case BHVHookFlavorBeforeAll:  [beforeAllHooks  insertObject:hook atIndex:0]; break; // Shallowest-first order.
-                case BHVHookFlavorBeforeEach: [beforeEachHooks addObject:hook]; break;
-                case BHVHookFlavorAfterEach:  [afterEachHooks  addObject:hook]; break;
-                case BHVHookFlavorAfterAll:   [afterAllHooks   addObject:hook]; break;
+                case BHVHookScopeBeforeAll:  [beforeAllHooks  insertObject:hook atIndex:0]; break; // Shallowest-first order.
+                case BHVHookScopeBeforeEach: [beforeEachHooks addObject:hook]; break;
+                case BHVHookScopeAfterEach:  [afterEachHooks  addObject:hook]; break;
+                case BHVHookScopeAfterAll:   [afterAllHooks   addObject:hook]; break;
             }
         }];
         

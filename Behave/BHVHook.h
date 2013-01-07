@@ -9,18 +9,18 @@
 #import <Foundation/Foundation.h>
 @class BHVContext;
 
-typedef NS_ENUM(NSInteger, BHVHookFlavor) {
-    BHVHookFlavorBeforeAll = 0,
-    BHVHookFlavorBeforeEach,
-    BHVHookFlavorAfterEach,
-    BHVHookFlavorAfterAll
+typedef NS_ENUM(NSInteger, BHVHookScope) {
+    BHVHookScopeBeforeAll = 0,
+    BHVHookScopeBeforeEach,
+    BHVHookScopeAfterEach,
+    BHVHookScopeAfterAll
 };
 
 @interface BHVHook : NSObject
 
-- (instancetype)initWithFlavor:(BHVHookFlavor)flavor;
+- (instancetype)initWithScope:(BHVHookScope)flavor;
 
-@property (nonatomic) BHVHookFlavor flavor;
+@property (nonatomic) BHVHookScope flavor;
 @property (weak, nonatomic) BHVContext *parentContext;
 @property (copy, nonatomic) void(^block)(void);
 

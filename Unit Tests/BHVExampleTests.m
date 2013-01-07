@@ -29,10 +29,10 @@
     NSArray *contexts = @[[BHVContext new], [BHVContext new]];
     BHVExample *example = [BHVExample new];
     NSArray *hooks = @[
-        [[BHVHook alloc] initWithFlavor:BHVHookFlavorBeforeAll],
-        [[BHVHook alloc] initWithFlavor:BHVHookFlavorBeforeEach],
-        [[BHVHook alloc] initWithFlavor:BHVHookFlavorAfterEach],
-        [[BHVHook alloc] initWithFlavor:BHVHookFlavorAfterAll]
+        [[BHVHook alloc] initWithScope:BHVHookScopeBeforeAll],
+        [[BHVHook alloc] initWithScope:BHVHookScopeBeforeEach],
+        [[BHVHook alloc] initWithScope:BHVHookScopeAfterEach],
+        [[BHVHook alloc] initWithScope:BHVHookScopeAfterAll]
     ];
     
     // Invocation of a hook adds a message to the list:
@@ -216,7 +216,7 @@
     NSMutableArray *messages = [NSMutableArray array];
     NSMutableArray *hooks = [NSMutableArray array];
     for (NSUInteger i = 0; i < 2; i ++) {
-        hooks[i] = [[BHVHook alloc] initWithFlavor:BHVHookFlavorBeforeAll];
+        hooks[i] = [[BHVHook alloc] initWithScope:BHVHookScopeBeforeAll];
         [hooks[i] setBlock:^{ [messages addObject:[NSString stringWithFormat:@"before all %d", i+1]]; }];
         [contexts[i] addHook:hooks[i]];
     }
@@ -243,7 +243,7 @@
     // Add hook to a context, and add a message to the list when invoked:
     NSMutableArray *messages = [NSMutableArray array];
     BHVContext *context = [[BHVContext alloc] init];
-    BHVHook *hook = [[BHVHook alloc] initWithFlavor:BHVHookFlavorBeforeEach];
+    BHVHook *hook = [[BHVHook alloc] initWithScope:BHVHookScopeBeforeEach];
     [hook setBlock:^{ [messages addObject:@"before each"]; }];
     [context addHook:hook];
     
@@ -275,7 +275,7 @@
     // Add hook to a context, and add a message to the list when invoked:
     NSMutableArray *messages = [NSMutableArray array];
     BHVContext *context = [[BHVContext alloc] init];
-    BHVHook *hook = [[BHVHook alloc] initWithFlavor:BHVHookFlavorAfterEach];
+    BHVHook *hook = [[BHVHook alloc] initWithScope:BHVHookScopeAfterEach];
     [hook setBlock:^{ [messages addObject:@"after each"]; }];
     [context addHook:hook];
     
@@ -307,7 +307,7 @@
     // Add hook to a context, and add a message to the list when invoked:
     NSMutableArray *messages = [NSMutableArray array];
     BHVContext *context = [[BHVContext alloc] init];
-    BHVHook *hook = [[BHVHook alloc] initWithFlavor:BHVHookFlavorAfterAll];
+    BHVHook *hook = [[BHVHook alloc] initWithScope:BHVHookScopeAfterAll];
     [hook setBlock:^{ [messages addObject:@"after all"]; }];
     [context addHook:hook];
     

@@ -10,7 +10,7 @@
 
 @implementation BHVHook
 
-- (instancetype)initWithFlavor:(BHVHookFlavor)flavor
+- (instancetype)initWithScope:(BHVHookScope)flavor
 {
     if (self = [super init]) {
         self.flavor = flavor;
