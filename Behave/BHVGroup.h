@@ -1,5 +1,5 @@
 //
-//  BHVContext.h
+//  BHVGroup.h
 //  Behave
 //
 //  Created by Ryan Davies on 30/12/2012.
@@ -9,18 +9,18 @@
 #import <Foundation/Foundation.h>
 @class BHVExample, BHVHook;
 
-@interface BHVContext : NSObject
+@interface BHVGroup : NSObject
 
 - (instancetype)initWithName:(NSString *)name;
 
-- (void)addContext:(BHVContext *)context;
+- (void)addGroup:(BHVGroup *)group;
 - (void)addExample:(BHVExample *)example;
 - (void)addHook:(BHVHook *)hook;
 
 @property (copy,   nonatomic) NSString   *name;
-@property (strong, nonatomic) NSArray    *contexts;
+@property (strong, nonatomic) NSArray    *groups;
 @property (strong, nonatomic) NSArray    *examples;
 @property (strong, nonatomic) NSArray    *hooks;
-@property (weak,   nonatomic) BHVContext *parentContext;
+@property (weak,   nonatomic) BHVGroup *parentGroup;
 
 @end

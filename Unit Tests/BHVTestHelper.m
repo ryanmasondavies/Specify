@@ -32,8 +32,8 @@
 - (void)loadExamples
 {
     it(@"example 1", ^{});
-    context(@"context 1", ^{
-        context(@"context 2", ^{
+    group(@"group 1", ^{
+        group(@"group 2", ^{
             it(@"example 2", ^{});
         });
     });

@@ -18,7 +18,7 @@ it(@"should have executed outer hook once", ^{
     [[order should] beEqualTo:@"1"];
 });
 
-describe(@"in another context", ^{
+describe(@"in another group", ^{
     beforeEach(^{
         [order appendString:@"2"];
     });

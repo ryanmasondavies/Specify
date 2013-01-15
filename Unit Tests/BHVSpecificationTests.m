@@ -38,47 +38,47 @@
         [BHVTestSpecification addExample:examples[i]];
     }
     
-    STAssertEqualObjects([examples[0] parentContext], [examples[1] parentContext], @"Should have added both examples to the same context.");
+    STAssertEqualObjects([examples[0] parentGroup], [examples[1] parentGroup], @"Should have added both examples to the same group.");
 }
 
 - (void)testNestingExamples
 {
-    NSArray *contexts = @[[BHVContext new], [BHVContext new]];
+    NSArray *groups = @[[BHVGroup new], [BHVGroup new]];
     NSArray *examples = @[[BHVExample new], [BHVExample new]];
     
-    [BHVTestSpecification enterContext:contexts[0]];
+    [BHVTestSpecification enterGroup:groups[0]];
     [BHVTestSpecification addExample:examples[0]];
-    [BHVTestSpecification leaveContext];
-    [BHVTestSpecification enterContext:contexts[1]];
+    [BHVTestSpecification leaveGroup];
+    [BHVTestSpecification enterGroup:groups[1]];
     [BHVTestSpecification addExample:examples[1]];
-    [BHVTestSpecification leaveContext];
+    [BHVTestSpecification leaveGroup];
     
-    STAssertEqualObjects([contexts[0] parentContext], [contexts[1] parentContext], @"Should have added both contexts to the same context.");
-    STAssertEqualObjects([examples[0] parentContext], contexts[0], @"Should have added example 1 to context 1.");
-    STAssertEqualObjects([examples[1] parentContext], contexts[1], @"Should have added example 2 to context 2.");
+    STAssertEqualObjects([groups[0] parentGroup], [groups[1] parentGroup], @"Should have added both groups to the same group.");
+    STAssertEqualObjects([examples[0] parentGroup], groups[0], @"Should have added example 1 to group 1.");
+    STAssertEqualObjects([examples[1] parentGroup], groups[1], @"Should have added example 2 to group 2.");
 }
 
-- (void)testNestingExamplesInNestedContexts
+- (void)testNestingExamplesInNestedGroups
 {
-    NSArray *contexts = @[[BHVContext new], [BHVContext new], [BHVContext new]];
+    NSArray *groups = @[[BHVGroup new], [BHVGroup new], [BHVGroup new]];
     NSArray *examples = @[[BHVExample new], [BHVExample new], [BHVExample new]];
     
-    [BHVTestSpecification enterContext:contexts[0]];
+    [BHVTestSpecification enterGroup:groups[0]];
     [BHVTestSpecification addExample:examples[0]];
-    [BHVTestSpecification enterContext:contexts[1]];
+    [BHVTestSpecification enterGroup:groups[1]];
     [BHVTestSpecification addExample:examples[1]];
-    [BHVTestSpecification enterContext:contexts[2]];
+    [BHVTestSpecification enterGroup:groups[2]];
     [BHVTestSpecification addExample:examples[2]];
-    [BHVTestSpecification leaveContext];
-    [BHVTestSpecification leaveContext];
-    [BHVTestSpecification leaveContext];
+    [BHVTestSpecification leaveGroup];
+    [BHVTestSpecification leaveGroup];
+    [BHVTestSpecification leaveGroup];
     
-    STAssertNotNil([contexts[0] parentContext], @"Should have added context 1 to base context.");
-    STAssertEqualObjects([contexts[1] parentContext], contexts[0], @"Should have added context 2 to context 1.");
-    STAssertEqualObjects([contexts[2] parentContext], contexts[1], @"Should have added context 3 to context 2.");
-    STAssertEqualObjects([examples[0] parentContext], contexts[0], @"Should have added example 1 to context 1.");
-    STAssertEqualObjects([examples[1] parentContext], contexts[1], @"Should have added example 2 to context 2.");
-    STAssertEqualObjects([examples[2] parentContext], contexts[2], @"Should have added example 3 to context 3.");
+    STAssertNotNil([groups[0] parentGroup], @"Should have added group 1 to base group.");
+    STAssertEqualObjects([groups[1] parentGroup], groups[0], @"Should have added group 2 to group 1.");
+    STAssertEqualObjects([groups[2] parentGroup], groups[1], @"Should have added group 3 to group 2.");
+    STAssertEqualObjects([examples[0] parentGroup], groups[0], @"Should have added example 1 to group 1.");
+    STAssertEqualObjects([examples[1] parentGroup], groups[1], @"Should have added example 2 to group 2.");
+    STAssertEqualObjects([examples[2] parentGroup], groups[2], @"Should have added example 3 to group 3.");
 }
 
 #pragma mark Adding hooks
@@ -96,47 +96,47 @@
         [BHVTestSpecification addHook:hooks[i]];
     }
     
-    STAssertEqualObjects([hooks[0] parentContext], [hooks[1] parentContext], @"Should have added both hooks to the same context.");
+    STAssertEqualObjects([hooks[0] parentGroup], [hooks[1] parentGroup], @"Should have added both hooks to the same group.");
 }
 
 - (void)testNestingHooks
 {
-    NSArray *contexts = @[[BHVContext new], [BHVContext new]];
+    NSArray *groups = @[[BHVGroup new], [BHVGroup new]];
     NSArray *hooks = @[[BHVBeforeEachHook new], [BHVBeforeEachHook new]];
     
-    [BHVTestSpecification enterContext:contexts[0]];
+    [BHVTestSpecification enterGroup:groups[0]];
     [BHVTestSpecification addExample:hooks[0]];
-    [BHVTestSpecification leaveContext];
-    [BHVTestSpecification enterContext:contexts[1]];
+    [BHVTestSpecification leaveGroup];
+    [BHVTestSpecification enterGroup:groups[1]];
     [BHVTestSpecification addExample:hooks[1]];
-    [BHVTestSpecification leaveContext];
+    [BHVTestSpecification leaveGroup];
     
-    STAssertEqualObjects([contexts[0] parentContext], [contexts[1] parentContext], @"Should have added both contexts to the same context.");
-    STAssertEqualObjects([hooks[0] parentContext], contexts[0], @"Should have added hook 1 to context 1.");
-    STAssertEqualObjects([hooks[1] parentContext], contexts[1], @"Should have added hook 2 to context 2.");
+    STAssertEqualObjects([groups[0] parentGroup], [groups[1] parentGroup], @"Should have added both groups to the same group.");
+    STAssertEqualObjects([hooks[0] parentGroup], groups[0], @"Should have added hook 1 to group 1.");
+    STAssertEqualObjects([hooks[1] parentGroup], groups[1], @"Should have added hook 2 to group 2.");
 }
 
-- (void)testNestingHooksInNestedContexts
+- (void)testNestingHooksInNestedGroups
 {
-    NSArray *contexts = @[[BHVContext new], [BHVContext new], [BHVContext new]];
+    NSArray *groups = @[[BHVGroup new], [BHVGroup new], [BHVGroup new]];
     NSArray *hooks    = @[[BHVBeforeEachHook    new], [BHVBeforeEachHook    new], [BHVBeforeEachHook    new]];
     
-    [BHVTestSpecification enterContext:contexts[0]];
+    [BHVTestSpecification enterGroup:groups[0]];
     [BHVTestSpecification addHook:hooks[0]];
-    [BHVTestSpecification enterContext:contexts[1]];
+    [BHVTestSpecification enterGroup:groups[1]];
     [BHVTestSpecification addHook:hooks[1]];
-    [BHVTestSpecification enterContext:contexts[2]];
+    [BHVTestSpecification enterGroup:groups[2]];
     [BHVTestSpecification addHook:hooks[2]];
-    [BHVTestSpecification leaveContext];
-    [BHVTestSpecification leaveContext];
-    [BHVTestSpecification leaveContext];
+    [BHVTestSpecification leaveGroup];
+    [BHVTestSpecification leaveGroup];
+    [BHVTestSpecification leaveGroup];
     
-    STAssertNotNil([contexts[0] parentContext], @"Should have added context 1 to base context.");
-    STAssertEqualObjects([contexts[1] parentContext], contexts[0], @"Should have added context 2 to context 1.");
-    STAssertEqualObjects([contexts[2] parentContext], contexts[1], @"Should have added context 3 to context 2.");
-    STAssertEqualObjects([hooks[0] parentContext], contexts[0], @"Should have added hook 1 to context 1.");
-    STAssertEqualObjects([hooks[1] parentContext], contexts[1], @"Should have added hook 2 to context 2.");
-    STAssertEqualObjects([hooks[2] parentContext], contexts[2], @"Should have added hook 3 to context 3.");
+    STAssertNotNil([groups[0] parentGroup], @"Should have added group 1 to base group.");
+    STAssertEqualObjects([groups[1] parentGroup], groups[0], @"Should have added group 2 to group 1.");
+    STAssertEqualObjects([groups[2] parentGroup], groups[1], @"Should have added group 3 to group 2.");
+    STAssertEqualObjects([hooks[0] parentGroup], groups[0], @"Should have added hook 1 to group 1.");
+    STAssertEqualObjects([hooks[1] parentGroup], groups[1], @"Should have added hook 2 to group 2.");
+    STAssertEqualObjects([hooks[2] parentGroup], groups[2], @"Should have added hook 3 to group 3.");
 }
 
 #pragma mark Generating invocations
@@ -152,7 +152,7 @@
     STAssertEqualObjects([[invocations[2] example] name], @"example 3", @"Should execute example 3 third.");
 }
 
-- (void)testExamplesInContextsAreMovedToEnd
+- (void)testExamplesInGroupsAreMovedToEnd
 {
     /* See the BHVSpecificationWithUnorderedNestedExamples implementation to
      * see that it creates the following structure:
@@ -162,8 +162,8 @@
      *   }
      *   example 3
      *
-     * BHVSpecification should shift examples in contexts to the end of the invocation list.
-     * Here, the second example is nested in a context. It should be executed last.
+     * BHVSpecification should shift examples in groups to the end of the invocation list.
+     * Here, the second example is nested in a group. It should be executed last.
      */
     
     NSArray *invocations = [BHVSpecificationWithUnorderedNestedExamples testInvocations];
@@ -184,59 +184,59 @@
     STAssertEqualObjects([[invocations[0] example] name], @"Example", @"Should execute the example.");
 }
 
-#pragma mark Generating contextual names
+#pragma mark Generating groupual names
 
-- (void)testConcatenatesContextNamesAndExampleName
+- (void)testConcatenatesGroupNamesAndExampleName
 {
-    // Create contexts:
-    NSArray *contexts = @[[BHVContext new], [BHVContext new]];
-    [contexts[0] setName:@"a cat"];
-    [contexts[1] setName:@"when it is fat"];
+    // Create groups:
+    NSArray *groups = @[[BHVGroup new], [BHVGroup new]];
+    [groups[0] setName:@"a cat"];
+    [groups[1] setName:@"when it is fat"];
     
     // Create an example:
     BHVExample *example = [[BHVExample alloc] init];
     [example setName:@"should be lazy"];
     
-    // Nest example in contexts:
-    [BHVTestSpecification enterContext:contexts[0]];
-    [BHVTestSpecification enterContext:contexts[1]];
+    // Nest example in groups:
+    [BHVTestSpecification enterGroup:groups[0]];
+    [BHVTestSpecification enterGroup:groups[1]];
     [BHVTestSpecification addExample:example];
-    [BHVTestSpecification leaveContext];
-    [BHVTestSpecification leaveContext];
+    [BHVTestSpecification leaveGroup];
+    [BHVTestSpecification leaveGroup];
     
-    // Test that the name is equal to the concatenated context names and example name:
+    // Test that the name is equal to the concatenated group names and example name:
     BHVTestSpecification *spec = [BHVTestSpecification testCaseWithInvocation:[BHVInvocation invocationWithExample:example]];
-    STAssertEqualObjects([spec name], @"a cat when it is fat should be lazy", @"Should have returned the concatenated names of the contexts and example.");
+    STAssertEqualObjects([spec name], @"a cat when it is fat should be lazy", @"Should have returned the concatenated names of the groups and example.");
 }
 
-- (void)testIgnoresHooksForContextualNames
+- (void)testIgnoresHooksForGroupualNames
 {
-    // Create contexts:
-    NSArray *contexts = @[[BHVContext new], [BHVContext new]];
-    [contexts[0] setName:@"a cat"];
-    [contexts[1] setName:@"when it is fat"];
+    // Create groups:
+    NSArray *groups = @[[BHVGroup new], [BHVGroup new]];
+    [groups[0] setName:@"a cat"];
+    [groups[1] setName:@"when it is fat"];
     
     // Create an example:
     BHVExample *example = [[BHVExample alloc] init];
     [example setName:@"should be lazy"];
     
-    // Nest example in contexts, and add some hooks:
-    [BHVTestSpecification enterContext:contexts[0]];
+    // Nest example in groups, and add some hooks:
+    [BHVTestSpecification enterGroup:groups[0]];
     [BHVTestSpecification addHook:[BHVBeforeEachHook new]];
-    [BHVTestSpecification enterContext:contexts[1]];
+    [BHVTestSpecification enterGroup:groups[1]];
     [BHVTestSpecification addHook:[BHVBeforeEachHook new]];
     [BHVTestSpecification addExample:example];
     [BHVTestSpecification addHook:[BHVBeforeEachHook new]];
-    [BHVTestSpecification leaveContext];
+    [BHVTestSpecification leaveGroup];
     [BHVTestSpecification addHook:[BHVBeforeEachHook new]];
-    [BHVTestSpecification leaveContext];
+    [BHVTestSpecification leaveGroup];
     
-    // Test that the name is equal to the concatenated context names and example name:
+    // Test that the name is equal to the concatenated group names and example name:
     BHVTestSpecification *spec = [BHVTestSpecification testCaseWithInvocation:[BHVInvocation invocationWithExample:example]];
-    STAssertEqualObjects([spec name], @"a cat when it is fat should be lazy", @"Should have returned the concatenated names of the contexts and example.");
+    STAssertEqualObjects([spec name], @"a cat when it is fat should be lazy", @"Should have returned the concatenated names of the groups and example.");
 }
 
-- (void)testUsesJustExampleNameIfNotInContext
+- (void)testUsesJustExampleNameIfNotInGroup
 {
     // Create and add an example to the spec:
     BHVExample *example = [[BHVExample alloc] init];

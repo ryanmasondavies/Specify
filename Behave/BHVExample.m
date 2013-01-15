@@ -7,7 +7,7 @@
 //
 
 #import "BHVExample.h"
-#import "BHVContext.h"
+#import "BHVGroup.h"
 #import "BHVBeforeEachHook.h"
 
 @implementation BHVExample
@@ -27,14 +27,14 @@
     if (self.block == nil) return;
     
     // Accumulate hooks by working up the chain:
-    BHVContext *context = [self parentContext];
+    BHVGroup *group = [self parentGroup];
     NSMutableArray *hooks  = [NSMutableArray array];
-    while (context != nil) {
+    while (group != nil) {
         // Because we're working our way out from the example, hooks must be inserted at the front of the array:
-        [hooks insertObjects:[context hooks] atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [[context hooks] count])]];
+        [hooks insertObjects:[group hooks] atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [[group hooks] count])]];
         
-        // Move to context's parent:
-        context = [context parentContext];
+        // Move to group's parent:
+        group = [group parentGroup];
     }
     
     // Execute all hooks in forward order:

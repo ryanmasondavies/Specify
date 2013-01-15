@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-@class BHVExample, BHVContext;
+@class BHVExample, BHVGroup;
 
 @interface BHVHook : NSObject
 
@@ -16,7 +16,7 @@
 
 - (void)execute;
 
-@property (weak, nonatomic) BHVContext *parentContext;
+@property (weak, nonatomic) BHVGroup *parentGroup;
 @property (copy, nonatomic) void(^block)(void);
 
 @end

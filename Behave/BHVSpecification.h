@@ -8,12 +8,12 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-@class BHVContext, BHVExample, BHVHook;
+@class BHVGroup, BHVExample, BHVHook;
 
 @interface BHVSpecification : SenTestCase
 
-+ (void)enterContext:(BHVContext *)context;
-+ (void)leaveContext;
++ (void)enterGroup:(BHVGroup *)group;
++ (void)leaveGroup;
 
 + (void)addExample:(BHVExample *)example;
 + (void)addHook:(BHVHook *)hook;
@@ -32,7 +32,7 @@
 {
 
 void it(NSString *name, void(^block)(void));
-void context(NSString *name, void(^block)(void));
+void group(NSString *name, void(^block)(void));
 void describe(NSString *name, void(^block)(void));
 void beforeEach(void(^block)(void));
 void afterEach(void(^block)(void));

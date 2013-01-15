@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class BHVContext;
+@class BHVGroup;
 
 @interface BHVExample : NSObject
 
@@ -18,7 +18,7 @@
 
 @property (copy, nonatomic) NSString   *name;
 @property (nonatomic, getter = isExecuted) BOOL executed;
-@property (weak, nonatomic) BHVContext *parentContext;
+@property (weak, nonatomic) BHVGroup *parentGroup;
 @property (copy, nonatomic) void(^block)(void);
 
 @end

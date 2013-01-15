@@ -7,7 +7,7 @@
 //
 
 #import "BHVSpecification.h"
-#import "BHVContext.h"
+#import "BHVGroup.h"
 #import "BHVExample.h"
 #import "BHVBeforeEachHook.h"
 #import "BHVAfterEachHook.h"
@@ -42,15 +42,15 @@
 @interface BHVSpecification ()
 + (void)setCurrentSpecification:(Class)specification;
 + (Class)currentSpecification;
-+ (NSMutableArray *)contextStack;
++ (NSMutableArray *)groupStack;
 @end
 
 @implementation BHVSpecification
 
 + (void)initialize
 {
-    // Add base context:
-    [[self contextStack] addObject:[BHVContext new]];
+    // Add base group:
+    [[self groupStack] addObject:[BHVGroup new]];
     
     // Load examples:
     BHVSpecification *instance = [[[self class] alloc] init];
@@ -71,32 +71,32 @@
     return [[[NSThread currentThread] threadDictionary] objectForKey:@"BHVCurrentSpecification"];
 }
 
-+ (NSMutableArray *)contextStack
++ (NSMutableArray *)groupStack
 {
-    static NSMutableDictionary *contextStackByClass = nil;
-    if (contextStackByClass == nil) contextStackByClass = [NSMutableDictionary dictionary];
-    NSMutableArray *contextStack = [contextStackByClass objectForKey:NSStringFromClass(self)];
-    if (contextStack == nil) {
-        contextStack = [NSMutableArray array];
-        [contextStackByClass setObject:contextStack forKey:NSStringFromClass(self)];
+    static NSMutableDictionary *groupStackByClass = nil;
+    if (groupStackByClass == nil) groupStackByClass = [NSMutableDictionary dictionary];
+    NSMutableArray *groupStack = [groupStackByClass objectForKey:NSStringFromClass(self)];
+    if (groupStack == nil) {
+        groupStack = [NSMutableArray array];
+        [groupStackByClass setObject:groupStack forKey:NSStringFromClass(self)];
     }
-    return contextStack;
+    return groupStack;
 }
 
-+ (void)enterContext:(BHVContext *)context
++ (void)enterGroup:(BHVGroup *)group
 {
-    // Push the context to the context stack:
-    [[self contextStack] addObject:context];
+    // Push the group to the group stack:
+    [[self groupStack] addObject:group];
 }
 
-+ (void)leaveContext
++ (void)leaveGroup
 {
-    // Pop a context from the context stack:
-    BHVContext *context = [[self contextStack] lastObject];
-    [[self contextStack] removeLastObject];
+    // Pop a group from the group stack:
+    BHVGroup *group = [[self groupStack] lastObject];
+    [[self groupStack] removeLastObject];
     
-    // Add the popped context to what is now the top context:
-    [[[self contextStack] lastObject] addContext:context];
+    // Add the popped group to what is now the top group:
+    [[[self groupStack] lastObject] addGroup:group];
 }
 
 + (void)addExample:(BHVExample *)example
@@ -104,8 +104,8 @@
     // Raise an exception if adding to the base specification:
     if (self == [BHVSpecification class]) [NSException raise:NSInternalInconsistencyException format:@"Cannot add examples to the base specification."];
     
-    // Add example to the top context:
-    [[[self contextStack] lastObject] addExample:example];
+    // Add example to the top group:
+    [[[self groupStack] lastObject] addExample:example];
 }
 
 + (void)addHook:(BHVHook *)hook
@@ -113,8 +113,8 @@
     // Raise an exception if adding to the base specification:
     if (self == [BHVSpecification class]) [NSException raise:NSInternalInconsistencyException format:@"Cannot add hooks to the base specification."];
     
-    // Add example to the top context:
-    [[[self contextStack] lastObject] addHook:hook];
+    // Add example to the top group:
+    [[[self groupStack] lastObject] addHook:hook];
 }
 
 + (NSArray *)testInvocations
@@ -122,28 +122,28 @@
     // Gather examples:
     NSMutableArray *examples = [NSMutableArray array];
     
-    // Start at the top-most context:
-    BHVContext *topMostContext = [[self contextStack] objectAtIndex:0];
-    NSMutableArray *contextQueue = [NSMutableArray arrayWithObject:topMostContext];
+    // Start at the top-most group:
+    BHVGroup *topMostGroup = [[self groupStack] objectAtIndex:0];
+    NSMutableArray *groupQueue = [NSMutableArray arrayWithObject:topMostGroup];
     
-    // Pop off the first context:
-    BHVContext *currentContext = [contextQueue objectAtIndex:0];
-    [contextQueue removeObjectAtIndex:0];
+    // Pop off the first group:
+    BHVGroup *currentGroup = [groupQueue objectAtIndex:0];
+    [groupQueue removeObjectAtIndex:0];
     
-    // Until currentContext is nil:
-    while (currentContext) {
-        // Add context's examples to list:
-        [examples addObjectsFromArray:[currentContext examples]];
+    // Until currentGroup is nil:
+    while (currentGroup) {
+        // Add group's examples to list:
+        [examples addObjectsFromArray:[currentGroup examples]];
         
-        // Add nested contexts to queue:
-        [contextQueue addObjectsFromArray:[currentContext contexts]];
+        // Add nested groups to queue:
+        [groupQueue addObjectsFromArray:[currentGroup groups]];
         
-        // Move on to the next context, if there is one:
-        if ([contextQueue count] > 0) {
-            currentContext = [contextQueue objectAtIndex:0];
-            [contextQueue removeObjectAtIndex:0];
+        // Move on to the next group, if there is one:
+        if ([groupQueue count] > 0) {
+            currentGroup = [groupQueue objectAtIndex:0];
+            [groupQueue removeObjectAtIndex:0];
         } else {
-            currentContext = nil;
+            currentGroup = nil;
         }
     }
     
@@ -165,11 +165,11 @@
 {
     NSMutableArray *names = [NSMutableArray array];
     BHVExample *example = [(BHVInvocation *)[self invocation] example];
-    BHVContext *context = [example parentContext];
-    while (context != nil) {
-        if ([context name])
-            [names insertObject:[context name] atIndex:0];
-        context = [context parentContext];
+    BHVGroup *group = [example parentGroup];
+    while (group != nil) {
+        if ([group name])
+            [names insertObject:[group name] atIndex:0];
+        group = [group parentGroup];
     }
     [names addObject:[example name]];
     return [names componentsJoinedByString:@" "];
@@ -177,7 +177,7 @@
 
 + (void)reset
 {
-    [[self contextStack] removeAllObjects];
+    [[self groupStack] removeAllObjects];
     [self initialize];
 }
 
@@ -191,20 +191,20 @@ void it(NSString *name, void(^block)(void))
     [[BHVSpecification currentSpecification] addExample:example];
 }
 
-void context(NSString *name, void(^block)(void))
+void group(NSString *name, void(^block)(void))
 {
-    // Create context:
-    BHVContext *context = [[BHVContext alloc] initWithName:name];
+    // Create group:
+    BHVGroup *group = [[BHVGroup alloc] initWithName:name];
     
-    // Add context and its contents to the specification:
-    [[BHVSpecification currentSpecification] enterContext:context];
+    // Add group and its contents to the specification:
+    [[BHVSpecification currentSpecification] enterGroup:group];
     block();
-    [[BHVSpecification currentSpecification] leaveContext];
+    [[BHVSpecification currentSpecification] leaveGroup];
 }
 
 void describe(NSString *name, void(^block)(void))
 {
-    context(name, block);
+    group(name, block);
 }
 
 void beforeEach(void(^block)(void))

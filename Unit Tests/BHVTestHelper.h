@@ -9,7 +9,7 @@
 #import <SenTestingKit/SenTestingKit.h>
 #import <OCMock/OCMock.h>
 #import "BHVSpecification.h"
-#import "BHVContext.h"
+#import "BHVGroup.h"
 #import "BHVExample.h"
 #import "BHVBeforeEachHook.h"
 #import "BHVAfterEachHook.h"

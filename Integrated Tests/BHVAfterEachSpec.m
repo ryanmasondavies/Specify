@@ -18,7 +18,7 @@ it(@"should not have executed yet", ^{
     [[order should] beEqualTo:@""];
 });
 
-describe(@"in another context", ^{
+describe(@"in another group", ^{
     afterEach(^{
         [order appendString:@"2"];
     });
