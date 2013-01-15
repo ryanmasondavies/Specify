@@ -43,6 +43,11 @@ void when(NSString *name, void(^block)(void))
     context([NSString stringWithFormat:@"when %@", name], block);
 }
 
+void before(void(^block)(void))
+{
+    beforeEach(block);
+}
+
 void beforeEach(void(^block)(void))
 {
     BHVHook *hook = [[BHVBeforeEachHook alloc] init];
@@ -50,9 +55,9 @@ void beforeEach(void(^block)(void))
     [[[BHVSpecification currentSpecification] builder] addHook:hook];
 }
 
-void before(void(^block)(void))
+void after(void(^block)(void))
 {
-    beforeEach(block);
+    afterEach(block);
 }
 
 void afterEach(void(^block)(void))

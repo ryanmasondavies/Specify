@@ -152,4 +152,18 @@
     [builder verify];
 }
 
+- (void)test_After_AddsBeforeEachHook
+{
+    void(^implementation)(void) = ^{};
+    
+    id builder = [BHVMockSpecification builder];
+    [[builder expect] addHook:[OCMArg checkWithBlock:^BOOL(id hook) {
+        return [hook block] == implementation;
+    }]];
+    
+    after(implementation);
+    
+    [builder verify];
+}
+
 @end
