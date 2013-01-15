@@ -18,12 +18,12 @@ SpecEnd
 SpecBegin(BHVNestedExampleGroups)
 
 describe(@"something", ^{
-    group(@"in one group", ^{
+    context(@"in one group", ^{
         it(@"does one thing", ^{
         });
     });
     
-    group(@"in another group", ^{
+    context(@"in another group", ^{
         it(@"does another thing", ^{
         });
     });

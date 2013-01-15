@@ -193,7 +193,7 @@ void it(NSString *name, void(^block)(void))
     [[BHVSpecification currentSpecification] addExample:example];
 }
 
-void group(NSString *name, void(^block)(void))
+void context(NSString *name, void(^block)(void))
 {
     // Create group:
     BHVGroup *group = [[BHVGroup alloc] initWithName:name];
@@ -206,7 +206,7 @@ void group(NSString *name, void(^block)(void))
 
 void describe(NSString *name, void(^block)(void))
 {
-    group(name, block);
+    context(name, block);
 }
 
 void beforeEach(void(^block)(void))
