@@ -16,6 +16,7 @@
 + (Class)currentSpecification;
 
 + (BHVBuilder *)builder;
+
 - (void)loadExamples;
 + (void)reset;
 
