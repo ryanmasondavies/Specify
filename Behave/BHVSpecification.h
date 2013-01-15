@@ -34,8 +34,6 @@
 void it(NSString *name, void(^block)(void));
 void context(NSString *name, void(^block)(void));
 void describe(NSString *name, void(^block)(void));
-void beforeAll(void(^block)(void));
-void afterAll(void(^block)(void));
 void beforeEach(void(^block)(void));
 void afterEach(void(^block)(void));
 

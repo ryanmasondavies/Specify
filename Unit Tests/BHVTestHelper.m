@@ -46,11 +46,9 @@
 
 - (void)loadExamples
 {
-    beforeAll(^{});
     beforeEach(^{});
     it(@"Example", ^{});
     afterEach(^{});
-    afterAll(^{});
 }
 
 @end

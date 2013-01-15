@@ -6,10 +6,7 @@
 //  Copyright (c) 2012 Ryan Davies. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
-#import "BHVContext.h"
-#import "BHVExample.h"
-#import "BHVHook.h"
+#import "BHVTestHelper.h"
 
 @interface BHVContextTests : SenTestCase
 @end
@@ -36,7 +33,7 @@
 
 - (void)testAddingHooks
 {
-    BHVHook *hook = [BHVHook new];
+    BHVBeforeEachHook *hook = [BHVBeforeEachHook new];
     BHVContext *context = [BHVContext new];
     [context addHook:hook];
     STAssertTrue([[context hooks] containsObject:hook], @"Should have added hook to context.");

@@ -6,12 +6,7 @@
 //  Copyright (c) 2012 Ryan Davies. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
 #import "BHVTestHelper.h"
-#import "BHVSpecification.h"
-#import "BHVContext.h"
-#import "BHVExample.h"
-#import "BHVHook.h"
 
 @interface BHVInvocation : NSInvocation
 @property (strong, nonatomic) BHVExample *example;
@@ -97,7 +92,7 @@
 {
     NSMutableArray *hooks = [NSMutableArray array];
     for (NSUInteger i = 0; i < 2; i ++) {
-        hooks[i] = [[BHVHook alloc] init];
+        hooks[i] = [[BHVBeforeEachHook alloc] init];
         [BHVTestSpecification addHook:hooks[i]];
     }
     
@@ -107,7 +102,7 @@
 - (void)testNestingHooks
 {
     NSArray *contexts = @[[BHVContext new], [BHVContext new]];
-    NSArray *hooks = @[[BHVHook new], [BHVHook new]];
+    NSArray *hooks = @[[BHVBeforeEachHook new], [BHVBeforeEachHook new]];
     
     [BHVTestSpecification enterContext:contexts[0]];
     [BHVTestSpecification addExample:hooks[0]];
@@ -124,7 +119,7 @@
 - (void)testNestingHooksInNestedContexts
 {
     NSArray *contexts = @[[BHVContext new], [BHVContext new], [BHVContext new]];
-    NSArray *hooks    = @[[BHVHook    new], [BHVHook    new], [BHVHook    new]];
+    NSArray *hooks    = @[[BHVBeforeEachHook    new], [BHVBeforeEachHook    new], [BHVBeforeEachHook    new]];
     
     [BHVTestSpecification enterContext:contexts[0]];
     [BHVTestSpecification addHook:hooks[0]];
@@ -227,13 +222,13 @@
     
     // Nest example in contexts, and add some hooks:
     [BHVTestSpecification enterContext:contexts[0]];
-    [BHVTestSpecification addHook:[BHVHook new]];
+    [BHVTestSpecification addHook:[BHVBeforeEachHook new]];
     [BHVTestSpecification enterContext:contexts[1]];
-    [BHVTestSpecification addHook:[BHVHook new]];
+    [BHVTestSpecification addHook:[BHVBeforeEachHook new]];
     [BHVTestSpecification addExample:example];
-    [BHVTestSpecification addHook:[BHVHook new]];
+    [BHVTestSpecification addHook:[BHVBeforeEachHook new]];
     [BHVTestSpecification leaveContext];
-    [BHVTestSpecification addHook:[BHVHook new]];
+    [BHVTestSpecification addHook:[BHVBeforeEachHook new]];
     [BHVTestSpecification leaveContext];
     
     // Test that the name is equal to the concatenated context names and example name:

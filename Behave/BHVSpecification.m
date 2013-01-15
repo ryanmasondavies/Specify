@@ -9,7 +9,8 @@
 #import "BHVSpecification.h"
 #import "BHVContext.h"
 #import "BHVExample.h"
-#import "BHVHook.h"
+#import "BHVBeforeEachHook.h"
+#import "BHVAfterEachHook.h"
 
 #pragma mark Invocation
 
@@ -206,30 +207,16 @@ void describe(NSString *name, void(^block)(void))
     context(name, block);
 }
 
-void beforeAll(void(^block)(void))
-{
-    BHVHook *hook = [[BHVHook alloc] initWithScope:BHVHookScopeBeforeAll];
-    [hook setBlock:block];
-    [[BHVSpecification currentSpecification] addHook:hook];
-}
-
-void afterAll(void(^block)(void))
-{
-    BHVHook *hook = [[BHVHook alloc] initWithScope:BHVHookScopeAfterAll];
-    [hook setBlock:block];
-    [[BHVSpecification currentSpecification] addHook:hook];
-}
-
 void beforeEach(void(^block)(void))
 {
-    BHVHook *hook = [[BHVHook alloc] initWithScope:BHVHookScopeBeforeEach];
+    BHVHook *hook = [[BHVBeforeEachHook alloc] init];
     [hook setBlock:block];
     [[BHVSpecification currentSpecification] addHook:hook];
 }
 
 void afterEach(void(^block)(void))
 {
-    BHVHook *hook = [[BHVHook alloc] initWithScope:BHVHookScopeAfterEach];
+    BHVHook *hook = [[BHVAfterEachHook alloc] init];
     [hook setBlock:block];
     [[BHVSpecification currentSpecification] addHook:hook];
 }
