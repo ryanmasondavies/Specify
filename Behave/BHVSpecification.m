@@ -98,16 +98,8 @@
 
 - (NSString *)name
 {
-    NSMutableArray *names = [NSMutableArray array];
     BHVExample *example = [(BHVInvocation *)[self invocation] example];
-    BHVGroup *group = [example parentGroup];
-    while (group != nil) {
-        if ([group name])
-            [names insertObject:[group name] atIndex:0];
-        group = [group parentGroup];
-    }
-    [names addObject:[example name]];
-    return [names componentsJoinedByString:@" "];
+    return [example fullName];
 }
 
 + (void)reset

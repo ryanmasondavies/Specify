@@ -18,6 +18,7 @@ typedef NS_ENUM(NSInteger, BHVExampleState) {
 @interface BHVExample : BHVNode
 
 - (void)execute;
+- (NSString *)fullName;
 
 @property (copy, nonatomic) NSString *name;
 @property (copy, nonatomic) void(^block)(void);

@@ -56,6 +56,8 @@ BHVHook *(^mockAfterEachHook)(BHVExample *example, InvocationBlock onExecution) 
     STAssertTrue([example state] == BHVExampleStateReady, @"Example should become 'ready' when a block is assigned.");
 }
 
+#pragma mark Execution
+
 - (void)testExecutesHooksBeforeExampleInForwardOrder
 {
     // Create an example, an execution stack, a list of groups, and a base group:
@@ -183,6 +185,37 @@ BHVHook *(^mockAfterEachHook)(BHVExample *example, InvocationBlock onExecution) 
     
     // Ensure that the hook in the nested group was not executed:
     STAssertFalse(executed, @"Should not have executed the hook as it was in a deeper group than the example.");
+}
+
+#pragma mark Generating full names
+
+- (void)testConcatenatesParentGroupNamesAndExampleName
+{
+    // Create groups:
+    NSArray *groups = @[[OCMockObject niceMockForClass:[BHVGroup class]], [OCMockObject niceMockForClass:[BHVGroup class]]];
+    [[[groups[0] stub] andReturn:@"a cat"] name];
+    [[[groups[1] stub] andReturn:@"when it is fat"] name];
+    [[[groups[1] stub] andReturn:groups[0]] parentGroup];
+    
+    // Create an example:
+    BHVExample *example = [[BHVExample alloc] init];
+    [example setName:@"should be lazy"];
+    [example setParentGroup:groups[1]];
+    
+    // Test that the name is equal to the concatenated group names and example name:
+    BHVTestSpecification *spec = [BHVTestSpecification testCaseWithInvocation:[BHVInvocation invocationWithExample:example]];
+    STAssertEqualObjects([spec name], @"a cat when it is fat should be lazy", @"Should have returned the concatenated names of the groups and example.");
+}
+
+- (void)testUsesJustExampleNameIfNotInGroup
+{
+    // Create and add an example to the spec:
+    BHVExample *example = [[BHVExample alloc] init];
+    [example setName:@"hello world"];
+    
+    // Test that the name is equal to the example name:
+    BHVTestSpecification *spec = [BHVTestSpecification testCaseWithInvocation:[BHVInvocation invocationWithExample:example]];
+    STAssertEqualObjects([spec name], @"hello world", @"Should have returned the name of the example.");
 }
 
 @end

@@ -70,68 +70,15 @@
     STAssertEqualObjects([[invocations[0] example] name], @"Example", @"Should execute the example.");
 }
 
-#pragma mark Generating full names
+#pragma mark Generating names
 
-- (void)testConcatenatesFullNamesAndExampleName
+- (void)testForwardsNameToExample
 {
-    // Create groups:
-    NSArray *groups = @[[BHVGroup new], [BHVGroup new]];
-    [groups[0] setName:@"a cat"];
-    [groups[1] setName:@"when it is fat"];
-    
-    // Create an example:
-    BHVExample *example = [[BHVExample alloc] init];
-    [example setName:@"should be lazy"];
-    
-    // Nest example in groups:
-    [[BHVTestSpecification builder] enterGroup:groups[0]];
-    [[BHVTestSpecification builder] enterGroup:groups[1]];
-    [[BHVTestSpecification builder] addExample:example];
-    [[BHVTestSpecification builder] leaveGroup];
-    [[BHVTestSpecification builder] leaveGroup];
-    
-    // Test that the name is equal to the concatenated group names and example name:
-    BHVTestSpecification *spec = [BHVTestSpecification testCaseWithInvocation:[BHVInvocation invocationWithExample:example]];
-    STAssertEqualObjects([spec name], @"a cat when it is fat should be lazy", @"Should have returned the concatenated names of the groups and example.");
-}
-
-- (void)testIgnoresHooksForFullNames
-{
-    // Create groups:
-    NSArray *groups = @[[BHVGroup new], [BHVGroup new]];
-    [groups[0] setName:@"a cat"];
-    [groups[1] setName:@"when it is fat"];
-    
-    // Create an example:
-    BHVExample *example = [[BHVExample alloc] init];
-    [example setName:@"should be lazy"];
-    
-    // Nest example in groups, and add some hooks:
-    [[BHVTestSpecification builder] enterGroup:groups[0]];
-    [[BHVTestSpecification builder] addHook:[BHVBeforeEachHook new]];
-    [[BHVTestSpecification builder] enterGroup:groups[1]];
-    [[BHVTestSpecification builder] addHook:[BHVBeforeEachHook new]];
-    [[BHVTestSpecification builder] addExample:example];
-    [[BHVTestSpecification builder] addHook:[BHVBeforeEachHook new]];
-    [[BHVTestSpecification builder] leaveGroup];
-    [[BHVTestSpecification builder] addHook:[BHVBeforeEachHook new]];
-    [[BHVTestSpecification builder] leaveGroup];
-    
-    // Test that the name is equal to the concatenated group names and example name:
-    BHVTestSpecification *spec = [BHVTestSpecification testCaseWithInvocation:[BHVInvocation invocationWithExample:example]];
-    STAssertEqualObjects([spec name], @"a cat when it is fat should be lazy", @"Should have returned the concatenated names of the groups and example.");
-}
-
-- (void)testUsesJustExampleNameIfNotInGroup
-{
-    // Create and add an example to the spec:
-    BHVExample *example = [[BHVExample alloc] init];
-    [example setName:@"hello world"];
-    [[BHVTestSpecification builder] addExample:example];
-    
-    // Test that the name is equal to the example name:
-    BHVTestSpecification *spec = [BHVTestSpecification testCaseWithInvocation:[BHVInvocation invocationWithExample:example]];
-    STAssertEqualObjects([spec name], @"hello world", @"Should have returned the name of the example.");
+    id example = [OCMockObject mockForClass:[BHVExample class]];
+    [[[example expect] andReturn:@"fake name"] fullName];
+    BHVSpecification *specification = [[BHVSpecification alloc] initWithInvocation:[BHVInvocation invocationWithExample:example]];
+    STAssertEqualObjects([specification name], @"fake name", @"");
+    [example verify];
 }
 
 @end

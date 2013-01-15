@@ -63,4 +63,16 @@
     self.state = BHVExampleStateExecuted;
 }
 
+- (NSString *)fullName
+{
+    NSMutableArray *names = [NSMutableArray array];
+    BHVGroup *group = [self parentGroup];
+    while (group != nil) {
+        if ([group name]) [names insertObject:[group name] atIndex:0];
+        group = [group parentGroup];
+    }
+    [names addObject:[self name]];
+    return [names componentsJoinedByString:@" "];
+}
+
 @end
