@@ -12,25 +12,11 @@
 
 @interface BHVSpecification : SenTestCase
 
++ (void)setCurrentSpecification:(Class)specification;
++ (Class)currentSpecification;
+
 + (BHVBuilder *)builder;
 - (void)loadExamples;
 + (void)reset;
 
-@end
-
-#define SpecBegin(class) \
-@interface class##Specification : BHVSpecification \
-@end \
-@implementation class##Specification \
-- (void)loadExamples \
-{
-
-void it(NSString *name, void(^block)(void));
-void context(NSString *name, void(^block)(void));
-void describe(NSString *name, void(^block)(void));
-void beforeEach(void(^block)(void));
-void afterEach(void(^block)(void));
-
-#define SpecEnd \
-} \
 @end

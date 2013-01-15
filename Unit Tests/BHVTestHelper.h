@@ -8,6 +8,7 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 #import <OCMock/OCMock.h>
+#import "BHVDSL.h"
 #import "BHVSpecification.h"
 #import "BHVBuilder.h"
 #import "BHVGroup.h"

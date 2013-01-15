@@ -6,4 +6,5 @@
 //  Copyright (c) 2012 Ryan Davies. All rights reserved.
 //
 
+#import "BHVDSL.h"
 #import "BHVSpecification.h"

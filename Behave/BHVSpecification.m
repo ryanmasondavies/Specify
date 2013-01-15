@@ -40,11 +40,6 @@
 
 #pragma mark - Specification
 
-@interface BHVSpecification ()
-+ (void)setCurrentSpecification:(Class)specification;
-+ (Class)currentSpecification;
-@end
-
 @implementation BHVSpecification
 
 + (void)initialize
@@ -150,43 +145,3 @@
 }
 
 @end
-
-#pragma mark - DSL
-
-void it(NSString *name, void(^block)(void))
-{
-    BHVExample *example = [[BHVExample alloc] init];
-    [example setName:name];
-    [example setBlock:block];
-    [[[BHVSpecification currentSpecification] builder] addExample:example];
-}
-
-void context(NSString *name, void(^block)(void))
-{
-    // Create group:
-    BHVGroup *group = [[BHVGroup alloc] initWithName:name];
-    
-    // Add group and its contents to the specification:
-    [[[BHVSpecification currentSpecification] builder] enterGroup:group];
-    block();
-    [[[BHVSpecification currentSpecification] builder] leaveGroup];
-}
-
-void describe(NSString *name, void(^block)(void))
-{
-    context(name, block);
-}
-
-void beforeEach(void(^block)(void))
-{
-    BHVHook *hook = [[BHVBeforeEachHook alloc] init];
-    [hook setBlock:block];
-    [[[BHVSpecification currentSpecification] builder] addHook:hook];
-}
-
-void afterEach(void(^block)(void))
-{
-    BHVHook *hook = [[BHVAfterEachHook alloc] init];
-    [hook setBlock:block];
-    [[[BHVSpecification currentSpecification] builder] addHook:hook];
-}
