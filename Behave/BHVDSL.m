@@ -50,6 +50,11 @@ void beforeEach(void(^block)(void))
     [[[BHVSpecification currentSpecification] builder] addHook:hook];
 }
 
+void before(void(^block)(void))
+{
+    beforeEach(block);
+}
+
 void afterEach(void(^block)(void))
 {
     BHVHook *hook = [[BHVAfterEachHook alloc] init];
