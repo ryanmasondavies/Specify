@@ -2,91 +2,76 @@
 //  BHVExample.m
 //  Behave
 //
-//  Created by Ryan Davies on 27/11/2012.
+//  Created by Ryan Davies on 30/12/2012.
 //  Copyright (c) 2012 Ryan Davies. All rights reserved.
 //
 
 #import "BHVExample.h"
-#import "BHVContext.h"
-#import "BHVHook.h"
+#import "BHVGroup.h"
+#import "BHVBeforeEachHook.h"
 
 @implementation BHVExample
 
-- (BOOL)isExample
+- (id)init
 {
-    return YES;
-}
-
-- (void)executeHooksInContextStackFromTopToBottom
-{
-    // Do not execute if there is no context:
-    if ([self context] == nil) return;
-    
-    // Locate top-most context:
-    BHVContext *topMostContext = [self context];
-    while (([topMostContext context]) != nil) topMostContext = [topMostContext context];
-    
-    // Start with the top-level context...
-    NSMutableArray *contexts = [NSMutableArray arrayWithObject:topMostContext];
-    while ([contexts count] > 0) {
-        [[contexts[0] nodes] enumerateObjectsUsingBlock:^(id node, NSUInteger idx, BOOL *stop) {
-            // Execute any hooks encountered:
-            if ([node isHook]) {
-                [node setExample:self];
-                [node execute];
-            }
-            
-            // Push found contexts to the stack:
-            if ([node isContext]) {
-                [contexts addObject:node];
-            }
-        }];
-        
-        // Pop a context off the stack:
-        [contexts removeObjectAtIndex:0];
+    if (self = [super init]) {
+        self.state = BHVExampleStatePending;
     }
+    return self;
 }
 
-- (void)executeHooksInContextStackFromContextToTop
+- (void)setBlock:(void (^)(void))block
 {
-    // Do not execute if there is no context:
-    if ([self context] == nil) return;
-    
-    // Start with the example context:
-    BHVContext *current = [self context];
-    do {
-        [[current nodes] enumerateObjectsUsingBlock:^(id node, NSUInteger idx, BOOL *stop) {
-            if ([node isHook] == NO) return;
-            [node setExample:self];
-            [node execute];
-        }];
-        
-        current = [current context];
-    } while (current != nil); // Until there are no more contexts.
+    _block = block;
+    self.state = BHVExampleStateReady;
 }
 
 - (void)execute
 {
-    [self executeHooksInContextStackFromTopToBottom];
-    [super execute];
-    [self executeHooksInContextStackFromContextToTop];
+    // Do nothing if there is no block:
+    if (self.block == nil) return;
+    
+    // Accumulate hooks by working up the chain:
+    BHVGroup *group = [self parentGroup];
+    NSMutableArray *hooks  = [NSMutableArray array];
+    while (group != nil) {
+        // Because we're working our way out from the example, hooks must be inserted at the front of the array:
+        [hooks insertObjects:[group hooks] atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [[group hooks] count])]];
+        
+        // Move to group's parent:
+        group = [group parentGroup];
+    }
+    
+    // Execute all hooks in forward order:
+    for (BHVHook *hook in [hooks objectEnumerator]) {
+        if ([hook isExecutableBeforeExample:self]) {
+            [hook execute];
+        }
+    }
+    
+    // Invoke example:
+    self.block();
+    
+    // Execute all hooks in reverse order:
+    for (BHVHook *hook in [hooks reverseObjectEnumerator]) {
+        if ([hook isExecutableAfterExample:self]) {
+            [hook execute];
+        }
+    }
+    
+    // Mark as executed:
+    self.state = BHVExampleStateExecuted;
 }
 
 - (NSString *)fullName
 {
-    // Work up the chain of nodes, adding them as we go:
     NSMutableArray *names = [NSMutableArray array];
-    BHVNode *node = self;
-    while (node) {
-        [names addObject:[node name]];
-        node = [node context];
+    BHVGroup *group = [self parentGroup];
+    while (group != nil) {
+        if ([group name]) [names insertObject:[group name] atIndex:0];
+        group = [group parentGroup];
     }
-    
-    // Reverse the names to put them in the right order:
-    for (NSUInteger i = 0; i < [names count] / 2; i++)
-        [names exchangeObjectAtIndex:i withObjectAtIndex:([names count] - i - 1)];
-    
-    // Concatenate with a space between each name and return:
+    [names addObject:[self name]];
     return [names componentsJoinedByString:@" "];
 }
 

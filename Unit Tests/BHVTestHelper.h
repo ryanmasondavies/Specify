@@ -2,28 +2,35 @@
 //  BHVTestHelper.h
 //  Behave
 //
-//  Created by Ryan Davies on 21/11/2012.
-//  Copyright (c) 2012 Ryan Davies. All rights reserved.
+//  Created by Ryan Davies on 02/01/2013.
+//  Copyright (c) 2013 Ryan Davies. All rights reserved.
 //
 
-#import "BHVSpec.h"
-@class BHVContext;
+#import <SenTestingKit/SenTestingKit.h>
+#import <OCMock/OCMock.h>
+#import "BHVDSL.h"
+#import "BHVSpecification.h"
+#import "BHVInvocation.h"
+#import "BHVBuilder.h"
+#import "BHVGroup.h"
+#import "BHVExample.h"
+#import "BHVBeforeEachHook.h"
+#import "BHVAfterEachHook.h"
 
-extern Class recordedSpec;
-
-NSArray * stackOfContexts(NSUInteger count);
-NSArray * examplesByAddingToContext(BHVContext *context, NSUInteger number, BOOL markAsExecuted);
-NSArray * hooksByAddingToContext(BHVContext *context, NSUInteger number);
-BHVContext * BHVCreateBranchedStack(NSArray *nodes);
-
-@interface BHVTestSpec1 : BHVSpec
+@interface BHVTestSpecification : BHVSpecification
 @end
 
-@interface BHVTestSpec2 : BHVSpec
+@interface BHVSpecificationA : BHVSpecification
 @end
 
-@interface BHVTestSpec3 : BHVSpec
+@interface BHVSpecificationB : BHVSpecification
 @end
 
-@interface BHVCurrentSpecRecorderSpec : BHVSpec
+@interface BHVSpecificationWithThreeExamples : BHVSpecification
+@end
+
+@interface BHVSpecificationWithUnorderedNestedExamples : BHVSpecification
+@end
+
+@interface BHVSpecificationWithHooks : BHVSpecification
 @end

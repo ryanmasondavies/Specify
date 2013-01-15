@@ -2,16 +2,29 @@
 //  BHVDSLTests.m
 //  Behave
 //
-//  Created by Ryan Davies on 30/11/2012.
-//  Copyright (c) 2012 Ryan Davies. All rights reserved.
+//  Created by Ryan Davies on 15/01/2013.
+//  Copyright (c) 2013 Ryan Davies. All rights reserved.
 //
 
-#import "BHVDSL.h"
-#import "BHVSpec.h"
-#import "BHVSuite.h"
-#import "BHVContext.h"
-#import "BHVHook.h"
-#import "BHVExample.h"
+#import "BHVTestHelper.h"
+
+// TODO: What we really need here is the ability to mock class methods.
+
+@interface BHVMockSpecification : NSObject
+@end
+
+@implementation BHVMockSpecification
+
++ (BHVBuilder *)builder
+{
+    static id mock = nil;
+    if (mock == nil) mock = [OCMockObject mockForClass:[BHVBuilder class]];
+    return mock;
+}
+
+@end
+
+#pragma mark -
 
 @interface BHVDSLTests : SenTestCase
 @end
@@ -20,142 +33,89 @@
 
 - (void)setUp
 {
-    [BHVSpec setCurrentSpec:[BHVTestSpec1 class]];
+    [BHVSpecification setCurrentSpecification:[BHVMockSpecification class]];
 }
 
-- (void)tearDown
+- (void)test_It_CreatesAndAddsExample
 {
-    [BHVSpec resetSuites];
-}
-
-#pragma mark It
-
-- (void)test_It_AddsExampleToCurrentSpecSuite
-{
-    // Execute the it function:
-    NSString *name = @"should do something";
-    __block BOOL blockExecuted = NO;
-    void(^block)(void) = ^{ blockExecuted = YES; };
-    it(name, block);
+    void(^implementation)(void) = ^{};
     
-    // Check that an example has been added to the suite with the name and block:
-    BHVExample *example = (BHVExample *)[[BHVTestSpec1 suite] nodeAtIndex:0];
-    [[[example name] should] beEqualTo:name];
-    example.block(); [[@(blockExecuted) should] beTrue];
+    id builder = [BHVMockSpecification builder];
+    [[builder expect] addExample:[OCMArg checkWithBlock:^BOOL(id example) {
+        return [[example name] isEqualToString:@"should work"] && [example block] == implementation;
+    }]];
+    
+    it(@"should work", implementation);
+    
+    [builder verify];
 }
 
-#pragma mark Context
-
-- (void)test_Context_AddsNodesInContextToNewContextInCurrentSpecSuite
+- (void)test_Context_AddsExamplesInBlock
 {
-    // Create some nodes that will be added to the suite:
-    NSMutableArray *nodes = [NSMutableArray array];
-    for (NSUInteger i = 0; i < 3; i ++) nodes[i] = [[BHVNode alloc] init];
-    
-    // Execute the `context` function:
-    NSString *name = @"the thing";
-    void(^block)(void) = ^{
-        [nodes enumerateObjectsUsingBlock:^(BHVNode *node, NSUInteger idx, BOOL *stop) {
-            [[BHVTestSpec1 suite] addNode:node];
-        }];
+    void(^implementation)(void) = ^{
+        it(@"should work with contexts", ^{});
     };
-    context(name, block);
     
-    // Check that the nodes have been added to a new context named 'the thing' in the suite:
-    BHVContext *context = (BHVContext *)[[BHVTestSpec1 suite] nodeAtIndex:0];
-    [[[context name] should] beEqualTo:name];
-    [nodes enumerateObjectsUsingBlock:^(BHVNode *node, NSUInteger idx, BOOL *stop) {
-        [[node should] beEqualTo:nodes[idx]];
-    }];
+    id builder = [BHVMockSpecification builder];
+    [[builder expect] enterGroup:[OCMArg checkWithBlock:^BOOL(id group) {
+        return [[group name] isEqualToString:@"should work"];
+    }]];
+    [[builder expect] addExample:[OCMArg checkWithBlock:^BOOL(id example) {
+        return [[example name] isEqualToString:@"should work with contexts"];
+    }]];
+    [[builder expect] leaveGroup];
+    
+    context(@"should work", implementation);
+    
+    [builder verify];
 }
 
-#pragma mark Describe
-
-- (void)test_Describe_AddsNodesInContextToNewContextInCurrentSpecSuite
+- (void)test_Describe_AddsExamplesInBlock
 {
-    // Create some nodes that will be added to the suite:
-    NSMutableArray *nodes = [NSMutableArray array];
-    for (NSUInteger i = 0; i < 3; i ++) nodes[i] = [[BHVNode alloc] init];
-    
-    // Execute the `describe` function:
-    NSString *name = @"the thing";
-    void(^block)(void) = ^{
-        [nodes enumerateObjectsUsingBlock:^(BHVNode *node, NSUInteger idx, BOOL *stop) {
-            [[BHVTestSpec1 suite] addNode:node];
-        }];
+    void(^implementation)(void) = ^{
+        it(@"should work with contexts", ^{});
     };
-    describe(name, block);
     
-    // Check that the nodes have been added to a new context named 'the thing' in the suite:
-    BHVContext *context = (BHVContext *)[[BHVTestSpec1 suite] nodeAtIndex:0];
-    [[[context name] should] beEqualTo:name];
-    [nodes enumerateObjectsUsingBlock:^(BHVNode *node, NSUInteger idx, BOOL *stop) {
-        [[node should] beEqualTo:nodes[idx]];
-    }];
+    id builder = [BHVMockSpecification builder];
+    [[builder expect] enterGroup:[OCMArg checkWithBlock:^BOOL(id group) {
+        return [[group name] isEqualToString:@"should work"];
+    }]];
+    [[builder expect] addExample:[OCMArg checkWithBlock:^BOOL(id example) {
+        return [[example name] isEqualToString:@"should work with contexts"];
+    }]];
+    [[builder expect] leaveGroup];
+    
+    describe(@"should work", implementation);
+    
+    [builder verify];
 }
 
-#pragma mark BeforeEach
-
-- (void)test_BeforeEach_AddsHookPositioned_Before_WithFrequencyOf_Each_ToCurrentSpecSuite
+- (void)test_BeforeEach_AddsBeforeEachHook
 {
-    // Execute the `beforeEach` function:
-    __block BOOL blockExecuted = NO;
-    void(^block)(void) = ^{ blockExecuted = YES; };
-    beforeEach(block);
+    void(^implementation)(void) = ^{};
     
-    // Check that a before-each hook has been added to the suite:
-    BHVHook *hook = (BHVHook *)[[BHVTestSpec1 suite] nodeAtIndex:0];
-    [[@([hook position]) should] beEqualTo:@(BHVHookPositionBefore)];
-    [[@([hook frequency]) should] beEqualTo:@(BHVHookFrequencyEach)];
-    hook.block(); [[@(blockExecuted) should] beTrue];
+    id builder = [BHVMockSpecification builder];
+    [[builder expect] addHook:[OCMArg checkWithBlock:^BOOL(id hook) {
+        return [hook block] == implementation;
+    }]];
+    
+    beforeEach(implementation);
+    
+    [builder verify];
 }
 
-#pragma mark AfterEach
-
-- (void)test_AfterEach_AddsHookPositioned_After_WithFrequencyOf_Each_ToCurrentSpecSuite
+- (void)test_AfterEach_AddsAfterEachHook
 {
-    // Execute the `afterEach` function:
-    __block BOOL blockExecuted = NO;
-    void(^block)(void) = ^{ blockExecuted = YES; };
-    afterEach(block);
+    void(^implementation)(void) = ^{};
     
-    // Check that a hook positioned 'after' has been added to the suite:
-    BHVHook *hook = (BHVHook *)[[BHVTestSpec1 suite] nodeAtIndex:0];
-    [[@([hook position]) should] beEqualTo:@(BHVHookPositionAfter)];
-    [[@([hook frequency]) should] beEqualTo:@(BHVHookFrequencyEach)];
-    hook.block(); [[@(blockExecuted) should] beTrue];
-}
-
-#pragma mark BeforeAll
-
-- (void)test_BeforeAll_AddsHookPositioned_Before_WithFrequencyOf_All_ToCurrentSpecSuite
-{
-    // Execute the `beforeAll` function:
-    __block BOOL blockExecuted = NO;
-    void(^block)(void) = ^{ blockExecuted = YES; };
-    beforeAll(block);
+    id builder = [BHVMockSpecification builder];
+    [[builder expect] addHook:[OCMArg checkWithBlock:^BOOL(id hook) {
+        return [hook block] == implementation;
+    }]];
     
-    // Check that a before-each hook has been added to the suite:
-    BHVHook *hook = (BHVHook *)[[BHVTestSpec1 suite] nodeAtIndex:0];
-    [[@([hook position]) should] beEqualTo:@(BHVHookPositionBefore)];
-    [[@([hook frequency]) should] beEqualTo:@(BHVHookFrequencyAll)];
-    hook.block(); [[@(blockExecuted) should] beTrue];
-}
-
-#pragma mark AfterAll
-
-- (void)test_AfterAll_AddsHookPositioned_After_WithFrequencyOf_All_ToCurrentSpecSuite
-{
-    // Execute the `afterAll` function:
-    __block BOOL blockExecuted = NO;
-    void(^block)(void) = ^{ blockExecuted = YES; };
-    afterAll(block);
+    afterEach(implementation);
     
-    // Check that the hook has been added to the suite:
-    BHVHook *hook = (BHVHook *)[[BHVTestSpec1 suite] nodeAtIndex:0];
-    [[@([hook position]) should] beEqualTo:@(BHVHookPositionAfter)];
-    [[@([hook frequency]) should] beEqualTo:@(BHVHookFrequencyAll)];
-    hook.block(); [[@(blockExecuted) should] beTrue];
+    [builder verify];
 }
 
 @end

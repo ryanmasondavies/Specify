@@ -1,9 +1,10 @@
 //
-// Prefix header for all source files of the 'Integrated Tests' target in the 'Integrated Tests' project
+//  Integrated Tests-Prefix.pch
+//  Behave
+//
+//  Created by Ryan Davies on 03/01/2013.
+//  Copyright (c) 2013 Ryan Davies. All rights reserved.
 //
 
-#ifdef __OBJC__
-    #import <Foundation/Foundation.h>
-    #import <SenTestingKit/SenTestingKit.h>
-    #import <Posit/Posit.h>
-#endif
+#import <Posit/Posit.h>
+#import "Behave.h"

@@ -2,14 +2,25 @@
 //  BHVExample.h
 //  Behave
 //
-//  Created by Ryan Davies on 27/11/2012.
+//  Created by Ryan Davies on 30/12/2012.
 //  Copyright (c) 2012 Ryan Davies. All rights reserved.
 //
 
-#import "BHVExecutableNode.h"
+#import "BHVNode.h"
+@class BHVGroup;
 
-@interface BHVExample : BHVExecutableNode
+typedef NS_ENUM(NSInteger, BHVExampleState) {
+    BHVExampleStatePending,
+    BHVExampleStateReady,
+    BHVExampleStateExecuted
+};
 
+@interface BHVExample : BHVNode
+
+- (void)execute;
 - (NSString *)fullName;
 
+@property (copy, nonatomic) NSString *name;
+@property (copy, nonatomic) void(^block)(void);
+@property (nonatomic) BHVExampleState state;
 @end

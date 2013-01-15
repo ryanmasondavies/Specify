@@ -6,8 +6,6 @@
 //  Copyright (c) 2012 Ryan Davies. All rights reserved.
 //
 
-#import "Behave.h"
-
 SpecBegin(BHVOneGroupOneExample)
 
 describe(@"something", ^{
@@ -20,12 +18,12 @@ SpecEnd
 SpecBegin(BHVNestedExampleGroups)
 
 describe(@"something", ^{
-    context(@"in one context", ^{
+    context(@"in one group", ^{
         it(@"does one thing", ^{
         });
     });
     
-    context(@"in another context", ^{
+    context(@"in another group", ^{
         it(@"does another thing", ^{
         });
     });

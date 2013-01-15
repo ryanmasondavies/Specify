@@ -2,8 +2,8 @@
 //  BHVInvocation.m
 //  Behave
 //
-//  Created by Ryan Davies on 12/11/2012.
-//  Copyright (c) 2012 Ryan Davies. All rights reserved.
+//  Created by Ryan Davies on 15/01/2013.
+//  Copyright (c) 2013 Ryan Davies. All rights reserved.
 //
 
 #import "BHVInvocation.h"
@@ -11,11 +11,13 @@
 
 @implementation BHVInvocation
 
-+ (id)emptyInvocation
++ (instancetype)invocationWithExample:(BHVExample *)example
 {
     NSString *encodingType = [NSString stringWithFormat:@"%s%s%s", @encode(void), @encode(id), @encode(SEL)];
     NSMethodSignature *methodSignature = [NSMethodSignature signatureWithObjCTypes:[encodingType UTF8String]];
-    return [BHVInvocation invocationWithMethodSignature:methodSignature];
+    BHVInvocation *invocation = (id)[BHVInvocation invocationWithMethodSignature:methodSignature];
+    [invocation setExample:example];
+    return invocation;
 }
 
 - (void)invoke

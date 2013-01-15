@@ -2,19 +2,13 @@
 //  BHVNode.h
 //  Behave
 //
-//  Created by Ryan Davies on 27/11/2012.
-//  Copyright (c) 2012 Ryan Davies. All rights reserved.
+//  Created by Ryan Davies on 15/01/2013.
+//  Copyright (c) 2013 Ryan Davies. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-@class BHVContext;
+@class BHVGroup;
 
 @interface BHVNode : NSObject
-@property (nonatomic, copy) NSString *name;
-@property (nonatomic, weak) BHVContext *context;
-
-- (BOOL)isContext;
-- (BOOL)isExample;
-- (BOOL)isHook;
-
+@property (weak, nonatomic) BHVGroup *parentGroup;
 @end

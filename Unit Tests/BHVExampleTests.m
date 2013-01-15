@@ -2,206 +2,220 @@
 //  BHVExampleTests.m
 //  Behave
 //
-//  Created by Ryan Davies on 28/11/2012.
+//  Created by Ryan Davies on 30/12/2012.
 //  Copyright (c) 2012 Ryan Davies. All rights reserved.
 //
 
-#import "BHVExample.h"
-#import "BHVContext.h"
-#import "BHVHook.h"
+#import "BHVTestHelper.h"
 
-@interface PSTBeMatcher ()
-- (BOOL)beExecuted;
-@end
+typedef void(^InvocationBlock)(NSInvocation *invocation);
+
+BHVGroup *(^groupWithHook)(BHVHook *hook) = ^(BHVHook *hook) {
+    BHVGroup *group = [[BHVGroup alloc] init];
+    [group addHook:hook];
+    return group;
+};
+
+BHVHook *(^mockHook)(BHVExample *example, InvocationBlock onExecution) = ^(BHVExample *example, InvocationBlock onExecution) {
+    id hook = [OCMockObject niceMockForClass:[BHVHook class]];
+    [[[hook expect] andReturnValue:OCMOCK_VALUE((BOOL){YES})] isExecutableBeforeExample:example];
+    [[[hook expect] andDo:onExecution] execute];
+    [[[hook expect] andReturnValue:OCMOCK_VALUE((BOOL){YES})] isExecutableAfterExample:example];
+    return hook;
+};
+
+BHVHook *(^mockBeforeEachHook)(BHVExample *example, InvocationBlock onExecution) = ^(BHVExample *example, InvocationBlock onExecution) {
+    id hook = [OCMockObject niceMockForClass:[BHVHook class]];
+    [[[hook expect] andReturnValue:OCMOCK_VALUE((BOOL){YES})] isExecutableBeforeExample:example];
+    [[[hook expect] andDo:onExecution] execute];
+    return hook;
+};
+
+BHVHook *(^mockAfterEachHook)(BHVExample *example, InvocationBlock onExecution) = ^(BHVExample *example, InvocationBlock onExecution) {
+    id hook = [OCMockObject niceMockForClass:[BHVHook class]];
+    [[[hook expect] andReturnValue:OCMOCK_VALUE((BOOL){YES})] isExecutableAfterExample:example];
+    [[[hook expect] andDo:onExecution] execute];
+    return hook;
+};
 
 @interface BHVExampleTests : SenTestCase
 @end
 
 @implementation BHVExampleTests
 
-- (void)setUp {}
-- (void)tearDown {}
-
-#pragma mark - Full name
-
-- (void)test_FullName_IncludesParentContextNames
+- (void)testInitialStateIsPending
 {
     BHVExample *example = [[BHVExample alloc] init];
-    [example setName:@"should do something"];
-    
-    BHVContext *nestedContext = [[BHVContext alloc] init];
-    [nestedContext setName:@"in some state"];
-    [nestedContext addNode:example];
-    
-    BHVContext *topContext = [[BHVContext alloc] init];
-    [topContext setName:@"the thing"];
-    [topContext addNode:nestedContext];
-    
-    [[[example fullName] should] beEqualTo:@"the thing in some state should do something"];
+    STAssertTrue([example state] == BHVExampleStatePending, @"State should start as 'pending'.");
 }
 
-#pragma mark - Execution
-
-- (void)test_Execution_InvokesBlock
-{
-    __block BOOL invoked = NO;
-    BHVExample *example = [[BHVExample alloc] init];
-    [example setContext:[BHVContext new]];
-    [example setBlock:^{ invoked = YES; }];
-    [example execute];
-    [[@(invoked) should] beTrue];
-}
-
-- (void)test_Execution_MarksAsExecuted
+- (void)testSettingBlockChangesStateToReady
 {
     BHVExample *example = [[BHVExample alloc] init];
-    [[example shouldNot] beExecuted];
-    [example execute];
-    [[example should] beExecuted];
+    [example setBlock:^{}];
+    STAssertTrue([example state] == BHVExampleStateReady, @"Example should become 'ready' when a block is assigned.");
 }
 
-- (void)test_Execution_WhenFirstExample_ExecutesHooksInTopContextBeforeBlock
+#pragma mark Execution
+
+- (void)testExecutesHooksBeforeExampleInForwardOrder
 {
-    // Create a set of hooks:
+    // Create an example, an execution stack, a list of groups, and a base group:
+    NSMutableArray *executed = [NSMutableArray array];
+    BHVExample     *example  = [[BHVExample alloc] init];
+    NSMutableArray *groups = [NSMutableArray arrayWithObject:[BHVGroup new]];
+    
+    // Nest 3 groups, each with a hook:
     NSMutableArray *hooks = [NSMutableArray array];
-    for (NSUInteger i = 0; i < 17; i ++) hooks[i] = [OCMockObject partialMockForObject:[BHVHook new]];
+    for (NSUInteger i = 0; i < 3; i ++) {
+        NSString *identifier = [NSString stringWithFormat:@"hook %d", i + 1];
+        hooks[i] = mockBeforeEachHook(example, ^(NSInvocation *invocation) { [executed addObject:identifier]; });
+        BHVGroup *group = groupWithHook(hooks[i]);
+        [groups[i] addGroup:group];
+        [groups addObject:group];
+    }
     
-    // Branch the examples over a stack of contexts:
-    BHVContext *context = BHVCreateBranchedStack(hooks);
+    // Add example to deepest group:
+    [[groups lastObject] addExample:example];
     
-    // Add an example to the top-level context:
-    BHVExample *example = [[BHVExample alloc] init];
-    [context addNode:example];
-    
-    // Set the example block to stop adding executions to the array when invoked:
-    __block BOOL blockInvoked = NO;
-    example.block = ^{ blockInvoked = YES; };
-    
-    // In order to track the execution order, stub out -execute to add the hook index to an array:
-    NSMutableArray *order = [NSMutableArray array];
-    [hooks enumerateObjectsUsingBlock:^(id hook, NSUInteger idx, BOOL *stop) {
-        [[[hook stub] andDo:^(NSInvocation *invocation) {
-            if (blockInvoked == NO) [order addObject:@(idx)];
-        }] execute];
-    }];
+    // The example should add an identifier to the execution list when executed:
+    [example setBlock:^{ [executed addObject:@"example"]; }];
     
     // Execute the example:
     [example execute];
     
-    // Verify that all hooks have the example set:
-    [hooks enumerateObjectsUsingBlock:^(BHVHook *hook, NSUInteger idx, BOOL *stop) {
-        [[[hook example] should] beIdenticalTo:example];
-    }];
+    // Verify the execution order:
+    STAssertEqualObjects(executed[0], @"hook 1", @"");
+    STAssertEqualObjects(executed[1], @"hook 2", @"");
+    STAssertEqualObjects(executed[2], @"hook 3", @"");
+    STAssertEqualObjects(executed[3], @"example", @"");
     
-    // Verify that the hooks were executed from top to bottom:
-    // TODO: Execute hooks until the context containing the example is hit.
-    // TODO: Do not execute hooks in contexts that do not lead to the example.
-    [[order should] beEqualTo:@[@0, @8, @16, @1, @4, @7, @9, @12, @15, @2, @3, @5, @6, @10, @11, @13, @14]];
+    // Verify hooks received messages:
+    [hooks makeObjectsPerformSelector:@selector(verify)];
 }
 
-- (void)test_Execution_WhenLastExample_ExecutesHooksBeforeBlockFromTopToBottom
+- (void)testInvokesBlockAndSetsStateToExecuted
 {
-    // Create a set of hooks:
-    NSMutableArray *hooks = [NSMutableArray array];
-    for (NSUInteger i = 0; i < 17; i ++) hooks[i] = [OCMockObject partialMockForObject:[BHVHook new]];
-    
-    // Branch the examples over a stack of contexts:
-    BHVContext *context = BHVCreateBranchedStack(hooks);
-    
-    // Add an example to the last third-level context:
+    __block BOOL executed = NO;
     BHVExample *example = [[BHVExample alloc] init];
-    [[[context nodeAtIndex:3] nodeAtIndex:3] addNode:example];
+    [example setBlock:^{ executed = YES; }];
+    [example execute];
+    STAssertTrue([example state] == BHVExampleStateExecuted, @"Should change state to 'executed'.");
+    STAssertTrue(executed, @"Should invoke block when executed.");
+}
+
+- (void)testExecutesHooksAfterExampleInReverseOrder
+{
+    // Create an example, an execution stack, a list of groups, and a base group:
+    NSMutableArray *executed = [NSMutableArray array];
+    BHVExample     *example  = [[BHVExample alloc] init];
+    NSMutableArray *groups = [NSMutableArray arrayWithObject:[BHVGroup new]];
     
-    // Set the example block to stop adding executions to the array when invoked:
-    __block BOOL blockInvoked = NO;
-    example.block = ^{ blockInvoked = YES; };
+    // Nest 3 groups, each with a hook:
+    NSMutableArray *hooks = [NSMutableArray array];
+    for (NSUInteger i = 0; i < 3; i ++) {
+        NSString *identifier = [NSString stringWithFormat:@"hook %d", i + 1];
+        hooks[i] = mockAfterEachHook(example, ^(NSInvocation *invocation) { [executed addObject:identifier]; });
+        BHVGroup *group = groupWithHook(hooks[i]);
+        [groups[i] addGroup:group];
+        [groups addObject:group];
+    }
     
-    // In order to track the execution order, stub out -execute to add the hook index to an array:
-    NSMutableArray *order = [NSMutableArray array];
-    [hooks enumerateObjectsUsingBlock:^(id hook, NSUInteger idx, BOOL *stop) {
-        [[[hook stub] andDo:^(NSInvocation *invocation) {
-            if (blockInvoked == NO) [order addObject:@(idx)];
-        }] execute];
-    }];
+    // Add example to deepest group:
+    [[groups lastObject] addExample:example];
+    
+    // The example should add an identifier to the execution list when executed:
+    [example setBlock:^{ [executed addObject:@"example"]; }];
     
     // Execute the example:
     [example execute];
     
-    // Verify that all hooks have the example set:
-    [hooks enumerateObjectsUsingBlock:^(BHVHook *hook, NSUInteger idx, BOOL *stop) {
-        [[[hook example] should] beIdenticalTo:example];
-    }];
+    // Verify the execution order:
+    STAssertEqualObjects(executed[0], @"example", @"");
+    STAssertEqualObjects(executed[1], @"hook 3", @"");
+    STAssertEqualObjects(executed[2], @"hook 2", @"");
+    STAssertEqualObjects(executed[3], @"hook 1", @"");
     
-    // Verify that the hooks were executed from top to bottom:
-    [[order should] beEqualTo:@[@0, @8, @16, @1, @4, @7, @9, @12, @15, @2, @3, @5, @6, @10, @11, @13, @14]];
+    // Verify hooks received messages:
+    [hooks makeObjectsPerformSelector:@selector(verify)];
 }
 
-- (void)test_Execution_WhenFirstExample_ExecutesHooksInBottomContextAfterBlock
+- (void)testIgnoresHooksNestedInSiblingGroups
 {
-    // Create a set of hooks:
-    NSMutableArray *hooks = [NSMutableArray array];
-    for (NSUInteger i = 0; i < 17; i ++) hooks[i] = [OCMockObject partialMockForObject:[BHVHook new]];
+    // Create group with two children:
+    BHVGroup *topGroup = [[BHVGroup alloc] init];
+    NSArray *nestedGroups = @[[[BHVGroup alloc] init], [[BHVGroup alloc] init]];
+    [topGroup addGroup:nestedGroups[0]];
+    [topGroup addGroup:nestedGroups[1]];
     
-    // Branch the examples over a stack of contexts:
-    BHVContext *context = BHVCreateBranchedStack(hooks);
-    
-    // Add an example to the last third-level context:
+    // Add an example to the first nested group:
     BHVExample *example = [[BHVExample alloc] init];
-    [[[context nodeAtIndex:3] nodeAtIndex:3] addNode:example];
+    [nestedGroups[0] addExample:example];
     
-    // In order to track the execution order, stub out -execute to add the hook index to an array:
-    NSMutableArray *order = [NSMutableArray array];
-    [hooks enumerateObjectsUsingBlock:^(id hook, NSUInteger idx, BOOL *stop) {
-        [[[hook stub] andDo:^(NSInvocation *invocation) { [order addObject:@(idx)]; }] execute];
-    }];
-    
-    // Set the example block to remove all executions so far, leaving us with only the hooks that will be executed occur post-example-execution:
-    example.block = ^{ [order removeAllObjects]; };
+    // Add a hook to the second nested group:
+    __block BOOL executed = NO;
+    [nestedGroups[1] addHook:mockHook(example, ^(NSInvocation *i) { executed = YES; })];
     
     // Execute the example:
     [example execute];
     
-    // Verify that all hooks have the example set:
-    [hooks enumerateObjectsUsingBlock:^(BHVHook *hook, NSUInteger idx, BOOL *stop) {
-        [[[hook example] should] beIdenticalTo:example];
-    }];
-    
-    // Verify that only the hooks were executed starting at the bottom:
-    [[order should] beEqualTo:@[@13, @14, @9, @12, @15, @0, @8, @16]];
+    // Ensure that the hook in the second nested group was not executed:
+    STAssertFalse(executed, @"Should not have executed the hook as it was in a sibling group to the group the example is nested in.");
 }
 
-//- (void)test_Execution_ExecutesHooksAgainOnceBlockHasBeenInvokedInOutwardOrder
-//{
-//    // Create a set of hooks:
-//    NSMutableArray *hooks = [NSMutableArray array];
-//    for (NSUInteger i = 0; i < 17; i ++) hooks[i] = [OCMockObject partialMockForObject:[BHVHook new]];
-//    
-//    // Branch the examples over a stack of contexts:
-//    BHVContext *context = BHVCreateBranchedStack(hooks);
-//    
-//    // In order to track the execution order, stub out -execute to add the hook index to an array:
-//    NSMutableArray *order = [NSMutableArray array];
-//    [hooks enumerateObjectsUsingBlock:^(id hook, NSUInteger idx, BOOL *stop) {
-//        [[[hook stub] andDo:^(NSInvocation *invocation) { [order addObject:@(idx)]; }] execute];
-//    }];
-//    
-//    // Add an example to the first third-level context:
-//    BHVExample *example = [[BHVExample alloc] init];
-//    [[[context nodeAtIndex:1] nodeAtIndex:1] addNode:example];
-//    
-//    // Set the example block to remove all executions so far, leaving us with only the hooks that will be executed occur post-example-execution:
-//    example.block = ^{ [order removeAllObjects]; };
-//    
-//    // Execute the example:
-//    [example execute];
-//    
-//    // Verify that all hooks have the example set:
-//    [hooks enumerateObjectsUsingBlock:^(BHVHook *hook, NSUInteger idx, BOOL *stop) {
-//        [[[hook example] should] beIdenticalTo:example];
-//    }];
-//    
-//    // Verify that the hooks were executed starting at the deepest context and working outwards:
-//    [[order should] beEqualTo:@[@2, @3, @5, @6, @10, @11, @13, @14, @1, @7, @9, @15, @0, @16]];
-//}
+- (void)testIgnoresHooksNestedInDeeperGroups
+{
+    // Create group with a nested group:
+    BHVGroup *topGroup = [[BHVGroup alloc] init];
+    BHVGroup *nestedGroup = [[BHVGroup alloc] init];
+    [topGroup addGroup:nestedGroup];
+    
+    // Add an example to the top group:
+    BHVExample *example = [[BHVExample alloc] init];
+    [topGroup addExample:example];
+    
+    // Add a hook to the nested group:
+    __block BOOL executed = NO;
+    BHVBeforeEachHook *hook = [[BHVBeforeEachHook alloc] init];
+    [hook setBlock:^{ executed = YES; }];
+    [nestedGroup addHook:hook];
+    
+    // Execute the example:
+    [example execute];
+    
+    // Ensure that the hook in the nested group was not executed:
+    STAssertFalse(executed, @"Should not have executed the hook as it was in a deeper group than the example.");
+}
+
+#pragma mark Generating full names
+
+- (void)testConcatenatesParentGroupNamesAndExampleName
+{
+    // Create groups:
+    NSArray *groups = @[[OCMockObject niceMockForClass:[BHVGroup class]], [OCMockObject niceMockForClass:[BHVGroup class]]];
+    [[[groups[0] stub] andReturn:@"a cat"] name];
+    [[[groups[1] stub] andReturn:@"when it is fat"] name];
+    [[[groups[1] stub] andReturn:groups[0]] parentGroup];
+    
+    // Create an example:
+    BHVExample *example = [[BHVExample alloc] init];
+    [example setName:@"should be lazy"];
+    [example setParentGroup:groups[1]];
+    
+    // Test that the name is equal to the concatenated group names and example name:
+    BHVTestSpecification *spec = [BHVTestSpecification testCaseWithInvocation:[BHVInvocation invocationWithExample:example]];
+    STAssertEqualObjects([spec name], @"a cat when it is fat should be lazy", @"Should have returned the concatenated names of the groups and example.");
+}
+
+- (void)testUsesJustExampleNameIfNotInGroup
+{
+    // Create and add an example to the spec:
+    BHVExample *example = [[BHVExample alloc] init];
+    [example setName:@"hello world"];
+    
+    // Test that the name is equal to the example name:
+    BHVTestSpecification *spec = [BHVTestSpecification testCaseWithInvocation:[BHVInvocation invocationWithExample:example]];
+    STAssertEqualObjects([spec name], @"hello world", @"Should have returned the name of the example.");
+}
 
 @end
