@@ -9,12 +9,19 @@
 #import <SenTestingKit/SenTestingKit.h>
 #import <OCMock/OCMock.h>
 #import "BHVSpecification.h"
+#import "BHVBuilder.h"
 #import "BHVGroup.h"
 #import "BHVExample.h"
 #import "BHVBeforeEachHook.h"
 #import "BHVAfterEachHook.h"
 
 @interface BHVTestSpecification : BHVSpecification
+@end
+
+@interface BHVSpecificationA : BHVSpecification
+@end
+
+@interface BHVSpecificationB : BHVSpecification
 @end
 
 @interface BHVSpecificationWithThreeExamples : BHVSpecification

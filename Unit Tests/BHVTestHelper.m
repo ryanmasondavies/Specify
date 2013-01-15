@@ -16,6 +16,14 @@
 
 @end
 
+@implementation BHVSpecificationA
+
+@end
+
+@implementation BHVSpecificationB
+
+@end
+
 @implementation BHVSpecificationWithThreeExamples
 
 - (void)loadExamples
@@ -32,8 +40,8 @@
 - (void)loadExamples
 {
     it(@"example 1", ^{});
-    group(@"group 1", ^{
-        group(@"group 2", ^{
+    context(@"group 1", ^{
+        context(@"group 2", ^{
             it(@"example 2", ^{});
         });
     });

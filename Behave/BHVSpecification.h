@@ -8,18 +8,12 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-@class BHVGroup, BHVExample, BHVHook;
+@class BHVBuilder;
 
 @interface BHVSpecification : SenTestCase
 
-+ (void)enterGroup:(BHVGroup *)group;
-+ (void)leaveGroup;
-
-+ (void)addExample:(BHVExample *)example;
-+ (void)addHook:(BHVHook *)hook;
-
++ (BHVBuilder *)builder;
 - (void)loadExamples;
-
 + (void)reset;
 
 @end

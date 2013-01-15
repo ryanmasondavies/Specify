@@ -7,6 +7,7 @@
 //
 
 #import "BHVSpecification.h"
+#import "BHVBuilder.h"
 #import "BHVGroup.h"
 #import "BHVExample.h"
 #import "BHVBeforeEachHook.h"
@@ -42,16 +43,12 @@
 @interface BHVSpecification ()
 + (void)setCurrentSpecification:(Class)specification;
 + (Class)currentSpecification;
-+ (NSMutableArray *)groupStack;
 @end
 
 @implementation BHVSpecification
 
 + (void)initialize
 {
-    // Add base group:
-    [[self groupStack] addObject:[BHVGroup new]];
-    
     // Load examples:
     BHVSpecification *instance = [[[self class] alloc] init];
     [self setCurrentSpecification:self];
@@ -71,50 +68,21 @@
     return [[[NSThread currentThread] threadDictionary] objectForKey:@"BHVCurrentSpecification"];
 }
 
-+ (NSMutableArray *)groupStack
++ (NSMutableDictionary *)buildersByClass
 {
-    static NSMutableDictionary *groupStackByClass = nil;
-    if (groupStackByClass == nil) groupStackByClass = [NSMutableDictionary dictionary];
-    NSMutableArray *groupStack = [groupStackByClass objectForKey:NSStringFromClass(self)];
-    if (groupStack == nil) {
-        groupStack = [NSMutableArray array];
-        [groupStackByClass setObject:groupStack forKey:NSStringFromClass(self)];
+    static NSMutableDictionary *buildersByClass = nil;
+    if (buildersByClass == nil) buildersByClass = [NSMutableDictionary dictionary];
+    return buildersByClass;
+}
+
++ (BHVBuilder *)builder
+{
+    BHVBuilder *builder = [[self buildersByClass] objectForKey:NSStringFromClass(self)];
+    if (builder == nil) {
+        builder = [[BHVBuilder alloc] init];
+        [[self buildersByClass] setObject:builder forKey:NSStringFromClass(self)];
     }
-    return groupStack;
-}
-
-+ (void)enterGroup:(BHVGroup *)group
-{
-    // Push the group to the group stack:
-    [[self groupStack] addObject:group];
-}
-
-+ (void)leaveGroup
-{
-    // Pop a group from the group stack:
-    BHVGroup *group = [[self groupStack] lastObject];
-    [[self groupStack] removeLastObject];
-    
-    // Add the popped group to what is now the top group:
-    [[[self groupStack] lastObject] addGroup:group];
-}
-
-+ (void)addExample:(BHVExample *)example
-{
-    // Raise an exception if adding to the base specification:
-    if (self == [BHVSpecification class]) [NSException raise:NSInternalInconsistencyException format:@"Cannot add examples to the base specification."];
-    
-    // Add example to the top group:
-    [[[self groupStack] lastObject] addExample:example];
-}
-
-+ (void)addHook:(BHVHook *)hook
-{
-    // Raise an exception if adding to the base specification:
-    if (self == [BHVSpecification class]) [NSException raise:NSInternalInconsistencyException format:@"Cannot add hooks to the base specification."];
-    
-    // Add example to the top group:
-    [[[self groupStack] lastObject] addHook:hook];
+    return builder;
 }
 
 + (NSArray *)testInvocations
@@ -123,7 +91,7 @@
     NSMutableArray *examples = [NSMutableArray array];
     
     // Start at the top-most group:
-    BHVGroup *topMostGroup = [[self groupStack] objectAtIndex:0];
+    BHVGroup *topMostGroup = [[self builder] rootGroup];
     NSMutableArray *groupQueue = [NSMutableArray arrayWithObject:topMostGroup];
     
     // Pop off the first group:
@@ -177,7 +145,7 @@
 
 + (void)reset
 {
-    [[self groupStack] removeAllObjects];
+    [[self buildersByClass] removeObjectForKey:NSStringFromClass(self)];
     [self initialize];
 }
 
@@ -190,7 +158,7 @@ void it(NSString *name, void(^block)(void))
     BHVExample *example = [[BHVExample alloc] init];
     [example setName:name];
     [example setBlock:block];
-    [[BHVSpecification currentSpecification] addExample:example];
+    [[[BHVSpecification currentSpecification] builder] addExample:example];
 }
 
 void context(NSString *name, void(^block)(void))
@@ -199,9 +167,9 @@ void context(NSString *name, void(^block)(void))
     BHVGroup *group = [[BHVGroup alloc] initWithName:name];
     
     // Add group and its contents to the specification:
-    [[BHVSpecification currentSpecification] enterGroup:group];
+    [[[BHVSpecification currentSpecification] builder] enterGroup:group];
     block();
-    [[BHVSpecification currentSpecification] leaveGroup];
+    [[[BHVSpecification currentSpecification] builder] leaveGroup];
 }
 
 void describe(NSString *name, void(^block)(void))
@@ -213,12 +181,12 @@ void beforeEach(void(^block)(void))
 {
     BHVHook *hook = [[BHVBeforeEachHook alloc] init];
     [hook setBlock:block];
-    [[BHVSpecification currentSpecification] addHook:hook];
+    [[[BHVSpecification currentSpecification] builder] addHook:hook];
 }
 
 void afterEach(void(^block)(void))
 {
     BHVHook *hook = [[BHVAfterEachHook alloc] init];
     [hook setBlock:block];
-    [[BHVSpecification currentSpecification] addHook:hook];
+    [[[BHVSpecification currentSpecification] builder] addHook:hook];
 }
