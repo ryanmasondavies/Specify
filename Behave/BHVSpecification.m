@@ -7,38 +7,12 @@
 //
 
 #import "BHVSpecification.h"
+#import "BHVInvocation.h"
 #import "BHVBuilder.h"
 #import "BHVGroup.h"
 #import "BHVExample.h"
 #import "BHVBeforeEachHook.h"
 #import "BHVAfterEachHook.h"
-
-#pragma mark Invocation
-
-@interface BHVInvocation : NSInvocation
-@property (strong, nonatomic) BHVExample *example;
-+ (instancetype)invocationWithExample:(BHVExample *)example;
-@end
-
-@implementation BHVInvocation
-
-+ (instancetype)invocationWithExample:(BHVExample *)example
-{
-    NSString *encodingType = [NSString stringWithFormat:@"%s%s%s", @encode(void), @encode(id), @encode(SEL)];
-    NSMethodSignature *methodSignature = [NSMethodSignature signatureWithObjCTypes:[encodingType UTF8String]];
-    BHVInvocation *invocation = (id)[BHVInvocation invocationWithMethodSignature:methodSignature];
-    [invocation setExample:example];
-    return invocation;
-}
-
-- (void)invoke
-{
-    [[self example] execute];
-}
-
-@end
-
-#pragma mark - Specification
 
 @implementation BHVSpecification
 

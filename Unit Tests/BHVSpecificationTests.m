@@ -8,11 +8,6 @@
 
 #import "BHVTestHelper.h"
 
-@interface BHVInvocation : NSInvocation
-@property (strong, nonatomic) BHVExample *example;
-+ (instancetype)invocationWithExample:(BHVExample *)example;
-@end
-
 @interface BHVSpecificationTests : SenTestCase
 @end
 

@@ -10,6 +10,7 @@
 #import <OCMock/OCMock.h>
 #import "BHVDSL.h"
 #import "BHVSpecification.h"
+#import "BHVInvocation.h"
 #import "BHVBuilder.h"
 #import "BHVGroup.h"
 #import "BHVExample.h"
