@@ -12,13 +12,18 @@
 
 @implementation BHVExample
 
-- (instancetype)initWithName:(NSString *)name block:(void(^)(void))block
+- (id)init
 {
-    if (self = [self init]) {
-        self.name = name;
-        self.block = block;
+    if (self = [super init]) {
+        self.state = BHVExampleStatePending;
     }
     return self;
+}
+
+- (void)setBlock:(void (^)(void))block
+{
+    _block = block;
+    self.state = BHVExampleStateReady;
 }
 
 - (void)execute
@@ -55,7 +60,7 @@
     }
     
     // Mark as executed:
-    self.executed = YES;
+    self.state = BHVExampleStateExecuted;
 }
 
 @end

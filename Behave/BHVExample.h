@@ -9,13 +9,17 @@
 #import "BHVNode.h"
 @class BHVGroup;
 
-@interface BHVExample : BHVNode
+typedef NS_ENUM(NSInteger, BHVExampleState) {
+    BHVExampleStatePending,
+    BHVExampleStateReady,
+    BHVExampleStateExecuted
+};
 
-- (instancetype)initWithName:(NSString *)name block:(void(^)(void))block;
+@interface BHVExample : BHVNode
 
 - (void)execute;
 
-@property (copy, nonatomic) NSString   *name;
-@property (nonatomic, getter = isExecuted) BOOL executed;
+@property (copy, nonatomic) NSString *name;
 @property (copy, nonatomic) void(^block)(void);
+@property (nonatomic) BHVExampleState state;
 @end

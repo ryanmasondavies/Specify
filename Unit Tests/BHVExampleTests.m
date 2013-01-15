@@ -43,6 +43,19 @@ BHVHook *(^mockAfterEachHook)(BHVExample *example, InvocationBlock onExecution) 
 
 @implementation BHVExampleTests
 
+- (void)testInitialStateIsPending
+{
+    BHVExample *example = [[BHVExample alloc] init];
+    STAssertTrue([example state] == BHVExampleStatePending, @"State should start as 'pending'.");
+}
+
+- (void)testSettingBlockChangesStateToReady
+{
+    BHVExample *example = [[BHVExample alloc] init];
+    [example setBlock:^{}];
+    STAssertTrue([example state] == BHVExampleStateReady, @"Example should become 'ready' when a block is assigned.");
+}
+
 - (void)testExecutesHooksBeforeExampleInForwardOrder
 {
     // Create an example, an execution stack, a list of groups, and a base group:
@@ -81,7 +94,12 @@ BHVHook *(^mockAfterEachHook)(BHVExample *example, InvocationBlock onExecution) 
 
 - (void)testInvokesBlockAndSetsStateToExecuted
 {
-#warning Pending example
+    __block BOOL executed = NO;
+    BHVExample *example = [[BHVExample alloc] init];
+    [example setBlock:^{ executed = YES; }];
+    [example execute];
+    STAssertTrue([example state] == BHVExampleStateExecuted, @"Should change state to 'executed'.");
+    STAssertTrue(executed, @"Should invoke block when executed.");
 }
 
 - (void)testExecutesHooksAfterExampleInReverseOrder

@@ -184,9 +184,9 @@
     STAssertEqualObjects([[invocations[0] example] name], @"Example", @"Should execute the example.");
 }
 
-#pragma mark Generating groupual names
+#pragma mark Generating full names
 
-- (void)testConcatenatesGroupNamesAndExampleName
+- (void)testConcatenatesFullNamesAndExampleName
 {
     // Create groups:
     NSArray *groups = @[[BHVGroup new], [BHVGroup new]];
@@ -209,7 +209,7 @@
     STAssertEqualObjects([spec name], @"a cat when it is fat should be lazy", @"Should have returned the concatenated names of the groups and example.");
 }
 
-- (void)testIgnoresHooksForGroupualNames
+- (void)testIgnoresHooksForFullNames
 {
     // Create groups:
     NSArray *groups = @[[BHVGroup new], [BHVGroup new]];

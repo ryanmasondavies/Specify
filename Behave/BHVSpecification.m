@@ -187,7 +187,9 @@
 
 void it(NSString *name, void(^block)(void))
 {
-    BHVExample *example = [[BHVExample alloc] initWithName:name block:block];
+    BHVExample *example = [[BHVExample alloc] init];
+    [example setName:name];
+    [example setBlock:block];
     [[BHVSpecification currentSpecification] addExample:example];
 }
 
