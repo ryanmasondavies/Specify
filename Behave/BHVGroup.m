@@ -15,7 +15,7 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.groups = [NSArray array];
+        self.groups   = [NSArray array];
         self.examples = [NSArray array];
         self.hooks    = [NSArray array];
     }

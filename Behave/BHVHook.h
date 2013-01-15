@@ -6,17 +6,15 @@
 //  Copyright (c) 2013 Ryan Davies. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "BHVNode.h"
 @class BHVExample, BHVGroup;
 
-@interface BHVHook : NSObject
+@interface BHVHook : BHVNode
 
 - (BOOL)isExecutableBeforeExample:(BHVExample *)example;
 - (BOOL)isExecutableAfterExample:(BHVExample *)example;
 
 - (void)execute;
 
-@property (weak, nonatomic) BHVGroup *parentGroup;
 @property (copy, nonatomic) void(^block)(void);
-
 @end

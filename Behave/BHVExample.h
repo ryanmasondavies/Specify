@@ -6,11 +6,10 @@
 //  Copyright (c) 2012 Ryan Davies. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
+#import "BHVNode.h"
 @class BHVGroup;
 
-@interface BHVExample : NSObject
+@interface BHVExample : BHVNode
 
 - (instancetype)initWithName:(NSString *)name block:(void(^)(void))block;
 
@@ -18,7 +17,5 @@
 
 @property (copy, nonatomic) NSString   *name;
 @property (nonatomic, getter = isExecuted) BOOL executed;
-@property (weak, nonatomic) BHVGroup *parentGroup;
 @property (copy, nonatomic) void(^block)(void);
-
 @end

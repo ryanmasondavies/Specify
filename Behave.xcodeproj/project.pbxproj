@@ -22,6 +22,7 @@
 		941F5F7E1690647F00E01DF8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 941F5F6B1690647F00E01DF8 /* Foundation.framework */; };
 		941F5F811690647F00E01DF8 /* libBehave.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 941F5F681690647F00E01DF8 /* libBehave.a */; };
 		941F5F9E1690651A00E01DF8 /* BHVSpecificationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 941F5F9A1690651A00E01DF8 /* BHVSpecificationTests.m */; };
+		9447BB9816A5CF30004C7D66 /* BHVNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9447BB9716A5CF30004C7D66 /* BHVNode.m */; };
 		94B45BDE16948B6400F91EAC /* BHVTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B45BDD16948B6400F91EAC /* BHVTestHelper.m */; };
 		94EA8EE716A5B2F000A55B3F /* BHVAfterEachHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 94EA8EE616A5B2F000A55B3F /* BHVAfterEachHook.m */; };
 		94EA8EEA16A5B34800A55B3F /* BHVHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 94EA8EE916A5B34800A55B3F /* BHVHook.m */; };
@@ -88,6 +89,8 @@
 		941F5F7A1690647F00E01DF8 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		941F5F981690651A00E01DF8 /* Unit Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Unit Tests-Info.plist"; sourceTree = "<group>"; };
 		941F5F9A1690651A00E01DF8 /* BHVSpecificationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVSpecificationTests.m; sourceTree = "<group>"; };
+		9447BB9516A5CEBA004C7D66 /* BHVNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BHVNode.h; sourceTree = "<group>"; };
+		9447BB9716A5CF30004C7D66 /* BHVNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVNode.m; sourceTree = "<group>"; };
 		94A747D51695CA200026C2F5 /* Integrated Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Integrated Tests-Prefix.pch"; sourceTree = "<group>"; };
 		94B45BDC16948B6400F91EAC /* BHVTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHVTestHelper.h; sourceTree = "<group>"; };
 		94B45BDD16948B6400F91EAC /* BHVTestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHVTestHelper.m; sourceTree = "<group>"; };
@@ -196,6 +199,8 @@
 				9412C80116906B0600BAA0C1 /* Behave.h */,
 				94EADEA9169069BA002DA799 /* BHVSpecification.h */,
 				94EADEAA169069BA002DA799 /* BHVSpecification.m */,
+				9447BB9516A5CEBA004C7D66 /* BHVNode.h */,
+				9447BB9716A5CF30004C7D66 /* BHVNode.m */,
 				9412C7DB16906A2000BAA0C1 /* BHVGroup.h */,
 				9412C7DC16906A2000BAA0C1 /* BHVGroup.m */,
 				9412C7DE16906A2D00BAA0C1 /* BHVExample.h */,
@@ -417,6 +422,7 @@
 				9412C7E316906A3500BAA0C1 /* BHVBeforeEachHook.m in Sources */,
 				94EA8EE716A5B2F000A55B3F /* BHVAfterEachHook.m in Sources */,
 				94EA8EEA16A5B34800A55B3F /* BHVHook.m in Sources */,
+				9447BB9816A5CF30004C7D66 /* BHVNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
