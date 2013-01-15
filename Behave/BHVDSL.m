@@ -38,6 +38,11 @@ void describe(NSString *name, void(^block)(void))
     context(name, block);
 }
 
+void when(NSString *name, void(^block)(void))
+{
+    context([NSString stringWithFormat:@"when %@", name], block);
+}
+
 void beforeEach(void(^block)(void))
 {
     BHVHook *hook = [[BHVBeforeEachHook alloc] init];

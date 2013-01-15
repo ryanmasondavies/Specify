@@ -90,6 +90,26 @@
     [builder verify];
 }
 
+- (void)test_When_AddsExamplesInBlock
+{
+    void(^implementation)(void) = ^{
+        it(@"should work with contexts", ^{});
+    };
+    
+    id builder = [BHVMockSpecification builder];
+    [[builder expect] enterGroup:[OCMArg checkWithBlock:^BOOL(id group) {
+        return [[group name] isEqualToString:@"when not dead"];
+    }]];
+    [[builder expect] addExample:[OCMArg checkWithBlock:^BOOL(id example) {
+        return [[example name] isEqualToString:@"should work with contexts"];
+    }]];
+    [[builder expect] leaveGroup];
+    
+    when(@"not dead", implementation);
+    
+    [builder verify];
+}
+
 - (void)test_BeforeEach_AddsBeforeEachHook
 {
     void(^implementation)(void) = ^{};

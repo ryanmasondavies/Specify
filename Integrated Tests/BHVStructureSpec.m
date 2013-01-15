@@ -27,6 +27,11 @@ describe(@"something", ^{
         it(@"does another thing", ^{
         });
     });
+    
+    when(@"in `ready` state", ^{
+        it(@"does some other thing", ^{
+        });
+    });
 });
 
 SpecEnd
