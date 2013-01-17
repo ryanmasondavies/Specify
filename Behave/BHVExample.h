@@ -31,6 +31,8 @@ typedef NS_ENUM(NSInteger, BHVExampleState) {
  @note Hooks are collected by recursively invoking parentGroup on the result, starting with the example's parentGroup.
  */
 - (void)execute;
+
+/** The full name for the example, made by accumulating the names of parent groups and concatenating them with name. */
 - (NSString *)fullName;
 
 /** A name by which an example is identified, used to provide useful output. */
