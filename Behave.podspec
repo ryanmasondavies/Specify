@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
   s.name = 'Behave'
   s.version = '0.0.1'
   s.license = { :type => 'MIT', :file => 'LICENSE' }
-  s.platform = :ios, '4.3'
+  s.platform = :ios, '5.0'
   s.summary = "An Objective-C behaviour-driven development library."
   s.homepage = 'https://github.com/rdavies/Behave'
   s.author = { 'Ryan Davies' => 'ryan@ryandavies.net' }
