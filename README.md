@@ -1,9 +1,9 @@
-Behave
-======
+Specify
+=======
 
-Behave was developed out of a personal need for a simple yet verbose BDD library. I wanted something simpler than [Kiwi] and [Cedar], with the addition of extra DSL functions to make writing specifications easier, and I didn't want to use a combination of [Specta] and [Expecta] as I prefer the `should` terminology over `expect`.
+Specify was developed out of a personal need for a simple yet verbose BDD library. I wanted something simpler than [Kiwi] and [Cedar], with the addition of extra DSL functions to make writing specifications easier.
 
-Behave is built on top of [OCUnit], allowing tests to be run from Xcode. It has optional dependencies on two sub-libraries: [Posit] provides expectations, and [Mockingbird] provides mocking and stubbing. These can be substituted for any other expectation or mocking library, such as [Expecta] or [OCMock].
+Specify is built on top of [OCUnit], allowing tests to be run from Xcode. It has optional dependencies on two sub-libraries: [Posit] provides expectations, and [Mockingbird] provides mocking and stubbing. These can be substituted for any other expectation or mocking library, such as [Expecta] or [OCMock].
 
 See the [Wiki] for more information.
 
@@ -30,8 +30,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
-See the [LICENSE]() file.
-
 [Posit]: https://github.com/rdavies/Posit
 [Mockingbird]: https://github.com/rdavies/Mockingbird
 [Kiwi]: https://github.com/allending/Kiwi
@@ -40,5 +38,5 @@ See the [LICENSE]() file.
 [Expecta]: https://github.com/petejkim/expecta
 [OCUnit]: https://github.com/jy/SenTestingKit
 [OCMock]: http://www.sente.ch/software/ocunit
-[Wiki]: https://github.com/rdavies/Behave/wiki
-[LICENSE]: https://github.com/rdavies/Behave/blob/master/LICENSE
+[Wiki]: https://github.com/rdavies/Specify/wiki
+[LICENSE]: https://github.com/rdavies/Specify/blob/master/LICENSE
