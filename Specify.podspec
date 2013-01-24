@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name = 'Specify'
   s.version = '0.0.1'
-  s.license = { :type => 'MIT', :file => 'LICENSE' }
+  s.license = 'MIT'
   s.platform = :ios, '5.0'
   s.summary = "An Objective-C behaviour-driven development library."
   s.homepage = 'https://github.com/rdavies/Specify'
