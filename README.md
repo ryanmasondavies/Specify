@@ -1,7 +1,7 @@
 Specify
 =======
 
-Specify was developed out of a personal need for a simple yet verbose BDD library. I wanted something simpler than [Kiwi] and [Cedar], with the addition of extra DSL functions to make writing specifications easier.
+Specify was developed out of a personal need for a simple, extendable BDD library. I wanted something simpler than [Kiwi] and [Cedar], with the addition of extra DSL functions to make writing specifications easier.
 
 Specify is built on top of [OCUnit], allowing tests to be run from Xcode. It has optional dependencies on two sub-libraries: [Posit] provides expectations, and [Mockingbird] provides mocking and stubbing. These can be substituted for any other expectation or mocking library, such as [Expecta] or [OCMock].
 
