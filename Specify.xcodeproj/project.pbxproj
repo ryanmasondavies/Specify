@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3FEBC7DDD74A447F9F7B2711 /* libPods-Unit Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4B1C91A79CB497BB375D705 /* libPods-Unit Tests.a */; };
+		70DDFB3A72F84A2FB973A92A /* libPods-Specify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD9C9202717430289C3B7E5 /* libPods-Specify.a */; };
 		9412C7D9169069D800BAA0C1 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 941F5F7A1690647F00E01DF8 /* SenTestingKit.framework */; };
 		9412C7EA16906A6100BAA0C1 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 941F5F7A1690647F00E01DF8 /* SenTestingKit.framework */; };
 		9412C7EB16906A6100BAA0C1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 941F5F6B1690647F00E01DF8 /* Foundation.framework */; };
@@ -36,8 +38,7 @@
 		94EA8EEE16A5CBDE00A55B3F /* SPCStructureSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412C7FB16906AB700BAA0C1 /* SPCStructureSpec.m */; };
 		94EA8EEF16A5CBDE00A55B3F /* SPCBeforeEachSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412C7FA16906AB700BAA0C1 /* SPCBeforeEachSpec.m */; };
 		94EA8EF016A5CBDE00A55B3F /* SPCAfterEachSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412C7F816906AB700BAA0C1 /* SPCAfterEachSpec.m */; };
-		D0DED7AB80344EA8B87911B5 /* libPods-Integrated Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 483B1266A3F341C2A9E2A3F5 /* libPods-Integrated Tests.a */; };
-		D2FCF0F28E684AFF8435288F /* libPods-Unit Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50EC5941C187459FB3DA53C4 /* libPods-Unit Tests.a */; };
+		DEFA19B7CF3F47BD822B22D1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C63A8F0F9754142929C0296 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,9 +71,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0DF67133AA69464BA6823C09 /* Pods-Integrated Tests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Integrated Tests.xcconfig"; path = "Pods/Pods-Integrated Tests.xcconfig"; sourceTree = SOURCE_ROOT; };
-		483B1266A3F341C2A9E2A3F5 /* libPods-Integrated Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Integrated Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0BD9C9202717430289C3B7E5 /* libPods-Specify.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Specify.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		222402FC1DAB4667A486A39D /* Pods-Specify.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Specify.xcconfig"; path = "Pods/Pods-Specify.xcconfig"; sourceTree = SOURCE_ROOT; };
 		50EC5941C187459FB3DA53C4 /* libPods-Unit Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Unit Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C63A8F0F9754142929C0296 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6904DEF619004DC0B8860213 /* Pods-Unit Tests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unit Tests.xcconfig"; path = "Pods/Pods-Unit Tests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		9412C7F216906A6100BAA0C1 /* Integrated Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Integrated Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9412C7F516906A7700BAA0C1 /* Integrated Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Integrated Tests-Info.plist"; sourceTree = "<group>"; };
 		9412C7F816906AB700BAA0C1 /* SPCAfterEachSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SPCAfterEachSpec.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -113,7 +116,9 @@
 		94B45BDC16948B6400F91EAC /* SPCTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPCTestHelper.h; sourceTree = "<group>"; };
 		94B45BDD16948B6400F91EAC /* SPCTestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPCTestHelper.m; sourceTree = "<group>"; };
 		94EA8EEC16A5B43B00A55B3F /* SPCAfterEachHookTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPCAfterEachHookTests.m; sourceTree = "<group>"; };
-		FE5A14338646423196D9F3CC /* Pods-Unit Tests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unit Tests.xcconfig"; path = "Pods/Pods-Unit Tests.xcconfig"; sourceTree = SOURCE_ROOT; };
+		B6B4F57514334D7C9426EF21 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB1B9F7D77A64142BC7090A9 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		E4B1C91A79CB497BB375D705 /* libPods-Unit Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Unit Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,7 +129,6 @@
 				9412C7EA16906A6100BAA0C1 /* SenTestingKit.framework in Frameworks */,
 				9412C7EB16906A6100BAA0C1 /* Foundation.framework in Frameworks */,
 				9412C7EC16906A6100BAA0C1 /* libSpecify.a in Frameworks */,
-				D0DED7AB80344EA8B87911B5 /* libPods-Integrated Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,6 +138,8 @@
 			files = (
 				941F5F6C1690647F00E01DF8 /* Foundation.framework in Frameworks */,
 				9412C7D9169069D800BAA0C1 /* SenTestingKit.framework in Frameworks */,
+				DEFA19B7CF3F47BD822B22D1 /* libPods.a in Frameworks */,
+				70DDFB3A72F84A2FB973A92A /* libPods-Specify.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,7 +150,7 @@
 				941F5F7B1690647F00E01DF8 /* SenTestingKit.framework in Frameworks */,
 				941F5F7E1690647F00E01DF8 /* Foundation.framework in Frameworks */,
 				941F5F811690647F00E01DF8 /* libSpecify.a in Frameworks */,
-				D2FCF0F28E684AFF8435288F /* libPods-Unit Tests.a in Frameworks */,
+				3FEBC7DDD74A447F9F7B2711 /* libPods-Unit Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,8 +185,9 @@
 				9412C7F416906A7700BAA0C1 /* Integrated Tests */,
 				941F5F6A1690647F00E01DF8 /* Frameworks */,
 				941F5F691690647F00E01DF8 /* Products */,
-				FE5A14338646423196D9F3CC /* Pods-Unit Tests.xcconfig */,
-				0DF67133AA69464BA6823C09 /* Pods-Integrated Tests.xcconfig */,
+				DB1B9F7D77A64142BC7090A9 /* Pods.xcconfig */,
+				6904DEF619004DC0B8860213 /* Pods-Unit Tests.xcconfig */,
+				222402FC1DAB4667A486A39D /* Pods-Specify.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -199,8 +206,11 @@
 			children = (
 				941F5F6B1690647F00E01DF8 /* Foundation.framework */,
 				941F5F7A1690647F00E01DF8 /* SenTestingKit.framework */,
-				483B1266A3F341C2A9E2A3F5 /* libPods-Integrated Tests.a */,
+				B6B4F57514334D7C9426EF21 /* libPods.a */,
 				50EC5941C187459FB3DA53C4 /* libPods-Unit Tests.a */,
+				5C63A8F0F9754142929C0296 /* libPods.a */,
+				E4B1C91A79CB497BB375D705 /* libPods-Unit Tests.a */,
+				0BD9C9202717430289C3B7E5 /* libPods-Specify.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -268,7 +278,6 @@
 				9412C7E916906A6100BAA0C1 /* Frameworks */,
 				9412C7ED16906A6100BAA0C1 /* Resources */,
 				9412C7EE16906A6100BAA0C1 /* ShellScript */,
-				E1D9AFE183F2481D9A41CDB5 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -287,6 +296,8 @@
 				941F5F641690647F00E01DF8 /* Sources */,
 				941F5F651690647F00E01DF8 /* Frameworks */,
 				941F5F661690647F00E01DF8 /* CopyFiles */,
+				111EA4BA91BE4F0BB93FC21F /* Copy Pods Resources */,
+				4D7A669A18A74A28A10B8459 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -305,7 +316,7 @@
 				941F5F751690647F00E01DF8 /* Frameworks */,
 				941F5F761690647F00E01DF8 /* Resources */,
 				941F5F771690647F00E01DF8 /* ShellScript */,
-				20FB0FA3EF2E4B9FAB74D6CE /* Copy Pods Resources */,
+				DEEC7298DF9C4387A7B4CE58 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -364,7 +375,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		20FB0FA3EF2E4B9FAB74D6CE /* Copy Pods Resources */ = {
+		111EA4BA91BE4F0BB93FC21F /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -376,7 +387,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-Unit Tests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
+		4D7A669A18A74A28A10B8459 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-Specify-resources.sh\"\n";
 		};
 		9412C7EE16906A6100BAA0C1 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -404,7 +429,7 @@
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
-		E1D9AFE183F2481D9A41CDB5 /* Copy Pods Resources */ = {
+		DEEC7298DF9C4387A7B4CE58 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -416,7 +441,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-Integrated Tests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Pods-Unit Tests-resources.sh\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -481,7 +506,6 @@
 /* Begin XCBuildConfiguration section */
 		9412C7F016906A6100BAA0C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0DF67133AA69464BA6823C09 /* Pods-Integrated Tests.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Integrated Tests/Integrated Tests-Prefix.pch";
@@ -493,7 +517,6 @@
 		};
 		9412C7F116906A6100BAA0C1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0DF67133AA69464BA6823C09 /* Pods-Integrated Tests.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Integrated Tests/Integrated Tests-Prefix.pch";
@@ -513,6 +536,10 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -540,6 +567,10 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
@@ -552,13 +583,9 @@
 		};
 		941F5F8E1690647F00E01DF8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 222402FC1DAB4667A486A39D /* Pods-Specify.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/Specify.dst;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
-				);
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Specify;
 				SKIP_INSTALL = YES;
 			};
@@ -566,13 +593,9 @@
 		};
 		941F5F8F1690647F00E01DF8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 222402FC1DAB4667A486A39D /* Pods-Specify.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/Specify.dst;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
-				);
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Specify;
 				SKIP_INSTALL = YES;
 			};
@@ -580,12 +603,8 @@
 		};
 		941F5F911690647F00E01DF8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FE5A14338646423196D9F3CC /* Pods-Unit Tests.xcconfig */;
+			baseConfigurationReference = 6904DEF619004DC0B8860213 /* Pods-Unit Tests.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
 				INFOPLIST_FILE = "Unit Tests/Unit Tests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
@@ -594,12 +613,8 @@
 		};
 		941F5F921690647F00E01DF8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FE5A14338646423196D9F3CC /* Pods-Unit Tests.xcconfig */;
+			baseConfigurationReference = 6904DEF619004DC0B8860213 /* Pods-Unit Tests.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
 				INFOPLIST_FILE = "Unit Tests/Unit Tests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;

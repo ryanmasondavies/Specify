@@ -1,9 +1,9 @@
-platform :ios, '6.0'
+platform :ios, '4.3'
+
+target 'Specify' do
+  pod 'Inline', '~> 0.0.2'
+end
 
 target 'Unit Tests' do
   pod 'OCMock'
-end
-
-target 'Integrated Tests' do
-  pod 'Posit'
 end
