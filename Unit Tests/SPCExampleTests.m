@@ -203,7 +203,7 @@ SPCHook *(^mockAfterEachHook)(SPCExample *example, InvocationBlock onExecution) 
     [example setParentGroup:groups[1]];
     
     // Test that the name is equal to the concatenated group names and example name:
-    SPCTestSpecification *spec = [SPCTestSpecification testCaseWithInvocation:[SPCInvocation invocationWithExample:example]];
+    SPCTestSpecification *spec = [SPCTestSpecification testCaseWithInvocation:[INLTestInvocation invocationWithTest:example]];
     STAssertEqualObjects([spec name], @"a cat when it is fat should be lazy", @"Should have returned the concatenated names of the groups and example.");
 }
 
@@ -214,7 +214,7 @@ SPCHook *(^mockAfterEachHook)(SPCExample *example, InvocationBlock onExecution) 
     [example setName:@"hello world"];
     
     // Test that the name is equal to the example name:
-    SPCTestSpecification *spec = [SPCTestSpecification testCaseWithInvocation:[SPCInvocation invocationWithExample:example]];
+    SPCTestSpecification *spec = [SPCTestSpecification testCaseWithInvocation:[INLTestInvocation invocationWithTest:example]];
     STAssertEqualObjects([spec name], @"hello world", @"Should have returned the name of the example.");
 }
 

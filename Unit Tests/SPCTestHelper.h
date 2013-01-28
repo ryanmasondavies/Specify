@@ -10,7 +10,6 @@
 #import <OCMock/OCMock.h>
 #import "SPCDSL.h"
 #import "SPCSpecification.h"
-#import "SPCInvocation.h"
 #import "SPCBuilder.h"
 #import "SPCGroup.h"
 #import "SPCExample.h"

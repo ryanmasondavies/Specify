@@ -32,11 +32,6 @@
 + (Class)currentSpecification;
 
 /**
- @return An instance of SPCInvocation for each example in the builder.
- */
-+ (NSArray *)testInvocations;
-
-/**
  Used by subclasses for providing examples to the current specification's builder.
  
  Implementation should refer to the DSL functions.

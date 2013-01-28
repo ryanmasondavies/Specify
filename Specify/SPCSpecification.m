@@ -7,7 +7,6 @@
 //
 
 #import "SPCSpecification.h"
-#import "SPCInvocation.h"
 #import "SPCBuilder.h"
 #import "SPCGroup.h"
 #import "SPCExample.h"
@@ -38,53 +37,13 @@
     return [[[NSThread currentThread] threadDictionary] objectForKey:@"SPCCurrentSpecification"];
 }
 
-+ (NSArray *)testInvocations
-{
-    // Gather examples:
-    NSMutableArray *examples = [NSMutableArray array];
-    
-    // Start at the top-most group:
-    SPCGroup *topMostGroup = [(SPCBuilder *)[self builder] rootGroup];
-    NSMutableArray *groupQueue = [NSMutableArray arrayWithObject:topMostGroup];
-    
-    // Pop off the first group:
-    SPCGroup *currentGroup = [groupQueue objectAtIndex:0];
-    [groupQueue removeObjectAtIndex:0];
-    
-    // Until currentGroup is nil:
-    while (currentGroup) {
-        // Add group's examples to list:
-        [examples addObjectsFromArray:[currentGroup examples]];
-        
-        // Add nested groups to queue:
-        [groupQueue addObjectsFromArray:[currentGroup groups]];
-        
-        // Move on to the next group, if there is one:
-        if ([groupQueue count] > 0) {
-            currentGroup = [groupQueue objectAtIndex:0];
-            [groupQueue removeObjectAtIndex:0];
-        } else {
-            currentGroup = nil;
-        }
-    }
-    
-    // Create invocations from examples:
-    NSMutableArray *invocations = [NSMutableArray array];
-    [examples enumerateObjectsUsingBlock:^(SPCExample *example, NSUInteger idx, BOOL *stop) {
-        [invocations addObject:[SPCInvocation invocationWithExample:example]];
-    }];
-    
-    // Convert to immutable and return:
-    return [NSArray arrayWithArray:invocations];
-}
-
 - (void)loadExamples
 {
 }
 
 - (NSString *)name
 {
-    SPCExample *example = [(SPCInvocation *)[self invocation] example];
+    SPCExample *example = [(INLTestInvocation *)[self invocation] test];
     return [example fullName];
 }
 

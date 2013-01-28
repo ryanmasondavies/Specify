@@ -33,9 +33,9 @@
     // adds three examples named Example 1, Example 2, and Example 3.
     
     NSArray *invocations = [SPCSpecificationWithThreeExamples testInvocations];
-    STAssertEqualObjects([[invocations[0] example] name], @"example 1", @"Should execute example 1 first.");
-    STAssertEqualObjects([[invocations[1] example] name], @"example 2", @"Should execute example 2 second.");
-    STAssertEqualObjects([[invocations[2] example] name], @"example 3", @"Should execute example 3 third.");
+    STAssertEqualObjects([[invocations[0] test] name], @"example 1", @"Should execute example 1 first.");
+    STAssertEqualObjects([[invocations[1] test] name], @"example 2", @"Should execute example 2 second.");
+    STAssertEqualObjects([[invocations[2] test] name], @"example 3", @"Should execute example 3 third.");
 }
 
 - (void)testExamplesInGroupsAreMovedToEnd
@@ -53,9 +53,9 @@
      */
     
     NSArray *invocations = [SPCSpecificationWithUnorderedNestedExamples testInvocations];
-    STAssertEqualObjects([[invocations[0] example] name], @"example 1", @"Should perform example 1 first.");
-    STAssertEqualObjects([[invocations[1] example] name], @"example 3", @"Should perform example 3 second.");
-    STAssertEqualObjects([[invocations[2] example] name], @"example 2", @"Should perform example 2 last.");
+    STAssertEqualObjects([[invocations[0] test] name], @"example 1", @"Should perform example 1 first.");
+    STAssertEqualObjects([[invocations[1] test] name], @"example 3", @"Should perform example 3 second.");
+    STAssertEqualObjects([[invocations[2] test] name], @"example 2", @"Should perform example 2 last.");
 }
 
 - (void)testIgnoresHooks
@@ -67,7 +67,7 @@
     
     NSArray *invocations = [SPCSpecificationWithHooks testInvocations];
     STAssertTrue([invocations count] == 1, @"Should have 1 invocation: the example, and no hooks.");
-    STAssertEqualObjects([[invocations[0] example] name], @"Example", @"Should execute the example.");
+    STAssertEqualObjects([[invocations[0] test] name], @"Example", @"Should execute the example.");
 }
 
 #pragma mark Generating names
@@ -76,7 +76,7 @@
 {
     id example = [OCMockObject mockForClass:[SPCExample class]];
     [[[example expect] andReturn:@"fake name"] fullName];
-    SPCSpecification *specification = [[SPCSpecification alloc] initWithInvocation:[SPCInvocation invocationWithExample:example]];
+    SPCSpecification *specification = [[SPCSpecification alloc] initWithInvocation:[INLTestInvocation invocationWithTest:example]];
     STAssertEqualObjects([specification name], @"fake name", @"");
     [example verify];
 }

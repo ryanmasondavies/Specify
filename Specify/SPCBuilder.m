@@ -55,4 +55,9 @@
     [[[self stack] lastObject] addHook:hook];
 }
 
+- (NSArray *)tests
+{
+    return nil;
+}
+
 @end

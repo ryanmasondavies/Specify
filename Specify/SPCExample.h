@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Inline/Inline.h>
 @class SPCGroup;
 
 typedef NS_ENUM(NSInteger, SPCExampleState) {
@@ -18,7 +19,7 @@ typedef NS_ENUM(NSInteger, SPCExampleState) {
 /** An example which defines a single piece of behaviour within a system.
  
  An example has a name, a block, and exists within a group identified by parentGroup. Hooks in the parent and subsequent parent groups are handled in execute, and are used to provide an environment in which the example is defined. */
-@interface SPCExample : NSObject
+@interface SPCExample : NSObject <INLTest>
 
 /** Executes an example and its hooks.
  
