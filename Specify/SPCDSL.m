@@ -19,7 +19,7 @@ void it(NSString *name, void(^block)(void))
     SPCExample *example = [[SPCExample alloc] init];
     [example setName:name];
     [example setBlock:block];
-    [[[SPCSpecification currentSpecification] builder] addExample:example];
+    [(SPCBuilder *)[[SPCSpecification currentSpecification] builder] addExample:example];
 }
 
 void context(NSString *name, void(^block)(void))
@@ -28,9 +28,9 @@ void context(NSString *name, void(^block)(void))
     SPCGroup *group = [[SPCGroup alloc] initWithName:name];
     
     // Add group and its contents to the specification:
-    [[[SPCSpecification currentSpecification] builder] enterGroup:group];
+    [(SPCBuilder *)[[SPCSpecification currentSpecification] builder] enterGroup:group];
     block();
-    [[[SPCSpecification currentSpecification] builder] leaveGroup];
+    [(SPCBuilder *)[[SPCSpecification currentSpecification] builder] leaveGroup];
 }
 
 void describe(NSString *name, void(^block)(void))
@@ -52,7 +52,7 @@ void beforeEach(void(^block)(void))
 {
     SPCHook *hook = [[SPCBeforeEachHook alloc] init];
     [hook setBlock:block];
-    [[[SPCSpecification currentSpecification] builder] addHook:hook];
+    [(SPCBuilder *)[[SPCSpecification currentSpecification] builder] addHook:hook];
 }
 
 void after(void(^block)(void))
@@ -64,5 +64,5 @@ void afterEach(void(^block)(void))
 {
     SPCHook *hook = [[SPCAfterEachHook alloc] init];
     [hook setBlock:block];
-    [[[SPCSpecification currentSpecification] builder] addHook:hook];
+    [(SPCBuilder *)[[SPCSpecification currentSpecification] builder] addHook:hook];
 }

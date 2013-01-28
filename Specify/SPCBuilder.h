@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Inline/Inline.h>
 @class SPCGroup, SPCExample, SPCHook;
 
 /** Used to construct grouped examples. */
-@interface SPCBuilder : NSObject
+@interface SPCBuilder : NSObject <INLTestBuilder>
 
 /** The bottom-most group in the stack.
  

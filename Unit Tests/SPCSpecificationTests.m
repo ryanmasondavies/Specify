@@ -20,9 +20,9 @@
 
 #pragma mark Builder
 
-- (void)testBuilderPerSubclass
+- (void)testUsesSPCBuilder
 {
-    STAssertFalse([SPCSpecificationA builder] == [SPCSpecificationB builder], @"Should have separate builders per subclass.");
+    STAssertTrue([[SPCSpecification builder] isKindOfClass:[SPCBuilder class]], @"Should have separate builders per subclass.");
 }
 
 #pragma mark Generating invocations

@@ -16,6 +16,9 @@
 
 + (void)initialize
 {
+    // Use an instance of SPCBuilder:
+    [self setBuilder:[SPCBuilder new]];
+    
     // Load examples:
     SPCSpecification *instance = [[[self class] alloc] init];
     [self setCurrentSpecification:self];
@@ -35,30 +38,13 @@
     return [[[NSThread currentThread] threadDictionary] objectForKey:@"SPCCurrentSpecification"];
 }
 
-+ (NSMutableDictionary *)buildersByClass
-{
-    static NSMutableDictionary *buildersByClass = nil;
-    if (buildersByClass == nil) buildersByClass = [NSMutableDictionary dictionary];
-    return buildersByClass;
-}
-
-+ (SPCBuilder *)builder
-{
-    SPCBuilder *builder = [[self buildersByClass] objectForKey:NSStringFromClass(self)];
-    if (builder == nil) {
-        builder = [[SPCBuilder alloc] init];
-        [[self buildersByClass] setObject:builder forKey:NSStringFromClass(self)];
-    }
-    return builder;
-}
-
 + (NSArray *)testInvocations
 {
     // Gather examples:
     NSMutableArray *examples = [NSMutableArray array];
     
     // Start at the top-most group:
-    SPCGroup *topMostGroup = [[self builder] rootGroup];
+    SPCGroup *topMostGroup = [(SPCBuilder *)[self builder] rootGroup];
     NSMutableArray *groupQueue = [NSMutableArray arrayWithObject:topMostGroup];
     
     // Pop off the first group:
@@ -104,7 +90,6 @@
 
 + (void)reset
 {
-    [[self buildersByClass] removeObjectForKey:NSStringFromClass(self)];
     [self initialize];
 }
 
