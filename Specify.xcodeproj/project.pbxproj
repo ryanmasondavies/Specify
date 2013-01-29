@@ -10,26 +10,19 @@
 		0A45A110604544E2B2495AC4 /* libPods-Unit Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F54EE03EE70B435A9BD4A294 /* libPods-Unit Tests.a */; };
 		7D1601B5C62E4F1E9E1211AC /* libPods-Specify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A966795980174CE68E207080 /* libPods-Specify.a */; };
 		9412C7D9169069D800BAA0C1 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 941F5F7A1690647F00E01DF8 /* SenTestingKit.framework */; };
-		9412C80416906B8700BAA0C1 /* SPCGroupTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412C80316906B8700BAA0C1 /* SPCGroupTests.m */; };
 		9412C80716906B8E00BAA0C1 /* SPCExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412C80616906B8E00BAA0C1 /* SPCExampleTests.m */; };
-		9412C80A16906B9500BAA0C1 /* SPCBeforeEachHookTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412C80916906B9500BAA0C1 /* SPCBeforeEachHookTests.m */; };
 		941F5F6C1690647F00E01DF8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 941F5F6B1690647F00E01DF8 /* Foundation.framework */; };
 		941F5F7B1690647F00E01DF8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 941F5F7A1690647F00E01DF8 /* SenTestingKit.framework */; };
 		941F5F7E1690647F00E01DF8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 941F5F6B1690647F00E01DF8 /* Foundation.framework */; };
 		941F5F811690647F00E01DF8 /* libSpecify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 941F5F681690647F00E01DF8 /* libSpecify.a */; };
 		941F5F9E1690651A00E01DF8 /* SPCSpecificationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 941F5F9A1690651A00E01DF8 /* SPCSpecificationTests.m */; };
-		9427AC3A16AFF6E700B1DF70 /* SPCAfterEachHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 9427AC2916AFF6E700B1DF70 /* SPCAfterEachHook.m */; };
-		9427AC3B16AFF6E700B1DF70 /* SPCBeforeEachHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 9427AC2B16AFF6E700B1DF70 /* SPCBeforeEachHook.m */; };
 		9427AC3C16AFF6E700B1DF70 /* SPCBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 9427AC2D16AFF6E700B1DF70 /* SPCBuilder.m */; };
 		9427AC3D16AFF6E700B1DF70 /* SPCDSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 9427AC2F16AFF6E700B1DF70 /* SPCDSL.m */; };
 		9427AC3E16AFF6E700B1DF70 /* SPCExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 9427AC3116AFF6E700B1DF70 /* SPCExample.m */; };
-		9427AC3F16AFF6E700B1DF70 /* SPCGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 9427AC3316AFF6E700B1DF70 /* SPCGroup.m */; };
 		9427AC4016AFF6E700B1DF70 /* SPCHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 9427AC3516AFF6E700B1DF70 /* SPCHook.m */; };
 		9427AC4216AFF6E700B1DF70 /* SPCSpecification.m in Sources */ = {isa = PBXBuildFile; fileRef = 9427AC3916AFF6E700B1DF70 /* SPCSpecification.m */; };
 		9447BB9B16A5EF77004C7D66 /* SPCBuilderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9447BB9A16A5EF77004C7D66 /* SPCBuilderTests.m */; };
 		9447BBA116A5F315004C7D66 /* SPCDSLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9447BBA016A5F315004C7D66 /* SPCDSLTests.m */; };
-		94B45BDE16948B6400F91EAC /* SPCTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B45BDD16948B6400F91EAC /* SPCTestHelper.m */; };
-		94EA8EED16A5B43B00A55B3F /* SPCAfterEachHookTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94EA8EEC16A5B43B00A55B3F /* SPCAfterEachHookTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,9 +49,7 @@
 
 /* Begin PBXFileReference section */
 		5A50C6C04A58401AA0EF5F70 /* Pods-Unit Tests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unit Tests.xcconfig"; path = "Pods/Pods-Unit Tests.xcconfig"; sourceTree = SOURCE_ROOT; };
-		9412C80316906B8700BAA0C1 /* SPCGroupTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SPCGroupTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		9412C80616906B8E00BAA0C1 /* SPCExampleTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SPCExampleTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		9412C80916906B9500BAA0C1 /* SPCBeforeEachHookTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPCBeforeEachHookTests.m; sourceTree = "<group>"; };
 		941F5F681690647F00E01DF8 /* libSpecify.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSpecify.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		941F5F6B1690647F00E01DF8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		941F5F791690647F00E01DF8 /* Unit Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,18 +57,12 @@
 		941F5F981690651A00E01DF8 /* Unit Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Unit Tests-Info.plist"; sourceTree = "<group>"; };
 		941F5F9A1690651A00E01DF8 /* SPCSpecificationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPCSpecificationTests.m; sourceTree = "<group>"; };
 		9427AC2716AFF6E700B1DF70 /* Specify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Specify.h; sourceTree = "<group>"; };
-		9427AC2816AFF6E700B1DF70 /* SPCAfterEachHook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPCAfterEachHook.h; sourceTree = "<group>"; };
-		9427AC2916AFF6E700B1DF70 /* SPCAfterEachHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPCAfterEachHook.m; sourceTree = "<group>"; };
-		9427AC2A16AFF6E700B1DF70 /* SPCBeforeEachHook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPCBeforeEachHook.h; sourceTree = "<group>"; };
-		9427AC2B16AFF6E700B1DF70 /* SPCBeforeEachHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPCBeforeEachHook.m; sourceTree = "<group>"; };
 		9427AC2C16AFF6E700B1DF70 /* SPCBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPCBuilder.h; sourceTree = "<group>"; };
 		9427AC2D16AFF6E700B1DF70 /* SPCBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPCBuilder.m; sourceTree = "<group>"; };
 		9427AC2E16AFF6E700B1DF70 /* SPCDSL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPCDSL.h; sourceTree = "<group>"; };
 		9427AC2F16AFF6E700B1DF70 /* SPCDSL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPCDSL.m; sourceTree = "<group>"; };
 		9427AC3016AFF6E700B1DF70 /* SPCExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPCExample.h; sourceTree = "<group>"; };
 		9427AC3116AFF6E700B1DF70 /* SPCExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPCExample.m; sourceTree = "<group>"; };
-		9427AC3216AFF6E700B1DF70 /* SPCGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPCGroup.h; sourceTree = "<group>"; };
-		9427AC3316AFF6E700B1DF70 /* SPCGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPCGroup.m; sourceTree = "<group>"; };
 		9427AC3416AFF6E700B1DF70 /* SPCHook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPCHook.h; sourceTree = "<group>"; };
 		9427AC3516AFF6E700B1DF70 /* SPCHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPCHook.m; sourceTree = "<group>"; };
 		9427AC3816AFF6E700B1DF70 /* SPCSpecification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPCSpecification.h; sourceTree = "<group>"; };
@@ -85,8 +70,6 @@
 		9447BB9A16A5EF77004C7D66 /* SPCBuilderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPCBuilderTests.m; sourceTree = "<group>"; };
 		9447BBA016A5F315004C7D66 /* SPCDSLTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPCDSLTests.m; sourceTree = "<group>"; };
 		94B45BDC16948B6400F91EAC /* SPCTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPCTestHelper.h; sourceTree = "<group>"; };
-		94B45BDD16948B6400F91EAC /* SPCTestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPCTestHelper.m; sourceTree = "<group>"; };
-		94EA8EEC16A5B43B00A55B3F /* SPCAfterEachHookTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPCAfterEachHookTests.m; sourceTree = "<group>"; };
 		A966795980174CE68E207080 /* libPods-Specify.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Specify.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5FD54AA25444D4388F1809E /* Pods-Specify.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Specify.xcconfig"; path = "Pods/Pods-Specify.xcconfig"; sourceTree = SOURCE_ROOT; };
 		F54EE03EE70B435A9BD4A294 /* libPods-Unit Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Unit Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,10 +138,7 @@
 				9447BBA016A5F315004C7D66 /* SPCDSLTests.m */,
 				941F5F9A1690651A00E01DF8 /* SPCSpecificationTests.m */,
 				9447BB9A16A5EF77004C7D66 /* SPCBuilderTests.m */,
-				9412C80316906B8700BAA0C1 /* SPCGroupTests.m */,
 				9412C80616906B8E00BAA0C1 /* SPCExampleTests.m */,
-				9412C80916906B9500BAA0C1 /* SPCBeforeEachHookTests.m */,
-				94EA8EEC16A5B43B00A55B3F /* SPCAfterEachHookTests.m */,
 				941F5FA01690651F00E01DF8 /* Supporting Files */,
 			);
 			path = "Unit Tests";
@@ -169,7 +149,6 @@
 			children = (
 				941F5F981690651A00E01DF8 /* Unit Tests-Info.plist */,
 				94B45BDC16948B6400F91EAC /* SPCTestHelper.h */,
-				94B45BDD16948B6400F91EAC /* SPCTestHelper.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -184,16 +163,10 @@
 				9427AC3916AFF6E700B1DF70 /* SPCSpecification.m */,
 				9427AC2C16AFF6E700B1DF70 /* SPCBuilder.h */,
 				9427AC2D16AFF6E700B1DF70 /* SPCBuilder.m */,
-				9427AC3216AFF6E700B1DF70 /* SPCGroup.h */,
-				9427AC3316AFF6E700B1DF70 /* SPCGroup.m */,
 				9427AC3016AFF6E700B1DF70 /* SPCExample.h */,
 				9427AC3116AFF6E700B1DF70 /* SPCExample.m */,
 				9427AC3416AFF6E700B1DF70 /* SPCHook.h */,
 				9427AC3516AFF6E700B1DF70 /* SPCHook.m */,
-				9427AC2A16AFF6E700B1DF70 /* SPCBeforeEachHook.h */,
-				9427AC2B16AFF6E700B1DF70 /* SPCBeforeEachHook.m */,
-				9427AC2816AFF6E700B1DF70 /* SPCAfterEachHook.h */,
-				9427AC2916AFF6E700B1DF70 /* SPCAfterEachHook.m */,
 			);
 			path = Specify;
 			sourceTree = "<group>";
@@ -326,12 +299,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9427AC3A16AFF6E700B1DF70 /* SPCAfterEachHook.m in Sources */,
-				9427AC3B16AFF6E700B1DF70 /* SPCBeforeEachHook.m in Sources */,
 				9427AC3C16AFF6E700B1DF70 /* SPCBuilder.m in Sources */,
 				9427AC3D16AFF6E700B1DF70 /* SPCDSL.m in Sources */,
 				9427AC3E16AFF6E700B1DF70 /* SPCExample.m in Sources */,
-				9427AC3F16AFF6E700B1DF70 /* SPCGroup.m in Sources */,
 				9427AC4016AFF6E700B1DF70 /* SPCHook.m in Sources */,
 				9427AC4216AFF6E700B1DF70 /* SPCSpecification.m in Sources */,
 			);
@@ -342,11 +312,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				941F5F9E1690651A00E01DF8 /* SPCSpecificationTests.m in Sources */,
-				9412C80416906B8700BAA0C1 /* SPCGroupTests.m in Sources */,
 				9412C80716906B8E00BAA0C1 /* SPCExampleTests.m in Sources */,
-				9412C80A16906B9500BAA0C1 /* SPCBeforeEachHookTests.m in Sources */,
-				94B45BDE16948B6400F91EAC /* SPCTestHelper.m in Sources */,
-				94EA8EED16A5B43B00A55B3F /* SPCAfterEachHookTests.m in Sources */,
 				9447BB9B16A5EF77004C7D66 /* SPCBuilderTests.m in Sources */,
 				9447BBA116A5F315004C7D66 /* SPCDSLTests.m in Sources */,
 			);
@@ -388,7 +354,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -412,7 +378,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

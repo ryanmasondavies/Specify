@@ -1,7 +1,7 @@
-platform :ios, '4.3'
+platform :ios, '5.0'
 
 target 'Specify' do
-  pod 'Inline', '~> 0.0.2'
+  pod 'Inline', '~> 0.1.0'
 end
 
 target 'Unit Tests' do

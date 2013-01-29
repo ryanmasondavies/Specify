@@ -7,8 +7,7 @@
 //
 
 #import "SPCExample.h"
-#import "SPCGroup.h"
-#import "SPCBeforeEachHook.h"
+#import "INLGroup.h"
 
 @implementation SPCExample
 
@@ -28,51 +27,23 @@
 
 - (void)execute
 {
-    // Do nothing if there is no block:
     if (self.block == nil) return;
-    
-    // Accumulate hooks by working up the chain:
-    SPCGroup *group = [self parentGroup];
-    NSMutableArray *hooks  = [NSMutableArray array];
-    while (group != nil) {
-        // Because we're working our way out from the example, hooks must be inserted at the front of the array:
-        [hooks insertObjects:[group hooks] atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [[group hooks] count])]];
-        
-        // Move to group's parent:
-        group = [group parentGroup];
-    }
-    
-    // Execute all hooks in forward order:
-    for (SPCHook *hook in [hooks objectEnumerator]) {
-        if ([hook isExecutableBeforeExample:self]) {
-            [hook execute];
-        }
-    }
-    
-    // Invoke example:
+    [self executeBeforeHooks];
     self.block();
-    
-    // Execute all hooks in reverse order:
-    for (SPCHook *hook in [hooks reverseObjectEnumerator]) {
-        if ([hook isExecutableAfterExample:self]) {
-            [hook execute];
-        }
-    }
-    
-    // Mark as executed:
+    [self executeAfterHooks];
     self.state = SPCExampleStateExecuted;
 }
 
 - (NSString *)fullName
 {
-    NSMutableArray *names = [NSMutableArray array];
-    SPCGroup *group = [self parentGroup];
+    NSMutableArray *labels = [NSMutableArray array];
+    INLGroup *group = [self parent];
     while (group != nil) {
-        if ([group name]) [names insertObject:[group name] atIndex:0];
-        group = [group parentGroup];
+        if ([group label]) [labels insertObject:[group label] atIndex:0];
+        group = [group parent];
     }
-    [names addObject:[self name]];
-    return [names componentsJoinedByString:@" "];
+    [labels addObject:[self label]];
+    return [labels componentsJoinedByString:@" "];
 }
 
 @end

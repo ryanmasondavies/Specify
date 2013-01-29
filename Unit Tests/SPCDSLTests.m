@@ -42,7 +42,7 @@
     
     id builder = [SPCMockSpecification builder];
     [[builder expect] addExample:[OCMArg checkWithBlock:^BOOL(id example) {
-        return [[example name] isEqualToString:@"should work"] && [example block] == implementation;
+        return [[example label] isEqualToString:@"should work"] && [example block] == implementation;
     }]];
     
     it(@"should work", implementation);
@@ -58,10 +58,10 @@
     
     id builder = [SPCMockSpecification builder];
     [[builder expect] enterGroup:[OCMArg checkWithBlock:^BOOL(id group) {
-        return [[group name] isEqualToString:@"should work"];
+        return [[group label] isEqualToString:@"should work"];
     }]];
     [[builder expect] addExample:[OCMArg checkWithBlock:^BOOL(id example) {
-        return [[example name] isEqualToString:@"should work with contexts"];
+        return [[example label] isEqualToString:@"should work with contexts"];
     }]];
     [[builder expect] leaveGroup];
     
@@ -78,10 +78,10 @@
     
     id builder = [SPCMockSpecification builder];
     [[builder expect] enterGroup:[OCMArg checkWithBlock:^BOOL(id group) {
-        return [[group name] isEqualToString:@"should work"];
+        return [[group label] isEqualToString:@"should work"];
     }]];
     [[builder expect] addExample:[OCMArg checkWithBlock:^BOOL(id example) {
-        return [[example name] isEqualToString:@"should work with contexts"];
+        return [[example label] isEqualToString:@"should work with contexts"];
     }]];
     [[builder expect] leaveGroup];
     
@@ -98,10 +98,10 @@
     
     id builder = [SPCMockSpecification builder];
     [[builder expect] enterGroup:[OCMArg checkWithBlock:^BOOL(id group) {
-        return [[group name] isEqualToString:@"when not dead"];
+        return [[group label] isEqualToString:@"when not dead"];
     }]];
     [[builder expect] addExample:[OCMArg checkWithBlock:^BOOL(id example) {
-        return [[example name] isEqualToString:@"should work with contexts"];
+        return [[example label] isEqualToString:@"should work with contexts"];
     }]];
     [[builder expect] leaveGroup];
     

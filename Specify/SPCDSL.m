@@ -9,23 +9,22 @@
 #import "SPCDSL.h"
 #import "SPCSpecification.h"
 #import "SPCBuilder.h"
-#import "SPCGroup.h"
 #import "SPCExample.h"
-#import "SPCBeforeEachHook.h"
-#import "SPCAfterEachHook.h"
+#import "SPCHook.h"
 
-void it(NSString *name, void(^block)(void))
+void it(NSString *label, void(^block)(void))
 {
     SPCExample *example = [[SPCExample alloc] init];
-    [example setName:name];
+    [example setLabel:label];
     [example setBlock:block];
     [(SPCBuilder *)[[SPCSpecification currentSpecification] builder] addExample:example];
 }
 
-void context(NSString *name, void(^block)(void))
+void context(NSString *label, void(^block)(void))
 {
     // Create group:
-    SPCGroup *group = [[SPCGroup alloc] initWithName:name];
+    INLGroup *group = [[INLGroup alloc] init];
+    [group setLabel:label];
     
     // Add group and its contents to the specification:
     [(SPCBuilder *)[[SPCSpecification currentSpecification] builder] enterGroup:group];
@@ -33,14 +32,14 @@ void context(NSString *name, void(^block)(void))
     [(SPCBuilder *)[[SPCSpecification currentSpecification] builder] leaveGroup];
 }
 
-void describe(NSString *name, void(^block)(void))
+void describe(NSString *label, void(^block)(void))
 {
-    context(name, block);
+    context(label, block);
 }
 
-void when(NSString *name, void(^block)(void))
+void when(NSString *label, void(^block)(void))
 {
-    context([NSString stringWithFormat:@"when %@", name], block);
+    context([NSString stringWithFormat:@"when %@", label], block);
 }
 
 void before(void(^block)(void))
@@ -50,7 +49,8 @@ void before(void(^block)(void))
 
 void beforeEach(void(^block)(void))
 {
-    SPCHook *hook = [[SPCBeforeEachHook alloc] init];
+    SPCHook *hook = [[SPCHook alloc] init];
+    [hook setPlacement:INLHookPlacementBefore];
     [hook setBlock:block];
     [(SPCBuilder *)[[SPCSpecification currentSpecification] builder] addHook:hook];
 }
@@ -62,7 +62,8 @@ void after(void(^block)(void))
 
 void afterEach(void(^block)(void))
 {
-    SPCHook *hook = [[SPCAfterEachHook alloc] init];
+    SPCHook *hook = [[SPCHook alloc] init];
+    [hook setPlacement:INLHookPlacementAfter];
     [hook setBlock:block];
     [(SPCBuilder *)[[SPCSpecification currentSpecification] builder] addHook:hook];
 }

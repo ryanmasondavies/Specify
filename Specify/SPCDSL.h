@@ -17,16 +17,16 @@
 {
 
 /** Allows for the definition of behaviour in conversational terms: *it* should do something. */
-void it(NSString *name, void(^block)(void));
+void it(NSString *label, void(^block)(void));
 
 /** Examples can be defined within a *context*, e.g: how does the module Specify when its state is set to whatever? */
-void context(NSString *name, void(^block)(void));
+void context(NSString *label, void(^block)(void));
 
 /** A module can be *described* in conversational terms: I want to *describe* the module. *It* should do something. */
-void describe(NSString *name, void(^block)(void));
+void describe(NSString *label, void(^block)(void));
 
 /** A module can be contextualized in terms of an event: *when* something happens, *it* should do something. */
-void when(NSString *name, void(^block)(void));
+void when(NSString *label, void(^block)(void));
 
 /** Executes a piece of code before each example in the same and any nested groups is invoked. Multiple examples sometimes need to exist within the same environment. */
 void before(void(^block)(void));

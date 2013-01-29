@@ -8,7 +8,6 @@
 
 #import "SPCSpecification.h"
 #import "SPCBuilder.h"
-#import "SPCGroup.h"
 #import "SPCExample.h"
 
 @implementation SPCSpecification
@@ -43,7 +42,7 @@
 
 - (NSString *)name
 {
-    SPCExample *example = [(INLTestInvocation *)[self invocation] test];
+    SPCExample *example = (SPCExample *)[(INLInvocation *)[self invocation] test];
     return [example fullName];
 }
 

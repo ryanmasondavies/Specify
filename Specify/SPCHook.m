@@ -10,16 +10,6 @@
 
 @implementation SPCHook
 
-- (BOOL)isExecutableBeforeExample:(SPCExample *)example
-{
-    return NO;
-}
-
-- (BOOL)isExecutableAfterExample:(SPCExample *)example
-{
-    return NO;
-}
-
 - (void)execute
 {
     self.block();

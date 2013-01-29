@@ -11,25 +11,6 @@
 #import "SPCDSL.h"
 #import "SPCSpecification.h"
 #import "SPCBuilder.h"
-#import "SPCGroup.h"
+#import "INLGroup.h"
 #import "SPCExample.h"
-#import "SPCBeforeEachHook.h"
-#import "SPCAfterEachHook.h"
-
-@interface SPCTestSpecification : SPCSpecification
-@end
-
-@interface SPCSpecificationA : SPCSpecification
-@end
-
-@interface SPCSpecificationB : SPCSpecification
-@end
-
-@interface SPCSpecificationWithThreeExamples : SPCSpecification
-@end
-
-@interface SPCSpecificationWithUnorderedNestedExamples : SPCSpecification
-@end
-
-@interface SPCSpecificationWithHooks : SPCSpecification
-@end
+#import "SPCHook.h"

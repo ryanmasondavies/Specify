@@ -1,14 +1,14 @@
 
 PODS:
-- Inline (0.0.2)
+- Inline (0.1.0)
 - OCMock (2.0.1)
 
 DEPENDENCIES:
-- Inline (~> 0.0.2)
+- Inline (~> 0.1.0)
 - OCMock
 
 SPEC CHECKSUMS:
-  Inline: f915532060a83940c75f48baa7f0af5c8b15feea
+  Inline: f1af4456f99b23bbc9525c9ed1986edbe852e862
   OCMock: 77a9c4c57af6bf258a537d34cf09abf422affede
 
 COCOAPODS: 0.16.1

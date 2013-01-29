@@ -7,7 +7,7 @@
 //
 
 #import "SPCBuilder.h"
-#import "SPCGroup.h"
+#import "INLGroup.h"
 #import "SPCExample.h"
 #import "SPCHook.h"
 
@@ -20,17 +20,17 @@
 - (id)init
 {
     if (self = [super init]) {
-        self.stack = [NSMutableArray arrayWithObject:[SPCGroup new]];
+        self.stack = [NSMutableArray arrayWithObject:[INLGroup new]];
     }
     return self;
 }
 
-- (SPCGroup *)rootGroup
+- (INLGroup *)rootGroup
 {
     return [[self stack] objectAtIndex:0];
 }
 
-- (void)enterGroup:(SPCGroup *)group
+- (void)enterGroup:(INLGroup *)group
 {
     [[self stack] addObject:group];
 }
@@ -38,7 +38,7 @@
 - (void)leaveGroup
 {
     // Pop a group from the group stack:
-    SPCGroup *group = [[self stack] lastObject];
+    INLGroup *group = [[self stack] lastObject];
     [[self stack] removeLastObject];
     
     // Add the popped group to what is now the top group:
@@ -47,17 +47,14 @@
 
 - (void)addExample:(SPCExample *)example
 {
-    [[[self stack] lastObject] addExample:example];
+    INLGroup *group = [[self stack] lastObject];
+    [group addTest:example];
 }
 
 - (void)addHook:(SPCHook *)hook
 {
-    [[[self stack] lastObject] addHook:hook];
-}
-
-- (NSArray *)tests
-{
-    return nil;
+    INLGroup *group = [[self stack] lastObject];
+    [group addHook:hook];
 }
 
 @end
