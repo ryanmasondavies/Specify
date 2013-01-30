@@ -21,21 +21,13 @@
  */
 @interface SPCSpecification : INLTestCase
 
-/**
- @param specification The current specification class being loaded, for later retrieval using currentSpecification.
- */
+/** @param specification The current specification class being loaded, for later retrieval using currentSpecification. */
 + (void)setCurrentSpecification:(Class)specification;
 
-/**
- @return The class for the specification currently being loaded.
- */
+/** @return The class for the specification currently being loaded. */
 + (Class)currentSpecification;
 
-/**
- Used by subclasses for providing examples to the current specification's builder.
- 
- Implementation should refer to the DSL functions.
- */
+/** Used by subclasses for providing examples to the current specification's builder. */
 - (void)loadExamples;
 
 @end
