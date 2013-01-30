@@ -38,7 +38,7 @@
 
 + (NSArray *)blacklistedClasses
 {
-    return [[super blacklistedClasses] arrayByAddingObject:self];
+    return [[super blacklistedClasses] arrayByAddingObject:[SPCSpecification class]];
 }
 
 - (void)loadExamples
