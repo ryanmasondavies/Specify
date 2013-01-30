@@ -40,12 +40,6 @@
 {
 }
 
-- (NSString *)name
-{
-    SPCExample *example = (SPCExample *)[(INLInvocation *)[self invocation] test];
-    return [example fullName];
-}
-
 + (void)reset
 {
     [self initialize];

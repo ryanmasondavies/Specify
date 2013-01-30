@@ -18,13 +18,4 @@
     STAssertTrue([[SPCSpecification builder] isKindOfClass:[SPCBuilder class]], @"");
 }
 
-- (void)testForwardsNameToExample
-{
-    id example = [OCMockObject mockForClass:[SPCExample class]];
-    [[[example expect] andReturn:@"fake name"] fullName];
-    SPCSpecification *specification = [[SPCSpecification alloc] initWithInvocation:[INLInvocation invocationWithTest:example]];
-    STAssertEqualObjects([specification name], @"fake name", @"");
-    [example verify];
-}
-
 @end

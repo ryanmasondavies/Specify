@@ -32,8 +32,9 @@
 {
     id example = [OCMockObject partialMockForObject:[SPCExample new]];
     __block BOOL performedExecutedBeforeHooks = NO;
-    [[[example stub] andDo:^(NSInvocation *invocation) { performedExecutedBeforeHooks = YES; }] executeBeforeHooks];
-    [[[example stub] andDo:^(NSInvocation *invocation) { STAssertTrue(performedExecutedBeforeHooks, @""); }] execute];
+    [[[example expect] andDo:^(NSInvocation *invocation) { performedExecutedBeforeHooks = YES; }] executeBeforeHooks];
+    [[[example expect] andDo:^(NSInvocation *invocation) { STAssertTrue(performedExecutedBeforeHooks, @""); }] execute];
+    [example verify];
 }
 
 - (void)testInvokesBlockAndSetsStateToExecuted
@@ -50,13 +51,14 @@
 {
     id example = [OCMockObject partialMockForObject:[SPCExample new]];
     __block BOOL performedExecute = NO;
-    [[[example stub] andDo:^(NSInvocation *invocation) { performedExecute = YES; }] execute];
-    [[[example stub] andDo:^(NSInvocation *invocation) { STAssertTrue(performedExecute, @""); }] executeAfterHooks];
+    [[[example expect] andDo:^(NSInvocation *invocation) { performedExecute = YES; }] execute];
+    [[[example expect] andDo:^(NSInvocation *invocation) { STAssertTrue(performedExecute, @""); }] executeAfterHooks];
+    [example verify];
 }
 
-#pragma mark Generating full names
+#pragma mark Descriptions
 
-- (void)testConcatenatesParentGroupNamesAndExampleName
+- (void)testConcatenatesParentGroupLabelsAndExampleLabel
 {
     // Create groups:
     NSArray *groups = @[[OCMockObject niceMockForClass:[INLGroup class]], [OCMockObject niceMockForClass:[INLGroup class]]];
@@ -69,15 +71,14 @@
     [example setLabel:@"should be lazy"];
     [example setParent:groups[1]];
     
-    STAssertEqualObjects([example fullName], @"a cat when it is fat should be lazy", @"Should have returned the concatenated names of the groups and example.");
+    STAssertEqualObjects([example description], @"a cat when it is fat should be lazy", @"");
 }
 
-- (void)testUsesJustExampleNameIfNotInGroup
+- (void)testUsesJustExampleLabelIfNotInGroup
 {
-    // Create and add an example to the spec:
     SPCExample *example = [[SPCExample alloc] init];
     [example setLabel:@"hello world"];
-    STAssertEqualObjects([example fullName], @"hello world", @"Should have returned the name of the example.");
+    STAssertEqualObjects([example description], @"hello world", @"");
 }
 
 @end

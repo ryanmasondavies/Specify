@@ -24,8 +24,8 @@ typedef NS_ENUM(NSInteger, SPCExampleState) {
 /** Executes an example and its hooks. */
 - (void)execute;
 
-/** The full name for the example, made by accumulating the names of parent groups and concatenating them with name. */
-- (NSString *)fullName;
+/** The description for the example, made by accumulating the labels of parent groups and concatenating them with the example's label. */
+- (NSString *)description;
 
 /** A block which defines a piece of behaviour within a system. */
 @property (copy, nonatomic) void(^block)(void);

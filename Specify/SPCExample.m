@@ -34,7 +34,7 @@
     self.state = SPCExampleStateExecuted;
 }
 
-- (NSString *)fullName
+- (NSString *)description
 {
     NSMutableArray *labels = [NSMutableArray array];
     INLGroup *group = [self parent];
