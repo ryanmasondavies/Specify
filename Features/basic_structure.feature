@@ -52,7 +52,7 @@ Feature: Basic Structure
      Given the spec suite has the spec:
        """
        #import <Specify/Specify.h>
-       SpecBegin(NestedExampleGroupsUsingContext)
+       SpecBegin(NestedExampleGroupsUsingWhen)
        describe(@"something", ^{
          when(@"in one context", ^{
            it(@"should do one thing", ^{
