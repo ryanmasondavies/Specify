@@ -30,7 +30,10 @@
 
 - (void)testExecutesHooksBeforeExample
 {
-    // TODO: Ensure invokes -executeBeforeHooks
+    id example = [OCMockObject partialMockForObject:[SPCExample new]];
+    __block BOOL performedExecutedBeforeHooks = NO;
+    [[[example stub] andDo:^(NSInvocation *invocation) { performedExecutedBeforeHooks = YES; }] executeBeforeHooks];
+    [[[example stub] andDo:^(NSInvocation *invocation) { STAssertTrue(performedExecutedBeforeHooks, @""); }] execute];
 }
 
 - (void)testInvokesBlockAndSetsStateToExecuted
@@ -45,7 +48,10 @@
 
 - (void)testExecutesHooksAfterExample
 {
-    // TODO: Ensure invokes -executeAfterHooks
+    id example = [OCMockObject partialMockForObject:[SPCExample new]];
+    __block BOOL performedExecute = NO;
+    [[[example stub] andDo:^(NSInvocation *invocation) { performedExecute = YES; }] execute];
+    [[[example stub] andDo:^(NSInvocation *invocation) { STAssertTrue(performedExecute, @""); }] executeAfterHooks];
 }
 
 #pragma mark Generating full names
