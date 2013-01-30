@@ -28,12 +28,13 @@
 
 #pragma mark Execution
 
-- (void)testExecutesHooksBeforeExample
+- (void)testExecutesHooksBeforeBlock
 {
     id example = [OCMockObject partialMockForObject:[SPCExample new]];
     __block BOOL performedExecutedBeforeHooks = NO;
     [[[example expect] andDo:^(NSInvocation *invocation) { performedExecutedBeforeHooks = YES; }] executeBeforeHooks];
-    [[[example expect] andDo:^(NSInvocation *invocation) { STAssertTrue(performedExecutedBeforeHooks, @""); }] execute];
+    [example setBlock:^{ STAssertTrue(performedExecutedBeforeHooks, @""); }];
+    [example execute];
     [example verify];
 }
 
@@ -47,12 +48,13 @@
     STAssertTrue(executed, @"Should invoke block when executed.");
 }
 
-- (void)testExecutesHooksAfterExample
+- (void)testExecutesHooksAfterBlock
 {
     id example = [OCMockObject partialMockForObject:[SPCExample new]];
-    __block BOOL performedExecute = NO;
-    [[[example expect] andDo:^(NSInvocation *invocation) { performedExecute = YES; }] execute];
-    [[[example expect] andDo:^(NSInvocation *invocation) { STAssertTrue(performedExecute, @""); }] executeAfterHooks];
+    __block BOOL performedBlock = NO;
+    [example setBlock:^{ performedBlock = YES; }];
+    [[[example expect] andDo:^(NSInvocation *invocation) { STAssertTrue(performedBlock, @""); }] executeAfterHooks];
+    [example execute];
     [example verify];
 }
 
