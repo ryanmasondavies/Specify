@@ -38,11 +38,4 @@
  */
 - (void)loadExamples;
 
-/**
- Resets the state of the specification by recreating the builder, essentially removing all examples. Used primarily for testing.
- 
- @warning By abstracting the logic of creating invocations to another class, this method could be removed and tests could be improved.
- */
-+ (void)reset;
-
 @end

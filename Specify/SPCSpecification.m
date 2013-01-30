@@ -45,9 +45,4 @@
 {
 }
 
-+ (void)reset
-{
-    [self initialize];
-}
-
 @end
