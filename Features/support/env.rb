@@ -5,7 +5,7 @@ def features_path
 end
 
 Before do
-  @aruba_timeout_seconds = 10 # ?
+  @aruba_timeout_seconds = 30
   @dirs = [File.join(features_path, 'tmp')]
 end
 
