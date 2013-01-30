@@ -20,14 +20,9 @@
 - (id)init
 {
     if (self = [super init]) {
-        self.stack = [NSMutableArray arrayWithObject:[INLGroup new]];
+        self.stack = [NSMutableArray arrayWithObject:[self rootGroup]];
     }
     return self;
-}
-
-- (INLGroup *)rootGroup
-{
-    return [[self stack] objectAtIndex:0];
 }
 
 - (void)enterGroup:(INLGroup *)group

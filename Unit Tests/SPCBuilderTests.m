@@ -25,6 +25,7 @@
 {
     SPCExample *example = [[SPCExample alloc] init];
     [[self builder] addExample:example];
+    STAssertEqualObjects([[[self builder] rootGroup] tests][0], example, @"");
     STAssertEqualObjects([example parent], [[self builder] rootGroup], @"Should add examples to the root group.");
 }
 
@@ -36,6 +37,9 @@
     [[self builder] enterGroup:group];
     [[self builder] addExample:example];
     [[self builder] leaveGroup];
+    
+    STAssertEqualObjects([[self.builder rootGroup] groups][0], group, @"");
+    STAssertEqualObjects([group tests][0], example, @"");
     
     STAssertEqualObjects([[self builder] rootGroup], [group parent], @"Should add groups to the root group.");
     STAssertEqualObjects([example parent], group, @"Should have added example to group.");
@@ -56,6 +60,13 @@
     [[self builder] leaveGroup];
     [[self builder] leaveGroup];
     
+    STAssertEqualObjects([[self.builder rootGroup] groups][0], groups[0], @"");
+    STAssertEqualObjects([groups[0] groups][0], groups[1], @"");
+    STAssertEqualObjects([groups[1] groups][0], groups[2], @"");
+    STAssertEqualObjects([groups[0] tests][0], examples[0], @"");
+    STAssertEqualObjects([groups[1] tests][0], examples[1], @"");
+    STAssertEqualObjects([groups[2] tests][0], examples[2], @"");
+    
     STAssertEqualObjects([groups[0] parent], [[self builder] rootGroup], @"Should have added group 1 to root group.");
     STAssertEqualObjects([groups[1] parent], groups[0], @"Should have added group 2 to group 1.");
     STAssertEqualObjects([groups[2] parent], groups[1], @"Should have added group 3 to group 2.");
@@ -70,6 +81,7 @@
 {
     SPCHook *hook = [[SPCHook alloc] init];
     [[self builder] addHook:hook];
+    STAssertEqualObjects([[[self builder] rootGroup] hooks][0], hook, @"");
     STAssertEqualObjects([hook parent], [[self builder] rootGroup], @"Should add hooks to the root group.");
 }
 
@@ -81,6 +93,9 @@
     [[self builder] enterGroup:group];
     [[self builder] addHook:hook];
     [[self builder] leaveGroup];
+    
+    STAssertEqualObjects([[self.builder rootGroup] groups][0], group, @"");
+    STAssertEqualObjects([group hooks][0], hook, @"");
     
     STAssertEqualObjects([[self builder] rootGroup], [group parent], @"Should add groups to the root group.");
     STAssertEqualObjects([hook parent], group, @"Should have added hook to group.");
@@ -100,6 +115,13 @@
     [[self builder] leaveGroup];
     [[self builder] leaveGroup];
     [[self builder] leaveGroup];
+    
+    STAssertEqualObjects([[self.builder rootGroup] groups][0], groups[0], @"");
+    STAssertEqualObjects([groups[0] groups][0], groups[1], @"");
+    STAssertEqualObjects([groups[1] groups][0], groups[2], @"");
+    STAssertEqualObjects([groups[0] hooks][0], hooks[0], @"");
+    STAssertEqualObjects([groups[1] hooks][0], hooks[1], @"");
+    STAssertEqualObjects([groups[2] hooks][0], hooks[2], @"");
     
     STAssertEqualObjects([groups[0] parent], [[self builder] rootGroup], @"Should have added group 1 to root group.");
     STAssertEqualObjects([groups[1] parent], groups[0], @"Should have added group 2 to group 1.");

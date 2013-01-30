@@ -23,7 +23,6 @@ Feature: Basic Structure
      Then the following examples should have passed:
         | name                          |
         | something should do something |
-      And there should have been no failures
       
   Scenario: Nested example groups using context()
     Given the spec suite has the spec:

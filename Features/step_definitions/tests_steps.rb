@@ -23,7 +23,3 @@ Then /^the following examples should have failed:$/ do |table|
     step "the output should contain \"Test Case '#{result["name"]}' failed\""
   end
 end
-
-Then /^there should have been no failures$/ do
-  step "the output should match /Executed . tests, with 0 failures/"
-end

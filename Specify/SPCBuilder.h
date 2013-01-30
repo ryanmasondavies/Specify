@@ -13,13 +13,6 @@
 /** Used to construct grouped examples. */
 @interface SPCBuilder : INLBuilder
 
-/** The bottom-most group in the stack.
- 
- When there are no groups added to the stack with enterGroup:, examples and hooks are added to the root group. When leaveGroup is called for the bottom-most group, the group is added to the root group.
- 
- @return The root group to which examples and groups are added. */
-- (INLGroup *)rootGroup;
-
 /** Pushes a new instance of INLGroup to the stack.
  
  The new instance then becomes to the topmost group, to which all new groups, examples, and hooks will be added to.
