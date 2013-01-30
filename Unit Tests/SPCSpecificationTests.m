@@ -18,4 +18,9 @@
     STAssertTrue([[SPCSpecification builder] isKindOfClass:[SPCBuilder class]], @"");
 }
 
+- (void)testBlacklistedClassesIncludesSPCSpecification
+{
+    STAssertTrue([[SPCSpecification blacklistedClasses] containsObject:[SPCSpecification class]], @"");
+}
+
 @end

@@ -36,6 +36,11 @@
     return [[[NSThread currentThread] threadDictionary] objectForKey:@"SPCCurrentSpecification"];
 }
 
++ (NSArray *)blacklistedClasses
+{
+    return [[super blacklistedClasses] arrayByAddingObject:self];
+}
+
 - (void)loadExamples
 {
 }
