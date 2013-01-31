@@ -19,7 +19,7 @@
 /** Allows for the definition of behaviour in conversational terms: *it* should do something. */
 void it(NSString *label, void(^block)(void));
 
-/** Examples can be defined within a *context*, e.g: how does the module Specify when its state is set to whatever? */
+/** Examples can be defined within a *context*, e.g: how does the module behave when its state is set to *whatever*? */
 void context(NSString *label, void(^block)(void));
 
 /** A module can be *described* in conversational terms: I want to *describe* the module. *It* should do something. */
