@@ -7,6 +7,11 @@ Specify is built on top of [OCUnit], allowing tests to be run from Xcode. It has
 
 See the [Wiki] for more information.
 
+Installation
+------------
+
+Specify is installed using CocoaPods. Add `pod 'Specify'` to your Podfile and run `pod install`.
+
 License
 -------
 
