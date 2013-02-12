@@ -1,167 +1,145 @@
 //
-//  SPCDSLTests.m
+//  SPCDSLSpec.m
 //  Specify
 //
 //  Created by Ryan Davies on 15/01/2013.
 //  Copyright (c) 2013 Ryan Davies. All rights reserved.
 //
 
-// TODO: What we really need here is the ability to mock class methods.
+SpecBegin(SPCDSL)
 
-@interface SPCMockSpecification : NSObject
-@end
+__block SPCBuilder *builder;
+before(^{
+    builder = [[SPCBuilder alloc] init];
+    [[SPCSpecification currentSpecification] setBuilder:builder];
+});
 
-@implementation SPCMockSpecification
+describe(@"it()", ^{
+    it(@"creates and adds examples", ^{
+        void(^block)(void) = ^{};
+        
+        it(@"should work", block);
+        
+        INLBuilder *builder = [[SPCSpecification currentSpecification] builder];
+        SPCExample *example = [[builder rootGroup] tests][0];
+        
+        STAssertNotNil([example label], @"");
+        STAssertNotNil([example block], @"");
+        
+        [[[example label] should] beEqualTo:@"should work"];
+        [[[example block] should] beIdenticalTo:block];
+    });
+});
 
-+ (SPCBuilder *)builder
-{
-    static id mock = nil;
-    if (mock == nil) mock = [OCMockObject mockForClass:[SPCBuilder class]];
-    return mock;
-}
+describe(@"context()", ^{
+    it(@"creates and adds a group containing the examples defined within the block", ^{
+        void(^block)(void) = ^{
+            it(@"should work within contexts", ^{});
+        };
+        
+        context(@"should work", block);
+        
+        INLGroup   *group   = [[builder rootGroup] groups][0];
+        SPCExample *example = [group tests][0];
+        
+        STAssertNotNil([group label], @"");
+        STAssertNotNil([example label], @"");
+        STAssertNotNil([example block], @"");
+        
+        [[[group   label] should] beEqualTo:@"should work"];
+        [[[example label] should] beEqualTo:@"should work within contexts"];
+        [[[example block] should] beIdenticalTo:block];
+    });
+});
 
-@end
+describe(@"describe()", ^{
+    it(@"creates and adds a group containing the examples defined within the block", ^{
+        void(^block)(void) = ^{
+            it(@"should work within contexts", ^{});
+        };
+        
+        describe(@"should work", block);
+        
+        INLGroup   *group   = [[builder rootGroup] groups][0];
+        SPCExample *example = [group tests][0];
+        
+        STAssertNotNil([group label], @"");
+        STAssertNotNil([example label], @"");
+        STAssertNotNil([example block], @"");
+        
+        [[[group   label] should] beEqualTo:@"should work"];
+        [[[example label] should] beEqualTo:@"should work within contexts"];
+        [[[example block] should] beIdenticalTo:block];
+    });
+});
 
-#pragma mark -
+describe(@"when()", ^{
+    it(@"creates and adds a group containing the examples defined within the block", ^{
+        void(^block)(void) = ^{
+            it(@"should work within contexts", ^{});
+        };
+        
+        when(@"should work", block);
+        
+        INLGroup   *group   = [[builder rootGroup] groups][0];
+        SPCExample *example = [group tests][0];
+        
+        STAssertNotNil([group label], @"");
+        STAssertNotNil([example label], @"");
+        STAssertNotNil([example block], @"");
+        
+        [[[group   label] should] beEqualTo:@"when should work"];
+        [[[example label] should] beEqualTo:@"should work within contexts"];
+        [[[example block] should] beIdenticalTo:block];
+    });
+});
 
-@interface SPCDSLTests : SenTestCase
-@end
+describe(@"beforeEach()", ^{
+    it(@"creates a hook with placement of 'before'", ^{
+        void (^block)(void) = ^{};
+        beforeEach(block);
+        
+        INLBlockHook *hook = [[builder rootGroup] hooks][0];
+        STAssertNotNil([hook block], @"");
+        [[@([hook placement]) should] beEqualTo:@(INLHookPlacementBefore)];
+        [[[hook block] should] beIdenticalTo:block];
+    });
+});
 
-@implementation SPCDSLTests
+describe(@"before()", ^{
+    it(@"creates a hook with placement of 'before'", ^{
+        void (^block)(void) = ^{};
+        before(block);
+        
+        INLBlockHook *hook = [[builder rootGroup] hooks][0];
+        STAssertNotNil([hook block], @"");
+        [[@([hook placement]) should] beEqualTo:@(INLHookPlacementBefore)];
+        [[[hook block] should] beIdenticalTo:block];
+    });
+});
 
-- (void)setUp
-{
-    [SPCSpecification setCurrentSpecification:[SPCMockSpecification class]];
-}
+describe(@"afterEach()", ^{
+    it(@"creates a hook with placement of 'after'", ^{
+        void (^block)(void) = ^{};
+        afterEach(block);
+        
+        INLBlockHook *hook = [[builder rootGroup] hooks][0];
+        STAssertNotNil([hook block], @"");
+        [[@([hook placement]) should] beEqualTo:@(INLHookPlacementAfter)];
+        [[[hook block] should] beIdenticalTo:block];
+    });
+});
 
-- (void)test_It_CreatesAndAddsExample
-{
-    void(^implementation)(void) = ^{};
-    
-    id builder = [SPCMockSpecification builder];
-    [[builder expect] addExample:[OCMArg checkWithBlock:^BOOL(id example) {
-        return [[example label] isEqualToString:@"should work"] && [example block] == implementation;
-    }]];
-    
-    it(@"should work", implementation);
-    
-    [builder verify];
-}
+describe(@"after()", ^{
+    it(@"creates a hook with placement of 'after'", ^{
+        void (^block)(void) = ^{};
+        after(block);
+        
+        INLBlockHook *hook = [[builder rootGroup] hooks][0];
+        STAssertNotNil([hook block], @"");
+        [[@([hook placement]) should] beEqualTo:@(INLHookPlacementAfter)];
+        [[[hook block] should] beIdenticalTo:block];
+    });
+});
 
-- (void)test_Context_AddsExamplesInBlock
-{
-    void(^implementation)(void) = ^{
-        it(@"should work with contexts", ^{});
-    };
-    
-    id builder = [SPCMockSpecification builder];
-    [[builder expect] enterGroup:[OCMArg checkWithBlock:^BOOL(id group) {
-        return [[group label] isEqualToString:@"should work"];
-    }]];
-    [[builder expect] addExample:[OCMArg checkWithBlock:^BOOL(id example) {
-        return [[example label] isEqualToString:@"should work with contexts"];
-    }]];
-    [[builder expect] leaveGroup];
-    
-    context(@"should work", implementation);
-    
-    [builder verify];
-}
-
-- (void)test_Describe_AddsExamplesInBlock
-{
-    void(^implementation)(void) = ^{
-        it(@"should work with contexts", ^{});
-    };
-    
-    id builder = [SPCMockSpecification builder];
-    [[builder expect] enterGroup:[OCMArg checkWithBlock:^BOOL(id group) {
-        return [[group label] isEqualToString:@"should work"];
-    }]];
-    [[builder expect] addExample:[OCMArg checkWithBlock:^BOOL(id example) {
-        return [[example label] isEqualToString:@"should work with contexts"];
-    }]];
-    [[builder expect] leaveGroup];
-    
-    describe(@"should work", implementation);
-    
-    [builder verify];
-}
-
-- (void)test_When_AddsExamplesInBlock
-{
-    void(^implementation)(void) = ^{
-        it(@"should work with contexts", ^{});
-    };
-    
-    id builder = [SPCMockSpecification builder];
-    [[builder expect] enterGroup:[OCMArg checkWithBlock:^BOOL(id group) {
-        return [[group label] isEqualToString:@"when not dead"];
-    }]];
-    [[builder expect] addExample:[OCMArg checkWithBlock:^BOOL(id example) {
-        return [[example label] isEqualToString:@"should work with contexts"];
-    }]];
-    [[builder expect] leaveGroup];
-    
-    when(@"not dead", implementation);
-    
-    [builder verify];
-}
-
-- (void)test_BeforeEach_AddsBeforeEachHook
-{
-    void(^implementation)(void) = ^{};
-    
-    id builder = [SPCMockSpecification builder];
-    [[builder expect] addHook:[OCMArg checkWithBlock:^BOOL(id hook) {
-        return [hook block] == implementation;
-    }]];
-    
-    beforeEach(implementation);
-    
-    [builder verify];
-}
-
-- (void)test_Before_AddsBeforeEachHook
-{
-    void(^implementation)(void) = ^{};
-    
-    id builder = [SPCMockSpecification builder];
-    [[builder expect] addHook:[OCMArg checkWithBlock:^BOOL(id hook) {
-        return [hook block] == implementation;
-    }]];
-    
-    before(implementation);
-    
-    [builder verify];
-}
-
-- (void)test_AfterEach_AddsAfterEachHook
-{
-    void(^implementation)(void) = ^{};
-    
-    id builder = [SPCMockSpecification builder];
-    [[builder expect] addHook:[OCMArg checkWithBlock:^BOOL(id hook) {
-        return [hook block] == implementation;
-    }]];
-    
-    afterEach(implementation);
-    
-    [builder verify];
-}
-
-- (void)test_After_AddsBeforeEachHook
-{
-    void(^implementation)(void) = ^{};
-    
-    id builder = [SPCMockSpecification builder];
-    [[builder expect] addHook:[OCMArg checkWithBlock:^BOOL(id hook) {
-        return [hook block] == implementation;
-    }]];
-    
-    after(implementation);
-    
-    [builder verify];
-}
-
-@end
+SpecEnd

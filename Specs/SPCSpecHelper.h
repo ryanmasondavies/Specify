@@ -7,6 +7,7 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
+#import <Posit/Posit.h>
 #import <OCMock/OCMock.h>
 #import "SPCDSL.h"
 #import "SPCSpecification.h"
