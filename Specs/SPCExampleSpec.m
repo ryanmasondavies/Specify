@@ -6,8 +6,6 @@
 //  Copyright (c) 2012 Ryan Davies. All rights reserved.
 //
 
-#import "SPCTestHelper.h"
-
 @interface SPCExampleTests : SenTestCase
 @end
 

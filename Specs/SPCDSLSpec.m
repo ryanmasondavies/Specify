@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 Ryan Davies. All rights reserved.
 //
 
-#import "SPCTestHelper.h"
-
 // TODO: What we really need here is the ability to mock class methods.
 
 @interface SPCMockSpecification : NSObject

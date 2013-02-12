@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 Ryan Davies. All rights reserved.
 //
 
-#import "SPCTestHelper.h"
-
 @interface SPCBuilderTests : SenTestCase
 @property (strong, nonatomic) SPCBuilder *builder;
 @end

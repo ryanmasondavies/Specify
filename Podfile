@@ -1,9 +1,8 @@
 platform :ios, '5.0'
 
-target 'Specify' do
-  pod 'Inline', '~> 0.2.1'
-end
+pod 'Inline', '~> 0.2.1'
 
-target 'Unit Tests' do
+target 'Specs', exclusive: true do
+  pod 'Posit'
   pod 'OCMock'
 end
