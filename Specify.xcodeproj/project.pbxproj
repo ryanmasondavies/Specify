@@ -19,7 +19,6 @@
 		9427AC3C16AFF6E700B1DF70 /* SPCBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 9427AC2D16AFF6E700B1DF70 /* SPCBuilder.m */; };
 		9427AC3D16AFF6E700B1DF70 /* SPCDSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 9427AC2F16AFF6E700B1DF70 /* SPCDSL.m */; };
 		9427AC3E16AFF6E700B1DF70 /* SPCExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 9427AC3116AFF6E700B1DF70 /* SPCExample.m */; };
-		9427AC4016AFF6E700B1DF70 /* SPCHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 9427AC3516AFF6E700B1DF70 /* SPCHook.m */; };
 		9427AC4216AFF6E700B1DF70 /* SPCSpecification.m in Sources */ = {isa = PBXBuildFile; fileRef = 9427AC3916AFF6E700B1DF70 /* SPCSpecification.m */; };
 		9447BB9B16A5EF77004C7D66 /* SPCBuilderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9447BB9A16A5EF77004C7D66 /* SPCBuilderTests.m */; };
 		9447BBA116A5F315004C7D66 /* SPCDSLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9447BBA016A5F315004C7D66 /* SPCDSLTests.m */; };
@@ -63,8 +62,6 @@
 		9427AC2F16AFF6E700B1DF70 /* SPCDSL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPCDSL.m; sourceTree = "<group>"; };
 		9427AC3016AFF6E700B1DF70 /* SPCExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPCExample.h; sourceTree = "<group>"; };
 		9427AC3116AFF6E700B1DF70 /* SPCExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPCExample.m; sourceTree = "<group>"; };
-		9427AC3416AFF6E700B1DF70 /* SPCHook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPCHook.h; sourceTree = "<group>"; };
-		9427AC3516AFF6E700B1DF70 /* SPCHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPCHook.m; sourceTree = "<group>"; };
 		9427AC3816AFF6E700B1DF70 /* SPCSpecification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPCSpecification.h; sourceTree = "<group>"; };
 		9427AC3916AFF6E700B1DF70 /* SPCSpecification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPCSpecification.m; sourceTree = "<group>"; };
 		9447BB9A16A5EF77004C7D66 /* SPCBuilderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPCBuilderTests.m; sourceTree = "<group>"; };
@@ -165,8 +162,6 @@
 				9427AC2D16AFF6E700B1DF70 /* SPCBuilder.m */,
 				9427AC3016AFF6E700B1DF70 /* SPCExample.h */,
 				9427AC3116AFF6E700B1DF70 /* SPCExample.m */,
-				9427AC3416AFF6E700B1DF70 /* SPCHook.h */,
-				9427AC3516AFF6E700B1DF70 /* SPCHook.m */,
 			);
 			path = Specify;
 			sourceTree = "<group>";
@@ -302,7 +297,6 @@
 				9427AC3C16AFF6E700B1DF70 /* SPCBuilder.m in Sources */,
 				9427AC3D16AFF6E700B1DF70 /* SPCDSL.m in Sources */,
 				9427AC3E16AFF6E700B1DF70 /* SPCExample.m in Sources */,
-				9427AC4016AFF6E700B1DF70 /* SPCHook.m in Sources */,
 				9427AC4216AFF6E700B1DF70 /* SPCSpecification.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

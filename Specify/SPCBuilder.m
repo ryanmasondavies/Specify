@@ -9,7 +9,6 @@
 #import "SPCBuilder.h"
 #import "INLGroup.h"
 #import "SPCExample.h"
-#import "SPCHook.h"
 
 @interface SPCBuilder ()
 @property (strong, nonatomic) NSMutableArray *stack;
@@ -42,14 +41,12 @@
 
 - (void)addExample:(SPCExample *)example
 {
-    INLGroup *group = [[self stack] lastObject];
-    [group addNode:example];
+    [[[self stack] lastObject] addNode:example];
 }
 
-- (void)addHook:(SPCHook *)hook
+- (void)addHook:(INLBlockHook *)hook
 {
-    INLGroup *group = [[self stack] lastObject];
-    [group addNode:hook];
+    [[[self stack] lastObject] addNode:hook];
 }
 
 @end

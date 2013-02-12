@@ -10,7 +10,6 @@
 #import "SPCSpecification.h"
 #import "SPCBuilder.h"
 #import "SPCExample.h"
-#import "SPCHook.h"
 
 void it(NSString *label, void(^block)(void))
 {
@@ -49,7 +48,7 @@ void before(void(^block)(void))
 
 void beforeEach(void(^block)(void))
 {
-    SPCHook *hook = [[SPCHook alloc] init];
+    INLBlockHook *hook = [[INLBlockHook alloc] init];
     [hook setPlacement:INLHookPlacementBefore];
     [hook setBlock:block];
     [(SPCBuilder *)[[SPCSpecification currentSpecification] builder] addHook:hook];
@@ -62,7 +61,7 @@ void after(void(^block)(void))
 
 void afterEach(void(^block)(void))
 {
-    SPCHook *hook = [[SPCHook alloc] init];
+    INLBlockHook *hook = [[INLBlockHook alloc] init];
     [hook setPlacement:INLHookPlacementAfter];
     [hook setBlock:block];
     [(SPCBuilder *)[[SPCSpecification currentSpecification] builder] addHook:hook];

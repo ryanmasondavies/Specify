@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Inline/Inline.h>
-@class INLGroup, SPCExample, SPCHook;
+@class INLGroup, SPCExample;
 
 /** Used to construct grouped examples. */
 @interface SPCBuilder : INLBuilder
@@ -28,6 +28,6 @@
 - (void)addExample:(SPCExample *)example;
 
 /** @param hook The hook to add to the topmost group. */
-- (void)addHook:(SPCHook *)hook;
+- (void)addHook:(INLBlockHook *)hook;
 
 @end

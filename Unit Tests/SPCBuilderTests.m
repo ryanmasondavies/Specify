@@ -79,7 +79,7 @@
 
 - (void)testAddingHooks
 {
-    SPCHook *hook = [[SPCHook alloc] init];
+    INLBlockHook *hook = [[INLBlockHook alloc] init];
     [[self builder] addHook:hook];
     STAssertEqualObjects([[[self builder] rootGroup] hooks][0], hook, @"");
     STAssertEqualObjects([hook parent], [[self builder] rootGroup], @"Should add hooks to the root group.");
@@ -88,7 +88,7 @@
 - (void)testNestingHooks
 {
     INLGroup *group = [[INLGroup alloc] init];
-    SPCHook *hook = [[SPCHook alloc] init];
+    INLBlockHook *hook = [[INLBlockHook alloc] init];
     
     [[self builder] enterGroup:group];
     [[self builder] addHook:hook];
@@ -104,7 +104,7 @@
 - (void)testNestingHooksInNestedGroups
 {
     NSArray *groups = @[[INLGroup new], [INLGroup new], [INLGroup new]];
-    NSArray *hooks = @[[SPCHook new], [SPCHook new], [SPCHook new]];
+    NSArray *hooks = @[[INLBlockHook new], [INLBlockHook new], [INLBlockHook new]];
     
     [[self builder] enterGroup:groups[0]];
     [[self builder] addHook:hooks[0]];
