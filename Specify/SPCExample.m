@@ -11,29 +11,6 @@
 
 @implementation SPCExample
 
-- (id)init
-{
-    if (self = [super init]) {
-        self.state = SPCExampleStatePending;
-    }
-    return self;
-}
-
-- (void)setBlock:(void (^)(void))block
-{
-    _block = block;
-    self.state = SPCExampleStateReady;
-}
-
-- (void)execute
-{
-    if (self.block == nil) return;
-    [self executeBeforeHooks];
-    self.block();
-    [self executeAfterHooks];
-    self.state = SPCExampleStateExecuted;
-}
-
 - (NSString *)description
 {
     NSMutableArray *labels = [NSMutableArray array];

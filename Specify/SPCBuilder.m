@@ -37,19 +37,19 @@
     [[self stack] removeLastObject];
     
     // Add the popped group to what is now the top group:
-    [[[self stack] lastObject] addGroup:group];
+    [[[self stack] lastObject] addNode:group];
 }
 
 - (void)addExample:(SPCExample *)example
 {
     INLGroup *group = [[self stack] lastObject];
-    [group addTest:example];
+    [group addNode:example];
 }
 
 - (void)addHook:(SPCHook *)hook
 {
     INLGroup *group = [[self stack] lastObject];
-    [group addHook:hook];
+    [group addNode:hook];
 }
 
 @end
