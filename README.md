@@ -10,12 +10,12 @@ See the [Wiki] for more information.
 Installation
 ------------
 
-Specify is installed using CocoaPods. Add `pod 'Specify'` to your Podfile and run `pod install`.
+Specify is installed using [CocoaPods] by adding `pod 'Specify', '~> 0.0.2'` to your Podfile.
 
 License
 -------
 
-    Copyright (c) 2012 Ryan Davies
+    Copyright (c) 2013 Ryan Davies
     
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -44,4 +44,4 @@ License
 [OCUnit]: https://github.com/jy/SenTestingKit
 [OCMock]: http://www.sente.ch/software/ocunit
 [Wiki]: https://github.com/rdavies/Specify/wiki
-[LICENSE]: https://github.com/rdavies/Specify/blob/master/LICENSE
+[CocoaPods]: https://github.com/CocoaPods/CocoaPods
