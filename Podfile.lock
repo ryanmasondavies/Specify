@@ -1,13 +1,14 @@
 PODS:
-  - Inline (0.2.1):
-    - Transcript (~> 0.1.0)
-  - Transcript (0.1.0)
+  - Inline (0.3.0)
 
 DEPENDENCIES:
-  - Inline (~> 0.2.1)
+  - Inline (from `../Inline`)
+
+EXTERNAL SOURCES:
+  Inline:
+    :local: ../Inline
 
 SPEC CHECKSUMS:
-  Inline: 1f4e70c01cb0d35c5573370c7ae7dc62dc39d2df
-  Transcript: 396a15997011487ea9ec018add2fa9a89a007973
+  Inline: f2c6a2400c71017d1071152e43210cadaffd486e
 
 COCOAPODS: 0.18.1
