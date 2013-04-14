@@ -24,8 +24,8 @@
 #define SPECIFY_MAJOR_VERSION 0
 
 /** The minor version component. */
-#define SPECIFY_MINOR_VERSION 0
+#define SPECIFY_MINOR_VERSION 1
 
 /** The patch version component. */
-#define SPECIFY_PATCH_VERSION 2
+#define SPECIFY_PATCH_VERSION 0
 
