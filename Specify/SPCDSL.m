@@ -64,7 +64,7 @@
 {
     return ^(NSString *name, INLVoidBlock block) {
         [[self nameStack] addObject:name];
-        name = [NSString stringWithFormat:@"%@ %@", [[self nameStack] componentsJoinedByString:@" "], name];
+        name = [[self nameStack] componentsJoinedByString:@" "];
         INLContext *context = [[INLContext alloc] initWithDelegates:[[self contextStack] copy]];
         INLTest *test = [[INLTest alloc] initWithName:name block:block delegate:context];
         [[self tests] addObject:test];
