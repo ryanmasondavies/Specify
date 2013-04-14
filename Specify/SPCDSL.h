@@ -20,13 +20,12 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
-@class SPCSpecification;
+#import <Inline/Inline.h>
 
 #define SpecBegin(class) \
-@interface class##Specification : SPCSpecification \
+@interface class##Spec : INLSenTestCase \
 @end \
-@implementation class##Specification \
+@implementation class##Spec \
 - (void)loadExamples \
 {
 
