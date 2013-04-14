@@ -94,3 +94,15 @@
 
 @end
 
+@implementation SPCDSLFactory
+
++ (id)createDSL
+{
+    NSMutableArray *tests = [[NSMutableArray alloc] init];
+    NSMutableArray *nameStack = [[NSMutableArray alloc] init];
+    NSMutableArray *contextStack = [[NSMutableArray alloc] init];
+    NSMutableArray *contextDelegatesStack = [[NSMutableArray alloc] init];
+    return [[SPCDSL alloc] initWithTests:tests nameStack:nameStack contextStack:contextStack contextDelegatesStack:contextDelegatesStack];
+}
+
+@end

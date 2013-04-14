@@ -28,11 +28,7 @@
 @implementation class##Spec \
 - (NSArray *)tests \
 { \
-    NSMutableArray *tests = [[NSMutableArray alloc] init]; \
-    NSMutableArray *nameStack = [[NSMutableArray alloc] init]; \
-    NSMutableArray *contextStack = [[NSMutableArray alloc] init]; \
-    NSMutableArray *contextDelegatesStack = [[NSMutableArray alloc] init]; \
-    SPCDSL *dsl = [[SPCDSL alloc] initWithTests:tests nameStack:nameStack contextStack:contextStack contextDelegatesStack:contextDelegatesStack]; \
+    SPCDSL *dsl = [SPCDSLFactory createDSL]; \
     __attribute__((__unused__)) void(^it)(NSString *, INLVoidBlock) = [dsl it]; \
     __attribute__((__unused__)) void(^context)(NSString *, INLVoidBlock) = [dsl context]; \
     __attribute__((__unused__)) void(^describe)(NSString *, INLVoidBlock) = context; \
@@ -45,19 +41,25 @@
 
 #define SpecEnd \
     }); \
-    return tests; \
+    return [dsl tests]; \
 } \
 @end
-
-typedef void(^SPCContextBlock)(NSString *, INLVoidBlock);
 
 @interface SPCDSL : NSObject
 
 - (id)initWithTests:(NSMutableArray *)tests nameStack:(NSMutableArray *)nameStack contextStack:(NSMutableArray *)contextStack contextDelegatesStack:(NSMutableArray *)contextDelegatesStack;
 
+- (NSMutableArray *)tests;
+
 - (void(^)(NSString *, INLVoidBlock))it;
 - (void(^)(NSString *, INLVoidBlock))context;
 - (void(^)(INLVoidBlock))before;
 - (void(^)(INLVoidBlock))after;
+
+@end
+
+@interface SPCDSLFactory : NSObject
+
++ (id)createDSL;
 
 @end
