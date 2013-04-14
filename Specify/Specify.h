@@ -20,4 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "SPCDSL.h"
+#ifndef _SPECIFY_
+#   define _SPECIFY_
+#   import "SPCDSL.h"
+#endif
