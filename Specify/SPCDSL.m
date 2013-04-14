@@ -63,6 +63,7 @@
 - (void (^)(NSString *, INLVoidBlock))it
 {
     return ^(NSString *name, INLVoidBlock block) {
+        if (block == nil) return;
         [[self nameStack] addObject:name];
         name = [[self nameStack] componentsJoinedByString:@" "];
         INLContext *context = [[INLContext alloc] initWithDelegates:[[self contextStack] copy]];

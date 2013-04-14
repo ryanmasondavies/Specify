@@ -45,6 +45,8 @@
 } \
 @end
 
+#define PENDING nil _Pragma("message(\"Pending\")")
+
 @interface SPCDSL : NSObject
 
 - (id)initWithTests:(NSMutableArray *)tests nameStack:(NSMutableArray *)nameStack contextStack:(NSMutableArray *)contextStack contextDelegatesStack:(NSMutableArray *)contextDelegatesStack;

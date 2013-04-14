@@ -19,6 +19,7 @@
 		9491A11C171ACEA400E3F4EC /* libSpecify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 941F5F681690647F00E01DF8 /* libSpecify.a */; };
 		9491A11F171AD1AE00E3F4EC /* SPCNestedExamplesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9491A11E171AD1AE00E3F4EC /* SPCNestedExamplesTests.m */; };
 		9491A12B171AF26A00E3F4EC /* SPCHooksTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9491A12A171AF26A00E3F4EC /* SPCHooksTests.m */; };
+		9491A135171B440600E3F4EC /* SPCPendingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9491A134171B440600E3F4EC /* SPCPendingTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		9491A117171ACCD400E3F4EC /* SPCSpecRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPCSpecRunner.m; sourceTree = "<group>"; };
 		9491A11E171AD1AE00E3F4EC /* SPCNestedExamplesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPCNestedExamplesTests.m; sourceTree = "<group>"; };
 		9491A12A171AF26A00E3F4EC /* SPCHooksTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPCHooksTests.m; sourceTree = "<group>"; };
+		9491A134171B440600E3F4EC /* SPCPendingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPCPendingTests.m; sourceTree = "<group>"; };
 		AB7AEBBD978B4088A51C464F /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -139,6 +141,7 @@
 				9491A110171AC9EE00E3F4EC /* SPCMultipleExamplesTests.m */,
 				9491A11E171AD1AE00E3F4EC /* SPCNestedExamplesTests.m */,
 				9491A12A171AF26A00E3F4EC /* SPCHooksTests.m */,
+				9491A134171B440600E3F4EC /* SPCPendingTests.m */,
 				9491A119171ACD8E00E3F4EC /* Running specs */,
 				9491A10A171AC9EE00E3F4EC /* Supporting Files */,
 			);
@@ -188,7 +191,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9491A113171AC9EE00E3F4EC /* Build configuration list for PBXNativeTarget "Integrated Tests" */;
 			buildPhases = (
-				7F89C32B05B84A97BD6E1AC2 /* Check Pods Manifest.lock */,
 				9491A0FF171AC9EE00E3F4EC /* Sources */,
 				9491A100171AC9EE00E3F4EC /* Frameworks */,
 				9491A101171AC9EE00E3F4EC /* Resources */,
@@ -258,20 +260,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Pods-Integrated Tests-resources.sh\"\n";
 		};
-		7F89C32B05B84A97BD6E1AC2 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sanbox is not in sync with the Podfile.lock. Run 'pod install'.\nEOM\n    exit 1\nfi\n";
-		};
 		9491A102171AC9EE00E3F4EC /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -318,6 +306,7 @@
 				9491A118171ACCD400E3F4EC /* SPCSpecRunner.m in Sources */,
 				9491A11F171AD1AE00E3F4EC /* SPCNestedExamplesTests.m in Sources */,
 				9491A12B171AF26A00E3F4EC /* SPCHooksTests.m in Sources */,
+				9491A135171B440600E3F4EC /* SPCPendingTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
