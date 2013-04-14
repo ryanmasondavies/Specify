@@ -21,4 +21,3 @@
 // THE SOFTWARE.
 
 #import "SPCDSL.h"
-#import "SPCSpecification.h"

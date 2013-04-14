@@ -1,19 +1,13 @@
 PODS:
   - Inline (0.2.1):
     - Transcript (~> 0.1.0)
-  - OCMock (2.0.1)
-  - Posit (0.0.2)
   - Transcript (0.1.0)
 
 DEPENDENCIES:
   - Inline (~> 0.2.1)
-  - OCMock
-  - Posit
 
 SPEC CHECKSUMS:
   Inline: 1f4e70c01cb0d35c5573370c7ae7dc62dc39d2df
-  OCMock: 77a9c4c57af6bf258a537d34cf09abf422affede
-  Posit: cc326d26411b57634b395cc09a1d897b7578a94c
   Transcript: 396a15997011487ea9ec018add2fa9a89a007973
 
 COCOAPODS: 0.18.1
