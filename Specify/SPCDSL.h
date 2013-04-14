@@ -32,7 +32,7 @@
     __attribute__((__unused__)) void(^it)(NSString *, INLVoidBlock) = [dsl it]; \
     __attribute__((__unused__)) void(^context)(NSString *, INLVoidBlock) = [dsl context]; \
     __attribute__((__unused__)) void(^describe)(NSString *, INLVoidBlock) = context; \
-    __attribute__((__unused__)) void(^when)(NSString *, INLVoidBlock) = context; \
+    __attribute__((__unused__)) void(^when)(NSString *, INLVoidBlock) = [dsl when]; \
     __attribute__((__unused__)) void(^before)(INLVoidBlock) = [dsl before]; \
     __attribute__((__unused__)) void(^after)(INLVoidBlock) = [dsl after]; \
     __attribute__((__unused__)) void(^beforeEach)(INLVoidBlock) = before; \
@@ -55,6 +55,7 @@
 
 - (void(^)(NSString *, INLVoidBlock))it;
 - (void(^)(NSString *, INLVoidBlock))context;
+- (void(^)(NSString *, INLVoidBlock))when;
 - (void(^)(INLVoidBlock))before;
 - (void(^)(INLVoidBlock))after;
 

@@ -42,6 +42,19 @@
     return self;
 }
 
+- (void (^)(NSString *, INLVoidBlock))it
+{
+    return ^(NSString *name, INLVoidBlock block) {
+        if (block == nil) return;
+        [[self nameStack] addObject:name];
+        name = [[self nameStack] componentsJoinedByString:@" "];
+        INLContext *context = [[INLContext alloc] initWithDelegates:[[self contextStack] copy]];
+        INLTest *test = [[INLTest alloc] initWithName:name block:block delegate:context];
+        [[self tests] addObject:test];
+        [[self nameStack] removeLastObject];
+    };
+}
+
 - (void (^)(NSString *, INLVoidBlock))context
 {
     return ^(NSString *name, INLVoidBlock block) {
@@ -60,16 +73,10 @@
     };
 }
 
-- (void (^)(NSString *, INLVoidBlock))it
+- (void (^)(NSString *, INLVoidBlock))when
 {
     return ^(NSString *name, INLVoidBlock block) {
-        if (block == nil) return;
-        [[self nameStack] addObject:name];
-        name = [[self nameStack] componentsJoinedByString:@" "];
-        INLContext *context = [[INLContext alloc] initWithDelegates:[[self contextStack] copy]];
-        INLTest *test = [[INLTest alloc] initWithName:name block:block delegate:context];
-        [[self tests] addObject:test];
-        [[self nameStack] removeLastObject];
+        [self context]([NSString stringWithFormat:@"when %@", name], block);
     };
 }
 
