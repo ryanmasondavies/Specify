@@ -39,6 +39,8 @@
     __attribute__((__unused__)) void(^when)(NSString *, INLVoidBlock) = context; \
     __attribute__((__unused__)) void(^before)(INLVoidBlock) = [dsl before]; \
     __attribute__((__unused__)) void(^after)(INLVoidBlock) = [dsl after]; \
+    __attribute__((__unused__)) void(^beforeEach)(INLVoidBlock) = before; \
+    __attribute__((__unused__)) void(^afterEach)(INLVoidBlock) = after; \
     context(@"", ^{ \
 
 #define SpecEnd \

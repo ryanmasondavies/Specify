@@ -33,11 +33,11 @@ after(^{
 });
 
 context(@"in a context", ^{
-    before(^{
+    beforeEach(^{
         [order addObject:@2];
     });
     
-    after(^{
+    afterEach(^{
         [order addObject:@6];
     });
     
