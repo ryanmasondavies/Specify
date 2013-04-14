@@ -22,4 +22,75 @@
 
 #import "SPCDSL.h"
 
+@interface SPCDSL ()
+@property (strong, nonatomic) NSMutableArray *tests;
+@property (strong, nonatomic) NSMutableArray *nameStack;
+@property (strong, nonatomic) NSMutableArray *contextStack;
+@property (strong, nonatomic) NSMutableArray *contextDelegatesStack;
+@end
+
+@implementation SPCDSL
+
+- (id)initWithTests:(NSMutableArray *)tests nameStack:(NSMutableArray *)nameStack contextStack:(NSMutableArray *)contextStack contextDelegatesStack:(NSMutableArray *)contextDelegatesStack
+{
+    if (self = [self init]) {
+        [self setTests:tests];
+        [self setNameStack:nameStack];
+        [self setContextStack:contextStack];
+        [self setContextDelegatesStack:contextDelegatesStack];
+    }
+    return self;
+}
+
+- (void (^)(NSString *, INLVoidBlock))context
+{
+    return ^(NSString *name, INLVoidBlock block) {
+        NSMutableArray *contextDelegates = [[NSMutableArray alloc] init];
+        INLContext *context = [[INLContext alloc] initWithDelegates:contextDelegates];
+        
+        [[self nameStack] addObject:name];
+        [[self contextStack] addObject:context];
+        [[self contextDelegatesStack] addObject:contextDelegates];
+        
+        block();
+        
+        [[self nameStack] removeLastObject];
+        [[self contextStack] removeLastObject];
+        [[self contextDelegatesStack] removeLastObject];
+    };
+}
+
+- (void (^)(NSString *, INLVoidBlock))it
+{
+    return ^(NSString *name, INLVoidBlock block) {
+        [[self nameStack] addObject:name];
+        name = [NSString stringWithFormat:@"%@ %@", [[self nameStack] componentsJoinedByString:@" "], name];
+        INLContext *context = [[INLContext alloc] initWithDelegates:[[self contextStack] copy]];
+        INLTest *test = [[INLTest alloc] initWithName:name block:block delegate:context];
+        [[self tests] addObject:test];
+        [[self nameStack] removeLastObject];
+    };
+}
+
+- (void(^)(INLVoidBlock))before
+{
+    return ^(INLVoidBlock block) {
+        id<INLRunnable> hook = [[INLHook alloc] initWithBlock:block];
+        id<INLTestDelegate> filter = [[INLBeforeFilter alloc] initWithRunnable:hook];
+        NSMutableArray *delegates = [[self contextDelegatesStack] lastObject];
+        [delegates addObject:filter];
+    };
+}
+
+- (void(^)(INLVoidBlock))after
+{
+    return ^(INLVoidBlock block) {
+        id<INLRunnable> hook = [[INLHook alloc] initWithBlock:block];
+        id<INLTestDelegate> filter = [[INLAfterFilter alloc] initWithRunnable:hook];
+        NSMutableArray *delegates = [[self contextDelegatesStack] lastObject];
+        [delegates addObject:filter];
+    };
+}
+
+@end
 

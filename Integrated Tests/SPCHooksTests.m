@@ -22,29 +22,53 @@
 
 static NSMutableArray *order;
 
-SpecBegin(SPCMultipleExamples)
+SpecBegin(SPCHooks)
 
-it(@"should run this example first", ^{
+before(^{
     [order addObject:@1];
 });
 
-it(@"should run this example second", ^{
-    [order addObject:@2];
+after(^{
+    [order addObject:@7];
+});
+
+context(@"in a context", ^{
+    before(^{
+        [order addObject:@2];
+    });
+    
+    after(^{
+        [order addObject:@6];
+    });
+    
+    context(@"in another context", ^{
+        before(^{
+            [order addObject:@3];
+        });
+        
+        after(^{
+            [order addObject:@5];
+        });
+        
+        it(@"should run this example", ^{
+            [order addObject:@4];
+        });
+    });
 });
 
 SpecEnd
 
-@interface SPCMultipleExamplesTests : SenTestCase
+@interface SPCHooksTests : SenTestCase
 
 @end
 
-@implementation SPCMultipleExamplesTests
+@implementation SPCHooksTests
 
-- (void)testRunsExamplesInOrder
+- (void)testRunsHooksInOrder
 {
     order = [[NSMutableArray alloc] init];
-    [SPCSpecRunner runSpecForClass:[SPCMultipleExamplesSpec class]];
-    [[order should] beEqualTo:@[@1, @2]];
+    [SPCSpecRunner runSpecForClass:[SPCHooksSpec class]];
+    [[order should] beEqualTo:@[@1, @2, @3, @4, @5, @6, @7]];
 }
 
 @end
