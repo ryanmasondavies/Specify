@@ -29,22 +29,28 @@ it(@"should run this example first as it's at the top level", ^{
 });
 
 context(@"within the context", ^{
-    it(@"should run this example first", ^{
+    it(@"should run this example next", ^{
         [order addObject:@2];
     });
     
-    it(@"should run this example second", ^{
+    it(@"should run this example third", ^{
         [order addObject:@3];
     });
 });
 
-context(@"within another context", ^{
-    it(@"should run this example third", ^{
+describe(@"another context", ^{
+    it(@"should run this example fourth", ^{
         [order addObject:@4];
     });
     
-    it(@"should run this example fourth", ^{
+    it(@"should run this example fifth", ^{
         [order addObject:@5];
+    });
+});
+
+when(@"in yet another context", ^{
+    it(@"should run this example last", ^{
+        [order addObject:@6];
     });
 });
 
@@ -60,7 +66,7 @@ SpecEnd
 {
     order = [[NSMutableArray alloc] init];
     [SPCSpecRunner runSpecForClass:[SPCNestedExamplesSpec class]];
-    [[order should] beEqualTo:@[@1, @2, @3, @4, @5]];
+    [[order should] beEqualTo:@[@1, @2, @3, @4, @5, @6]];
 }
 
 @end

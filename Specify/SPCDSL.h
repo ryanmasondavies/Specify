@@ -35,6 +35,8 @@
     SPCDSL *dsl = [[SPCDSL alloc] initWithTests:tests nameStack:nameStack contextStack:contextStack contextDelegatesStack:contextDelegatesStack]; \
     __attribute__((__unused__)) void(^it)(NSString *, INLVoidBlock) = [dsl it]; \
     __attribute__((__unused__)) void(^context)(NSString *, INLVoidBlock) = [dsl context]; \
+    __attribute__((__unused__)) void(^describe)(NSString *, INLVoidBlock) = context; \
+    __attribute__((__unused__)) void(^when)(NSString *, INLVoidBlock) = context; \
     __attribute__((__unused__)) void(^before)(INLVoidBlock) = [dsl before]; \
     __attribute__((__unused__)) void(^after)(INLVoidBlock) = [dsl after]; \
     context(@"", ^{ \
