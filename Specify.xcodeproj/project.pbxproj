@@ -33,6 +33,7 @@
 		9427AC2716AFF6E700B1DF70 /* Specify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Specify.h; sourceTree = "<group>"; };
 		9427AC2E16AFF6E700B1DF70 /* SPCDSL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPCDSL.h; sourceTree = "<group>"; };
 		9427AC2F16AFF6E700B1DF70 /* SPCDSL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPCDSL.m; sourceTree = "<group>"; };
+		9491A0FE171AC9BC00E3F4EC /* SPCVersion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPCVersion.h; sourceTree = "<group>"; };
 		AB7AEBBD978B4088A51C464F /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -82,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				9427AC2716AFF6E700B1DF70 /* Specify.h */,
+				9491A0FE171AC9BC00E3F4EC /* SPCVersion.h */,
 				9427AC2E16AFF6E700B1DF70 /* SPCDSL.h */,
 				9427AC2F16AFF6E700B1DF70 /* SPCDSL.m */,
 			);
