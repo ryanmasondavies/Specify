@@ -1,8 +1,10 @@
 PODS:
   - Inline (0.3.0)
+  - Posit (0.0.2)
 
 DEPENDENCIES:
   - Inline (from `../Inline`)
+  - Posit (~> 0.0.2)
 
 EXTERNAL SOURCES:
   Inline:
@@ -10,5 +12,6 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Inline: f2c6a2400c71017d1071152e43210cadaffd486e
+  Posit: cc326d26411b57634b395cc09a1d897b7578a94c
 
 COCOAPODS: 0.18.1
