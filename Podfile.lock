@@ -1,14 +1,13 @@
-
 PODS:
-- Inline (0.3.1)
-- Posit (0.0.2)
+  - Inline (0.3.2)
+  - Posit (0.0.2)
 
 DEPENDENCIES:
-- Inline (~> 0.3.1)
-- Posit (~> 0.0.2)
+  - Inline (~> 0.3.2)
+  - Posit (~> 0.0.2)
 
 SPEC CHECKSUMS:
-  Inline: dfb3b0921cd022766e858cd9c85a16c3f78e5c9d
+  Inline: 6f42acc81b87412642fec6f389e56a68b6abe836
   Posit: cc326d26411b57634b395cc09a1d897b7578a94c
 
-COCOAPODS: 0.16.1
+COCOAPODS: 0.18.1
