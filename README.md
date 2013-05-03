@@ -86,7 +86,7 @@ it(@"is empty.", ^{
 Installation
 ============
 
-Specify is installed using [CocoaPods][] by adding `pod 'Specify', '~> 0.1.0'` to your Podfile.
+Specify is installed using [CocoaPods][] by adding `pod 'Specify', '~> 0.1.1'` to your Podfile.
 
 [CocoaPods]: https://github.com/CocoaPods/CocoaPods
 
