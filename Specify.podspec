@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'Specify'
-  s.version  = '0.1.0'
+  s.version  = '0.1.1'
   s.license  = 'MIT'
   s.platform = :ios, '5.0'
   s.summary  = "An Objective-C behaviour-driven development library."
@@ -11,5 +11,5 @@ Pod::Spec.new do |s|
   s.framework    = 'SenTestingKit'
   s.xcconfig     = { 'FRAMEWORK_SEARCH_PATHS' => '"$(SDKROOT)/Developer/Library/Frameworks" "$(DEVELOPER_LIBRARY_DIR)/Frameworks"' }
   s.requires_arc = true
-  s.dependency 'Inline', '~> 0.3.1'
+  s.dependency 'Inline', '~> 0.3.2'
 end
