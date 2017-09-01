@@ -3,9 +3,9 @@ Specify
 
 Specify helps you describe behaviour in conversational terms.
 
-It was developed out of a personal need for a simple BDD library - more lightweight and extendable than the alternatives, with the addition of extra DSL functions to simplify writing examples.
+It was developed out of a personal need for a simple BDD library - more lightweight and extensible than the alternatives, with the addition of extra DSL functions to simplify writing examples.
 
-Specify makes use of the dynamic nature of blocks to define DSL methods like `it()` and `describe()`:
+Specify makes use of the dynamic nature of blocks to define the default terms `it()` and `describe()`:
 
 ```
 describe(@"the stack", ^{
@@ -42,7 +42,7 @@ describe(@"the stack", ^{
 });
 ```
 
-This makes implementing custom DSL's significantly easier. If you're more comfortable using the term `test` to define examples, go ahead and define it: `void(^test)(NSString *, INLVoidBlock) = it;`, then use it:
+[The language][Introducing BDD] of writing tests is super important. That's why Specify supports defining your own terms to define tests. If you're more comfortable using the term `test` to define examples, go ahead and define it: `void(^test)(NSString *, INLVoidBlock) = it;`, then use it:
 
 ```
 void(^test)(NSString *, INLVoidBlock) = it;
@@ -52,8 +52,6 @@ describe(@"the stack", ^{
     });
 });
 ```
-
-After all, if [the language][Introducing BDD] is so important, we should be able to say whatever we want.
 
 Specify provides some additional convenience functions to help with writing specs. To view the full list of functions and examples, see the [Wiki][].
 
