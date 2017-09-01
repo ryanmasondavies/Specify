@@ -42,7 +42,7 @@ describe(@"the stack", ^{
 });
 ```
 
-[The language][Introducing BDD] of writing tests is super important. That's why Specify supports defining your own terms to define tests. If you're more comfortable using the term `test` to define examples, go ahead and define it: `void(^test)(NSString *, INLVoidBlock) = it;`, then use it:
+[The language of writing tests is super important.][Introducing BDD] That's why Specify supports defining your own terms. If you're more comfortable using the term `test`, go ahead and define it: `void(^test)(NSString *, INLVoidBlock) = it;`, then use it:
 
 ```
 void(^test)(NSString *, INLVoidBlock) = it;
